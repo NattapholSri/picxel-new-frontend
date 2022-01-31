@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PICXEL Account registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-group">
+  <ion-input placeholder="กรอกอีเมล์" type="email" required [(ngModel)]="email_addr"></ion-input>
+  <ion-input placeholder="กรอกชื่อผู้ใช้" type="text" required [(ngModel)]="usr_name"></ion-input>
+  <ion-input placeholder="กรอกรหัสผ่าน" type="password" required [(ngModel)]="passwd"></ion-input>
+  <ion-input placeholder="ยืนยันรหัสผ่าน" type="password" required [(ngModel)]="conf_pass"></ion-input>
+  </div>
+  <ion-item>
+    <ion-label>ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ</ion-label>
+    <ion-checkbox slot="start"[(ngModel)]="agreementAccept"></ion-checkbox>
+  </ion-item>
+  <ion-button (click)="onSubmit()">ลงทะเบียน</ion-button>
+</ion-content>

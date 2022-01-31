@@ -1,0 +1,7 @@
+{
+  "name": "picxel-new-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
