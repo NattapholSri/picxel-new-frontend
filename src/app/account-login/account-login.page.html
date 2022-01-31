@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>account-login</ion-title>
+    <ion-title>account-login works!!!</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div>
+    <ion-item>
+      <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
+      <ion-input type="text" required [(ngModel)]="usr_name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">กรอกอีเมล์</ion-label>
+      <ion-input type="password" required [(ngModel)]="passwd"></ion-input>
+    </ion-item>
+  </div>
+  <div>
+    <ion-button (click)="onSubmit()">ลงชื่อเข้าใช้</ion-button>
+  </div>
 
 </ion-content>

@@ -29,9 +29,11 @@ export class AccountRegisPage implements OnInit {
     // console.log(this.agreementAccept)
     if (this.passwd != this.conf_pass) {
       console.log("password is not match")
+      alert("รหัสผ่านกับรหัสในช่องยืนยันไม่ตรงกัน")
     }
     else if (!this.agreementAccept) {
       console.log("you are not accept agreement")
+      alert("คุณยังไม่ได้กดยอมรับข้อตกลงในการใช้งาน")
     }
     else{
       console.log(this.passwd);
