@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
+import * as moment from "moment";
 
 export class UserDetails {
   _id?: String;
@@ -61,4 +62,16 @@ export class UserService {
         catchError(this.handleError)
       )
   }
+
+  ReqLogout(){
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("usr_acc");
+  }
+
+  private setSession(authResult) {
+    const expiresAt = moment().add(authResult.expiresIn,'second');
+
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+}    
 }

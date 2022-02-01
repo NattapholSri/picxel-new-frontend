@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./account-login/account-login.module').then( m => m.AccountLoginPageModule)
   },
   {
-    path: 'account-detail',
+    path: 'account-detail/:id',
     loadChildren: () => import('./account-detail/account-detail.module').then( m => m.AccountDetailPageModule)
   }
 ];

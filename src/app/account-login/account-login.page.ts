@@ -30,12 +30,13 @@ export class AccountLoginPage implements OnInit {
         username: new FormControl(this.usr_name),
         password: new FormControl(this.passwd)
       })
-      console.log(loginForm.value);
 
       this.userServ.ReqLogin(loginForm.value)
       .subscribe((res) => {
         console.log(res)
-        this.ngZone.run(() => this.router.navigateByUrl('/account-detail'))
+        localStorage.setItem('jwt', JSON.stringify(res))
+        localStorage.setItem('usr_acc',this.usr_name)
+        this.ngZone.run(() => this.router.navigateByUrl('/account-detail/1'))
       },
       (err) => {
         console.log(err)
