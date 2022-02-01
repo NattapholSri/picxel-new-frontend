@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder,FormControl,FormGroup } from '@angular/forms';;
+import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
+import { UserService } from '../services/api/user.service';
 
 @Component({
   selector: 'app-account-login',
@@ -10,13 +11,14 @@ import { FormBuilder,FormControl,FormGroup } from '@angular/forms';;
 export class AccountLoginPage implements OnInit {
 
   passwd: string;
-  conf_pass: string;
   usr_name: string;
 
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private userServ: UserService
+
   ) { }
 
   ngOnInit() {
@@ -24,17 +26,21 @@ export class AccountLoginPage implements OnInit {
 
   onSubmit():any {
     // console.log(this.agreementAccept)
-    if (this.passwd != this.conf_pass) {
-      console.log("password is not match")
-      //return res
-    }
-    else{
       const loginForm = new FormGroup({
         username: new FormControl(this.usr_name),
         password: new FormControl(this.passwd)
       })
       console.log(loginForm.value);
-    }
+
+      this.userServ.ReqLogin(loginForm.value)
+      .subscribe((res) => {
+        console.log(res)
+        this.ngZone.run(() => this.router.navigateByUrl('/account-detail'))
+      },
+      (err) => {
+        console.log(err)
+      })
+    
   }
 
 }
