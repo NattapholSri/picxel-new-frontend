@@ -25,7 +25,6 @@ export class AccountLoginPage implements OnInit {
   }
 
   onSubmit():any {
-    // console.log(this.agreementAccept)
       const loginForm = new FormGroup({
         username: new FormControl(this.usr_name),
         password: new FormControl(this.passwd)

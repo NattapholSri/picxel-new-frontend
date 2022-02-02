@@ -48,12 +48,17 @@ export class AccountRegisPage implements OnInit {
         username: new FormControl(this.usr_name),
         password: new FormControl(this.passwd)
       })
-      console.log(registerForm.value);
+      // console.log(registerForm.value);
 
       this.userServ.ReqRegister(registerForm.value)
       .subscribe(() => {
         alert("ลงทะเบียนเสร็จสิ้น โปรดลงชื่อเข้าใช้งาน");
-        this.ngZone.run((res) => this.router.navigateByUrl('/account-login'))
+        this.ngZone.run((res?) => {this.router.navigateByUrl('/account-login')
+        if (res != undefined){
+          console.log(res)
+        }
+      })
+        
       },
       (err) => {
         console.log(err)

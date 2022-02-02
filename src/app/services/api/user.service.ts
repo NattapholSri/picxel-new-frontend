@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
-import * as moment from "moment";
+// import * as moment from "moment";
 
 export class UserDetails {
   _id?: String;
@@ -33,7 +33,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   ReqLogin(data: UserLogin): Observable<any> {
-    let API_URL = `${this.REST_API}/user/login`;
+    let API_URL = `${this.REST_API}/auth/login`;
     return this.httpClient.post(API_URL, data)
       .pipe(
         catchError(this.handleError)
@@ -57,7 +57,7 @@ export class UserService {
 
   ReqRegister(data: UserDetails): Observable<any> {
     let API_URL = `${this.REST_API}/user/register`;
-    return this.httpClient.post(API_URL, data)
+    return this.httpClient.post(API_URL, data,{responseType: 'text'})
       .pipe(
         catchError(this.handleError)
       )
@@ -68,10 +68,10 @@ export class UserService {
     localStorage.removeItem("usr_acc");
   }
 
-  private setSession(authResult) {
+  /* private setSession(authResult) {
     const expiresAt = moment().add(authResult.expiresIn,'second');
 
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-}    
+}     */
 }
