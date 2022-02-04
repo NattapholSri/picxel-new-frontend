@@ -27,7 +27,8 @@ export class AccountLoginPage implements OnInit {
   onSubmit():any {
       const loginForm = new FormGroup({
         username: new FormControl(this.usr_name),
-        password: new FormControl(this.passwd)
+        password: new FormControl(this.passwd),
+        exp: new FormControl("30m")
       })
 
       this.userServ.ReqLogin(loginForm.value)

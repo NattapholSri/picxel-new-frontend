@@ -9,6 +9,7 @@ export class UserDetails {
   username!: String;
   email!: String;
   password!: string;
+  gender?: string;
 }
 
 export class UserLogin {
@@ -16,6 +17,7 @@ export class UserLogin {
   username?: String;
   email?: String;
   password!: string;
+  exp?: string;
 }
 
 @Injectable({
@@ -29,6 +31,7 @@ export class UserService {
   REST_API: string = 'http://katteni.thddns.net:5051';
 
   httpHeaders = new HttpHeaders().set('Content-type','application/json');
+  
 
   constructor(private httpClient: HttpClient) { }
 
@@ -63,9 +66,52 @@ export class UserService {
       )
   }
 
+  ReqUserDetail(userID: string): Observable<any>{
+    let API_URL = `${this.REST_API}/user/` + userID;
+    if (localStorage.getItem('jwt') != undefined){
+      let jsonToken = JSON.parse(localStorage.getItem("jwt"))
+      let authMessage = 'Bearer ' + jsonToken["accessToken"]
+      let tokenHeaders = new HttpHeaders().set('Authorization',authMessage)
+      return this.httpClient.get(API_URL,{headers:tokenHeaders})
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+      )
+    }
+    else {
+      return this.httpClient.get(API_URL)
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+      )
+    }
+  }
+
   ReqLogout(){
+    let jsonToken = JSON.parse(localStorage.getItem("jwt"))
+    let API_URL = `${this.REST_API}/auth/logout`;
+    let authMessage = 'Bearer ' + jsonToken["accessToken"]
+    console.log(authMessage);
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+    //remove token from client 
     localStorage.removeItem("jwt");
     localStorage.removeItem("usr_acc");
+    // sent logout request to server
+
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+      )
+
+  }
+
+  private loadJwt() {
+    let jsonToken = JSON.parse(localStorage.getItem("jwt"))
+    return jsonToken["accessToken"]
   }
 
   /* private setSession(authResult) {
@@ -73,5 +119,5 @@ export class UserService {
 
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-}     */
+  } */     
 }

@@ -53,10 +53,11 @@ export class AccountRegisPage implements OnInit {
       this.userServ.ReqRegister(registerForm.value)
       .subscribe(() => {
         alert("ลงทะเบียนเสร็จสิ้น โปรดลงชื่อเข้าใช้งาน");
-        this.ngZone.run((res?) => {this.router.navigateByUrl('/account-login')
+        this.ngZone.run((res?) => {
         if (res != undefined){
           console.log(res)
         }
+        this.router.navigateByUrl('/account-login')
       })
         
       },
