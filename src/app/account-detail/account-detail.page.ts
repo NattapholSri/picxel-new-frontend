@@ -1,5 +1,5 @@
 import { Component, OnInit,NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../services/api/user.service';
 
@@ -10,18 +10,23 @@ import { UserService } from '../services/api/user.service';
 })
 export class AccountDetailPage implements OnInit {
 
-  usr_acc_head = "Hello " + localStorage.getItem('usr_acc');
+  usr_acc: any;
   token = localStorage.getItem('jwt');
   jsonToken = JSON.parse(this.token);
   knowUser = false;
+  user_id: string;
 
   constructor(
     private router: Router,
     private ngZone: NgZone,
-    private userServ: UserService
-  ) { }
+    private userServ: UserService,
+    private activatedRt: ActivatedRoute
+  ) { this.user_id = this.activatedRt.snapshot.paramMap.get('username');
+}
 
   ngOnInit() {
+    console.log(this.user_id)
+    this.usr_acc = this.userServ.ReqUserDetail(this.user_id)
   }
 
   checkJWT(){ 

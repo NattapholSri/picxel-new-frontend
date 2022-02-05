@@ -36,7 +36,7 @@ export class AccountLoginPage implements OnInit {
         console.log(res)
         localStorage.setItem('jwt', JSON.stringify(res))
         localStorage.setItem('usr_acc',this.usr_name)
-        this.ngZone.run(() => this.router.navigateByUrl('/account-detail/1'))
+        this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
       },
       (err) => {
         console.log(err)
