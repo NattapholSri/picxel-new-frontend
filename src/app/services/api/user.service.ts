@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
-// import * as moment from "moment";
+import * as moment from "moment";
 
 export class UserDetails {
   _id?: String;
@@ -81,7 +81,7 @@ export class UserService {
 
   private isOwnAccount(accountName:string):any{
     let hasToken = localStorage.getItem('jwt') != undefined;
-    let isAccont = localStorage.getItem('usr_acc') == accountName;
+    let isAccont = localStorage.getItem('usr_login') == accountName;
     return hasToken && isAccont
   }
 
@@ -116,7 +116,7 @@ export class UserService {
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
     //remove token from client 
     localStorage.removeItem("jwt");
-    localStorage.removeItem("usr_acc");
+    localStorage.removeItem("usr_login");
     // sent logout request to server
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
@@ -139,7 +139,7 @@ export class UserService {
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
     //remove token from client 
     localStorage.removeItem("jwt");
-    localStorage.removeItem("usr_acc");
+    localStorage.removeItem("usr_login");
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
       .pipe(map((res:any) => {
@@ -157,6 +157,20 @@ export class UserService {
       }),
       catchError(this.handleError)
       )
+  }
+
+  AutoLogout(){
+    let now = moment() 
+    let tokenTimeout = moment(localStorage.getItem('tkTime'),"HH:mm DD-MM-YYYY")
+    if (tokenTimeout < now){
+      localStorage.removeItem('tkTime')
+      localStorage.removeItem('jwt')
+      localStorage.removeItem('usr_login')
+      console.log('token timeout')
+    }
+    else{
+      console.log('token is in use')
+    }   
   }
 
   /* private setSession(authResult) {

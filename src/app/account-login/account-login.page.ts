@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { UserService } from '../services/api/user.service';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-account-login',
@@ -22,13 +23,14 @@ export class AccountLoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userServ.AutoLogout()
   }
 
   onSubmit():any {
       const loginForm = new FormGroup({
         username: new FormControl(this.usr_name),
         password: new FormControl(this.passwd),
-        exp: new FormControl("30m")
+        exp: new FormControl("20m")
       })
 
       if (this.passwd == undefined || this.usr_name == undefined) {
@@ -39,7 +41,11 @@ export class AccountLoginPage implements OnInit {
         .subscribe((res) => {
           console.log(res)
           localStorage.setItem('jwt', JSON.stringify(res))
-          localStorage.setItem('usr_acc',this.usr_name)
+          localStorage.setItem('usr_login',this.usr_name)
+          let tokenTimeout = moment().add(20, 'minutes')
+          localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
+          console.log(localStorage.getItem('tkTime'))
+
           this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
         },
         (err) => {

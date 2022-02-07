@@ -2,6 +2,7 @@ import { Component, OnInit,NgZone } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../services/api/user.service';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-account-detail',
@@ -34,6 +35,8 @@ export class AccountDetailPage implements OnInit {
   ngOnInit() {
     console.log(this.user_id)
     this.usr_acc = JSON.stringify(localStorage.getItem('usernow'))
+    this.userServ.AutoLogout()
+    console.log(localStorage.getItem('tkTime'))
   }
 
   checkThisUserDetail(){ 
@@ -42,7 +45,7 @@ export class AccountDetailPage implements OnInit {
 
   checkUser(){
     // get user data methods
-    this.userServ.ReqUserDetail(localStorage.getItem('usr_acc'))
+    this.userServ.ReqUserDetail(localStorage.getItem('usr_login'))
     .subscribe((res)=> console.log(res))
   }
 
@@ -59,8 +62,6 @@ export class AccountDetailPage implements OnInit {
       (err) => console.log(err)
     )
 
-    console.log(localStorage.getItem('jwt'))
-    console.log("username: "+ localStorage.getItem('usr_acc'))
     this.ngZone.run(() => this.router.navigateByUrl('/home'))
   }
 }
