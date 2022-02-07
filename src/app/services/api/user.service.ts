@@ -10,14 +10,27 @@ export class UserDetails {
   email!: String;
   password!: string;
   gender?: string;
+  picture_url?: string;
 }
 
 export class UserLogin {
-  _id?: String;
-  username?: String;
-  email?: String;
+  _id?: string;
+  username?: string;
+  email?: string;
   password!: string;
   exp?: string;
+}
+
+export class UserRegistration {
+  _id?: string;
+  username!: string;
+  email!: string;
+  password!: string;
+  mailotp!: string;
+}
+
+export class JsonMail {
+  email!: string;
 }
 
 @Injectable({
@@ -43,7 +56,7 @@ export class UserService {
       )
   }
 
-  handleError(error: HttpErrorResponse){
+  private handleError(error: HttpErrorResponse){
     let errorMessage = '';
     /* if (error.status == 201) {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`+"\nrun successful but failure response";
@@ -58,12 +71,18 @@ export class UserService {
     return throwError(errorMessage);
   }
 
-  ReqRegister(data: UserDetails): Observable<any> {
+  ReqRegister(data: UserRegistration): Observable<any> {
     let API_URL = `${this.backend_API}/user/register`;
     return this.httpClient.post(API_URL, data,{responseType: 'text'})
       .pipe(
         catchError(this.handleError)
       )
+  }
+
+  private isOwnAccount(accountName:string):any{
+    let hasToken = localStorage.getItem('jwt') != undefined;
+    let isAccont = localStorage.getItem('usr_acc') == accountName;
+    return hasToken && isAccont
   }
 
   ReqUserDetail(userID: string): Observable<any>{
@@ -130,10 +149,14 @@ export class UserService {
       )
   }
 
-  private isOwnAccount(accountName:string):any{
-    let hasToken = localStorage.getItem('jwt') != undefined;
-    let isAccont = localStorage.getItem('usr_acc') == accountName;
-    return hasToken && isAccont
+  ReqOTP(email: JsonMail){
+    let API_URL = `${this.backend_API}/otp/email`;
+    return this.httpClient.post(API_URL,email,{responseType:'text'})
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+      )
   }
 
   /* private setSession(authResult) {

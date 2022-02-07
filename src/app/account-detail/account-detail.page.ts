@@ -15,24 +15,29 @@ export class AccountDetailPage implements OnInit {
   jsonToken = JSON.parse(this.token);
   knowUser = false;
   user_id: string;
+  isUser = false;
 
   constructor(
     private router: Router,
     private ngZone: NgZone,
     private userServ: UserService,
     private activatedRt: ActivatedRoute
-  ) { this.user_id = this.activatedRt.snapshot.paramMap.get('username');
-}
+  ) { 
+    this.user_id = this.activatedRt.snapshot.paramMap.get('username')
+    this.userServ.ReqUserDetail(this.user_id).subscribe((res) =>{
+      localStorage.setItem('usernow',res)
+      this.usr_acc = res
+    })
+    
+  }
 
   ngOnInit() {
     console.log(this.user_id)
-    this.usr_acc = this.userServ.ReqUserDetail(this.user_id)
+    this.usr_acc = JSON.stringify(localStorage.getItem('usernow'))
   }
 
-  checkJWT(){ 
-    console.log(this.token)
-    alert(this.jsonToken["accessToken"])
-    this.knowUser = true;
+  checkThisUserDetail(){ 
+    console.log(JSON.stringify(this.usr_acc))    
   }
 
   checkUser(){
@@ -43,6 +48,8 @@ export class AccountDetailPage implements OnInit {
 
   deleteAccount(){
     // deletion methods
+    this.userServ.deleteUser()
+    .subscribe((res)=> console.log(res))
   }
 
   userLogout(){

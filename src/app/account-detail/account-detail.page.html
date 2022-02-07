@@ -5,9 +5,23 @@
 </ion-header>
 
 <ion-content>
-  {{usr_acc}}
-  <ion-button (click)='checkJWT()'>show jwt token</ion-button>
-  <ion-button (click)='checkUser()'>show userdata</ion-button>
-  <ion-button color="warning" (click)='userLogout()' shape="round" expand="block">logout</ion-button>
-  <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block">delete this account</ion-button>
+  <ion-button (click)='checkThisUserDetail()'>show this user detail</ion-button>
+  <ion-button (click)='checkUser()'>show user logging data</ion-button>
+  <div>
+    <ion-item>
+      <div>
+        <ion-label>
+          {{usr_acc.username}}
+        </ion-label>
+        <ion-label>
+          {{usr_acc.email}}
+        </ion-label>
+      </div>
+      <div *ngIf=" usr_acc.createdAt != undefined">
+        <ion-label>{{usr_acc.createdAt}}</ion-label>
+        <ion-button color="warning" (click)='userLogout()' shape="round" expand="block">logout</ion-button>
+        <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block">delete this account</ion-button>
+      </div>
+    </ion-item>
+  </div>
 </ion-content>

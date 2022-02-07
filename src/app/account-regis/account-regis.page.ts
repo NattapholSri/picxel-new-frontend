@@ -10,10 +10,12 @@ import { UserService } from '../services/api/user.service';
 })
 export class AccountRegisPage implements OnInit {
 
+  regisForm: FormGroup
   passwd: string;
   conf_pass: string;
   usr_name: string;
   email_addr: string;
+  OTP_num: number;
   agreementAccept: boolean;
 
   constructor(
@@ -46,7 +48,8 @@ export class AccountRegisPage implements OnInit {
       const registerForm = new FormGroup({
         email: new FormControl(this.email_addr),
         username: new FormControl(this.usr_name),
-        password: new FormControl(this.passwd)
+        password: new FormControl(this.passwd),
+        mailotp: new FormControl(this.OTP_num)
       })
       // console.log(registerForm.value);
 

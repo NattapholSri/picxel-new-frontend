@@ -31,16 +31,21 @@ export class AccountLoginPage implements OnInit {
         exp: new FormControl("30m")
       })
 
-      this.userServ.ReqLogin(loginForm.value)
-      .subscribe((res) => {
-        console.log(res)
-        localStorage.setItem('jwt', JSON.stringify(res))
-        localStorage.setItem('usr_acc',this.usr_name)
-        this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
-      },
-      (err) => {
-        console.log(err)
-      })
+      if (this.passwd == undefined || this.usr_name == undefined) {
+          alert("คุณยังกรอกข้อมูลไม่ครบ")
+      }
+      else{
+        this.userServ.ReqLogin(loginForm.value)
+        .subscribe((res) => {
+          console.log(res)
+          localStorage.setItem('jwt', JSON.stringify(res))
+          localStorage.setItem('usr_acc',this.usr_name)
+          this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
+        },
+        (err) => {
+          console.log(err)
+        })
+      }
     
   }
 
