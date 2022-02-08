@@ -29,6 +29,7 @@ export class AccountRegisPage implements OnInit {
   ngOnInit() {
   }
 
+  // Submit Register
   onSubmit():any {
     // console.log(this.agreementAccept)
     if (this.passwd != this.conf_pass) {
@@ -53,6 +54,8 @@ export class AccountRegisPage implements OnInit {
       })
       // console.log(registerForm.value);
 
+
+      // return respond from server to console
       this.userServ.ReqRegister(registerForm.value)
       .subscribe(() => {
         alert("ลงทะเบียนเสร็จสิ้น โปรดลงชื่อเข้าใช้งาน");
@@ -70,4 +73,18 @@ export class AccountRegisPage implements OnInit {
     }
   }
 
+  request_OTP(){
+    const mail_addr = new FormGroup({
+      email: new FormControl(this.email_addr)
+    })
+    this.userServ.ReqOTP(mail_addr.value)
+    .subscribe(()=>{
+      this.ngZone.run((res?) => {
+        if (res != undefined){
+          console.log(res)
+        }
+      })
+    }
+    )
+  }
 }

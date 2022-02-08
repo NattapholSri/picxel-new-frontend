@@ -119,7 +119,7 @@ export class UserService {
     localStorage.removeItem("usr_login");
     // sent logout request to server
 
-    return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders})
       .pipe(map((res:any) => {
         return res || {}
       }),
@@ -151,7 +151,7 @@ export class UserService {
 
   ReqOTP(email: JsonMail){
     let API_URL = `${this.backend_API}/otp/email`;
-    return this.httpClient.post(API_URL,email,{responseType:'text'})
+    return this.httpClient.post(API_URL,email)
       .pipe(map((res:any) => {
         return res || {}
       }),

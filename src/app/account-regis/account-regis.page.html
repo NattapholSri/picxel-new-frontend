@@ -10,7 +10,7 @@
 <ion-content>
   <div class="form-group">
   <ion-input placeholder="กรอกอีเมล์" type="email" required [(ngModel)]="email_addr"></ion-input>
-  <ion-button>send OTP</ion-button>
+  <ion-button (click)="request_OTP()">send OTP</ion-button>
   <ion-input placeholder="กรอกรหัส OTP" type="text" required [(ngModel)]="OTP_num"></ion-input>
   <ion-item>
     <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
