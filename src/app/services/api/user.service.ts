@@ -160,17 +160,22 @@ export class UserService {
   }
 
   AutoLogout(){
-    let now = moment() 
-    let tokenTimeout = moment(localStorage.getItem('tkTime'),"HH:mm DD-MM-YYYY")
-    if (tokenTimeout < now){
-      localStorage.removeItem('tkTime')
-      localStorage.removeItem('jwt')
-      localStorage.removeItem('usr_login')
-      console.log('token timeout')
+    let now = moment()
+    if (localStorage.getItem('tkTime') != undefined){
+      let tokenTimeout = moment(localStorage.getItem('tkTime'),"HH:mm DD-MM-YYYY")
+      if (tokenTimeout <= now){
+        localStorage.removeItem('tkTime')
+        localStorage.removeItem('jwt')
+        localStorage.removeItem('usr_login')
+        console.log('token timeout')
+      }
+      else{
+        console.log('token is in use')
+      }
     }
     else{
-      console.log('token is in use')
-    }   
+      console.log('no token/no user logging in now')
+    }  
   }
 
   /* private setSession(authResult) {

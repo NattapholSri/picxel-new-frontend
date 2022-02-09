@@ -2,7 +2,7 @@ import { Component, OnInit,NgZone } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../services/api/user.service';
-import * as moment from "moment";
+
 
 @Component({
   selector: 'app-account-detail',
@@ -25,11 +25,11 @@ export class AccountDetailPage implements OnInit {
     private activatedRt: ActivatedRoute
   ) { 
     this.user_id = this.activatedRt.snapshot.paramMap.get('username')
-    this.userServ.ReqUserDetail(this.user_id).subscribe((res) =>{
+    this.userServ.ReqUserDetail(this.user_id).subscribe(async(res) =>{
       localStorage.setItem('usernow',res)
       this.usr_acc = res
+      console.log(this.usr_acc)
     })
-    
   }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class AccountDetailPage implements OnInit {
   }
 
   checkThisUserDetail(){ 
-    console.log(JSON.stringify(this.usr_acc))    
+    console.log((this.usr_acc))    
   }
 
   checkUser(){

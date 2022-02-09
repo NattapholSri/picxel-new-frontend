@@ -10,7 +10,16 @@
 <ion-content>
   <div class="form-group">
   <ion-input placeholder="กรอกอีเมล์" type="email" required [(ngModel)]="email_addr"></ion-input>
-  <ion-button (click)="request_OTP()">send OTP</ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-align-self-center">
+      <ion-button (click)="request_OTP()">send OTP (verify email)</ion-button>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <ion-text *ngIf="sentOTP" color="success">OTP has been sent, Please check your email</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-input placeholder="กรอกรหัส OTP" type="text" required [(ngModel)]="OTP_num"></ion-input>
   <ion-item>
     <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
