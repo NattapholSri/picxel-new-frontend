@@ -79,7 +79,7 @@ export class AccountRegisPage implements OnInit {
   }
 
   // ขอ OTP ส่งไปที่ email
-  request_OTP(){
+  /* request_OTP(){
     if (this.email_addr != undefined){
       const mail_addr = new FormGroup({
         email: new FormControl(this.email_addr)
@@ -96,5 +96,5 @@ export class AccountRegisPage implements OnInit {
     else{
       alert('คุณยังไม่ได้กรอกอีเมล์ เพื่อส่ง OTP')
     }
-  }
+  } */
 }

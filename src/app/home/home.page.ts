@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../services/api/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(userServ: UserService) {
+    userServ.AutoLogout()
+  }
 
 }
