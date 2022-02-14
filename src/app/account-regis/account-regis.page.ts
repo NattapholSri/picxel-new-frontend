@@ -16,11 +16,8 @@ export class AccountRegisPage implements OnInit {
   conf_pass: string;
   usr_name: string;
   email_addr: string;
-  OTP_num: number;
   // การทำเครื่องหมาย ที่ Aggreement
   agreementAccept: boolean;
-  // สถานะการส่ง OTP
-  sentOTP = false;
 
   constructor(
     public formBulider: FormBuilder,
@@ -44,9 +41,6 @@ export class AccountRegisPage implements OnInit {
     || this.usr_name == undefined || this.email_addr == undefined) {
       alert("คุณยังกรอกข้อมูลไม่ครบ")
     }
-    else if (this.OTP_num == undefined ) {
-        alert("คุณยังไม่ได้กรอก OTP")
-    }
     else if (!this.agreementAccept) {
       console.log("you are not accept agreement")
       alert("คุณยังไม่ได้กดยอมรับข้อตกลงในการใช้งาน")
@@ -57,8 +51,7 @@ export class AccountRegisPage implements OnInit {
       const registerForm = new FormGroup({
         email: new FormControl(this.email_addr),
         username: new FormControl(this.usr_name),
-        password: new FormControl(this.passwd),
-        mailotp: new FormControl(this.OTP_num)
+        password: new FormControl(this.passwd)
       })
 
       // return respond from server to console
@@ -77,24 +70,5 @@ export class AccountRegisPage implements OnInit {
       })
     }
   }
-
-  // ขอ OTP ส่งไปที่ email
-  /* request_OTP(){
-    if (this.email_addr != undefined){
-      const mail_addr = new FormGroup({
-        email: new FormControl(this.email_addr)
-      })
-      this.userServ.ReqOTP(mail_addr.value)
-      .subscribe((res)=>{
-        let reply = res
-        if (reply.message == 'ok'){
-          this.sentOTP = true
-        }
-        console.log("message from server: " + reply.message)
-      })
-    }
-    else{
-      alert('คุณยังไม่ได้กรอกอีเมล์ เพื่อส่ง OTP')
-    }
-  } */
+  
 }

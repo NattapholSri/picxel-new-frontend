@@ -6,9 +6,9 @@ import * as moment from "moment";
 
 export class UserDetails {
   _id?: String;
-  username!: String;
-  email!: String;
-  password!: string;
+  username?: String;
+  email?: String;
+  password?: string;
   gender?: string;
   picture_url?: string;
 }
@@ -26,7 +26,7 @@ export class UserRegistration {
   username!: string;
   email!: string;
   password!: string;
-  mailotp!: string;
+  mailotp?: string;
 }
 
 export class JsonMail {
@@ -178,10 +178,20 @@ export class UserService {
     }  
   }
 
-  /* private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn,'second');
+  updateUserData(data:UserDetails){
+    let jsonToken = this.loadJwt()
+    let API_URL = `${this.backend_API}/user/delete`;
+    let authMessage = 'Bearer ' + jsonToken;
 
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-  } */     
+    /// uncomplete wait for code
+
+  }
+
+  ReqRstPasswd(email:JsonMail){
+    let API_URL = `${this.backend_API}/user/reset-password`;
+    return this.httpClient.post(API_URL, email)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
 }

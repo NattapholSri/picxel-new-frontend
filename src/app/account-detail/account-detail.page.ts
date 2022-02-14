@@ -25,7 +25,7 @@ export class AccountDetailPage implements OnInit {
     private activatedRt: ActivatedRoute
   ) { 
     this.user_id = this.activatedRt.snapshot.paramMap.get('username')
-    this.userServ.ReqUserDetail(this.user_id).subscribe(async(res) =>{
+    this.userServ.ReqUserDetail(this.user_id).subscribe((res) => {
       localStorage.setItem('usernow',res)
       this.usr_acc = res
       console.log(this.usr_acc)
@@ -63,5 +63,13 @@ export class AccountDetailPage implements OnInit {
     )
 
     this.ngZone.run(() => this.router.navigateByUrl('/home'))
+  }
+
+  updateName(){
+    
+  }
+
+  updateProfilePics(){
+
   }
 }

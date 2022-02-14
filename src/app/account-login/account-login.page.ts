@@ -51,9 +51,7 @@ export class AccountLoginPage implements OnInit {
         (err) => {
           console.log(err)
         })
-      }
-    
+      } 
   }
-
 
 }

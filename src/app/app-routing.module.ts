@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'account-detail/:username',
     loadChildren: () => import('./account-detail/account-detail.module').then( m => m.AccountDetailPageModule)
+  },  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   }
+
 ];
 
 @NgModule({
