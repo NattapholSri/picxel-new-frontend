@@ -9,7 +9,10 @@
 
 <ion-content>
   <div class="form-group">
-  <ion-input placeholder="กรอกอีเมล์" type="email" required [(ngModel)]="email_addr"></ion-input>
+    <ion-item>
+      <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
+      <ion-input placeholder="กรอกอีเมล์" type="email" required [(ngModel)]="email_addr"></ion-input>
+    </ion-item>
   <!-- <ion-grid>
     <ion-row>
       <ion-col class="ion-align-self-center">

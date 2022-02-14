@@ -5,9 +5,9 @@ import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import * as moment from "moment";
 
 export class UserDetails {
-  _id?: String;
-  username?: String;
-  email?: String;
+  _id?: string;
+  username?: string;
+  email?: string;
   password?: string;
   gender?: string;
   picture_url?: string;
@@ -180,10 +180,16 @@ export class UserService {
 
   updateUserData(data:UserDetails){
     let jsonToken = this.loadJwt()
-    let API_URL = `${this.backend_API}/user/delete`;
+    let API_URL = `${this.backend_API}/user/update`;
     let authMessage = 'Bearer ' + jsonToken;
-
-    /// uncomplete wait for code
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+    // uncomplete wait for code
+    return this.httpClient.put(API_URL, data,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
 
   }
 
