@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
-import { UserService } from '../services/api/user.service';
+import { UserService } from '../../services/api/user.service';
 
 @Component({
   selector: 'app-account-regis',

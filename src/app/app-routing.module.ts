@@ -13,16 +13,17 @@ const routes: Routes = [
   },
   {
     path: 'registration',
-    loadChildren: () => import('./account-regis/account-regis.module').then( m => m.AccountRegisPageModule)
+    loadChildren: () => import('./user-pages/account-regis/account-regis.module').then( m => m.AccountRegisPageModule)
   },
   {
     path: 'account-login',
-    loadChildren: () => import('./account-login/account-login.module').then( m => m.AccountLoginPageModule)
+    loadChildren: () => import('./user-pages/account-login/account-login.module').then( m => m.AccountLoginPageModule)
   },
   {
     path: 'account-detail/:username',
-    loadChildren: () => import('./account-detail/account-detail.module').then( m => m.AccountDetailPageModule)
-  },  {
+    loadChildren: () => import('./user-pages/account-detail/account-detail.module').then( m => m.AccountDetailPageModule)
+  },
+  {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },

@@ -1,7 +1,7 @@
 import { Component, OnInit,NgZone } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
-import { UserService } from '../services/api/user.service';
+import { UserService } from '../../services/api/user.service';
 
 
 @Component({
