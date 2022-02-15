@@ -11,6 +11,7 @@ export class UserDetails {
   password?: string;
   gender?: string;
   picture_url?: string;
+  firstname?: string;
 }
 
 export class UserLogin {
