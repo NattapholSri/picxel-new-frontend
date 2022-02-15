@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button onclick="history.back()"></ion-back-button>
+    </ion-buttons>
     <ion-title>account-detail</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -21,7 +24,7 @@
 
     <div *ngIf=" usr_acc.createdAt != undefined">
       <ion-label>{{usr_acc.createdAt}}</ion-label>
-      <ion-button [routerLink]="'/account-edit'" shape="round" expand="block" >delete this account</ion-button>
+      <ion-button [routerLink]="'/account-edit'" shape="round" expand="block" >edit profile</ion-button>
       <ion-button color="warning" (click)='userLogout()' shape="round" expand="block">logout</ion-button>
       <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block">delete this account</ion-button>
     </div>

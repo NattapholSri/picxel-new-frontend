@@ -10,7 +10,7 @@ export class UserDetails {
   email?: string;
   password?: string;
   gender?: string;
-  picture_url?: string;
+  profile_pic?: string;
   firstname?: string;
 }
 

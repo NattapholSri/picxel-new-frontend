@@ -10,9 +10,8 @@ import { UserService } from './services/api/user.service';
 export class AppComponent {
   constructor(router: Router,userServ: UserService) {
     userServ.AutoLogout()
-    if (localStorage.getItem('tkTime') != undefined 
+    /* if (localStorage.getItem('tkTime') != undefined 
       && localStorage.getItem('jwt') != undefined) {
-      router.navigate(['home']);
-    }
+      router.navigate(['home']); */
   }
 }
