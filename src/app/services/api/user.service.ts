@@ -109,7 +109,7 @@ export class UserService {
     }
   }
 
-  ReqLogout(){
+  ReqLogout() {
     let jsonToken = this.loadJwt()
     let API_URL = `${this.backend_API}/auth/logout`;
     let authMessage = 'Bearer ' + jsonToken;
@@ -118,6 +118,7 @@ export class UserService {
     //remove token from client 
     localStorage.removeItem("jwt");
     localStorage.removeItem("usr_login");
+    localStorage.removeItem('tkTime')
     // sent logout request to server
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders})
@@ -184,7 +185,7 @@ export class UserService {
     let API_URL = `${this.backend_API}/user/update`;
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
-    // uncomplete wait for code
+  
     return this.httpClient.put(API_URL, data,{headers:tokenHeaders})
     .pipe(map((res:any) => {
       return res || {}
@@ -200,5 +201,26 @@ export class UserService {
       .pipe(
         catchError(this.handleError)
       )
+  }
+
+  SearchUser(keyword:string,limitview?:number,page?:number){
+    if (limitview == undefined){
+      limitview = 20
+    }
+    if (page == undefined){
+      page = 1
+    }
+    let API_URL = `${this.backend_API}/user/search?username=${keyword}&limit=${keyword}&page=${page}`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 }
