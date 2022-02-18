@@ -62,7 +62,7 @@ export class AccountDetailPage implements OnInit {
       (err) => console.log(err)
     )
 
-    this.ngZone.run(() => this.router.navigateByUrl('/home'))
+    this.ngZone.run(() => this.router.navigateByUrl('/'))
   }
 
   updateName(){

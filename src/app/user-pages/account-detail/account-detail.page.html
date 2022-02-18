@@ -17,9 +17,10 @@
       <ion-card-title>
           {{usr_acc.username}}
       </ion-card-title>
-      <ion-card-subtitle>
-          {{usr_acc.email}}
-      </ion-card-subtitle>
+
+        <ion-card-subtitle *ngIf=" usr_acc.firstname != undefined">
+          <ion-text>{{usr_acc.firstname}}</ion-text>
+        </ion-card-subtitle>
     </ion-card>
 
     <div *ngIf=" usr_acc.createdAt != undefined">
