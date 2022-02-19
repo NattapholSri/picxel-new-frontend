@@ -68,8 +68,25 @@ export class PostingService {
     )
   }
 
-  SearchPost(){
-    
+  SearchPost(keyword:string,limitview?:number,page?:number): Observable<any>{
+    if (limitview == undefined){
+      limitview = 20
+    }
+    if (page == undefined){
+      page = 1
+    }
+    let API_URL = `${this.backend_post_API}/post/search?userid=${keyword}&limit=${limitview}&page=${page}`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
   UpdatePost(data: PostData): Observable<any>{

@@ -44,7 +44,7 @@ export class TagService {
 
 
   CreateTag(data:TagDetail): Observable<any>{
-    let API_URL = `${this.backend_post_API}/post/create`;
+    let API_URL = `${this.backend_post_API}/tag/create`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -65,7 +65,7 @@ export class TagService {
     if (page == undefined){
       page = 1
     }
-    let API_URL = `${this.backend_post_API}/user/search?username=${keyword}&limit=${keyword}&page=${page}`;
+    let API_URL = `${this.backend_post_API}/tag/search?name=${keyword}&limit=${keyword}&page=${page}`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
