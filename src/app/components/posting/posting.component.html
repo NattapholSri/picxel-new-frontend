@@ -1,9 +1,50 @@
-<h1>Posting Works</h1>
-<p>
-  <ion-input placeholder="เขียนข้อความ"></ion-input>
-  <ion-input placeholder="URL รูปภาพ"></ion-input>
-  <ion-text *ngIf=" message_mode == 1" color="danger">this picture has been added already</ion-text>
-  <ion-text *ngIf=" message_mode == 2" color="success">added picture</ion-text>
-  <ion-text *ngIf=" message_mode == 3" color="success">added tag</ion-text>
-  <ion-text *ngIf=" message_mode == 4" color="success">tag not exist/already added</ion-text>
-</p>
+<h1>สร้างโพสต์ใหม่</h1>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-textarea placeholder="เขียนข้อความ" rows="3" cols="80" inputmode="text" [(ngModel)]="post_text"></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-textarea placeholder="URL รูปภาพ" rows="1" cols="100" inputmode="text" [(ngModel)]="picture_url"></ion-textarea>
+        <ion-text *ngIf=" message_mode == 1" color="danger">this picture has been added already</ion-text>
+        <ion-text *ngIf=" message_mode == 2" color="success">added picture</ion-text>
+        <ion-text *ngIf=" message_mode == 5">no picture added</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="addPic()">add a picture</ion-button>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col size="4">
+        <ion-searchbar placeholder="Enter tag"></ion-searchbar>
+      </ion-col>
+      <ion-col>
+        <ion-button>create new tag</ion-button>
+        <ion-text *ngIf=" message_mode == 3" color="success">added tag</ion-text>
+        <ion-text *ngIf=" message_mode == 4" color="success">tag not exist/already added</ion-text>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2" offset="5">
+        <ion-button (click)="onSubmit()">โพสต์</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+

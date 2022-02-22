@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
+import { actionSheetController } from '@ionic/core';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-posting',
@@ -13,9 +15,11 @@ export class PostingComponent {
 
   //postForm: FormGroup;
 
-  text: string;
-  pic: string[];
-  tag: string[];
+  post_text: string;
+  picture_list: string[] = [];
+  tags_list: string[] = [];
+
+  picture_url: string = '';
 
   message_to_usr: string;
   message_mode: number = 0;
@@ -24,7 +28,8 @@ export class PostingComponent {
     public formBulider: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private PostServ: PostingService
+    private PostServ: PostingService,
+    private actionSheetCtrl: ActionSheetController
   ) {/* this.postForm = this.formBulider.group({
     text: [''],
     pic: [''],
@@ -36,9 +41,9 @@ export class PostingComponent {
 
   onSubmit(){
     let postForm = new FormGroup({
-      text : new FormControl(this.text),
-      pics : new FormControl(this.pic),
-      tags : new FormControl(this.tag)
+      text : new FormControl(this.post_text),
+      pics : new FormControl(this.picture_list),
+      tags : new FormControl(this.tags_list)
     })
     this.PostServ.CreatePost(postForm.value)
     .subscribe((res) => {
@@ -51,37 +56,56 @@ export class PostingComponent {
   }
 
   removePic(select_item:string){
-    for( var i = 0; i < this.pic.length; i++){ 
+
+
+
+    for( var i = 0; i < this.picture_list.length; i++){ 
                                    
-      if ( this.pic[i] === select_item) { 
-        this.pic.splice(i, 1); 
+      if ( this.picture_list[i] === select_item) { 
+        this.picture_list.splice(i, 1); 
         i--; 
       }
     }
   }
 
   removeTag(select_tag:string){
-    for( var i = 0; i < this.pic.length; i++){ 
+    for( var i = 0; i < this.tags_list.length; i++){ 
                                    
-      if ( this.tag[i] === select_tag) { 
-        this.tag.splice(i, 1); 
+      if ( this.tags_list[i] === select_tag) { 
+        this.tags_list.splice(i, 1); 
         i--; 
       }
     }
 
   }
 
-  addPic(input_text:string){
-    if (this.pic.includes(input_text)){
+  addPic(){
+    let input_text = this.picture_url
+    if (this.picture_list.includes(input_text)){
       this.message_mode = 1;
+    }
+    else if (input_text == undefined || input_text == ''){
+      this.message_mode = 5;
     }
     else{
       this.message_mode = 2;
+      this.picture_list.push(input_text)
+    }
+    console.log(this.picture_list)
+  }
+
+  addTag(input_text:string){
+    if (this.tags_list.includes(input_text)){
+      this.message_mode = 4;
+    }
+    else{
+      this.message_mode = 3;
+      this.tags_list.push(input_text)
     }
   }
 
-  addTag(){
-
+  createNewTag() {
+   
   }
 
 }

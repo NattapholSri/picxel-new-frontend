@@ -28,32 +28,33 @@ export class AccountLoginPage implements OnInit {
   }
 
   onSubmit():any {
-      const loginForm = new FormGroup({
-        username: new FormControl(this.usr_name),
-        password: new FormControl(this.passwd),
-        exp: new FormControl("20m")
+    const loginForm = new FormGroup({
+      username: new FormControl(this.usr_name),
+      password: new FormControl(this.passwd),
+      exp: new FormControl("20m")
+    })
+    
+    if (this.passwd == undefined || this.usr_name == undefined) {
+      alert("คุณยังกรอกข้อมูลไม่ครบ")
+    } 
+    else{
+      console.log(loginForm.value)
+      this.userServ.ReqLogin(loginForm.value)
+      .subscribe((res) => {
+        console.log(res)
+        localStorage.setItem('jwt', JSON.stringify(res))
+        localStorage.setItem('usr_login',this.usr_name)
+        let tokenTimeout = moment().add(20, 'minutes')
+        localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
+        console.log(localStorage.getItem('tkTime'))
+
+        this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
+      },
+      (err) => {
+        console.log(err)
+        alert('ไม่พบ User ในระบบ')
       })
-
-      if (this.passwd == undefined || this.usr_name == undefined) {
-          alert("คุณยังกรอกข้อมูลไม่ครบ")
-      }
-      else{
-        this.userServ.ReqLogin(loginForm.value)
-        .subscribe((res) => {
-          console.log(res)
-          localStorage.setItem('jwt', JSON.stringify(res))
-          localStorage.setItem('usr_login',this.usr_name)
-          let tokenTimeout = moment().add(20, 'minutes')
-          localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
-          console.log(localStorage.getItem('tkTime'))
-
-          this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
-        },
-        (err) => {
-          console.log(err)
-          alert('ไม่พบ User ในระบบ')
-        })
-      } 
+    }
   }
 
 }

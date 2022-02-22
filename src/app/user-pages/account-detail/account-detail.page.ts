@@ -31,7 +31,12 @@ export class AccountDetailPage implements OnInit {
       localStorage.setItem('usernow',res)
       this.usr_acc = res
       console.log(this.usr_acc)
-    })
+    },(err) => {
+      alert('Oh no! this user not exist. Taking you back to your user detail')
+      let main_user = localStorage.getItem('usr_login')
+      this.router.navigateByUrl(`/account-detail/${main_user}`)
+    }
+    )
   }
 
   ngOnInit() {
@@ -55,7 +60,7 @@ export class AccountDetailPage implements OnInit {
     // deletion methods
     this.alertCtrl.create(
       {header: 'คุณแน่ใจแล้วใช่ไหม',
-      message: 'การลบบัญชีผู้ใช้ ระบบจะทำการลบข้อมูลทั้งที่เกี่ยวข้องกับบัญชีนี้ และไม่สามารถกู้คืนข้อมูลได้',
+      message: 'การลบบัญชีผู้ใช้ ระบบจะทำการลบข้อมูลทั้งหมดที่เกี่ยวข้องกับบัญชีนี้ และไม่สามารถกู้คืนข้อมูลได้',
       buttons: [
         {
         text: 'ยกเลิก',
