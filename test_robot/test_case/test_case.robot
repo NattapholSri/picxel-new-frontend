@@ -10,184 +10,178 @@ Library    SeleniumLibrary
 ${url}=    http://localhost:8100/sign-in 
 ${browser}    chrome
 ${google}    https://google.com/ 
+${sign_up}    http://localhost:8100/account-login
+${regis_page}    http://localhost:8100/registration
+${forgot_psw_page}    http://localhost:8100/forgot-password
+
 *** Test Cases ***
 test_practice
-    practice_test
-tc#1 Login to platform 
-    
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type manager phone number into number box and click
-    # manager 0935461545, employee 0983902707, psw: 123456
-    #I should see “Login or Register”
-    #I press “Register”
-    #I should see “Register”
-    #I fill in “username” with “user1”
-    #I fill in “password” with “password”
-    #I fill in “confirm_password” with “password”
-#robot -d result/tc1 -t "tc#1*" testcase/file.robot"
+    I am on Sign-Up page
+    I fill in "Name-Surname" with my Name
 
-tc#3 Employee Log In   
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type employee phone number into number box and click
-    #wait
+registeration
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with reg_my_email
+    Sleep  0.5s
+    I fill in username_box with reg_my_username
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I fill in confirm_password_box with reg_my_confirm_password_box
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  0.5s
+
+sign_in
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+
+edit_profile 
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click gender
+    Sleep  5s
+    I want to change my gender to Male
     Sleep  2s
-    #password login part
-    I should see password employee confirmation page
-    I type password and click submit
+    I click ok to confirm my new gender
 
+    Sleep  0.5s
+    I type my new_first_name
+    Sleep  0.5s
+    I click บันทึกการแก้ไข
 
+   # Sleep  0.5s
+   # I click ok to confirm my new gender
+cancel_profile_edition
+    I am on Sign-In page
 
-tc#5 Check Employee NavBar
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type employee phone number into number box and click
-    #wait
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click gender
+    Sleep  5s
+    I want to change my gender to Male
     Sleep  2s
-    #password login part
-    I should see password employee confirmation page
-    I type password and click submit
-    # NabBar Part
-    I should see the employe page NavBar
+    I click ok to confirm my new gender
 
-tc#7 Check Employee calendar&timecard
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type employee phone number into number box and click
-    #wait
-    Sleep  2s
-    #password login part
-    I should see password employee confirmation page
-    I type password and click submit
-    #Calendar Part
-    I should see calendar
-    #Timecard Part
-    I should see timecard
+    Sleep  0.5s
+    I type my new_first_name
 
-tc#9 Check Employee shifting table
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type employee phone number into number box and click
-    #wait
-    Sleep  2s
-    #password login part
-    I should see password employee confirmation page
-    I type password and click submit
-    #shifting table part
-    I should see shifting table
+    Sleep  0.5s
+    I click cancel_button to cancel my edit
 
-#Manager TEST
-tc#2 Manager Log In
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type manager phone number into number box and click
-    #wait
-    Sleep  2s
-    #password login part
-    I should see password manager confirmation page
-    I type password and click submit
+log_out
+    I am on Sign-In page
 
-tc#4 Check Manager NavBar
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type manager phone number into number box and click
-    #wait
-    Sleep  2s
-    #password login part
-    I should see password manager confirmation page
-    I type password and click submit
-    # NavBar Details
-    I should see the manager NavBar 
-    
-tc#6 Manager can see add work button and add work table
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type manager phone number into number box and click
-    #wait
-    Sleep  1s
-    #password login part
-    I should see password manager confirmation page
-    I type password and click submit
-    Sleep  1s
-    #press add work button
-    I should see add work button and click
-    I insert all work info and submit
-    
-tcupload upload employees database
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type manager phone number into number box and click
-    #wait
-    Sleep  1s
-    #password login part
-    I should see password manager confirmation page
-    I type password and click submit
-    Sleep  1s
-    I should see uploadfile button and click
-    
-tc#8 Manager can edit work table
+    Sleep  0.5s
+    I fill in username_box with login_my_username
 
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type manager phone number into number box and click
-    #wait
-    #Sleep  2s
-    #password login part
-    I should see password manager confirmation page
-    I type password and click submit
-    #Sleep  1s
-    #See edit work button
-    I should see edit work button
-    #press edit work button
-    I press add edit work button
-    #edit work details
-    #Sleep  2s
-    I should edit work details
+    Sleep  0.5s
+    I fill in password_box with login_my_password
 
-tc#11 Manager can edit work with individual employee
-    #phone number part
-    I am on the Activity Base Home page
-    I should see Login Box 
-    I type manager phone number into number box and click
-    #wait
-    #Sleep  2s
-    #password login part
-    I should see password manager confirmation page
-    I type password and click submit
-    #Sleep  1s
-    #See edit work button
-    I should see edit work button
-    #press edit work button
-    I press add edit work button
-    #edit work details
-    #Sleep  2s
-    I should edit work details individual
-
-
-    
-
-    
-    
-
-
-
-
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    Sleep  0.5s
+    I click log_out_button 
 
 *** Keywords ***
 
 practice_test
     Open Browser    http://www.google.co.th    chrome
 
+## Feature Log-In
+I am on Sign-In page
+    Open Browser    ${sign_up}    chrome
+I fill in username_box with login_my_username
+    Input Text    name=ion-input-0    dummy
+I fill in password_box with login_my_password
+    Input Text    name=ion-input-1    dummy1234
+I click ลงชื่อเข้าใช้
+   Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-login/ion-content/div[2]/ion-button
+   # Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button
+
+## Feature Registeration 
+I am on Regis page
+    Open Browser    ${regis_page}    chrome
+I fill in email_box with reg_my_email
+    Input Text    name=ion-input-0    wasawat_non@gmail.com
+I fill in username_box with reg_my_username
+    Input Text    name=ion-input-1    wasawat_non
+I fill in password_box with reg_my_password
+    Input Text    name=ion-input-2    0123456789
+I fill in confirm_password_box with reg_my_confirm_password_box
+    Input Text    name=ion-input-3    0123456789
+I check in check_box
+    Click Element    tag=ion-checkbox
+I click ลงทะเบียน
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button
+Then I should see "please check your email"_message 
+
+## Feature Edit User Profile
+I click edit_profile
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/div/ion-button[1]
+
+I click gender
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-item[1]
+    
+I want to change my gender to Male
+    Click Element    xpath=/html/body/app-root/ion-app/ion-alert/div[2]/div[3]/button[2]/div/div[2]
+I click ok to confirm my new gender
+    Click Element    xpath=//*[@id="ion-overlay-1"]/div[2]/div[4]/button[2]/span
+
+I type my new_first_name
+    Input Text    name=ion-input-3    dummychan
+I click บันทึกการแก้ไข
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-button[2]
+
+I click cancel_button to cancel my edit
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-button[1]
+
+## Feature Log Out
+I click log_out_button 
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/div/ion-button[2]
+
+##
+I fill in "Name-Surname" with my Name
+    Input Text    name=ion-input-0    0633438499
+    #Click Element    xpath=//*[@id="root"]/section/div/div/form/button
+
+
+### Old CPF CODE ###
 I am on the Activity Base Home page
     open browser    ${url}    chrome
 
@@ -205,7 +199,6 @@ I type employee phone number into number box and click
     Input Text    id=outlined-basic    0123456789
     Click Element    xpath=//*[@id="root"]/section/div/div/form/button
 
-I should see password manager confirmation page
     #กล่อง "กรอกรหัสยืนยัน"
     Page Should Contain Element   xpath=/html/body/div/section/div/div/p[1]
     #กล่อง บอก รหัสยืนยัน จะส่งไปที่ไหน
