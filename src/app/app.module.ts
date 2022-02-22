@@ -9,11 +9,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UserdataComponent } from './components/userdata/userdata.component';
-import { PostingComponent } from './components/posting/posting.component';
 
 
 @NgModule({
-  declarations: [AppComponent,UserdataComponent,PostingComponent],
+  declarations: [AppComponent,UserdataComponent,],
   entryComponents: [],
   imports: [
     BrowserModule, 

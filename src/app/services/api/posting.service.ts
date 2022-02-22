@@ -16,7 +16,7 @@ export class PostData {
 })
 export class PostingService {
 
-  backend_post_API: string = 'http://katteni.thddns.net:5053';
+  backend_post_API: string = 'http://katteni.thddns.net:5051';
 
   httpHeaders = new HttpHeaders().set('Content-type','application/json');
   

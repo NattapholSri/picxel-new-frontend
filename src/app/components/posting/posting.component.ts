@@ -9,7 +9,7 @@ import { TagService } from 'src/app/services/api/tag.service';
   templateUrl: './posting.component.html',
   styleUrls: ['./posting.component.scss'],
 })
-export class PostingComponent implements OnInit {
+export class PostingComponent {
 
   //postForm: FormGroup;
 
@@ -35,7 +35,19 @@ export class PostingComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(){
-
+    let postForm = new FormGroup({
+      text : new FormControl(this.text),
+      pics : new FormControl(this.pic),
+      tags : new FormControl(this.tag)
+    })
+    this.PostServ.CreatePost(postForm.value)
+    .subscribe((res) => {
+      alert("ทำการส่งคำขอรีเซ็ต Password แล้ว")
+      console.log(res)
+    },
+    (err) => {
+      console.log(err)
+    })
   }
 
   removePic(select_item:string){

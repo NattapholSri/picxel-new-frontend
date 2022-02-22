@@ -3,36 +3,7 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import * as moment from "moment";
-
-export class UserDetails {
-  _id?: string;
-  username?: string;
-  email?: string;
-  password?: string;
-  gender?: string;
-  profile_pic?: string;
-  firstname?: string;
-}
-
-export class UserLogin {
-  _id?: string;
-  username?: string;
-  email?: string;
-  password!: string;
-  exp?: string;
-}
-
-export class UserRegistration {
-  _id?: string;
-  username!: string;
-  email!: string;
-  password!: string;
-  mailotp?: string;
-}
-
-export class JsonMail {
-  email!: string;
-}
+import { UserDetails,UserLogin,UserRegistration,JsonMail } from '../data-model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -142,6 +113,7 @@ export class UserService {
     //remove token from client 
     localStorage.removeItem("jwt");
     localStorage.removeItem("usr_login");
+    localStorage.removeItem('tkTime')
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
       .pipe(map((res:any) => {

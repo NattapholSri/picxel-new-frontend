@@ -2,6 +2,7 @@ import { Component, OnInit,NgZone } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../../services/api/user.service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class AccountDetailPage implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private userServ: UserService,
-    private activatedRt: ActivatedRoute
+    private activatedRt: ActivatedRoute,
+    private alertCtrl: AlertController
   ) { 
     this.user_id = this.activatedRt.snapshot.paramMap.get('username')
     this.userServ.ReqUserDetail(this.user_id).subscribe((res) => {
@@ -51,8 +53,27 @@ export class AccountDetailPage implements OnInit {
 
   deleteAccount(){
     // deletion methods
-    this.userServ.deleteUser()
-    .subscribe((res)=> console.log(res))
+    this.alertCtrl.create(
+      {header: 'คุณแน่ใจแล้วใช่ไหม',
+      message: 'การลบบัญชีผู้ใช้ ระบบจะทำการลบข้อมูลทั้งที่เกี่ยวข้องกับบัญชีนี้ และไม่สามารถกู้คืนข้อมูลได้',
+      buttons: [
+        {
+        text: 'ยกเลิก',
+        role: 'cancel'
+        },{
+          text: 'แน่นอน',
+          handler: () => {
+            this.userServ.deleteUser()
+            .subscribe((res)=> console.log(res))
+            this.ngZone.run(() => this.router.navigateByUrl('/'))
+          }
+        }
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
+
   }
 
   userLogout(){
@@ -65,11 +86,4 @@ export class AccountDetailPage implements OnInit {
     this.ngZone.run(() => this.router.navigateByUrl('/'))
   }
 
-  updateName(){
-    
-  }
-
-  updateProfilePics(){
-
-  }
 }

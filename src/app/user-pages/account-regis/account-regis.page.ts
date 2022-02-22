@@ -46,7 +46,6 @@ export class AccountRegisPage implements OnInit {
       alert("คุณยังไม่ได้กดยอมรับข้อตกลงในการใช้งาน")
     }
     else{
-      console.log(this.passwd);
       // create form to sent to server
       const registerForm = new FormGroup({
         email: new FormControl(this.email_addr),

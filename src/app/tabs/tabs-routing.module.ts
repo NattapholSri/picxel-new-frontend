@@ -11,34 +11,14 @@ const routes: Routes = [
       [
         {
           path: 'home',
-          children:
-            [
-              {
-                path: '',
-                redirectTo: 'home'
-              }
-            ]
-        },
-        /* {
-          path: 'tab2',
-          children:
-            [
-              {
-                path: '',
-                loadChildren: '../tab2/tab2.module#Tab2PageModule'
-              }
-            ]
+          outlet: 'home',
+          pathMatch: 'full'
         },
         {
-          path: 'tab3',
-          children:
-            [
-              {
-                path: '',
-                loadChildren: '../tab3/tab3.module#Tab3PageModule'
-              }
-            ]
-        }, */
+          path: 'home',
+          outlet: 'home',
+          pathMatch: 'full'
+        },
         {
           path: '',
           redirectTo: 'home',
@@ -46,11 +26,6 @@ const routes: Routes = [
         }
       ]
   },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
