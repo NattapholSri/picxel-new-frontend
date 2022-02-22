@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.8.0 on win32)" generated="20220222 23:18:18.291" rpa="false" schemaversion="2">
+<suite id="s1" name="Test Case" source="D:\4. Work in Drive D\Project 4th year\Front_End\picxel-new-frontend\test_robot\test_case\test_case.robot">
+<test id="s1-t1" name="test_practice">
+<kw name="practice_test">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>http://www.google.co.th</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220222 23:18:18.496" level="INFO">Opening browser 'chrome' to base url 'http://www.google.co.th'.</msg>
+<status status="PASS" starttime="20220222 23:18:18.496" endtime="20220222 23:18:20.465"/>
+</kw>
+<status status="PASS" starttime="20220222 23:18:18.495" endtime="20220222 23:18:20.466"/>
+</kw>
+<status status="PASS" starttime="20220222 23:18:18.495" endtime="20220222 23:18:20.466"/>
+</test>
+<status status="PASS" starttime="20220222 23:18:18.293" endtime="20220222 23:18:20.467"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Case">Test Case</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
