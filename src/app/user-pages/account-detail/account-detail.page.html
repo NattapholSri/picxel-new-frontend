@@ -12,7 +12,9 @@
   <ion-button (click)='checkUser()'>show user logging data</ion-button>
     <ion-card>
       <ion-card-content>
-        <ion-img src="{{usr_acc.profile_pic}}"></ion-img>
+        <ion-avatar>
+          <ion-img src="{{usr_acc.profile_pic}}"></ion-img>
+        </ion-avatar>
       </ion-card-content>
       <ion-card-title>
           {{usr_acc.username}}
