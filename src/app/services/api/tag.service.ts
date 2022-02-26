@@ -3,12 +3,11 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
-export class TagDetail {
+export interface TagDetail {
   tagId?: string;
   name?: string;
   description?: string;
 }
-
 
 @Injectable({
   providedIn: 'root'

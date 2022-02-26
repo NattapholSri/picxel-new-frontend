@@ -1,10 +1,10 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
-import { actionSheetController } from '@ionic/core';
 import { ActionSheetController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-posting',
@@ -24,12 +24,17 @@ export class PostingComponent {
   message_to_usr: string;
   message_mode: number = 0;
 
+  cr_tagName:string;
+  cr_tageDescrb:string
+
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private PostServ: PostingService,
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private alertCtrl: AlertController,
+    private tagServ: TagService
   ) {/* this.postForm = this.formBulider.group({
     text: [''],
     pic: [''],
@@ -105,7 +110,43 @@ export class PostingComponent {
   }
 
   createNewTag() {
-   
+    this.alertCtrl.create(
+      {header: 'การสร้าง Tag ใหม่',
+      inputs: [
+        {
+          name: 'tagName',
+          type: 'text',
+          placeholder: 'ชื่อแท็ก'
+        },
+        {
+          name: 'tagDescribe',
+          type: 'text',
+          placeholder: 'คำอธิบายแท็ก'
+        }
+      ],
+      buttons: [
+        {
+        text: 'ยกเลิก',
+        role: 'cancel'
+        },{
+          text: 'สร้าง Tag',
+          handler: (data) => {
+            console.log( data.tagName+": "+data.tagDescribe)
+            
+            let tagForm = new FormGroup({
+              name : new FormControl(data.tagName),
+              description : new FormControl(data.tagDescribe),
+            })
+            
+            this.tagServ.CreateTag(tagForm.value)
+              .subscribe((res)=> console.log(res))
+          }
+        }
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
   }
 
 }

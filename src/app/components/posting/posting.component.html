@@ -12,6 +12,9 @@
         <ion-text *ngIf=" message_mode == 1" color="danger">this picture has been added already</ion-text>
         <ion-text *ngIf=" message_mode == 2" color="success">added picture</ion-text>
         <ion-text *ngIf=" message_mode == 5">no picture added</ion-text>
+        <ion-list *ngIf=" picture_list != []">
+          <ion-item></ion-item>
+        </ion-list>
       </ion-col>
       <ion-col>
         <ion-button (click)="addPic()">add a picture</ion-button>
@@ -23,7 +26,7 @@
         <ion-searchbar placeholder="Enter tag"></ion-searchbar>
       </ion-col>
       <ion-col>
-        <ion-button>create new tag</ion-button>
+        <ion-button (click)="createNewTag()">create new tag</ion-button>
         <ion-text *ngIf=" message_mode == 3" color="success">added tag</ion-text>
         <ion-text *ngIf=" message_mode == 4" color="success">tag not exist/already added</ion-text>
       </ion-col>
