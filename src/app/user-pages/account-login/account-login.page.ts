@@ -31,14 +31,14 @@ export class AccountLoginPage implements OnInit {
     const loginForm = new FormGroup({
       username: new FormControl(this.usr_name),
       password: new FormControl(this.passwd),
-      exp: new FormControl("20m")
+      exp: new FormControl("30m")
     })
     
     if (this.passwd == undefined || this.usr_name == undefined) {
       alert("คุณยังกรอกข้อมูลไม่ครบ")
     } 
     else{
-      console.log(loginForm.value)
+      // console.log(loginForm.value)
       this.userServ.ReqLogin(loginForm.value)
       .subscribe((res) => {
         console.log(res)

@@ -26,6 +26,7 @@ export class PostingComponent {
 
   cr_tagName:string;
   cr_tageDescrb:string
+  knowTag: any[] = []
 
   constructor(
     public formBulider: FormBuilder,
@@ -35,34 +36,38 @@ export class PostingComponent {
     private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController,
     private tagServ: TagService
-  ) {/* this.postForm = this.formBulider.group({
-    text: [''],
-    pic: [''],
-    description: ['']
-    }) */ 
+  ) { this.tagServ.GetAll().subscribe((res) => {
+    let tagDatabase = res
+    this.knowTag = tagDatabase['content']
+    console.log(this.knowTag)
+  })
+    
   }
 
-  ngOnInit() {}
-
   onSubmit(){
+    if (!this.tags_list.length){
+        this.tags_list = ["621b2f73f3d26c013ed0891b"]
+        console.log('tag is empty')
+    }
     let postForm = new FormGroup({
       text : new FormControl(this.post_text),
       pics : new FormControl(this.picture_list),
       tags : new FormControl(this.tags_list)
     })
+    console.log(postForm.value)
     this.PostServ.CreatePost(postForm.value)
     .subscribe((res) => {
-      alert("ทำการส่งคำขอรีเซ็ต Password แล้ว")
+      alert("Posted")
       console.log(res)
+      //window.location.reload()
+      this.router.navigateByUrl('home')
     },
     (err) => {
       console.log(err)
     })
   }
 
-  removePic(select_item:string){
-
-
+  removePic(select_item:any){
 
     for( var i = 0; i < this.picture_list.length; i++){ 
                                    
@@ -73,7 +78,7 @@ export class PostingComponent {
     }
   }
 
-  removeTag(select_tag:string){
+  removeTag(select_tag:any){
     for( var i = 0; i < this.tags_list.length; i++){ 
                                    
       if ( this.tags_list[i] === select_tag) { 

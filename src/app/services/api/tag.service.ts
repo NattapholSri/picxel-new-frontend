@@ -64,7 +64,24 @@ export class TagService {
     if (page == undefined){
       page = 1
     }
-    let API_URL = `${this.backend_post_API}/tag/search?name=${keyword}&limit=${keyword}&page=${page}`;
+    let API_URL = `${this.backend_post_API}/tag/search?name=${keyword}&limit=${limitview}&page=${page}`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  GetAll() {
+    let limitview = 10000
+    let page = 1
+    let API_URL = `${this.backend_post_API}/tag/search?limit=${limitview}&page=${page}&all=1`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;

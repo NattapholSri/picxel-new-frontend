@@ -25,9 +25,20 @@
         </ion-card-subtitle>
     </ion-card>
 
-    <div *ngIf=" usr_acc.password != undefined">
-      <ion-button [routerLink]="'/account-edit'" shape="round" expand="block" >edit profile</ion-button>
-      <ion-button color="warning" (click)='userLogout()' shape="round" expand="block">logout</ion-button>
-      <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block">delete this account</ion-button>
-    </div>
+    <ion-grid *ngIf=" usr_acc.password != undefined">
+      <ion-row>
+        <ion-col>
+          <ion-button [routerLink]="'/account-edit'" shape="round" expand="block" >edit profile</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="warning" (click)='userLogout()' shape="round" expand="block">logout</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block">delete this account</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+      
+      
+      
 </ion-content>
