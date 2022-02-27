@@ -69,9 +69,9 @@ edit_profile
     Sleep  2s
     I click ok to confirm my new gender
 
-    Sleep  0.5s
+    Sleep  2s
     I type my new_first_name
-    Sleep  0.5s
+    Sleep  2s
     I click บันทึกการแก้ไข
 
    # Sleep  0.5s
@@ -98,10 +98,10 @@ cancel_profile_edition
     Sleep  2s
     I click ok to confirm my new gender
 
-    Sleep  0.5s
+    Sleep  2s
     I type my new_first_name
 
-    Sleep  0.5s
+    Sleep  2s
     I click cancel_button to cancel my edit
 
 log_out
@@ -113,9 +113,9 @@ log_out
     Sleep  0.5s
     I fill in password_box with login_my_password
 
-    Sleep  0.5s
+    Sleep  2s
     I click ลงชื่อเข้าใช้
-    Sleep  0.5s
+    Sleep  2s
     I click log_out_button 
 
 *** Keywords ***
@@ -138,9 +138,9 @@ I click ลงชื่อเข้าใช้
 I am on Regis page
     Open Browser    ${regis_page}    chrome
 I fill in email_box with reg_my_email
-    Input Text    name=ion-input-0    wasawat_non@gmail.com
+    Input Text    name=ion-input-0    wasawat_non1@gmail.com
 I fill in username_box with reg_my_username
-    Input Text    name=ion-input-1    wasawat_non
+    Input Text    name=ion-input-1    wasawat_non1
 I fill in password_box with reg_my_password
     Input Text    name=ion-input-2    0123456789
 I fill in confirm_password_box with reg_my_confirm_password_box
