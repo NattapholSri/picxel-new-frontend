@@ -59,12 +59,15 @@ export class TagService {
 
   SearchTag(keyword:string,limitview?:number,page?:number): Observable<any>{
     if (limitview == undefined){
-      limitview = 20
+      limitview = 15
     }
     if (page == undefined){
       page = 1
     }
     let API_URL = `${this.backend_post_API}/tag/search?name=${keyword}&limit=${limitview}&page=${page}`;
+    if (keyword == '' || keyword == undefined){
+      API_URL = `${this.backend_post_API}/tag/search?limit=${limitview}&page=${page}&all=1`;
+    }
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;

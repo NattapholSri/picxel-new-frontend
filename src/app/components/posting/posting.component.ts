@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
-import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -17,42 +16,41 @@ export class PostingComponent {
 
   post_text: string;
   picture_list: string[] = [];
-  tags_list: string[] = [];
+  tags_list: any[] = [];
 
   picture_url: string = '';
 
   message_to_usr: string;
   message_mode: number = 0;
 
-  cr_tagName:string;
-  cr_tageDescrb:string
-  knowTag: any[] = []
+  // knowTag: any[] = [];
+  tempTagSearch: any[] = [];
+  searchTagValue: string
 
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
-    private ngZone: NgZone,
     private PostServ: PostingService,
-    private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController,
     private tagServ: TagService
-  ) { this.tagServ.GetAll().subscribe((res) => {
+  ) { /* this.tagServ.GetAll().subscribe((res) => {
     let tagDatabase = res
     this.knowTag = tagDatabase['content']
     console.log(this.knowTag)
   })
-    
+     */
   }
 
   onSubmit(){
-    if (!this.tags_list.length){
-        this.tags_list = ["621b2f73f3d26c013ed0891b"]
-        console.log('tag is empty')
+    let postTag: string[] = []
+    for (let item in this.tags_list){
+      postTag.push(item['_id'])
     }
+    console.log(postTag)
     let postForm = new FormGroup({
       text : new FormControl(this.post_text),
       pics : new FormControl(this.picture_list),
-      tags : new FormControl(this.tags_list)
+      tags : new FormControl(postTag)
     })
     console.log(postForm.value)
     this.PostServ.CreatePost(postForm.value)
@@ -60,7 +58,7 @@ export class PostingComponent {
       alert("Posted")
       console.log(res)
       //window.location.reload()
-      this.router.navigateByUrl('home')
+      this.router.navigateByUrl('/home')
     },
     (err) => {
       console.log(err)
@@ -104,13 +102,12 @@ export class PostingComponent {
     console.log(this.picture_list)
   }
 
-  addTag(input_text:string){
-    if (this.tags_list.includes(input_text)){
+  addTag(input_tag:any){
+    if (this.tags_list.includes(input_tag)){
       this.message_mode = 4;
     }
     else{
-      this.message_mode = 3;
-      this.tags_list.push(input_text)
+      this.tags_list.push(input_tag)
     }
   }
 
@@ -152,6 +149,32 @@ export class PostingComponent {
     ).then(alertEl =>{
       alertEl.present()
     })
+  }
+
+  getTagByName(){
+    if (this.searchTagValue == undefined){
+      this.searchTagValue = ''
+    }
+    /* if (this.searchTagValue == ''){
+      console.log('search tag service has stopped')
+      return;
+    } */
+    this.tempTagSearch = []
+
+    this.tagServ.SearchTag(this.searchTagValue).subscribe((res) => {
+      let tagDatabase = res
+      this.tempTagSearch = tagDatabase['content']
+      console.log(this.tempTagSearch)
+    })
+    //type 2 
+
+    /* for (let tag of this.knowTag){
+      if (tag['name'].toLowerCase().includes(this.searchTagValue.toLowerCase()) 
+          || tag['description'].toLowerCase().includes(this.searchTagValue.toLowerCase())){
+        this.tempTagSearch.push(tag)
+      }
+    } */
+    // console.log(this.tempTagSearch)
   }
 
 }
