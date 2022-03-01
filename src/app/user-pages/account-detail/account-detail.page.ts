@@ -1,8 +1,9 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit,NgZone,ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../../services/api/user.service';
 import { AlertController } from '@ionic/angular';
+import { PostComponent } from 'src/app/components/post/post.component';
 
 
 @Component({
@@ -11,8 +12,9 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./account-detail.page.scss'],
 })
 export class AccountDetailPage implements OnInit {
+  @ViewChild(PostComponent) child: PostComponent 
 
-  usr_acc: any;
+  usr_acc: any = {};
   token = localStorage.getItem('jwt');
   jsonToken = JSON.parse(this.token);
   knowUser = false;
@@ -25,10 +27,14 @@ export class AccountDetailPage implements OnInit {
     private userServ: UserService,
     private activatedRt: ActivatedRoute,
     private alertCtrl: AlertController
-  ) { 
+  ) {
+    localStorage.removeItem('loaduserID') 
+    localStorage.removeItem('usernow')
     this.user_id = this.activatedRt.snapshot.paramMap.get('username')
+    localStorage.setItem('loaduserID',this.user_id)
     this.userServ.ReqUserDetail(this.user_id).subscribe((res) => {
-      localStorage.setItem('usernow',res)
+      let stringJSON = JSON.stringify(res)
+      localStorage.setItem('usernow',stringJSON)
       this.usr_acc = res
       console.log(this.usr_acc)
     },(err) => {
@@ -40,8 +46,8 @@ export class AccountDetailPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.user_id)
-    this.usr_acc = JSON.stringify(localStorage.getItem('usernow'))
+    /* console.log(this.user_id)
+    this.usr_acc = JSON.parse(localStorage.getItem('usernow')) */
     this.userServ.AutoLogout()
     console.log(localStorage.getItem('tkTime'))
   }

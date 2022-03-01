@@ -1,3 +1,20 @@
-<p>
-  post works!
-</p>
+<ion-title color="secondary">โพสต์ล่าสุดจากโปรไฟล์นี้</ion-title>
+
+<div id="container" *ngIf="postList == []"></div>
+<ion-list>
+  <ion-item *ngFor="let post of postList">
+    <ion-grid>
+      <ion-row>
+        <ion-text>{{post.text}}</ion-text>
+      </ion-row>
+      <ion-row><ion-text>{{post.createdAt}}</ion-text></ion-row>
+      <ion-row>
+        <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>
+
+<ion-button *ngIf="canloadMore == true" (click)="loadThisUsrMore()">โหลดโพสต์เพิ่มเติม</ion-button>
+<ion-text color="warning" *ngIf="canloadMore == false">ไม่มีโพสต์เพิ่มเติมจากผู้ใช้นี้แล้ว</ion-text>
+

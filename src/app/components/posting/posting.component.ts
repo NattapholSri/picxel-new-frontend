@@ -43,8 +43,9 @@ export class PostingComponent {
 
   onSubmit(){
     let postTag: string[] = []
-    for (let item in this.tags_list){
-      postTag.push(item['_id'])
+    for (let item of this.tags_list){
+      console.log(item)
+      postTag.push(item._id)
     }
     console.log(postTag)
     let postForm = new FormGroup({
@@ -108,6 +109,7 @@ export class PostingComponent {
     }
     else{
       this.tags_list.push(input_tag)
+      console.log(this.tags_list)
     }
   }
 

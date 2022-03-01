@@ -1,4 +1,4 @@
-<h1>สร้างโพสต์ใหม่</h1>
+<ion-title>สร้างโพสต์ใหม่</ion-title>
 
   <ion-grid>
     <ion-row>
@@ -9,7 +9,8 @@
         cols="100" 
         inputmode="text" 
         [(ngModel)]="post_text"
-        name="post_detail"></ion-textarea>
+        name="post_detail"
+        id="post_detail"></ion-textarea>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -19,31 +20,37 @@
         rows="1" cols="80" 
         inputmode="text" 
         [(ngModel)]="picture_url" 
-        name="url_box"></ion-textarea>
+        name="url_box"
+        id="url_box"></ion-textarea>
         <ion-text *ngIf=" message_mode == 1" color="danger">this picture has been added already</ion-text>
         <ion-text *ngIf=" message_mode == 2" color="success">added picture</ion-text>
         <ion-text *ngIf=" message_mode == 5">no picture added</ion-text>
 
       </ion-col>
       <ion-col size="2">
-        <ion-button (click)="addPic()" name="picture_add_btn">add a picture</ion-button>
+        <ion-button (click)="addPic()" name="picture_add_btn" id="picture_add_btn">add a picture</ion-button>
       </ion-col>
     </ion-row>
 
-    <ion-row *ngIf="picture_list != []" name="picture_added_list">
+    <ion-row *ngIf="picture_list != []" id="picture_added_list">
       <ion-col *ngFor="let picture_i of picture_list" size="1">
         <ion-item>
           <ion-thumbnail>
             <img src="{{picture_i}}">
           </ion-thumbnail>
-          <ion-icon name="close-circle-outline" (click)="removePic(picture_i)"></ion-icon>
+          <ion-icon name="close-circle-outline" id="remove_pic_btn" (click)="removePic(picture_i)"></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>
   
     <ion-row>
       <ion-col size="4">
-        <ion-searchbar placeholder="Enter tag" debounce="1000" (ionChange)="getTagByName()" [(ngModel)]="searchTagValue"></ion-searchbar>
+        <ion-searchbar 
+        placeholder="Enter tag" 
+        debounce="1000" 
+        (ionChange)="getTagByName()" 
+        [(ngModel)]="searchTagValue"
+        id="tag_search_bar"></ion-searchbar>
       </ion-col>
       <!-- <ion-col>
         <ion-button name="createTag">search</ion-button>
@@ -78,7 +85,7 @@
     </ion-row>
     <ion-row>
       <ion-col size="2" offset="5">
-        <ion-button (click)="onSubmit()">โพสต์</ion-button>
+        <ion-button (click)="onSubmit()" name="postButton" id="postButton">โพสต์</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

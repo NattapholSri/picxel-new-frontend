@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)='checkThisUserDetail()'>show this user detail</ion-button>
-  <ion-button (click)='checkUser()'>show user logging data</ion-button>
+  <!-- <ion-button (click)='checkThisUserDetail()'>show this user detail</ion-button>
+  <ion-button (click)='checkUser()'>show user logging data</ion-button> -->
     <ion-card>
       <ion-card-content>
         <ion-avatar>
@@ -38,7 +38,10 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-      
+  
+    <ion-card>
+      <app-post *ngIf="usr_acc._id != undefined"></app-post>
+    </ion-card>
       
       
 </ion-content>
