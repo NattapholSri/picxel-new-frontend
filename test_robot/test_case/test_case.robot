@@ -16,9 +16,15 @@ ${forgot_psw_page}    http://localhost:8100/forgot-password
 
 *** Test Cases ***
 test_practice
-    I am on Sign-Up page
+    I Am On Sign-In Page
     I fill in "Name-Surname" with my Name
 
+
+#=======================
+# Sign Up and Log In
+#=======================
+
+# Scenario: sign up
 registeration
     I am on Regis page
     Sleep  0.5s
@@ -35,6 +41,147 @@ registeration
     I click ลงทะเบียน
     Sleep  0.5s
 
+# scenario: ไม่ได้กรอกชื่อ
+registeration_no_username
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with reg_my_email
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I fill in confirm_password_box with reg_my_confirm_password_box
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  1s
+    I should see all info must be filled alert _message
+
+# scenario: ไม่ได้กรอก email
+registeration_no_email
+    I am on Regis page
+    Sleep  0.5s
+    I fill in username_box with reg_my_username
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I fill in confirm_password_box with reg_my_confirm_password_box
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  1s
+    I should see all info must be filled alert _message
+
+# scenario: ไม่ได้กรอก password
+registeration_no_password
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with reg_my_email
+    Sleep  0.5s
+    I fill in username_box with reg_my_username
+    Sleep  0.5s
+    I fill in confirm_password_box with reg_my_confirm_password_box
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  0.5s
+    Sleep  1s
+    I should see all info must be filled alert _message
+
+# scenario: ไม่ได้กรอก confirm password
+registeration_no_confirm_password
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with reg_my_email
+    Sleep  0.5s
+    I fill in username_box with reg_my_username
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  0.5s
+    Sleep  1s
+    I should see all info must be filled alert _message
+
+# scenario: ไม่ได้ check in check box
+registeration_no_check_box
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with reg_my_email
+    Sleep  0.5s
+    I fill in username_box with reg_my_username
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I fill in confirm_password_box with reg_my_confirm_password_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  1s
+    I should see all info must accept user policies
+
+# scenario: username ซ้ำ
+registeration_username_already_taken
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with reg_my_email
+    Sleep  0.5s
+    I fill in username_box with alreday_reg_my_username
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I fill in confirm_password_box with reg_my_confirm_password_box
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  1s
+    I should see username already taken alert message
+
+# scenario: email ซ้ำ
+registeration_email_alreday_taken
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with alreday_reg_my_email
+    Sleep  0.5s
+    I fill in username_box with reg_my_username
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I fill in confirm_password_box with reg_my_confirm_password_box
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  1s
+    I should see email already taken alert message
+
+# scenario: password does not match
+registeration_password_does_not_match
+    I am on Regis page
+    Sleep  0.5s
+    I fill in email_box with reg_my_email
+    Sleep  0.5s
+    I fill in username_box with reg_my_username
+    Sleep  0.5s
+    I fill in password_box with reg_my_password
+    Sleep  0.5s
+    I fill in confirm_password_box with unmatch_password_box
+    Sleep  0.5s
+    I check in check_box
+    Sleep  0.5s
+    I click ลงทะเบียน
+    Sleep  1s
+    I should see unmatch password alert message
+
+#=======================
+# Log In
+#=======================
+
+# Scenario: sign in
 sign_in
     I am on Sign-In page
 
@@ -46,6 +193,67 @@ sign_in
 
     Sleep  0.5s
     I click ลงชื่อเข้าใช้
+
+## Sign In FALSE
+# Scenario: wrong username
+sign_in_wrong_username
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_wrong_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  1s
+    I should see no user alert message
+    
+# Scenario: wrong password
+sign_in_wrong_password
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_wrong_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+
+    Sleep  1s
+    I should see wrong password alert message 
+
+# Scenario: did not fill username
+sign_in_no_username
+    Sleep  0.5s
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+
+    Sleep  1s
+    I should see please fill all info alert message 
+
+# Scenario: did not fill password
+sign_in_no_password
+    Sleep  0.5s
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+
+    Sleep  1s
+    I should see please fill all info alert message 
 
 edit_profile 
     I am on Sign-In page
@@ -123,18 +331,50 @@ log_out
 practice_test
     Open Browser    http://www.google.co.th    chrome
 
-## Feature Log-In
+#=======================
+# Feature: Log In
+#=======================
+
+
 I am on Sign-In page
     Open Browser    ${sign_up}    chrome
+
 I fill in username_box with login_my_username
     Input Text    name=ion-input-0    dummy
+
 I fill in password_box with login_my_password
     Input Text    name=ion-input-1    dummy1234
+
 I click ลงชื่อเข้าใช้
    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-login/ion-content/div[2]/ion-button
    # Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button
 
-## Feature Registeration 
+# fill wrong username
+I fill in username_box with login_wrong_username
+    Input Text    name=ion-input-0    wrong_dummy
+
+# Alert Message no user
+I should see no user alert message
+    Alert Should Be Present   ไม่พบ User ในระบบ
+
+# fill wrong password
+I fill in password_box with login_wrong_password
+    Input Text    name=ion-input-1    wrongpassword
+
+# Alert Message wrong password
+I should see wrong password alert message
+    Alert Should Be Present   Incorrect Password
+
+# Alert Message empty username
+I should see please fill username alert message 
+    Alert Should Be Present    Username must be filled
+
+
+
+#=======================
+# Feature Registeration 
+#=======================
+
 I am on Regis page
     Open Browser    ${regis_page}    chrome
 I fill in email_box with reg_my_email
@@ -150,6 +390,43 @@ I check in check_box
 I click ลงทะเบียน
     Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button
 Then I should see "please check your email"_message 
+
+I should see all info must be filled alert _message
+    Alert Should Be Present    คุณยังกรอกข้อมูลไม่ครบ
+
+I should see all info must accept user policies
+    Alert Should Be Present    คุณยังไม่ได้กดยอมรับข้อตกลงในการใช้งาน
+
+# fill already reg username
+I fill in username_box with alreday_reg_my_username
+    Input Text    name=ion-input-1    wasawat_non1
+
+# Alert Message of already reg uesrname
+I should see username already taken alert message
+    Alert Should Be Present    username is already taken
+
+# fill already reg email
+I fill in email_box with alreday_reg_my_email
+    Input Text    name=ion-input-0    wasawat_non1@gmail.com
+
+# Alert Message of already reg email
+I should see email already taken alert message
+    Alert Should Be Present    email is alreday taken
+
+# fill un match password
+I fill in confirm_password_box with unmatch_password_box
+    Input Text    name=ion-input-3    unmatch_password_box
+
+# Alert Message of unmatch password
+I should see unmatch password alert message
+    Alert Should Be Present    รหัสผ่านกับรหัสในช่องยืนยันไม่ตรงกัน
+
+# Alert Message of empty username
+I should see please fill all info alert message 
+    Alert Should Be Present    คุณยังกรอกข้อมูลไม่ครบ
+
+
+
 
 ## Feature Edit User Profile
 I click edit_profile
