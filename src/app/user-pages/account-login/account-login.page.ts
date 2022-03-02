@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { UserService } from '../../services/api/user.service';
 import * as moment from "moment";
-import { AlertController } from '@ionic/angular';
+// import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-account-login',
@@ -52,7 +52,7 @@ export class AccountLoginPage implements OnInit {
       },
       (err) => {
         console.log(err)
-        alert('ไม่พบ User ในระบบ')
+        alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
       })
     }
   }
