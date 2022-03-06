@@ -59,6 +59,8 @@ registeration_no_username
     I click ลงทะเบียน
     Sleep  1s
     I should see all info must be filled alert _message
+    Sleep  0.5s
+    I should see regis page
 
 # scenario: ไม่ได้กรอก email
 registeration_no_email
@@ -75,6 +77,8 @@ registeration_no_email
     I click ลงทะเบียน
     Sleep  1s
     I should see all info must be filled alert _message
+    Sleep  0.5s
+    I should see regis page
 
 # scenario: ไม่ได้กรอก password
 registeration_no_password
@@ -92,6 +96,8 @@ registeration_no_password
     Sleep  0.5s
     Sleep  1s
     I should see all info must be filled alert _message
+    Sleep  0.5s
+    I should see regis page
 
 # scenario: ไม่ได้กรอก confirm password
 registeration_no_confirm_password
@@ -109,6 +115,8 @@ registeration_no_confirm_password
     Sleep  0.5s
     Sleep  1s
     I should see all info must be filled alert _message
+    Sleep  0.5s
+    I should see regis page
 
 # scenario: ไม่ได้ check in check box
 registeration_no_check_box
@@ -125,6 +133,8 @@ registeration_no_check_box
     I click ลงทะเบียน
     Sleep  1s
     I should see all info must accept user policies
+    Sleep  0.5s
+    I should see regis page
 
 # scenario: username ซ้ำ
 registeration_username_already_taken
@@ -143,6 +153,8 @@ registeration_username_already_taken
     I click ลงทะเบียน
     Sleep  1s
     I should see username already taken alert message
+    Sleep  0.5s
+    I should see regis page
 
 # scenario: email ซ้ำ
 registeration_email_alreday_taken
@@ -161,6 +173,8 @@ registeration_email_alreday_taken
     I click ลงทะเบียน
     Sleep  1s
     I should see email already taken alert message
+    Sleep  0.5s
+    I should see regis page
 
 # scenario: password does not match
 registeration_password_does_not_match
@@ -179,6 +193,8 @@ registeration_password_does_not_match
     I click ลงทะเบียน
     Sleep  1s
     I should see unmatch password alert message
+    Sleep  0.5s
+    I should see regis page
 #----------END Feature: Sign Up--------------
 
 
@@ -198,7 +214,9 @@ sign_in
 
     Sleep  0.5s
     I click ลงชื่อเข้าใช้
+    Sleep  0.5s
     # **check user profile page
+    I should see account_detail page
 
 ## Sign In FALSE
 # Scenario: wrong username
@@ -217,7 +235,9 @@ sign_in_wrong_username
     Sleep  1s
     I should see no user alert message
     #** Incorrect Info 
-    
+    Sleep  0.5s
+    I should see login page
+
 # Scenario: wrong password
 sign_in_wrong_password
     I am on Sign-In page
@@ -234,6 +254,9 @@ sign_in_wrong_password
     Sleep  1s
     I should see wrong password alert message 
     # incorrect info
+    Sleep  0.5s
+    I should see login page
+
 # Scenario: did not fill username
 sign_in_no_username
     Sleep  0.5s
@@ -247,6 +270,9 @@ sign_in_no_username
 
     Sleep  1s
     I should see please fill all info alert message 
+    # login page assertion
+    Sleep  0.5s
+    I should see login page
 
 # Scenario: did not fill password
 sign_in_no_password
@@ -261,6 +287,9 @@ sign_in_no_password
 
     Sleep  1s
     I should see please fill all info alert message 
+    # login page assertion
+    Sleep  0.5s
+    I should see login page
 #----------END Feature: Sign In--------------
 
 
@@ -429,7 +458,7 @@ I should see forgot_password page
 
 # account-detail Assertion
 ## this keyword check all elements of Reg-Page in 1 keyword
-I should see forgot_password page
+I should see account_detail page
     Element Should Contain    id=navbar    account-detail
     Element Should Contain    id=profile_picture    
     Element Should Contain    id=username_text    sompong 
@@ -513,7 +542,7 @@ I should see please fill all info alert message
 
 ## Feature Edit User Profile
 I click edit_profile
-    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/div/ion-button[1]
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/ion-grid/ion-row/ion-col[1]/ion-button
 
 I click gender
     Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-item[1]
