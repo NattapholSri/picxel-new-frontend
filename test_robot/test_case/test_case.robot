@@ -13,6 +13,7 @@ ${google}    https://google.com/
 ${sign_up}    http://localhost:8100/account-login
 ${regis_page}    http://localhost:8100/registration
 ${forgot_psw_page}    http://localhost:8100/forgot-password
+${current_url} =  Execute Javascript  return window.location.href
 
 *** Test Cases ***
 test_practice
@@ -40,6 +41,8 @@ registeration
     Sleep  0.5s
     I click ลงทะเบียน
     Sleep  0.5s
+    #after sign up complete page should redirect you to /account-login
+    I should see login page
 
 # scenario: ไม่ได้กรอกชื่อ
 registeration_no_username
@@ -176,9 +179,11 @@ registeration_password_does_not_match
     I click ลงทะเบียน
     Sleep  1s
     I should see unmatch password alert message
+#----------END Feature: Sign Up--------------
+
 
 #=======================
-# Log In
+# Feature: Log In
 #=======================
 
 # Scenario: sign in
@@ -193,6 +198,7 @@ sign_in
 
     Sleep  0.5s
     I click ลงชื่อเข้าใช้
+    # **check user profile page
 
 ## Sign In FALSE
 # Scenario: wrong username
@@ -210,6 +216,7 @@ sign_in_wrong_username
     
     Sleep  1s
     I should see no user alert message
+    #** Incorrect Info 
     
 # Scenario: wrong password
 sign_in_wrong_password
@@ -226,7 +233,7 @@ sign_in_wrong_password
 
     Sleep  1s
     I should see wrong password alert message 
-
+    # incorrect info
 # Scenario: did not fill username
 sign_in_no_username
     Sleep  0.5s
@@ -254,7 +261,25 @@ sign_in_no_password
 
     Sleep  1s
     I should see please fill all info alert message 
+#----------END Feature: Sign In--------------
 
+
+
+
+
+#=======================
+# Feature: Guest Mode
+#=======================
+#----------END Feature: Guest Mode--------------
+
+
+#=======================
+# การดำเนินการเกี่ยวกับรหัสผ่าน
+#=======================
+
+# Feature: Change password 
+
+#----------END การดำเนินการเกี่ยวกับรหัสผ่าน--------------
 edit_profile 
     I am on Sign-In page
 
@@ -281,7 +306,7 @@ edit_profile
     I type my new_first_name
     Sleep  2s
     I click บันทึกการแก้ไข
-
+    # check if the changed has made 
    # Sleep  0.5s
    # I click ok to confirm my new gender
 cancel_profile_edition
@@ -311,7 +336,7 @@ cancel_profile_edition
 
     Sleep  2s
     I click cancel_button to cancel my edit
-
+    # check if the changed has made 
 log_out
     I am on Sign-In page
 
@@ -325,7 +350,7 @@ log_out
     I click ลงชื่อเข้าใช้
     Sleep  2s
     I click log_out_button 
-
+    # check if the changed has made 
 *** Keywords ***
 
 practice_test
@@ -369,8 +394,66 @@ I should see wrong password alert message
 I should see please fill username alert message 
     Alert Should Be Present    Username must be filled
 
+#---PAGE ASSERTION---#
 
+# Login-Page Assertion
+## test keyword check all elements of Login-Page in 1 keyword
+I should see login page
+    Element Should Contain    id=navbar    Welcome to PICXEL
+    Element Should Contain    id=username_box    กรอกชื่อผู้ใช้
+    Element Should Contain    id=password_box    กรอกรหัสผ่าน
+    Element Should Contain    id=sign_in_button    ลงชื่อเข้าใช้
+    Element Should Contain    id=no_account_question    ยังไม่มีบัญชี?
+    Element Should Contain    id=register_button    REGISTER
+    Element Should Contain    id=forgot_psw_question    ลืมรหัสผ่าน?
+    Element Should Contain    id=reset_psw_button    RESET PASSWORD
 
+# Regis-Page Assertion
+## this keyword check all elements of Reg-Page in 1 keyword
+I should see regis page
+    Element Should Contain    id=navbar    Account registration
+    Element Should Contain    id=email_box    กรอกอีเมลล์
+    Element Should Contain    id=username_box    กรอกชื่อผู้ใช้
+    Element Should Contain    id=password_box    กรอกรหัสผ่าน
+    Element Should Contain    id=confirm_password_box    ยืนยันรหัสผ่าน
+    Element Should Contain    id=user_policy_check_box    ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ
+    Element Should Contain    id=register_button    ลงทะเบียน
+    Element Should Contain    id=register_button    REGISTER
+
+# Forgot-Password-Page Assertion
+## this keyword check all elements of forgot_password page in 1 keyword
+I should see forgot_password page
+    Element Should Contain    id=navbar    Request password Reset
+    Element Should Contain    id=email_box    กรอกอีเมลล์
+    Element Should Contain    id=reset_password_button    ส่งคำขอ RESET PASSWORD
+
+# account-detail Assertion
+## this keyword check all elements of Reg-Page in 1 keyword
+I should see forgot_password page
+    Element Should Contain    id=navbar    account-detail
+    Element Should Contain    id=profile_picture    
+    Element Should Contain    id=username_text    sompong 
+    Element Should Contain    id=edit_profile_button    EDIT PROFILE 
+    Element Should Contain    id=logout_button    LOGOUT 
+    Element Should Contain    id=delete_this_account_button    DELETE THIS ACCOUNT 
+    Element Should Contain    id=post_message    โพสต์ล่าสุดจากโปรไฟล์นี้ 
+    Element Should Contain    id=load_more_post_button    โหลดโพสต์เพิ่มเติม 
+
+# account-edit Assertion
+## this keyword check all elements of Reg-Page in 1 keyword
+I should see account_edit page
+    Element Should Contain    id=navbar    account-edit
+    Element Should Contain    id=gender    Gender    
+    Element Should Contain    id=drop_down_select    Select One        
+    Element Should Contain    id=picture_url    กรอก URL รูปภาพ
+    Element Should Contain    id=firstname_text    Firstname 
+    Element Should Contain    id=cancel_button    CANCEL 
+    Element Should Contain    id=save_editted_button    บันทึกการแก้ไข 
+    
+
+#---END PAGE ASSERTION---#
+
+    
 #=======================
 # Feature Registeration 
 #=======================
