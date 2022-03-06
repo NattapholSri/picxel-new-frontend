@@ -336,8 +336,9 @@ edit_profile
     Sleep  2s
     I click บันทึกการแก้ไข
     # check if the changed has made 
-   # Sleep  0.5s
-   # I click ok to confirm my new gender
+    Sleep  0.5s
+    I should see new profile info
+
 cancel_profile_edition
     I am on Sign-In page
 
@@ -366,6 +367,9 @@ cancel_profile_edition
     Sleep  2s
     I click cancel_button to cancel my edit
     # check if the changed has made 
+    Sleep  0.5s
+    I should see account_detail page
+
 log_out
     I am on Sign-In page
 
@@ -380,6 +384,8 @@ log_out
     Sleep  2s
     I click log_out_button 
     # check if the changed has made 
+    Sleep  0.5s 
+    I should see login page
 *** Keywords ***
 
 practice_test
@@ -478,7 +484,20 @@ I should see account_edit page
     Element Should Contain    id=firstname_text    Firstname 
     Element Should Contain    id=cancel_button    CANCEL 
     Element Should Contain    id=save_editted_button    บันทึกการแก้ไข 
-    
+
+# ASSERTION AFTER EXTRA INTERACTION
+
+# Assertion after COMPLETE EDIT_PRFILE 
+I should see new profile info
+    Element Should Contain    id=navbar    account-detail
+    Element Should Contain    id=profile_picture    
+    Element Should Contain    id=username_text    sompong 
+    Element Should Contain    id=edit_profile_button    EDIT PROFILE 
+    Element Should Contain    id=logout_button    LOGOUT 
+    Element Should Contain    id=delete_this_account_button    DELETE THIS ACCOUNT 
+    Element Should Contain    id=post_message    โพสต์ล่าสุดจากโปรไฟล์นี้ 
+    Element Should Contain    id=load_more_post_button    โหลดโพสต์เพิ่มเติม 
+
 
 #---END PAGE ASSERTION---#
 
@@ -562,8 +581,7 @@ I click cancel_button to cancel my edit
 
 ## Feature Log Out
 I click log_out_button 
-    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/div/ion-button[2]
-
+    Click Element    xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/ion-grid/ion-row/ion-col[2]/ion-button
 ##
 I fill in "Name-Surname" with my Name
     Input Text    name=ion-input-0    0633438499

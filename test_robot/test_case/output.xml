@@ -1,167 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.8.0 on win32)" generated="20220306 16:23:05.965" rpa="false" schemaversion="2">
+<robot generator="Robot 4.1.3 (Python 3.8.0 on win32)" generated="20220306 16:28:04.311" rpa="false" schemaversion="2">
 <suite id="s1" name="Test Case" source="D:\4. Work in Drive D\Project 4th year\Front_End\picxel-new-frontend\test_robot\test_case\test_case.robot">
-<test id="s1-t1" name="edit_profile">
+<test id="s1-t1" name="log_out">
 <kw name="I am on Sign-In page">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${sign_up}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220306 16:23:06.195" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/account-login'.</msg>
-<status status="PASS" starttime="20220306 16:23:06.195" endtime="20220306 16:23:08.087"/>
+<msg timestamp="20220306 16:28:04.496" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/account-login'.</msg>
+<status status="PASS" starttime="20220306 16:28:04.495" endtime="20220306 16:28:06.390"/>
 </kw>
-<status status="PASS" starttime="20220306 16:23:06.194" endtime="20220306 16:23:08.087"/>
+<status status="PASS" starttime="20220306 16:28:04.494" endtime="20220306 16:28:06.390"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:08.589" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220306 16:23:08.088" endtime="20220306 16:23:08.589"/>
+<msg timestamp="20220306 16:28:06.892" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220306 16:28:06.391" endtime="20220306 16:28:06.892"/>
 </kw>
 <kw name="I fill in username_box with login_my_username">
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>name=ion-input-0</arg>
 <arg>dummy</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:08.590" level="INFO">Typing text 'dummy' into text field 'name=ion-input-0'.</msg>
-<status status="PASS" starttime="20220306 16:23:08.590" endtime="20220306 16:23:08.655"/>
+<msg timestamp="20220306 16:28:06.893" level="INFO">Typing text 'dummy' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220306 16:28:06.893" endtime="20220306 16:28:06.959"/>
 </kw>
-<status status="PASS" starttime="20220306 16:23:08.589" endtime="20220306 16:23:08.655"/>
+<status status="PASS" starttime="20220306 16:28:06.892" endtime="20220306 16:28:06.959"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:09.157" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220306 16:23:08.656" endtime="20220306 16:23:09.157"/>
+<msg timestamp="20220306 16:28:07.461" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220306 16:28:06.960" endtime="20220306 16:28:07.461"/>
 </kw>
 <kw name="I fill in password_box with login_my_password">
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>name=ion-input-1</arg>
 <arg>dummy1234</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:09.158" level="INFO">Typing text 'dummy1234' into text field 'name=ion-input-1'.</msg>
-<status status="PASS" starttime="20220306 16:23:09.158" endtime="20220306 16:23:09.222"/>
+<msg timestamp="20220306 16:28:07.462" level="INFO">Typing text 'dummy1234' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220306 16:28:07.462" endtime="20220306 16:28:07.526"/>
 </kw>
-<status status="PASS" starttime="20220306 16:23:09.158" endtime="20220306 16:23:09.222"/>
+<status status="PASS" starttime="20220306 16:28:07.461" endtime="20220306 16:28:07.526"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
-<arg>0.5s</arg>
+<arg>2s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:09.724" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220306 16:23:09.223" endtime="20220306 16:23:09.724"/>
+<msg timestamp="20220306 16:28:09.529" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220306 16:28:07.527" endtime="20220306 16:28:09.529"/>
 </kw>
 <kw name="I click ลงชื่อเข้าใช้">
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-login/ion-content/div[2]/ion-button</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:09.725" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-login/ion-content/div[2]/ion-button'.</msg>
-<status status="PASS" starttime="20220306 16:23:09.725" endtime="20220306 16:23:09.768"/>
+<msg timestamp="20220306 16:28:09.530" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-login/ion-content/div[2]/ion-button'.</msg>
+<status status="PASS" starttime="20220306 16:28:09.530" endtime="20220306 16:28:09.569"/>
 </kw>
-<status status="PASS" starttime="20220306 16:23:09.725" endtime="20220306 16:23:09.768"/>
+<status status="PASS" starttime="20220306 16:28:09.529" endtime="20220306 16:28:09.569"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220306 16:28:11.571" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220306 16:28:09.569" endtime="20220306 16:28:11.571"/>
+</kw>
+<kw name="I click log_out_button">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/ion-grid/ion-row/ion-col[2]/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220306 16:28:11.572" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/ion-grid/ion-row/ion-col[2]/ion-button'.</msg>
+<status status="PASS" starttime="20220306 16:28:11.571" endtime="20220306 16:28:11.612"/>
+</kw>
+<status status="PASS" starttime="20220306 16:28:11.571" endtime="20220306 16:28:11.612"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:10.270" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220306 16:23:09.769" endtime="20220306 16:23:10.270"/>
+<msg timestamp="20220306 16:28:12.115" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220306 16:28:11.613" endtime="20220306 16:28:12.115"/>
 </kw>
-<kw name="I click edit_profile">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/ion-grid/ion-row/ion-col[1]/ion-button</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:10.271" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-detail/ion-content/ion-grid/ion-row/ion-col[1]/ion-button'.</msg>
-<status status="PASS" starttime="20220306 16:23:10.271" endtime="20220306 16:23:10.464"/>
+<kw name="I should see login page">
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=navbar</arg>
+<arg>Welcome to PICXEL</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20220306 16:28:12.191" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-68.png"&gt;&lt;img src="selenium-screenshot-68.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20220306 16:28:12.194" level="FAIL">Element with locator 'id=navbar' not found.</msg>
+<status status="FAIL" starttime="20220306 16:28:12.115" endtime="20220306 16:28:12.194"/>
 </kw>
-<status status="PASS" starttime="20220306 16:23:10.271" endtime="20220306 16:23:10.465"/>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=username_box</arg>
+<arg>กรอกชื่อผู้ใช้</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220306 16:28:12.194" endtime="20220306 16:28:12.194"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>0.5s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:10.968" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220306 16:23:10.465" endtime="20220306 16:23:10.968"/>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=password_box</arg>
+<arg>กรอกรหัสผ่าน</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220306 16:28:12.194" endtime="20220306 16:28:12.194"/>
 </kw>
-<kw name="I click gender">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-item[1]</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:10.969" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-item[1]'.</msg>
-<status status="PASS" starttime="20220306 16:23:10.969" endtime="20220306 16:23:11.005"/>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=sign_in_button</arg>
+<arg>ลงชื่อเข้าใช้</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220306 16:28:12.195" endtime="20220306 16:28:12.195"/>
 </kw>
-<status status="PASS" starttime="20220306 16:23:10.968" endtime="20220306 16:23:11.005"/>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=no_account_question</arg>
+<arg>ยังไม่มีบัญชี?</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220306 16:28:12.195" endtime="20220306 16:28:12.195"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:16.007" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20220306 16:23:11.006" endtime="20220306 16:23:16.007"/>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=register_button</arg>
+<arg>REGISTER</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220306 16:28:12.195" endtime="20220306 16:28:12.195"/>
 </kw>
-<kw name="I want to change my gender to Male">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=/html/body/app-root/ion-app/ion-alert/div[2]/div[3]/button[2]/div/div[2]</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:16.008" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-alert/div[2]/div[3]/button[2]/div/div[2]'.</msg>
-<status status="PASS" starttime="20220306 16:23:16.008" endtime="20220306 16:23:16.047"/>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=forgot_psw_question</arg>
+<arg>ลืมรหัสผ่าน?</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220306 16:28:12.195" endtime="20220306 16:28:12.195"/>
 </kw>
-<status status="PASS" starttime="20220306 16:23:16.007" endtime="20220306 16:23:16.047"/>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>id=reset_psw_button</arg>
+<arg>RESET PASSWORD</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220306 16:28:12.195" endtime="20220306 16:28:12.195"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:18.048" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220306 16:23:16.047" endtime="20220306 16:23:18.048"/>
+<status status="FAIL" starttime="20220306 16:28:12.115" endtime="20220306 16:28:12.195"/>
 </kw>
-<kw name="I click ok to confirm my new gender">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=//*[@id="ion-overlay-1"]/div[2]/div[4]/button[2]/span</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:18.049" level="INFO">Clicking element 'xpath=//*[@id="ion-overlay-1"]/div[2]/div[4]/button[2]/span'.</msg>
-<status status="PASS" starttime="20220306 16:23:18.049" endtime="20220306 16:23:18.084"/>
-</kw>
-<status status="PASS" starttime="20220306 16:23:18.048" endtime="20220306 16:23:18.084"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:20.086" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220306 16:23:18.084" endtime="20220306 16:23:20.086"/>
-</kw>
-<kw name="I type my new_first_name">
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>name=ion-input-3</arg>
-<arg>dummychan</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:20.087" level="INFO">Typing text 'dummychan' into text field 'name=ion-input-3'.</msg>
-<status status="PASS" starttime="20220306 16:23:20.086" endtime="20220306 16:23:20.152"/>
-</kw>
-<status status="PASS" starttime="20220306 16:23:20.086" endtime="20220306 16:23:20.152"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220306 16:23:22.155" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220306 16:23:20.153" endtime="20220306 16:23:22.155"/>
-</kw>
-<kw name="I click บันทึกการแก้ไข">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-button[2]</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220306 16:23:22.156" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-edit/ion-content/ion-button[2]'.</msg>
-<status status="PASS" starttime="20220306 16:23:22.156" endtime="20220306 16:23:22.195"/>
-</kw>
-<status status="PASS" starttime="20220306 16:23:22.156" endtime="20220306 16:23:22.195"/>
-</kw>
-<status status="PASS" starttime="20220306 16:23:06.192" endtime="20220306 16:23:22.195"/>
+<status status="FAIL" starttime="20220306 16:28:04.493" endtime="20220306 16:28:12.196">Element with locator 'id=navbar' not found.</status>
 </test>
-<status status="PASS" starttime="20220306 16:23:05.967" endtime="20220306 16:23:22.197"/>
+<status status="FAIL" starttime="20220306 16:28:04.313" endtime="20220306 16:28:12.197"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Test Case">Test Case</stat>
+<stat pass="0" fail="1" skip="0" id="s1" name="Test Case">Test Case</stat>
 </suite>
 </statistics>
 <errors>
