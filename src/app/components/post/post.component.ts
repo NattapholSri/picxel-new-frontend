@@ -48,7 +48,6 @@ export class PostComponent {
       (res) => {
         this.postList = res.content
         if (this.knowtag != []){
-          console.log('tagIsLoad')
           this.Post_Edit()
         }
         console.log(this.postList)
@@ -81,7 +80,6 @@ export class PostComponent {
     for (let post of this.postList ){
       if(post.tags.length != 0){
         let tags_name_list = this.addTagName(post.tags)
-        console.log (tags_name_list)
         post.tags_Nlist = tags_name_list
       }
     }
