@@ -28,10 +28,12 @@ export class PostComponent {
     private activatedRt: ActivatedRoute
   ) {
       this.loadPostAtPage = 1
+      this.loadAllTag()
+      this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
       this.u_detail = JSON.parse(localStorage.getItem('usernow'))
       let get_uid:string = this.u_detail._id
-      console.log(get_uid)
       this.userPost(get_uid)
+      
   }
 
 /*   ngOnInit() {
@@ -44,14 +46,18 @@ export class PostComponent {
   userPost(user_id:string){
     this.PostServ.SearchPost(user_id,10,this.loadPostAtPage).subscribe(
       (res) => {
-        console.log(res)
         this.postList = res.content
+        if (this.knowtag != []){
+          console.log('tagIsLoad')
+          this.Post_Edit()
+        }
         console.log(this.postList)
       }
     )
   }
 
   loadThisUsrMore(){
+    this.loadAllTag()
     this.loadPostAtPage += 1;
     console.log(this.u_detail._id)
     this.PostServ.SearchPost(this.u_detail._id,10,this.loadPostAtPage).subscribe(
@@ -63,11 +69,43 @@ export class PostComponent {
           this.canloadMore = false
         }
         else{
-          this.postList += MorePostList 
+          this.postList += MorePostList
           console.log(this.postList)
         }
       }
     )
+  }
+
+  private Post_Edit(){
+
+    for (let post of this.postList ){
+      if(post.tags.length != 0){
+        let tags_name_list = this.addTagName(post.tags)
+        console.log (tags_name_list)
+        post.tags_Nlist = tags_name_list
+      }
+    }
+  }
+
+  loadAllTag(){
+    this.tagServ.GetAll().subscribe(
+      (res) => {
+        localStorage.setItem('knowtag',JSON.stringify(res.content))
+        this.knowtag = res.content
+      }
+    )
+  }
+
+  addTagName(tag_id_list:string[]){
+    let textTag: string[] = []
+    for (let i of tag_id_list){
+      for (let tag of this.knowtag){
+        if (tag._id == i){
+          textTag.push(tag.name)
+        }
+      }
+    }
+    return textTag
   }
 
 }

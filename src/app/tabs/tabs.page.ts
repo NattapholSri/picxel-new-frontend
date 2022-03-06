@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsPage implements OnInit {
 
-  constructor() { }
+  user_loggin_in:string
+
+  constructor() { 
+    this.user_loggin_in = localStorage.getItem('usr_login')
+  }
 
   ngOnInit() {
+
   }
 
 }
