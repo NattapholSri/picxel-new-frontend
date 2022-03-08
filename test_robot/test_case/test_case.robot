@@ -386,6 +386,32 @@ change_password_duplicate_password
     I click confirm change password button
     I should see alert message โปรดกรอกรหัสผ่านที่ไม่เคยใช้
 
+change_password_new_and_confirm_new_password_unmatch
+    # go to sign-in page
+    I am on Sign-In page
+    Sleep  0.5s
+    # log in
+    I fill in username_box with login_my_username
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    # change password step
+    Sleep  0.5s
+    I click setting 
+    I click change password
+    # Assertion Change Password Page
+    I should see password changing page
+    # I fill the new password and confirm password
+    I fill in current password
+    I fill in new password
+    I fill in confirm new password with unmatch password
+    I click confirm change password button
+    I should see alert message รหัสผ่านใหม่ไม่ตรงกัน
+    
+
+
 #----------END การดำเนินการเกี่ยวกับรหัสผ่าน--------------
 edit_profile 
     I am on Sign-In page
@@ -708,6 +734,11 @@ I fill in current password in confirm password box
     Input Text    id=confirm_new_password_box    0123456789
 I should see alert message โปรดกรอกรหัสผ่านที่ไม่เคยใช้
     Alert Should Be Present    โปรดกรอกรหัสผ่านที่ไม่เคยใช้
+# Feature: new password and confirm new password does not match
+I fill in confirm new password with unmatch password
+    Input Text    id=confirm_new_password_box    unmatchpassword
+I should see alert message รหัสผ่านใหม่ไม่ตรงกัน    
+    Alert Should Be Present    รหัสผ่านใหม่ไม่ตรงกัน
 #---END PASSWORD OPERATION---#
 
 
