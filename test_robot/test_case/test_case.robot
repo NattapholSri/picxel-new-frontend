@@ -357,12 +357,12 @@ change_password_wrong_current_password
     I fill in new password
     I fill in confirm new password
     I click confirm change password button
-    I should see alert message รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
-    # Assertion after password changed web should redirect to sign-in page
-    I should see login page
+    # wrong current password
+    I should see alert message รหัสผ่านไม่ถูกต้อง
+    
 
-## Scenario: wrong current password
-change_password_wrong_current_password
+## Scenario: new password is the same as current password
+change_password_duplicate_password
     # go to sign-in page
     I am on Sign-In page
     Sleep  0.5s
@@ -698,6 +698,8 @@ I should see alert message
     Alert Should Be Present    รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
 
 # WRONG CURRENT PASSWORD
+I should see alert message รหัสผ่านไม่ถูกต้อง
+    Alert Should Be Present    รหัสผ่านไม่ถูกต้อง
 I fill in wrong_current password
     Input Text    id=current_password_box    wrongpassword
 #---END PASSWORD OPERATION---#
