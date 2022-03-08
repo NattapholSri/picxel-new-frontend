@@ -10,24 +10,36 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-button (click)='checkThisUserDetail()'>show this user detail</ion-button>
-  <ion-button (click)='checkUser()'>show user logging data</ion-button> -->
-    <ion-card>
-      <ion-card-content>
-        <ion-avatar>
-          <ion-img src="{{usr_acc.profile_pic}}"></ion-img>
-        </ion-avatar>
-      </ion-card-content>
-      <ion-card-title>
-          {{usr_acc.username}}
-      </ion-card-title>
+  <ion-card>
+    <ion-card-content>
+      <ion-avatar>
+        <ion-img src="{{usr_acc.profile_pic}}"></ion-img>
+      </ion-avatar>
+    </ion-card-content>
+    <ion-card-title>
+      {{usr_acc.username}}
+    </ion-card-title>
 
-        <ion-card-subtitle *ngIf=" usr_acc.firstname != undefined">
-          <ion-text>{{usr_acc.firstname}}</ion-text>
-        </ion-card-subtitle>
-    </ion-card>
+    <ion-buttons *ngIf="(usr_acc.password == undefined) && (token != undefined)">
+      <ion-button *ngIf="!(subbed)" color="secondary">
+        follow
+        <ion-icon name="enter-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="subbed" color="secondary">
+        followed
+        <ion-icon name="checkbox-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
 
-    <ion-text *ngIf="usr_acc.followerCount != undefined"><h5>จำนวนผู้ติดตามบัญชีนี้: {{usr_acc.followerCount}}</h5></ion-text>
+    
+
+    <ion-card-subtitle *ngIf=" usr_acc.firstname != undefined">
+      <ion-text>{{usr_acc.firstname}}</ion-text>
+    </ion-card-subtitle>
+  </ion-card>
+
+  <ion-text *ngIf="usr_acc.followerCount != undefined"><h5>จำนวนผู้ติดตามบัญชีนี้: {{usr_acc.followerCount}}</h5></ion-text>
+    <ion-text slot="end">Hello</ion-text>
 
     <ion-grid *ngIf=" usr_acc.password != undefined">
       <ion-row>

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { UserdataComponent } from './userdata.component';
+import { RandomAllPostComponent } from './random-all-post.component';
 
-describe('UserdataComponent', () => {
-  let component: UserdataComponent;
-  let fixture: ComponentFixture<UserdataComponent>;
+describe('RandomAllPostComponent', () => {
+  let component: RandomAllPostComponent;
+  let fixture: ComponentFixture<RandomAllPostComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserdataComponent ],
+      declarations: [ RandomAllPostComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserdataComponent);
+    fixture = TestBed.createComponent(RandomAllPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

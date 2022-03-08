@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
-
+import { UserService } from 'src/app/services/api/user.service';
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
+  selector: 'app-random-all-post',
+  templateUrl: './random-all-post.component.html',
+  styleUrls: ['./random-all-post.component.scss'],
 })
-export class PostComponent {
+export class RandomAllPostComponent {
 
   currentUser = localStorage.getItem('usr_login')
   postList: any[] = []
@@ -23,14 +23,14 @@ export class PostComponent {
     private router: Router,
     private PostServ: PostingService,
     private tagServ: TagService,
+    private userServ: UserService,
     private activatedRt: ActivatedRoute
   ) {
       this.loadPostAtPage = 1
       this.loadAllTag()
       this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
       this.u_detail = JSON.parse(localStorage.getItem('usernow'))
-      let get_uid:string = this.u_detail._id
-      this.userPost(get_uid)
+      // this.AllRndPost()
       
   }
 
@@ -104,8 +104,13 @@ export class PostComponent {
     return textTag
   }
 
-  deletePost(post_id:string){
-    console.log(post_id)
+  goToUser(){
+
+  }
+
+  goToTag(){
+    // add method to go tag
   }
 
 }
+

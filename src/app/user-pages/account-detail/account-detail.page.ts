@@ -20,6 +20,7 @@ export class AccountDetailPage implements OnInit {
   knowUser = false;
   user_id: string;
   isUser = false;
+  subbed = false;
 
   constructor(
     private router: Router,
@@ -52,15 +53,6 @@ export class AccountDetailPage implements OnInit {
     console.log(localStorage.getItem('tkTime'))
   }
 
-  checkThisUserDetail(){ 
-    console.log((this.usr_acc))    
-  }
-
-  checkUser(){
-    // get user data methods
-    this.userServ.ReqUserDetail(localStorage.getItem('usr_login'))
-    .subscribe((res)=> console.log(res))
-  }
 
   deleteAccount(){
     // deletion methods
