@@ -380,13 +380,11 @@ change_password_duplicate_password
     # Assertion Change Password Page
     I should see password changing page
     # I fill the new password and confirm password
-    I fill in wrong_current password
-    I fill in new password
-    I fill in confirm new password
+    I fill in current password
+    I fill in current password in new password box
+    I fill in current password in confirm password box 
     I click confirm change password button
-    I should see alert message รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
-    # Assertion after password changed web should redirect to sign-in page
-    I should see login page
+    I should see alert message โปรดกรอกรหัสผ่านที่ไม่เคยใช้
 
 #----------END การดำเนินการเกี่ยวกับรหัสผ่าน--------------
 edit_profile 
@@ -697,11 +695,19 @@ I click confirm change password button
 I should see alert message
     Alert Should Be Present    รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
 
-# WRONG CURRENT PASSWORD
+# Feature: WRONG CURRENT PASSWORD
 I should see alert message รหัสผ่านไม่ถูกต้อง
     Alert Should Be Present    รหัสผ่านไม่ถูกต้อง
 I fill in wrong_current password
     Input Text    id=current_password_box    wrongpassword
+
+# Feature: DUPLICATE PASSWORD
+I fill in current password in new password box
+    Input Text    id=new_password_box    0123456789
+I fill in current password in confirm password box 
+    Input Text    id=confirm_new_password_box    0123456789
+I should see alert message โปรดกรอกรหัสผ่านที่ไม่เคยใช้
+    Alert Should Be Present    โปรดกรอกรหัสผ่านที่ไม่เคยใช้
 #---END PASSWORD OPERATION---#
 
 
