@@ -5,13 +5,22 @@
   <ion-item *ngFor="let post of postList">
 
     <ion-grid>
-      <ion-row>
+      <ion-row>        
           <ion-avatar>
             <ion-img src="{{u_detail.profile_pic}}"></ion-img>
           </ion-avatar>
-          <ion-text><h4>&nbsp;{{u_detail.username}}</h4></ion-text>
+          <ion-text>
+            <h4>&nbsp;{{u_detail.username}}</h4>
+          </ion-text>
       </ion-row>
-      <ion-row><ion-text>{{post.createdAt}}</ion-text></ion-row>
+      <ion-row>
+        <ion-text>{{post.createdAt}}</ion-text>
+        <ion-col *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
+        <ion-buttons (click)="deletePost(post._id)" id="deletePostButton">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-buttons>
+      </ion-col>
+      </ion-row>
       <ion-row>
         <ion-text><h2>{{post.text}}</h2></ion-text>
       </ion-row>

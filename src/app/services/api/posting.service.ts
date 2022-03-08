@@ -3,7 +3,7 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
-export class PostData {
+export interface PostData {
   postId?: string;
   text?: string;
   pics?: string[];
@@ -37,12 +37,6 @@ export class PostingService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
-  }
-
-  private isOwnAccount(accountName:string):any{
-    let hasToken = localStorage.getItem('jwt') != undefined;
-    let isAccont = localStorage.getItem('usr_login') == accountName;
-    return hasToken && isAccont
   }
 
   private loadJwt() {
@@ -101,7 +95,8 @@ export class PostingService {
   }
 
   DeletePost(delete_post_Id:string){
-    let data = { postId: delete_post_Id };
+    let data: PostData
+    data.postId = delete_post_Id
     console.log('deleting '+ data['postId'])
     let API_URL = `${this.backend_post_API}/post/delete`;
 
@@ -128,6 +123,21 @@ export class PostingService {
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
     
     return this.httpClient.delete(API_URL, {headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  LoadRandomPost(){
+    let API_URL = `${this.backend_post_API}/feed/generate`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+    
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
     .pipe(map((res:any) => {
       return res || {}
     }),
