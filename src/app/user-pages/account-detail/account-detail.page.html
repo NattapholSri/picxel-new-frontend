@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button onclick="history.back()"></ion-back-button>
+      <ion-button [routerLink]="'/home'">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>account-detail</ion-title>
   </ion-toolbar>

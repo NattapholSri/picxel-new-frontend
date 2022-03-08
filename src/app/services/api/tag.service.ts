@@ -69,11 +69,11 @@ export class TagService {
       API_URL = `${this.backend_post_API}/tag/search?limit=${limitview}&page=${page}&all=1`;
     }
 
-    let jsonToken = this.loadJwt()
+    /* let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
-    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage); */
 
-    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {
       return res || {}
     }),
@@ -86,11 +86,11 @@ export class TagService {
     let page = 1
     let API_URL = `${this.backend_post_API}/tag/search?limit=${limitview}&page=${page}&all=1`;
 
-    let jsonToken = this.loadJwt()
+    /* let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
-    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage); */
 
-    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {
       return res || {}
     }),

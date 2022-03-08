@@ -166,7 +166,6 @@ export class PostingComponent {
     this.tagServ.SearchTag(this.searchTagValue).subscribe((res) => {
       let tagDatabase = res
       this.tempTagSearch = tagDatabase['content']
-      console.log(this.tempTagSearch)
     })
     //type 2 
 
