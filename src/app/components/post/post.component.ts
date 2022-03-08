@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
+import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-post',
@@ -23,7 +24,8 @@ export class PostComponent {
     private router: Router,
     private PostServ: PostingService,
     private tagServ: TagService,
-    private activatedRt: ActivatedRoute
+    private activatedRt: ActivatedRoute,
+    public formBulider: FormBuilder,
   ) {
       this.loadPostAtPage = 1
       this.loadAllTag()
@@ -106,6 +108,14 @@ export class PostComponent {
 
   deletePost(post_id:string){
     console.log(post_id)
+    const sendForm = new FormGroup({
+      postId: new FormControl(post_id)
+    })
+    this.PostServ.DeletePost(sendForm.value).subscribe((res)=>{
+      console.log(res)
+      this.router.navigateByUrl(`/account-detail/${this.u_detail.username}`)
+    })
+      
   }
 
 }

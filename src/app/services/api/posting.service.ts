@@ -94,17 +94,15 @@ export class PostingService {
     )
   }
 
-  DeletePost(delete_post_Id:string){
-    let data: PostData
-    data.postId = delete_post_Id
-    console.log('deleting '+ data['postId'])
+  DeletePost(delete_data_Id:PostData){
+    console.log('deleting '+ delete_data_Id.postId)
     let API_URL = `${this.backend_post_API}/post/delete`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
     
-    return this.httpClient.delete(API_URL, {headers:tokenHeaders})
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:delete_data_Id})
     .pipe(map((res:any) => {
       return res || {}
     }),
@@ -112,7 +110,7 @@ export class PostingService {
     )
   }
 
-  DeleteAllPost(delete_post_user:string){
+  DeleteAllPost(delete_post_user:string): Observable<any>{
     let data = { userId: delete_post_user };
 
     console.log('deleting post from user '+ data['userID'])
