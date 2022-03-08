@@ -307,6 +307,7 @@ sign_in_no_password
 #=======================
 
 # Feature: Change password 
+## Scenario: Change Password
 change_password
     # go to sign-in page
     I am on Sign-In page
@@ -326,6 +327,60 @@ change_password
     I should see password changing page
     # I fill the new password and confirm password
     I fill in current password
+    I fill in new password
+    I fill in confirm new password
+    I click confirm change password button
+    I should see alert message รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
+    # Assertion after password changed web should redirect to sign-in page
+    I should see login page
+
+## Scenario: wrong current password
+change_password_wrong_current_password
+    # go to sign-in page
+    I am on Sign-In page
+    Sleep  0.5s
+    # log in
+    I fill in username_box with login_my_username
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    # change password step
+    Sleep  0.5s
+    I click setting 
+    I click change password
+    # Assertion Change Password Page
+    I should see password changing page
+    # I fill the new password and confirm password
+    I fill in wrong_current password
+    I fill in new password
+    I fill in confirm new password
+    I click confirm change password button
+    I should see alert message รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
+    # Assertion after password changed web should redirect to sign-in page
+    I should see login page
+
+## Scenario: wrong current password
+change_password_wrong_current_password
+    # go to sign-in page
+    I am on Sign-In page
+    Sleep  0.5s
+    # log in
+    I fill in username_box with login_my_username
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    # change password step
+    Sleep  0.5s
+    I click setting 
+    I click change password
+    # Assertion Change Password Page
+    I should see password changing page
+    # I fill the new password and confirm password
+    I fill in wrong_current password
     I fill in new password
     I fill in confirm new password
     I click confirm change password button
@@ -641,6 +696,10 @@ I click confirm change password button
     Click Element    id=change_password_button    confirm
 I should see alert message
     Alert Should Be Present    รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
+
+# WRONG CURRENT PASSWORD
+I fill in wrong_current password
+    Input Text    id=current_password_box    wrongpassword
 #---END PASSWORD OPERATION---#
 
 
