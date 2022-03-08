@@ -434,7 +434,58 @@ change_password_unfill_current_password
     I fill in confirm new password
     I click confirm change password button
     I should see alert message โปรดกรอกข้อมูลให้ครบ
+
+## Scenario: unfill new password
+change_password_unfill_new_password
+    # go to sign-in page
+    I am on Sign-In page
+    Sleep  0.5s
+    # log in
+    I fill in username_box with login_my_username
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
     
+    # change password step
+    Sleep  0.5s
+    I click setting 
+    I click change password
+    # Assertion Change Password Page
+    I should see password changing page
+    # I fill the new password and confirm password
+    I fill in current password
+    #I fill in new password
+    I fill in confirm new password
+    I click confirm change password button
+    I should see alert message โปรดกรอกข้อมูลให้ครบ
+
+## Scenario: unfill confirm new password
+change_password_unfill_confirm_new_password
+    # go to sign-in page
+    I am on Sign-In page
+    Sleep  0.5s
+    # log in
+    I fill in username_box with login_my_username
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    # change password step
+    Sleep  0.5s
+    I click setting 
+    I click change password
+    # Assertion Change Password Page
+    I should see password changing page
+    # fill the new password and confirm password
+    I fill in current password
+    I fill in new password
+    #I fill in confirm new password
+    I click confirm change password button
+    I should see alert message โปรดกรอกข้อมูลให้ครบ
+
+
 
 
 
@@ -766,9 +817,11 @@ I fill in confirm new password with unmatch password
 I should see alert message รหัสผ่านใหม่ไม่ตรงกัน    
     Alert Should Be Present    รหัสผ่านใหม่ไม่ตรงกัน
 
-# Feature: unfill current password
+# Feature: unfill:[current password, new password, confirm new password]
 I should see alert message โปรดกรอกข้อมูลให้ครบ
     Alert Should Be Present    โปรดกรอกข้อมูลให้ครบ
+
+
 #---END PASSWORD OPERATION---#
 
 
