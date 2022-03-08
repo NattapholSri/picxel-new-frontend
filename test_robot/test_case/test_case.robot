@@ -500,6 +500,20 @@ reset_password
     # SHOULD SEE ALERT MESSAGE 
     I should see alert message your request has been sent to your email
 
+reset_password_unfill_email
+    # go to sign-in page
+    I am on Sign-In page
+    Sleep  05.s
+
+    # CLICK RESET PASSWORD
+    I click reset password button
+    # FILL WRONG EMAIL TO RESET PASSWORD
+    I fill in email_box with wrong_my_email
+    # CLICK REQUEST RESET PASSWORD BUTTON
+    I click request reset password
+    # SHOULD SEE ALERT MESSAGE 
+    I should see alert message incorrect info
+
 #----------END การดำเนินการเกี่ยวกับรหัสผ่าน--------------
 
 
@@ -835,6 +849,7 @@ I should see alert message โปรดกรอกข้อมูลให้�
     Alert Should Be Present    โปรดกรอกข้อมูลให้ครบ
 
 # Feature: reset password
+## Scenario: reset password
 I click reset password button
     Click Element    id=reset_password_button    รีเซ็ทรหัสผ่าน
 I fill in email_box with reg_my_email
@@ -843,6 +858,12 @@ I click request reset password
     Click Element    id=request_password_button    ส่งคำขอ RESET PASSWORD
 I should see alert message your request has been sent to your email
     Alert Should Be Present    คำขอรีเซ็ทรหัสผ่านถูกส่งไปที่อีเมลล์ของท่านแล้ว
+
+## Scenario: wrong email
+I fill in email_box with wrong_my_email
+    Input Text    id=email_box    wasawat_non1_wrong@gmail.com
+I should see alert message incorrect info
+    Alert Should Be Present    ข้อมูลไม่ถูกต้อง
 #---END PASSWORD OPERATION---#
 
 
