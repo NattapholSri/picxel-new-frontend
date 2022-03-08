@@ -307,6 +307,31 @@ sign_in_no_password
 #=======================
 
 # Feature: Change password 
+change_password
+    # go to sign-in page
+    I am on Sign-In page
+    Sleep  0.5s
+    # log in
+    I fill in username_box with login_my_username
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    # change password step
+    Sleep  0.5s
+    I click setting 
+    I click change password
+    # Assertion Change Password Page
+    I should see password changing page
+    # I fill the new password and confirm password
+    I fill in current password
+    I fill in new password
+    I fill in confirm new password
+    I click confirm change password button
+    I should see alert message รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
+    # Assertion after password changed web should redirect to sign-in page
+    I should see login page
 
 #----------END การดำเนินการเกี่ยวกับรหัสผ่าน--------------
 edit_profile 
@@ -498,6 +523,15 @@ I should see new profile info
     Element Should Contain    id=post_message    โพสต์ล่าสุดจากโปรไฟล์นี้ 
     Element Should Contain    id=load_more_post_button    โหลดโพสต์เพิ่มเติม 
 
+ # Assertion Change Password Page
+I should see password changing page
+    Element Should Contain    id=navbar    password changing
+    Element Should Contain    id=current_password    current password
+    Element Should Contain    id=new_password    new password
+    Element Should Contain    id=confirm_new_password    confirm new password
+    Element Should Contain    id=button_confirm_change_password    confirm
+    
+
 
 #---END PAGE ASSERTION---#
 
@@ -586,6 +620,38 @@ I click log_out_button
 I fill in "Name-Surname" with my Name
     Input Text    name=ion-input-0    0633438499
     #Click Element    xpath=//*[@id="root"]/section/div/div/form/button
+
+
+#=======================
+# PASSWORD OPERATION
+#=======================
+
+# Feature: Password Changing 
+I click setting 
+    Click Element    id=setting    setting
+I click change password
+    Click Element    id=change_password    change password
+I fill in current password
+    Input Text    id=current_password_box    0123456789
+I fill in new password
+    Input Text    id=new_password_box    9876543210
+I fill in confirm new password
+    Input Text    id=confirm_new_password_box    9876543210
+I click confirm change password button
+    Click Element    id=change_password_button    confirm
+I should see alert message
+    Alert Should Be Present    รหัสผ่านของท่านถูกเปลี่ยนเรียบร้อย
+#---END PASSWORD OPERATION---#
+
+
+
+
+
+
+
+
+
+
 
 
 ### Old CPF CODE ###
