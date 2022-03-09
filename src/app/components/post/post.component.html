@@ -21,6 +21,11 @@
         </ion-buttons>
       </ion-col>
       </ion-row>
+      
+      <ion-row>
+        <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>
+      </ion-row>
+
       <ion-row>
         <ion-text><h2>{{post.text}}</h2></ion-text>
       </ion-row>
@@ -28,9 +33,6 @@
         <ion-chip *ngFor="let tagName of post.tags_Nlist">
           {{tagName}}
         </ion-chip>
-      </ion-row>
-      <ion-row>
-        <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>
       </ion-row>
     </ion-grid>
   </ion-item>
