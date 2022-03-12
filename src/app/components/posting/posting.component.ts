@@ -20,7 +20,6 @@ export class PostingComponent {
 
   picture_url: string = '';
 
-  message_to_usr: string;
   message_mode: number = 0;
 
   // knowTag: any[] = [];
@@ -44,7 +43,7 @@ export class PostingComponent {
   onSubmit(){
     let postTag: string[] = []
     for (let item of this.tags_list){
-      console.log(item)
+      // console.log(item)
       postTag.push(item._id)
     }
     console.log(postTag)
@@ -58,6 +57,15 @@ export class PostingComponent {
     .subscribe((res) => {
       alert("Posted")
       console.log(res)
+      
+      //clear Data on Post box
+      this.post_text = ''
+      this.picture_url = ''
+      this.picture_list = []
+      this.tags_list = []
+      this.tempTagSearch = []
+      this.message_mode = 0
+      
       //window.location.reload()
       this.router.navigateByUrl('/home')
     },

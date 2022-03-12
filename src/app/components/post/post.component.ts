@@ -113,6 +113,16 @@ export class PostComponent {
     })
     this.PostServ.DeletePost(sendForm.value).subscribe((res)=>{
       console.log(res)
+
+      for( var i = 0; i < this.postList.length; i++){ 
+                                   
+        if ( this.postList[i]._id == post_id) { 
+          this.postList.splice(i, 1); 
+          i--; 
+        }
+      }
+      console.log(this.postList)
+
       this.router.navigateByUrl(`/account-detail/${this.u_detail.username}`)
     })
       
