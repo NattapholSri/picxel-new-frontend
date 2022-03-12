@@ -107,7 +107,6 @@ export class PostComponent {
   }
 
   deletePost(post_id:string){
-    console.log(post_id)
     const sendForm = new FormGroup({
       postId: new FormControl(post_id)
     })

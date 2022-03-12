@@ -66,8 +66,8 @@ export class PostingComponent {
       this.tempTagSearch = []
       this.message_mode = 0
       
-      //window.location.reload()
-      this.router.navigateByUrl('/home')
+      window.location.reload()
+      //this.router.navigateByUrl('/home')
     },
     (err) => {
       console.log(err)
