@@ -1,3 +1,93 @@
-<p>
-  post-update works!
-</p>
+<ion-title>แก้ไขโพสต์</ion-title>
+
+<ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-textarea 
+        placeholder="เขียนข้อความ" 
+        rows="3" 
+        cols="100" 
+        inputmode="text" 
+        [(ngModel)]="post_text"
+        name="post_detail"
+        id="post_detail"></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        <ion-textarea 
+        placeholder="URL รูปภาพ" 
+        rows="1" cols="80" 
+        inputmode="text" 
+        [(ngModel)]="picture_url" 
+        name="url_box"
+        id="url_box"></ion-textarea>
+
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="addPic()" name="picture_add_btn" id="picture_add_btn">
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          เพิ่มรูปภาพ
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="picture_list != []" id="picture_added_list">
+      <ion-col *ngFor="let picture_i of picture_list" size="1">
+        <ion-item>
+          <ion-thumbnail>
+            <img src="{{picture_i}}">
+          </ion-thumbnail>
+          <ion-icon name="close-circle-outline" id="remove_pic_btn" (click)="removePic(picture_i)"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col size="4">
+        <ion-searchbar 
+        placeholder="ค้นหาแท็ก" 
+        debounce="1000" 
+        (ionChange)="getTagByName()" 
+        [(ngModel)]="searchTagValue"
+        id="tag_search_bar"></ion-searchbar>
+      </ion-col>
+      <!-- <ion-col>
+        <ion-button name="createTag">search</ion-button>
+      </ion-col> -->
+      <ion-col>
+        <ion-button (click)="createNewTag()" name="createTag">สร้างแท็กใหม่</ion-button>
+        <!-- <ion-text *ngIf=" message_mode == 4" color="warning">มีแท็กนี้อยู่แล้ว</ion-text> -->
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!(tags_list.length === 0)" name="selected_tag">
+      <ion-col>
+        <ion-text>แท็กที่ถูกเพิ่ม: </ion-text>
+        <ion-chip *ngFor="let tag_l of tags_list" (click)="removeTag(tag_l)">
+          <ion-label color="success">{{tag_l.name}}</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="!(tempTagSearch.length === 0)" name="found_tag">
+      <ion-col>
+        <ion-text>แท็กที่ใช้ได้: </ion-text>
+        <ion-chip *ngFor="let tag_s of tempTagSearch" color="secondary" (click)="addTag(tag_s)">
+          <ion-label color="primary">{{tag_s.name}}</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2" offset="5">
+        <ion-button (click)="onSubmit()" name="postButton" id="postButton">แก้ไขโพสต์</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

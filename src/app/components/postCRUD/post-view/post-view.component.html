@@ -15,11 +15,14 @@
       </ion-row>
       <ion-row>
         <ion-text>{{post.createdAt}}</ion-text>
-        <ion-col *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
-        <ion-buttons (click)="deletePost(post._id)" id="deletePostButton">
-          <ion-icon name="close-outline"></ion-icon>
-        </ion-buttons>
-      </ion-col>
+        <div *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
+          <ion-buttons (click)="goToUpdate(post._id,post)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-buttons>
+          <ion-buttons (click)="deletePost(post._id)" id="deletePostButton">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-buttons>
+        </div>
       </ion-row>
       
       <ion-row>

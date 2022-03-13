@@ -39,9 +39,6 @@ export class PostViewComponent{
 /*   ngOnInit() {
   } */
 
-  randomPost(){
-    // get all / randompost
-  }
 
   userPost(user_id:string){
     this.PostServ.SearchPost(user_id,10,this.loadPostAtPage).subscribe(
@@ -125,6 +122,12 @@ export class PostViewComponent{
       this.router.navigateByUrl(`/account-detail/${this.u_detail.username}`)
     })
       
+  }
+
+  goToUpdate(post_ID:string,postData:any){
+    console.log(post_ID)
+    localStorage.setItem('selectPost',JSON.stringify(postData))
+    this.router.navigateByUrl(`/update-user-post/${post_ID}`)
   }
 
 }

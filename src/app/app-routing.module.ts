@@ -34,7 +34,12 @@ const routes: Routes = [
   {
     path: 'account-edit',
     loadChildren: () => import('./user-pages/account-edit/account-edit.module').then( m => m.AccountEditPageModule)
+  },
+  {
+    path: 'update-user-post/:postId',
+    loadChildren: () => import('./function-page/update-user-post/update-user-post.module').then( m => m.UpdateUserPostPageModule)
   }
+
 
 ];
 
