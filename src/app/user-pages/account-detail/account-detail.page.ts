@@ -3,7 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../../services/api/user.service';
 import { AlertController } from '@ionic/angular';
-import { PostComponent } from 'src/app/components/post/post.component';
+import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-view.component';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { PostComponent } from 'src/app/components/post/post.component';
   styleUrls: ['./account-detail.page.scss'],
 })
 export class AccountDetailPage implements OnInit {
-  @ViewChild(PostComponent) child: PostComponent 
+  @ViewChild(PostViewComponent) child: PostViewComponent 
 
   usr_acc: any = {};
   token = localStorage.getItem('jwt');

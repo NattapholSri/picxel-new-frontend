@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AccountDetailPageRoutingModule } from './account-detail-routing.module';
 
 import { AccountDetailPage } from './account-detail.page';
-import { PostComponent } from 'src/app/components/post/post.component';
+import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-view.component';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { PostComponent } from 'src/app/components/post/post.component';
     IonicModule,
     AccountDetailPageRoutingModule
   ],
-  declarations: [AccountDetailPage,PostComponent]
+  declarations: [AccountDetailPage,PostViewComponent]
 })
 export class AccountDetailPageModule {}

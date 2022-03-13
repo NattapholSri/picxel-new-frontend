@@ -5,11 +5,11 @@ import { TagService } from 'src/app/services/api/tag.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
+  selector: 'app-post-view',
+  templateUrl: './post-view.component.html',
+  styleUrls: ['./post-view.component.scss'],
 })
-export class PostComponent {
+export class PostViewComponent{
 
   currentUser = localStorage.getItem('usr_login')
   postList: any[] = []

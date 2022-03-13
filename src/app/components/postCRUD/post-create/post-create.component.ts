@@ -5,12 +5,13 @@ import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
-  selector: 'app-posting',
-  templateUrl: './posting.component.html',
-  styleUrls: ['./posting.component.scss'],
+  selector: 'app-post-create',
+  templateUrl: './post-create.component.html',
+  styleUrls: ['./post-create.component.scss'],
 })
-export class PostingComponent {
+export class PostCreateComponent {
 
   //postForm: FormGroup;
 

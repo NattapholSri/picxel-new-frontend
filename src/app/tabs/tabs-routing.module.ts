@@ -11,19 +11,12 @@ const routes: Routes = [
       [
         {
           path: 'home',
-          outlet: 'home',
-          pathMatch: 'full'
+          loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
         },
         {
-          path: 'home',
-          outlet: 'home',
-          pathMatch: 'full'
+          path: 'account-detail/:username',
+          loadChildren: () => import('../user-pages/account-detail/account-detail.module').then( m => m.AccountDetailPageModule)
         },
-        {
-          path: '',
-          redirectTo: 'home',
-          pathMatch: 'full'
-        }
       ]
   },
 ];

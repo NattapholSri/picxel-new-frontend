@@ -1,6 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
 import { UserService } from '../services/api/user.service';
-import { PostingComponent } from '../components/posting/posting.component';
+import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { PostingComponent } from '../components/posting/posting.component';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  @ViewChild(PostingComponent) child: PostingComponent 
+  @ViewChild(PostCreateComponent) child: PostCreateComponent 
 
   constructor(userServ: UserService) {
     userServ.AutoLogout()
