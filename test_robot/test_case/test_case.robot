@@ -516,7 +516,12 @@ reset_password_unfill_email
 
 #----------END การดำเนินการเกี่ยวกับรหัสผ่าน--------------
 
+#=======================
+# USER PROFILE EDITING 
+#=======================
 
+# Feature: Change profile picture
+## Scenario: edit profile
 edit_profile 
     I am on Sign-In page
 
@@ -547,6 +552,7 @@ edit_profile
     Sleep  0.5s
     I should see new profile info
 
+## Scenario: CANCEL PROFILE EDITION
 cancel_profile_edition
     I am on Sign-In page
 
@@ -578,6 +584,23 @@ cancel_profile_edition
     Sleep  0.5s
     I should see account_detail page
 
+## Scenario: CHANGE PROFILE PICTURE
+change_profile_picture
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+
+
+#----------END PROFILE EDITION--------------
 log_out
     I am on Sign-In page
 
@@ -864,13 +887,95 @@ I fill in email_box with wrong_my_email
     Input Text    id=email_box    wasawat_non1_wrong@gmail.com
 I should see alert message incorrect info
     Alert Should Be Present    ข้อมูลไม่ถูกต้อง
+
+## Scneario: new password duplicate
+
 #---END PASSWORD OPERATION---#
 
 
 
+#=======================
+# USER PROFILE EDITING
+#=======================
 
+## Scenario: CHANGE PROFILE PICTURE
+# click profile picture to change profile picture
+I click profile_picture 
+    Click Element    id=user_profile_picture    
+# choose local picture file
+I choose my new profile picture
+    Choose File    id=user_profile_picture    "this should be path"
+# click confirm change button
+I click confirm change button
+    Click Element    id=confirm_button    confirm
+# new profile picture assertion
+##**** how to check the new image???
+I should see my new profile picture
+    Page Should Contain    id=user_profile_picture
 
+## Scenario: Cancel the picture change
+# click cancel button
+I click cancel button
+    Click Element    id=cancel_button
 
+## Scenario: Change interest category
+# click my interest button
+I click my interest button  
+    Click Element    id=my_interest_button
+# click new category
+I click new category
+    Click Element    id=landscape
+
+## Scenario: change category but CANCEL\
+I click cancel button to cancel my category change
+    Click Element    id=cancel_button
+
+## Scenario: CHANGE BIO/DESCRIPTION
+# CLICK BIO SETTING
+I click bio setting button
+    Click Element    id=bio_setting_button
+
+# Fill in new bio
+I fill in my new bio 
+    Input Text    id=bio_box    "this is my NEW bio"
+
+# CLICK CONFIRM BUTTON
+I click confirm button
+    Click Element    id=confirm_button
+
+## Scenario: CANCEL BIO/DESCRIPTION EDIT
+# CLICK CANCEL BIO/DESCRIPTION EDIT
+    Click Element    id=cancel_button
+
+# Feature: ADD PAYMENT METHOD
+## Scenario: Add Payment Method Successful
+# CLICK PAYMENT SETTING
+I click payment setting 
+    Click Element    id=payment_setting
+# click add payment method
+I click add payment method
+    Click Element    id=add_payment_button
+# fill card number
+I fill card number
+    Input Text    id=card_number_box    "cardnumber=012345689"
+# fill cvv/ccv
+I fill ccv
+    Input Text    id=ccv_box    "ccv_text"
+# fill expired date
+I fill expired date
+    Input Text    id=exp_date_box   "22/03"
+# click confirm
+I click confirm_button
+    Click Element   id=confirm_button
+
+##Scenario: กรอกข้อมูลไม่ครบ
+#ALERT MESSAGE of unfull fill info
+I should see unfulled alert message 
+    Alert Should Be Present    "please fill all info"
+#Alert MESSAGE of FALSE info
+I should see false info alert
+    Alert Should Be Present    "incorrect info"
+#---END USER PROFILE EDITING---#
 
 
 
