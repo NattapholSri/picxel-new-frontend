@@ -2,6 +2,8 @@ import { Component, OnInit,NgZone,ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../../services/api/user.service';
+import { FollowUserService } from 'src/app/services/api/follow-user.service';
+
 import { AlertController } from '@ionic/angular';
 import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-view.component';
 
@@ -27,7 +29,8 @@ export class AccountDetailPage implements OnInit {
     private ngZone: NgZone,
     private userServ: UserService,
     private activatedRt: ActivatedRoute,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private followUsr: FollowUserService
   ) {
     localStorage.removeItem('loaduserID') 
     localStorage.removeItem('usernow')
@@ -89,4 +92,22 @@ export class AccountDetailPage implements OnInit {
     this.ngZone.run(() => this.router.navigateByUrl('/'))
   }
 
+
+  followToThisUser(){
+    let userFollowIdForm = {
+      userId: this.usr_acc._id
+    }
+    this.followUsr.followToUser(userFollowIdForm)
+    .subscribe(
+      (res) => {
+        console.log(res)
+        this.subbed = true
+      },
+      (err) => console.log(err)
+    )
+  }
+
+  unFollowToThisUser(){
+    this.subbed = false
+  }
 }

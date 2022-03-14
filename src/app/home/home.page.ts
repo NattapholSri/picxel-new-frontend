@@ -1,6 +1,8 @@
 import { Component,ViewChild } from '@angular/core';
 import { UserService } from '../services/api/user.service';
 import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
+import { RandomAllPostComponent } from '../components/random-all-post/random-all-post.component';
+
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,12 @@ import { PostCreateComponent } from '../components/postCRUD/post-create/post-cre
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  @ViewChild(PostCreateComponent) child: PostCreateComponent 
+  @ViewChild(PostCreateComponent) child: PostCreateComponent
+   
 
-  constructor(userServ: UserService) {
+  constructor(
+    userServ: UserService
+    ) {
     userServ.AutoLogout()
   }
 

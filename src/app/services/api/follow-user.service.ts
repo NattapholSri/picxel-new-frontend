@@ -10,7 +10,7 @@ export interface userData {
 @Injectable({
   providedIn: 'root'
 })
-export class SubscribeService {
+export class FollowUserService {
 
  
   backend_post_API: string = 'http://katteni.thddns.net:5051';
@@ -41,7 +41,7 @@ export class SubscribeService {
     return jsonToken["accessToken"]
   }
 
-  followToUser(target:userData){
+  followToUser(target:userData):Observable<any>{
     let API_URL = `${this.backend_post_API}/user/follow`;
 
     let jsonToken = this.loadJwt()
@@ -49,6 +49,17 @@ export class SubscribeService {
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
 
     return this.httpClient.post(API_URL, target,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  getUserFollower(user_id:string):Observable<any>{
+    let API_URL = `${this.backend_post_API}/user/follow/search?to=${user_id}`;
+
+    return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {
       return res || {}
     }),

@@ -3,6 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { UserService } from 'src/app/services/api/user.service';
+import { AlertController } from '@ionic/angular';
+import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
+
+
 @Component({
   selector: 'app-random-all-post',
   templateUrl: './random-all-post.component.html',
@@ -24,13 +28,14 @@ export class RandomAllPostComponent {
     private PostServ: PostingService,
     private tagServ: TagService,
     private userServ: UserService,
-    private activatedRt: ActivatedRoute
+    private activatedRt: ActivatedRoute,
+    private alertCtrl: AlertController
   ) {
       this.loadPostAtPage = 1
       this.loadAllTag()
       this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
+      this.randomPost()
       this.u_detail = JSON.parse(localStorage.getItem('usernow'))
-      // this.AllRndPost()
       
   }
 
@@ -38,39 +43,9 @@ export class RandomAllPostComponent {
   } */
 
   randomPost(){
-    // get all / randompost
-  }
-
-  userPost(user_id:string){
-    this.PostServ.SearchPost(user_id,10,this.loadPostAtPage).subscribe(
-      (res) => {
-        this.postList = res.content
-        if (this.knowtag != []){
-          this.Post_Edit()
-        }
-        console.log(this.postList)
-      }
-    )
-  }
-
-  loadThisUsrMore(){
-    this.loadAllTag()
-    this.loadPostAtPage += 1;
-    console.log(this.u_detail._id)
-    this.PostServ.SearchPost(this.u_detail._id,10,this.loadPostAtPage).subscribe(
-      (res) => {
-        console.log(res)
-        let MorePostList = res.content
-        console.log(MorePostList)
-        if (MorePostList.length === 0){
-          this.canloadMore = false
-        }
-        else{
-          this.postList += MorePostList
-          console.log(this.postList)
-        }
-      }
-    )
+    this.PostServ.LoadRandomPost().subscribe((res) =>{
+      console.log(res)
+    })
   }
 
   private Post_Edit(){
@@ -104,13 +79,77 @@ export class RandomAllPostComponent {
     return textTag
   }
 
-  goToUser(){
+  deletePost(post_id:string){
+    const sendForm = new FormGroup({
+      postId: new FormControl(post_id)
+    })
+    this.PostServ.DeletePost(sendForm.value).subscribe((res)=>{
+      console.log(res)
 
+      for( var i = 0; i < this.postList.length; i++){                           
+        if ( this.postList[i]._id == post_id) { 
+          this.postList.splice(i, 1); 
+          i--; 
+        }
+      }
+      console.log(this.postList)
+      this.router.navigateByUrl(`/account-detail/${this.u_detail.username}`)
+    })
   }
 
-  goToTag(){
-    // add method to go tag
+  askBeforeDeletePost(post_id:string){
+    this.alertCtrl.create(
+      {header: 'ลบโพสต์นี้?',
+      message: 'คุณแน่ใจนะว่าต้องการลบโพสต์นี้',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel'
+        },{
+          text: 'แน่นอน',
+          handler: () => {
+            this.deletePost(post_id)
+          }
+        },
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
   }
 
+  goToUpdate(post_ID:string,postData:any){
+    console.log(post_ID)
+    localStorage.setItem('selectPost',JSON.stringify(postData))
+    this.router.navigateByUrl(`/update-user-post/${post_ID}`)
+  }
+
+  postMenu(post_id:string,postData:any) {
+    this.alertCtrl.create(
+      {header: 'เมนูเพิ่มเติมของโพสต์',
+      message: 'คุณต้องการทำอะไรกับโพสต์นี้',
+      buttons: [
+        {
+          text: 'แก้ไขโพสต์',
+          handler: () => {
+            this.goToUpdate(post_id,postData)
+          }
+        },{
+          text: 'ลบโพสต์นี้',
+          handler: () => {
+            this.askBeforeDeletePost(post_id)
+          }
+        },
+        {
+          text: 'ปิดเมนู',
+          role: 'cancel'
+        },
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
+  }
 }
+
 

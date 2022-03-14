@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SubscribeService } from './subscribe.service';
+import { FollowUserService } from './follow-user.service';
 
-describe('SubscribeService', () => {
-  let service: SubscribeService;
+describe('FollowUserService', () => {
+  let service: FollowUserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SubscribeService);
+    service = TestBed.inject(FollowUserService);
   });
 
   it('should be created', () => {

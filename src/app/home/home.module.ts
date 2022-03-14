@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
+import { RandomAllPostComponent } from '../components/random-all-post/random-all-post.component';
 
 
 @NgModule({
@@ -15,6 +16,6 @@ import { PostCreateComponent } from '../components/postCRUD/post-create/post-cre
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage,PostCreateComponent]
+  declarations: [HomePage,PostCreateComponent,RandomAllPostComponent]
 })
 export class HomePageModule {}

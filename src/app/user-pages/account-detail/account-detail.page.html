@@ -21,11 +21,11 @@
     </ion-card-title>
 
     <ion-buttons *ngIf="(usr_acc.password == undefined) && (token != undefined)">
-      <ion-button *ngIf="!(subbed)" color="secondary">
+      <ion-button *ngIf="!(subbed)" color="secondary" (click)="followToThisUser()">
         follow
         <ion-icon name="enter-outline"></ion-icon>
       </ion-button>
-      <ion-button *ngIf="subbed" color="secondary">
+      <ion-button *ngIf="subbed" color="secondary" (click)="unFollowToThisUser()">
         followed
         <ion-icon name="checkbox-outline"></ion-icon>
       </ion-button>
