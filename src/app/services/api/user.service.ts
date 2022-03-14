@@ -90,6 +90,7 @@ export class UserService {
     localStorage.removeItem("jwt");
     localStorage.removeItem("usr_login");
     localStorage.removeItem('tkTime')
+    localStorage.removeItem('user_login_data')
     // sent logout request to server
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders})
@@ -114,6 +115,7 @@ export class UserService {
     localStorage.removeItem("jwt");
     localStorage.removeItem("usr_login");
     localStorage.removeItem('tkTime')
+    localStorage.removeItem('user_login_data')
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
       .pipe(map((res:any) => {
@@ -141,6 +143,7 @@ export class UserService {
         localStorage.removeItem('tkTime')
         localStorage.removeItem('jwt')
         localStorage.removeItem('usr_login')
+        localStorage.removeItem('user_login_data')
         console.log('token timeout')
       }
       else{
@@ -182,7 +185,7 @@ export class UserService {
     if (page == undefined){
       page = 1
     }
-    let API_URL = `${this.backend_API}/user/search?username=${keyword}&limit=${keyword}&page=${page}`;
+    let API_URL = `${this.backend_API}/user/search?username=${keyword}&limit=${limitview}&page=${page}`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;

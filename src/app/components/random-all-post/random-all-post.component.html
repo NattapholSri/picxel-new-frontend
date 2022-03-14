@@ -1,3 +1,41 @@
-<p>
-  random-all-post works!
-</p>
+<ion-title color="secondary">โพสต์ล่าสุดในช่วงเวลาที่ผ่านมา</ion-title>
+
+<div id="container" *ngIf="postList == []"></div>
+<ion-list>
+  <ion-item *ngFor="let post of postList">
+
+    <ion-grid>
+      <ion-row>        
+          <!-- <ion-avatar>
+            <ion-img src="{{post.u_detail.profile_pic}}"></ion-img>
+          </ion-avatar> -->
+          <ion-text>
+            <h4>&nbsp;{{post.userId}}</h4>
+          </ion-text>
+      </ion-row>
+      <ion-row>
+        <ion-text>{{post.createdAt}}</ion-text>
+        <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
+        <ion-item *ngIf="(post.userId == usr_use_now_detail._id) && (usr_use_now_detail.username == currentUser)">
+          <ion-buttons (click)="postMenu(post._id,post)">
+            <ion-icon name="alert-sharp"></ion-icon>
+          </ion-buttons>
+        </ion-item>
+      </ion-row>
+      
+      <ion-row>
+        <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>
+      </ion-row>
+
+      <ion-row>
+        <ion-text><h2>{{post.text}}</h2></ion-text>
+      </ion-row>
+      <ion-row>
+        <ion-text>แท็ก:&nbsp;</ion-text>
+        <ion-chip *ngFor="let tagName of post.tags_Nlist">
+          {{tagName}}
+        </ion-chip>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-list>
