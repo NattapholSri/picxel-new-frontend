@@ -64,7 +64,8 @@ export class PostUpdateComponent {
       alert("Updated")
       console.log(res)
       
-      this.router.navigateByUrl('/home')
+      localStorage.removeItem('selectPost')
+      history.back()
     },
     (err) => {
       console.log(err)
@@ -192,5 +193,7 @@ export class PostUpdateComponent {
       }
     }
   }
+
+  
 
 }

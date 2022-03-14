@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-post-view',
@@ -25,6 +26,7 @@ export class PostViewComponent{
     private PostServ: PostingService,
     private tagServ: TagService,
     private activatedRt: ActivatedRoute,
+    private alertCtrl: AlertController,
     public formBulider: FormBuilder,
   ) {
       this.loadPostAtPage = 1
@@ -110,18 +112,36 @@ export class PostViewComponent{
     this.PostServ.DeletePost(sendForm.value).subscribe((res)=>{
       console.log(res)
 
-      for( var i = 0; i < this.postList.length; i++){ 
-                                   
+      for( var i = 0; i < this.postList.length; i++){                           
         if ( this.postList[i]._id == post_id) { 
           this.postList.splice(i, 1); 
           i--; 
         }
       }
       console.log(this.postList)
-
       this.router.navigateByUrl(`/account-detail/${this.u_detail.username}`)
     })
-      
+  }
+
+  askBeforeDeletePost(post_id:string){
+    this.alertCtrl.create(
+      {header: 'ลบโพสต์นี้?',
+      message: 'คุณแน่ใจนะว่าต้องการลบโพสต์นี้',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel'
+        },{
+          text: 'แน่นอน',
+          handler: () => {
+            this.deletePost(post_id)
+          }
+        },
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
   }
 
   goToUpdate(post_ID:string,postData:any){
@@ -130,4 +150,30 @@ export class PostViewComponent{
     this.router.navigateByUrl(`/update-user-post/${post_ID}`)
   }
 
+  postMenu(post_id:string,postData:any) {
+    this.alertCtrl.create(
+      {header: 'เมนูเพิ่มเติมของโพสต์',
+      message: 'คุณต้องการทำอะไรกับโพสต์นี้',
+      buttons: [
+        {
+          text: 'แก้ไขโพสต์',
+          handler: () => {
+            this.goToUpdate(post_id,postData)
+          }
+        },{
+          text: 'ลบโพสต์นี้',
+          handler: () => {
+            this.askBeforeDeletePost(post_id)
+          }
+        },
+        {
+          text: 'ปิดเมนู',
+          role: 'cancel'
+        },
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
+  }
 }

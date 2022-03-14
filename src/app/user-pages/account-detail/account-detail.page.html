@@ -44,13 +44,13 @@
     <ion-grid *ngIf=" usr_acc.password != undefined">
       <ion-row>
         <ion-col>
-          <ion-button [routerLink]="'/account-edit'" shape="round" expand="block" >แก้ไขโปรไฟล์</ion-button>
+          <ion-button [routerLink]="'/account-edit'" shape="round" expand="block" id="edit_profile_btn">แก้ไขโปรไฟล์</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="warning" (click)='userLogout()' shape="round" expand="block">ออกจากระบบ</ion-button>
+          <ion-button color="warning" (click)='userLogout()' shape="round" expand="block" id="logout_btn">ออกจากระบบ</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block">ลบบัญชีนี้ทิ้ง</ion-button>
+          <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block" id="delete_acc_btn">ลบบัญชีนี้ทิ้ง</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

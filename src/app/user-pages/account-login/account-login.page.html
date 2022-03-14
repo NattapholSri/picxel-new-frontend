@@ -1,8 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <!-- <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
-    </ion-buttons> -->
     <ion-title>Welcome to PICXEL</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,22 +8,22 @@
   <div class="container">
     <ion-item>
       <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
-      <ion-input type="text" required [(ngModel)]="usr_name"></ion-input>
+      <ion-input type="text" required [(ngModel)]="usr_name" id="username_input"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">กรอกรหัสผ่าน</ion-label>
-      <ion-input type="password" required [(ngModel)]="passwd"></ion-input>
+      <ion-input type="password" required [(ngModel)]="passwd" id="password_input"></ion-input>
     </ion-item>
   </div>
   <div>
-    <ion-button (click)="onSubmit()">ลงชื่อเข้าใช้งาน</ion-button>
+    <ion-button (click)="onSubmit()" id="login_btn">ลงชื่อเข้าใช้งาน</ion-button>
   </div>
   <div>
     <ion-card>
       <ion-card-content>
       ยังไม่มีบัญชี?
       </ion-card-content>
-      <ion-button fill="outline" [routerLink]="'/registration'">ลงทะเบียน</ion-button>
+      <ion-button fill="outline" [routerLink]="'/registration'" id="register_btn">ลงทะเบียน</ion-button>
     </ion-card>
   </div>
   <div>
@@ -34,7 +31,7 @@
       <ion-card-content>
       ลืมรหัสผ่าน?
       </ion-card-content>
-      <ion-button color="warning" [routerLink]="'/forgot-password'">รีเซ็ตรหัสผ่าน</ion-button>
+      <ion-button color="warning" [routerLink]="'/forgot-password'" id="forgot_passwd_btn">รีเซ็ตรหัสผ่าน</ion-button>
     </ion-card>
   </div>
 </ion-content>

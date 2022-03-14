@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { UserService } from '../../services/api/user.service';
 import * as moment from "moment";
-// import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-account-login',
@@ -19,8 +19,8 @@ export class AccountLoginPage implements OnInit {
     public formBulider: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private userServ: UserService
-
+    private userServ: UserService,
+    private loadingCtrl: LoadingController
   ) { }
 
   ngOnInit() {
@@ -39,6 +39,12 @@ export class AccountLoginPage implements OnInit {
     } 
     else{
       // console.log(loginForm.value)
+      this.loadingCtrl.create({
+        message: 'กำลังเข้าสู่ระบบ PICXEL'
+      }).then((res) => {
+        res.present();
+      })
+
       this.userServ.ReqLogin(loginForm.value)
       .subscribe((res) => {
         console.log(res)
@@ -48,10 +54,21 @@ export class AccountLoginPage implements OnInit {
         localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         console.log(localStorage.getItem('tkTime'))
 
+        this.loadingCtrl.dismiss().then((res) => {
+          console.log('Login Success!', res);
+        }).catch((error) => {
+          console.log('error', error);
+        })
+
         this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
       },
       (err) => {
         console.log(err)
+        this.loadingCtrl.dismiss().then((res) => {
+          console.log('stopped loading', res);
+        }).catch((error) => {
+          console.log('error', error);
+        })
         alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
       })
     }

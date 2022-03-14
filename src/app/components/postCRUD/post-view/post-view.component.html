@@ -15,14 +15,11 @@
       </ion-row>
       <ion-row>
         <ion-text>{{post.createdAt}}</ion-text>
-        <div *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
-          <ion-buttons (click)="goToUpdate(post._id,post)">
-            <ion-icon name="create-outline"></ion-icon>
+        <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
+          <ion-buttons (click)="postMenu(post._id,post)">
+            <ion-icon name="alert-sharp"></ion-icon>
           </ion-buttons>
-          <ion-buttons (click)="deletePost(post._id)" id="deletePostButton">
-            <ion-icon name="close-outline"></ion-icon>
-          </ion-buttons>
-        </div>
+        </ion-item>
       </ion-row>
       
       <ion-row>
@@ -33,6 +30,7 @@
         <ion-text><h2>{{post.text}}</h2></ion-text>
       </ion-row>
       <ion-row>
+        <ion-text>แท็ก:&nbsp;</ion-text>
         <ion-chip *ngFor="let tagName of post.tags_Nlist">
           {{tagName}}
         </ion-chip>

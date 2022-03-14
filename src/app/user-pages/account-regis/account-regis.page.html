@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button onclick="history.back()"></ion-back-button>
+      <ion-back-button onclick="history.back()" id="back_btn"></ion-back-button>
     </ion-buttons>
     <ion-title>Account registration/การลงทะเบียนเข้าใช้งาน</ion-title>
   </ion-toolbar>
@@ -11,24 +11,24 @@
   <div class="form-group">
     <ion-item>
       <ion-label position="floating">กรอกอีเมล์</ion-label>
-      <ion-input type="email" required [(ngModel)]="email_addr"></ion-input>
+      <ion-input type="email" required [(ngModel)]="email_addr" id="email_input"></ion-input>
     </ion-item>
   <ion-item>
     <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
-    <ion-input type="text" required [(ngModel)]="usr_name"></ion-input>
+    <ion-input type="text" required [(ngModel)]="usr_name" id="username_input"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">กรอกรหัสผ่าน</ion-label>
-    <ion-input type="password" required [(ngModel)]="passwd"></ion-input>
+    <ion-input type="password" required [(ngModel)]="passwd" id="password_input"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">ยืนยันรหัสผ่าน</ion-label>
-    <ion-input type="password" required [(ngModel)]="conf_pass"></ion-input>
+    <ion-input type="password" required [(ngModel)]="conf_pass" id="confirm_passwd_input"></ion-input>
   </ion-item>
   </div>
   <ion-item>
     <ion-label>ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ</ion-label>
-    <ion-checkbox slot="start"[(ngModel)]="agreementAccept"></ion-checkbox>
+    <ion-checkbox slot="start"[(ngModel)]="agreementAccept" id="accept_agreement_input"></ion-checkbox>
   </ion-item>
-  <ion-button (click)="onSubmit()">ลงทะเบียน</ion-button>
+  <ion-button (click)="onSubmit()" id="regis_btn">ลงทะเบียน</ion-button>
 </ion-content>
