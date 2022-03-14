@@ -10,6 +10,10 @@ export interface PostData {
   tags?: string[];
 }
 
+export interface UserIdReq{
+  userId: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -111,16 +115,16 @@ export class PostingService {
   }
 
   DeleteAllPost(delete_post_user:string): Observable<any>{
-    let data = { userId: delete_post_user };
+    let data:UserIdReq = {userId:delete_post_user}
 
-    console.log('deleting post from user '+ data['userID'])
+    console.log('deleting post from user '+ data['userId'])
     let API_URL = `${this.backend_post_API}/post/delete`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
     
-    return this.httpClient.delete(API_URL, {headers:tokenHeaders})
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:data})
     .pipe(map((res:any) => {
       return res || {}
     }),

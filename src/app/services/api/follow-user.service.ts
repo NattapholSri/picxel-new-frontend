@@ -56,8 +56,19 @@ export class FollowUserService {
     )
   }
 
-  getUserFollower(user_id:string):Observable<any>{
-    let API_URL = `${this.backend_post_API}/user/follow/search?to=${user_id}`;
+  getUserFollowerFrom(user_id:string):Observable<any>{
+    let API_URL = `${this.backend_post_API}/user/follow/search?from=${user_id}&all=1`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  getUserFollowerTo(user_id:string):Observable<any>{
+    let API_URL = `${this.backend_post_API}/user/follow/search?to=${user_id}&all=1`;
 
     return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {

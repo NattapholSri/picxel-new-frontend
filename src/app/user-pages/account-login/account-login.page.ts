@@ -52,17 +52,16 @@ export class AccountLoginPage implements OnInit {
         this.userServ.ReqUserDetail(this.usr_name).subscribe((res) => {
           let stringJSON = JSON.stringify(res)
           localStorage.setItem('user_login_data',stringJSON)
-          console.log(stringJSON)
         })
         localStorage.setItem('jwt', JSON.stringify(res))
-        localStorage.setItem('usr_login',this.usr_name)
-        let tokenTimeout = moment().add(25, 'minutes')
-        localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         this.loadingCtrl.dismiss().then((res) => {
           console.log('Login Success!', res);
         }).catch((error) => {
           console.log('error', error);
         })
+        localStorage.setItem('usr_login',this.usr_name)
+        let tokenTimeout = moment().add(25, 'minutes')
+        localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         console.log(localStorage.getItem('tkTime'))
 
 

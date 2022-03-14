@@ -6,6 +6,7 @@ import { FollowUserService } from 'src/app/services/api/follow-user.service';
 
 import { AlertController } from '@ionic/angular';
 import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-view.component';
+import { PostingService } from 'src/app/services/api/posting.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class AccountDetailPage implements OnInit {
     private userServ: UserService,
     private activatedRt: ActivatedRoute,
     private alertCtrl: AlertController,
-    private followUsr: FollowUserService
+    private followUsr: FollowUserService,
+    private postServ: PostingService
   ) {
     localStorage.removeItem('loaduserID') 
     localStorage.removeItem('usernow')
@@ -59,6 +61,7 @@ export class AccountDetailPage implements OnInit {
 
   deleteAccount(){
     // deletion methods
+    console.log(this.usr_acc._id)
     this.alertCtrl.create(
       {header: 'คุณแน่ใจแล้วใช่ไหม',
       message: 'การลบบัญชีผู้ใช้ ระบบจะทำการลบข้อมูลทั้งหมดที่เกี่ยวข้องกับบัญชีนี้ และไม่สามารถกู้คืนข้อมูลได้',
@@ -69,9 +72,12 @@ export class AccountDetailPage implements OnInit {
         },{
           text: 'แน่นอน',
           handler: () => {
-            this.userServ.deleteUser()
-            .subscribe((res)=> console.log(res))
-            this.ngZone.run(() => this.router.navigateByUrl('/'))
+            this.postServ.DeleteAllPost(this.usr_acc._id).subscribe((res) => {
+              console.log(res)
+              this.userServ.deleteUser()
+                .subscribe((res)=> console.log(res))
+              this.ngZone.run(() => this.router.navigateByUrl('/'))
+            })
           }
         }
       ]
@@ -108,6 +114,16 @@ export class AccountDetailPage implements OnInit {
   }
 
   unFollowToThisUser(){
-    this.subbed = false
+    let userFollowIdForm = {
+      userId: this.usr_acc._id
+    }
+    this.followUsr.followToUser(userFollowIdForm)
+    .subscribe(
+      (res) => {
+        console.log(res)
+        this.subbed = false
+      },
+      (err) => console.log(err)
+    )
   }
 }

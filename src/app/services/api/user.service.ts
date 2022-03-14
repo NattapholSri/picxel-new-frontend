@@ -57,6 +57,7 @@ export class UserService {
     return hasToken && isAccont
   }
 
+  // can use username or user_id
   ReqUserDetail(userID: string): Observable<any>{
     let API_URL = `${this.backend_API}/user/` + userID;
     if (this.isOwnAccount(userID)){

@@ -19,7 +19,7 @@ export class RandomAllPostComponent {
   knowtag: any[] = []
   postOfUser: string
   
-  usr_use_now_detail: any = {}
+  usr_use_now_detail: any = JSON.parse(localStorage.getItem('user_login_data'))
   loadPostAtPage: number
   canloadMore = true
 
@@ -35,8 +35,7 @@ export class RandomAllPostComponent {
       this.loadAllTag()
       this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
       this.randomPost()
-      this.usr_use_now_detail = JSON.parse(localStorage.getItem('user_login_data'))
-      
+      console.log(this.usr_use_now_detail)
   }
 
 /*   ngOnInit() {
@@ -44,6 +43,7 @@ export class RandomAllPostComponent {
 
   randomPost(){
     this.PostServ.LoadRandomPost().subscribe((res) =>{
+      this.postList = []
       console.log(res)
       this.postList = res
       this.Post_Edit()
@@ -51,11 +51,24 @@ export class RandomAllPostComponent {
   }
 
   private Post_Edit(){
-
     for (let post of this.postList ){
       if(post.tags.length != 0){
         let tags_name_list = this.addTagName(post.tags)
         post.tags_Nlist = tags_name_list
+        this.userServ.ReqUserDetail(post.userId).subscribe(
+          (res) => {
+            post.userName = res.username
+            post.userPic = res.profile_pic
+          }
+        )
+      }
+      else{
+        this.userServ.ReqUserDetail(post.userId).subscribe(
+          (res) => {
+            post.userName = res.username
+            post.userPic = res.profile_pic
+          }
+        )
       }
     }
   }
@@ -152,6 +165,15 @@ export class RandomAllPostComponent {
       alertEl.present()
     })
   }
+
+  /* addUserDataToPost(post:any){
+    this.userServ.ReqUserDetail(post.userId).subscribe(
+      (res) => {
+        post.userName = res.username
+        post.userPic = res.profile_pic
+        }
+      )
+  } */
 
   goToSelectUserPage(selected_usr:any){
     this.router.navigateByUrl(`/account-detail/${selected_usr.username}`)

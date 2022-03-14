@@ -6,17 +6,17 @@
 
     <ion-grid>
       <ion-row>        
-          <!-- <ion-avatar>
-            <ion-img src="{{post.u_detail.profile_pic}}"></ion-img>
-          </ion-avatar> -->
+          <ion-avatar>
+            <ion-img src="{{post.userPic}}"></ion-img>
+          </ion-avatar>
           <ion-text>
-            <h4>&nbsp;{{post.userId}}</h4>
+            <h4>&nbsp;{{post.userName}}</h4>
           </ion-text>
       </ion-row>
       <ion-row>
         <ion-text>{{post.createdAt}}</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
-        <ion-item *ngIf="(post.userId == usr_use_now_detail._id) && (usr_use_now_detail.username == currentUser)">
+        <ion-item *ngIf="(post.userId == usr_use_now_detail._id) && (post.userName == currentUser)">
           <ion-buttons (click)="postMenu(post._id,post)">
             <ion-icon name="alert-sharp"></ion-icon>
           </ion-buttons>
