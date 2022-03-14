@@ -40,7 +40,8 @@ export class AccountLoginPage implements OnInit {
     else{
       // console.log(loginForm.value)
       this.loadingCtrl.create({
-        message: 'กำลังเข้าสู่ระบบ PICXEL'
+        message: 'กำลังเข้าสู่ระบบ PICXEL',
+        spinner: "dots"
       }).then((res) => {
         res.present();
       })
@@ -48,17 +49,22 @@ export class AccountLoginPage implements OnInit {
       this.userServ.ReqLogin(loginForm.value)
       .subscribe((res) => {
         console.log(res)
+        this.userServ.ReqUserDetail(this.usr_name).subscribe((res) => {
+          let stringJSON = JSON.stringify(res)
+          localStorage.setItem('user_login_data',stringJSON)
+          console.log(stringJSON)
+        })
         localStorage.setItem('jwt', JSON.stringify(res))
         localStorage.setItem('usr_login',this.usr_name)
-        let tokenTimeout = moment().add(20, 'minutes')
+        let tokenTimeout = moment().add(25, 'minutes')
         localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
-        console.log(localStorage.getItem('tkTime'))
-
         this.loadingCtrl.dismiss().then((res) => {
           console.log('Login Success!', res);
         }).catch((error) => {
           console.log('error', error);
         })
+        console.log(localStorage.getItem('tkTime'))
+
 
         this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
       },

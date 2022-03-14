@@ -18,8 +18,8 @@ export class RandomAllPostComponent {
   postList: any[] = []
   knowtag: any[] = []
   postOfUser: string
-  u_id: string
-  u_detail: any;
+  
+  usr_use_now_detail: any = {}
   loadPostAtPage: number
   canloadMore = true
 
@@ -35,7 +35,7 @@ export class RandomAllPostComponent {
       this.loadAllTag()
       this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
       this.randomPost()
-      this.u_detail = JSON.parse(localStorage.getItem('usernow'))
+      this.usr_use_now_detail = JSON.parse(localStorage.getItem('user_login_data'))
       
   }
 
@@ -45,7 +45,9 @@ export class RandomAllPostComponent {
   randomPost(){
     this.PostServ.LoadRandomPost().subscribe((res) =>{
       console.log(res)
-    })
+      this.postList = res
+      this.Post_Edit()
+    },(err) => console.log(err))
   }
 
   private Post_Edit(){
@@ -93,7 +95,7 @@ export class RandomAllPostComponent {
         }
       }
       console.log(this.postList)
-      this.router.navigateByUrl(`/account-detail/${this.u_detail.username}`)
+      location.reload()
     })
   }
 
@@ -149,6 +151,10 @@ export class RandomAllPostComponent {
     ).then(alertEl =>{
       alertEl.present()
     })
+  }
+
+  goToSelectUserPage(selected_usr:any){
+    this.router.navigateByUrl(`/account-detail/${selected_usr.username}`)
   }
 }
 
