@@ -596,10 +596,292 @@ change_profile_picture
 
     Sleep  0.5s
     I click ลงชื่อเข้าใช้
+
+    Sleep  0.5s
+    I click edit_profile
     
     Sleep  0.5s
+    I click profile_picture 
 
+    Sleep  0.5s
+    I choose my new profile picture
 
+    Sleep  0.5s
+    I click confirm change button
+
+    Sleep  0.5s
+    I should see my new profile picture
+
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+## Scenario: CANCEL PROFILE EDITION
+cancel_change_profile_picture
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click profile_picture 
+
+    Sleep  0.5s
+    I choose my new profile picture
+
+    Sleep  0.5s
+    I click cancel button
+
+    Sleep  0.5s
+    I should see my new profile picture
+
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+## Scenario: Change Interest Catergory
+change_interest_category
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click my interest button
+
+    Sleep  0.5s
+    I click new category
+
+    Sleep  0.5s
+    I click confirm button
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+## Scenario: Change Interest Catergory
+cancel_change_interest_category
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click my interest button
+
+    Sleep  0.5s
+    I click new category
+
+    Sleep  0.5s
+    I click cancel button button
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+## Scenario: CHANGE BIO
+change_bio
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click bio setting button
+
+    Sleep  0.5s
+    I fill in my new bio 
+
+    Sleep  0.5s
+    I click confirm button
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+## Scenario: CANCEL CHANGE BIO
+cancel_change_bio
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click bio setting button
+
+    Sleep  0.5s
+    I fill in my new bio 
+
+    Sleep  0.5s
+    I click cancel button button
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+# Feature: ADD PAYMENT METHOD
+## Scenario: Add Payment Method Successful
+add_payment_method
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click payment setting 
+
+    Sleep  0.5s
+    I click add payment method
+
+    Sleep  0.5s
+    I fill card number
+
+    Sleep  0.5s
+    I fill ccv
+
+    Sleep  0.5s
+    I fill expired date
+
+    Sleep  0.5s
+    I click confirm_button
+
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+## Scenario: UNFULFILLED INFO
+add_payment_method
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click payment setting 
+
+    Sleep  0.5s
+    I click add payment method
+
+    Sleep  0.5s
+    I fill card number
+
+    # i DON'T FILL CCV
+    #Sleep  0.5s
+    #I fill ccv
+
+    Sleep  0.5s
+    I fill expired date
+
+    Sleep  0.5s
+    I click confirm_button
+    
+    #ALERT MESSAGE
+    Sleep  0.5s
+    I should see unfulled alert message 
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
+
+## Scenario: INCORRECT INFO PAYMENT METHOD
+add_payment_method
+    I am on Sign-In page
+
+    Sleep  0.5s
+    I fill in username_box with login_my_username
+
+    Sleep  0.5s
+    I fill in password_box with login_my_password
+
+    Sleep  0.5s
+    I click ลงชื่อเข้าใช้
+    
+    Sleep  0.5s
+    I click edit_profile
+
+    Sleep  0.5s
+    I click payment setting 
+
+    Sleep  0.5s
+    I click add payment method
+
+    Sleep  0.5s
+    I fill card number
+
+    # fill wrong CCV
+    Sleep  0.5s
+    I fill wrong ccv
+
+    Sleep  0.5s
+    I fill expired date
+
+    Sleep  0.5s
+    I click confirm_button
+    
+    #ALERT MESSAGE
+    Sleep  0.5s
+    I should see false info alert
+    #assertion
+    Sleep  0.5s
+    I should see account_edit page
 #----------END PROFILE EDITION--------------
 log_out
     I am on Sign-In page
@@ -961,6 +1243,9 @@ I fill card number
 # fill cvv/ccv
 I fill ccv
     Input Text    id=ccv_box    "ccv_text"
+# FILL WRONG CCV
+I fill wrong ccv
+    Input Text    id=ccv_box    "WRONG_ccv_text"
 # fill expired date
 I fill expired date
     Input Text    id=exp_date_box   "22/03"
