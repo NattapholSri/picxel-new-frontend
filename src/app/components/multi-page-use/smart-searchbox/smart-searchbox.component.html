@@ -1,7 +1,3 @@
-<p>
-  smart-searchbox works!
-</p>
-
 <ion-grid>
   <ion-row expand="block">
     <ion-col size="8">
@@ -16,9 +12,11 @@
     <ion-col size="3">
       <ion-segment [(ngModel)]="searchMode" (ionChange)="q_searchJunction()">
         <ion-segment-button value="1">
+          <ion-icon name="people"></ion-icon>
           <ion-label>ผู้คน/บัญชี</ion-label>
         </ion-segment-button>
         <ion-segment-button value="2">
+          <ion-icon name="pricetags"></ion-icon>
           <ion-label>แท็ก</ion-label>
         </ion-segment-button>
       </ion-segment>
