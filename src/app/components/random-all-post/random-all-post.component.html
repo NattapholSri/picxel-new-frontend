@@ -10,13 +10,13 @@
             <ion-img src="{{post.userPic}}"></ion-img>
           </ion-avatar>
           <ion-text>
-            <h4>&nbsp;{{post.userName}}</h4>
+            <h3>&nbsp;<a routerLink="/account-detail/{{post.userName}}">{{post.userName}}</a></h3>
           </ion-text>
       </ion-row>
       <ion-row>
         <ion-text>{{post.createdAt}}</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
-        <ion-item *ngIf="(post.userId == usr_use_now_detail._id) && (post.userName == currentUser)">
+        <ion-item *ngIf="(post.userId == usr_use_now_id) && (post.userName == currentUser)">
           <ion-buttons (click)="postMenu(post._id,post)">
             <ion-icon name="alert-sharp"></ion-icon>
           </ion-buttons>
@@ -28,7 +28,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-text><h2>{{post.text}}</h2></ion-text>
+        <ion-text><h4>{{post.text}}</h4></ion-text>
       </ion-row>
       <ion-row>
         <ion-text>แท็ก:&nbsp;</ion-text>

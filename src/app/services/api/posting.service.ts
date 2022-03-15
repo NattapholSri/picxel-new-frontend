@@ -114,17 +114,16 @@ export class PostingService {
     )
   }
 
-  DeleteAllPost(delete_post_user:string): Observable<any>{
-    let data:UserIdReq = {userId:delete_post_user}
+  DeleteAllPost(delete_user_Id:UserIdReq): Observable<any>{
 
-    console.log('deleting post from user '+ data['userId'])
+    console.log('deleting post from user '+ delete_user_Id.userId)
     let API_URL = `${this.backend_post_API}/post/delete`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
     
-    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:data})
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:delete_user_Id})
     .pipe(map((res:any) => {
       return res || {}
     }),

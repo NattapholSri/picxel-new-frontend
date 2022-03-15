@@ -19,11 +19,10 @@ export class AccountDetailPage implements OnInit {
 
   usr_acc: any = {};
   token = localStorage.getItem('jwt');
-  jsonToken = JSON.parse(this.token);
   knowUser = false;
   user_id: string;
-  isUser = false;
   subbed = false;
+  currentUserLogin = localStorage.getItem('current_log_uid')
 
   constructor(
     private router: Router,
@@ -47,14 +46,12 @@ export class AccountDetailPage implements OnInit {
       alert('Oh no! this user not exist. Taking you back to your user detail')
       let main_user = localStorage.getItem('usr_login')
       this.router.navigateByUrl(`/account-detail/${main_user}`)
-    }
-    )
+    })
   }
 
   ngOnInit() {
-    /* console.log(this.user_id)
-    this.usr_acc = JSON.parse(localStorage.getItem('usernow')) */
     this.userServ.AutoLogout()
+    this.getFollowState()
     console.log(localStorage.getItem('tkTime'))
   }
 
@@ -72,7 +69,8 @@ export class AccountDetailPage implements OnInit {
         },{
           text: 'แน่นอน',
           handler: () => {
-            this.postServ.DeleteAllPost(this.usr_acc._id).subscribe((res) => {
+            let data = {userId: this.usr_acc._id}
+            this.postServ.DeleteAllPost(data).subscribe((res) => {
               console.log(res)
               this.userServ.deleteUser()
                 .subscribe((res)=> console.log(res))
@@ -98,8 +96,21 @@ export class AccountDetailPage implements OnInit {
     this.ngZone.run(() => this.router.navigateByUrl('/'))
   }
 
+  getFollowState(){
+    if (this.usr_acc.password == undefined && this.token != undefined){
+      this.followUsr.getUserFollowerFrom(this.currentUserLogin).subscribe((res)=>{
+        console.log(res.content)
+        for (let list of res.content){
+          if (list.to == this.usr_acc._id){
+            console.log('subbed user')
+            this.subbed = true
+          } 
+        }
+      },(err) => console.log(err))
+    }
+  }
 
-  followToThisUser(){
+  followToThisUserToggle(){
     let userFollowIdForm = {
       userId: this.usr_acc._id
     }
@@ -108,22 +119,17 @@ export class AccountDetailPage implements OnInit {
       (res) => {
         console.log(res)
         this.subbed = true
+        location.reload()
       },
       (err) => console.log(err)
     )
   }
 
-  unFollowToThisUser(){
-    let userFollowIdForm = {
-      userId: this.usr_acc._id
-    }
-    this.followUsr.followToUser(userFollowIdForm)
-    .subscribe(
-      (res) => {
-        console.log(res)
-        this.subbed = false
-      },
-      (err) => console.log(err)
-    )
+  clearAllPost(){
+    let Data = {userId: this.usr_acc._id}
+    console.log(Data)
+    this.postServ.DeleteAllPost(Data).subscribe((res) => {
+      console.log(res)
+    })
   }
 }

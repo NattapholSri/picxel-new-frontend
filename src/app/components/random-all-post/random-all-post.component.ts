@@ -19,7 +19,7 @@ export class RandomAllPostComponent {
   knowtag: any[] = []
   postOfUser: string
   
-  usr_use_now_detail: any = JSON.parse(localStorage.getItem('user_login_data'))
+  usr_use_now_id: any = localStorage.getItem('current_log_uid')
   loadPostAtPage: number
   canloadMore = true
 
@@ -35,7 +35,7 @@ export class RandomAllPostComponent {
       this.loadAllTag()
       this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
       this.randomPost()
-      console.log(this.usr_use_now_detail)
+      console.log(this.usr_use_now_id)
   }
 
 /*   ngOnInit() {

@@ -21,11 +21,11 @@
     </ion-card-title>
 
     <ion-buttons *ngIf="(usr_acc.password == undefined) && (token != undefined)">
-      <ion-button *ngIf="!(subbed)" color="secondary" (click)="followToThisUser()">
+      <ion-button *ngIf="!(subbed)" color="secondary" (click)="followToThisUserToggle()">
         follow
         <ion-icon name="enter-outline"></ion-icon>
       </ion-button>
-      <ion-button *ngIf="subbed" color="secondary" (click)="unFollowToThisUser()">
+      <ion-button *ngIf="subbed" color="secondary" (click)="followToThisUserToggle()">
         followed
         <ion-icon name="checkbox-outline"></ion-icon>
       </ion-button>
@@ -51,6 +51,9 @@
         </ion-col>
         <ion-col>
           <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block" id="delete_acc_btn">ลบบัญชีนี้ทิ้ง</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="danger" (click)='clearAllPost()' shape="round" expand="block">ลบโพสต์ทั้งหมด</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
