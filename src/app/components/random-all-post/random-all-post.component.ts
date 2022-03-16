@@ -70,6 +70,8 @@ export class RandomAllPostComponent {
           }
         )
       }
+      let localDate = new Date(post.createdAt)
+      post.createdAt = localDate.toLocaleString('th-TH')
     }
   }
 

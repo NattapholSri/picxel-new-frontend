@@ -13,12 +13,13 @@
             <h3>&nbsp;<a routerLink="/account-detail/{{post.userName}}">{{post.userName}}</a></h3>
           </ion-text>
       </ion-row>
+      <br>
       <ion-row>
         <ion-text>{{post.createdAt}}</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
         <ion-item *ngIf="(post.userId == usr_use_now_id) && (post.userName == currentUser)">
           <ion-buttons (click)="postMenu(post._id,post)">
-            <ion-icon name="alert-sharp"></ion-icon>
+            <ion-icon name="ellipsis-vertical"></ion-icon>
           </ion-buttons>
         </ion-item>
       </ion-row>

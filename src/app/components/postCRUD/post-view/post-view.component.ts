@@ -81,6 +81,9 @@ export class PostViewComponent{
         let tags_name_list = this.addTagName(post.tags)
         post.tags_Nlist = tags_name_list
       }
+
+      let localDate = new Date(post.createdAt)
+      post.createdAt = localDate.toLocaleString('th-TH')
     }
   }
 

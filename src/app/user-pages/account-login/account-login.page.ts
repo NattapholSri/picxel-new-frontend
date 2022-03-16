@@ -68,7 +68,15 @@ export class AccountLoginPage implements OnInit {
         console.log(localStorage.getItem('tkTime'))
 
 
-        this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.usr_name))
+        this.ngZone.run(() => {
+          this.loadingCtrl.dismiss().then((res) => {
+            console.log('Login Success!', res);
+          }).catch((error) => {
+            console.log('error', error);
+          })
+
+          this.router.navigateByUrl('/account-detail/'+this.usr_name)
+        })
       },
       (err) => {
         console.log(err)
@@ -77,7 +85,9 @@ export class AccountLoginPage implements OnInit {
         }).catch((error) => {
           console.log('error', error);
         })
-        alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
+        this.ngZone.run(() => {
+          alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
+        })
       })
     }
   }

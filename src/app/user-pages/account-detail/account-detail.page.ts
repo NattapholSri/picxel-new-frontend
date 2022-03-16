@@ -3,10 +3,11 @@ import { Router,ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../../services/api/user.service';
 import { FollowUserService } from 'src/app/services/api/follow-user.service';
+import { PostingService } from 'src/app/services/api/posting.service';
 
 import { AlertController } from '@ionic/angular';
 import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-view.component';
-import { PostingService } from 'src/app/services/api/posting.service';
+
 
 
 @Component({

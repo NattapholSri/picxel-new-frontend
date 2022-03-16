@@ -13,13 +13,14 @@
             <h4>&nbsp;{{u_detail.username}}</h4>
           </ion-text>
       </ion-row>
+      <br>
       <ion-row>
-        <ion-text>{{post.createdAt}}</ion-text>
-        <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
-          <ion-buttons (click)="postMenu(post._id,post)">
-            <ion-icon name="alert-sharp"></ion-icon>
+        <ion-text>{{post.createdAt}}&nbsp;</ion-text>
+        <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
+          <ion-buttons (click)="postMenu(post._id,post)" *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
+            <ion-icon name="ellipsis-vertical"></ion-icon>
           </ion-buttons>
-        </ion-item>
+        <!-- </ion-item> -->
       </ion-row>
       
       <ion-row>
