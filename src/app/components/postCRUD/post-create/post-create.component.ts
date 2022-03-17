@@ -31,7 +31,7 @@ export class PostCreateComponent {
 
   constructor(
     public formBulider: FormBuilder,
-    private router: Router,
+    
     private PostServ: PostingService,
     private alertCtrl: AlertController,
     private tagServ: TagService
