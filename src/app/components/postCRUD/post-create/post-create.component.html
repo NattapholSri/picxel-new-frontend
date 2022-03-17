@@ -83,11 +83,15 @@
 
     <ion-row>
       <ion-col>
-
+        <!-- add slider subscription range here -->
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="2" offset="5">
+      <ion-item>
+        <ion-label>ผู้ที่ทำการ Subscription เท่านั้นจึงจะเห็นโพส</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="subRequire" id="accept_agreement_input"></ion-checkbox>
+      </ion-item>
+      <ion-col size="2" offset="3">
         <ion-button (click)="onSubmit()" name="postButton" id="postButton">โพสต์</ion-button>
       </ion-col>
     </ion-row>

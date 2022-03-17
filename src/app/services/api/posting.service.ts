@@ -8,6 +8,7 @@ export interface PostData {
   text?: string;
   pics?: string[];
   tags?: string[];
+  requireSub?: boolean;
 }
 
 export interface UserIdReq{

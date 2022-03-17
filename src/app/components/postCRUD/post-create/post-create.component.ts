@@ -27,6 +27,8 @@ export class PostCreateComponent {
   tempTagSearch: any[] = [];
   searchTagValue: string
 
+  subRequire:boolean = false
+
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
@@ -51,7 +53,8 @@ export class PostCreateComponent {
     let postForm = new FormGroup({
       text : new FormControl(this.post_text),
       pics : new FormControl(this.picture_list),
-      tags : new FormControl(postTag)
+      tags : new FormControl(postTag),
+      requireSub : new FormControl(this.subRequire)
     })
     console.log(postForm.value)
     this.PostServ.CreatePost(postForm.value)

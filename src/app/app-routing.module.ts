@@ -38,7 +38,11 @@ const routes: Routes = [
   {
     path: 'update-user-post/:postId',
     loadChildren: () => import('./function-page/update-user-post/update-user-post.module').then( m => m.UpdateUserPostPageModule)
+  },  {
+    path: 'password-change',
+    loadChildren: () => import('./user-pages/password-change/password-change.module').then( m => m.PasswordChangePageModule)
   }
+
 
 
 ];
