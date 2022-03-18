@@ -4,6 +4,7 @@ import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-post-view',
@@ -28,6 +29,7 @@ export class PostViewComponent{
     private activatedRt: ActivatedRoute,
     private alertCtrl: AlertController,
     public formBulider: FormBuilder,
+    public popoverCtrl: PopoverController
   ) {
       this.loadPostAtPage = 1
       this.loadAllTag()
@@ -178,5 +180,9 @@ export class PostViewComponent{
     ).then(alertEl =>{
       alertEl.present()
     })
+  }
+
+  async dismissPopover(){
+    await this.popoverCtrl.dismiss();
   }
 }

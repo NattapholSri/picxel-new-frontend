@@ -37,6 +37,7 @@ export class PasswordChangePage implements OnInit {
       }
       else if (this.usr_acc.password != undefined && localStorage.getItem('jwt') != undefined ){
         console.log('data check passed!')
+        console.log(this.usr_acc.password)
       }
       else{
         alert('Internal Error. Take you Back to your detail page')
@@ -52,7 +53,7 @@ export class PasswordChangePage implements OnInit {
   }
 
   checkEditData(){
-    if (this.old_passwd == this.usr_acc.password && this.conf_new_passwd == this.new_passwd){
+    if ((this.old_passwd == this.usr_acc.password) && (this.conf_new_passwd == this.new_passwd)){
       this.changePasswd()
     }
     else if (this.old_passwd != this.usr_acc.password){

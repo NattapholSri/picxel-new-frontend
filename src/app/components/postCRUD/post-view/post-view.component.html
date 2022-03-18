@@ -17,7 +17,16 @@
       <ion-row>
         <ion-text>{{post.createdAt}}&nbsp;</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
-          <ion-buttons (click)="postMenu(post._id,post)" *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
+          <!-- <ion-button id="trigger-button">Click to open popover</ion-button>
+            <ion-popover trigger="trigger-button">
+              <ng-template>
+                <ion-content>Popover Content</ion-content>
+                <ion-item lines="none" detail="false" button (click)="dismissPopover()">Close</ion-item>
+              </ng-template>
+            </ion-popover> -->
+          <ion-buttons (click)="postMenu(post._id,post)" 
+          *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"
+          id="postMenu">
             <ion-icon name="ellipsis-vertical"></ion-icon>
           </ion-buttons>
         <!-- </ion-item> -->
