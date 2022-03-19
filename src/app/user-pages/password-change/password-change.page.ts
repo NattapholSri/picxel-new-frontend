@@ -53,7 +53,7 @@ export class PasswordChangePage implements OnInit {
   }
 
   checkEditData(){
-    if ((this.old_passwd == this.usr_acc.password) && (this.conf_new_passwd == this.new_passwd)){
+    if (/* (this.old_passwd == this.usr_acc.password) && */(this.conf_new_passwd == this.new_passwd)){
       this.changePasswd()
     }
     else if (this.old_passwd != this.usr_acc.password){
@@ -84,6 +84,11 @@ export class PasswordChangePage implements OnInit {
         console.log(err)
         alert('แก้ไขไม่สำเร็จ')
       })
+  }
+
+  // Password check
+  tempLogin(){
+
   }
 
   revert(){
