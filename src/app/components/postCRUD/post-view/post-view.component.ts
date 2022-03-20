@@ -48,6 +48,9 @@ export class PostViewComponent{
     this.PostServ.SearchPost(user_id,10,this.loadPostAtPage).subscribe(
       (res) => {
         this.postList = res.content
+        if (this.postList.length !== 10){
+          this.canloadMore = false
+        }
         if (this.knowtag != []){
           this.Post_Edit()
         }
@@ -65,7 +68,7 @@ export class PostViewComponent{
         console.log(res)
         let MorePostList = res.content
         console.log(MorePostList)
-        if (MorePostList.length === 0){
+        if (MorePostList.length !== 10){
           this.canloadMore = false
         }
         else{

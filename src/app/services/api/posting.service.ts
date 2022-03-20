@@ -46,7 +46,12 @@ export class PostingService {
 
   private loadJwt() {
     let jsonToken = JSON.parse(localStorage.getItem("jwt"))
-    return jsonToken["accessToken"]
+    if (jsonToken == undefined){
+      return undefined
+    }
+    else{
+      return jsonToken["accessToken"]
+    }
   }
 
 
@@ -74,14 +79,31 @@ export class PostingService {
     if (page == undefined){
       page = 1
     }
+
+    let jsonToken = this.loadJwt()
+   
     let API_URL = `${this.backend_post_API}/post/search?userId=${user_s_id}&limit=${limitview}&page=${page}`;
 
-    return this.httpClient.get(API_URL)
-    .pipe(map((res:any) => {
-      return res || {}
-    }),
-    catchError(this.handleError)
-    )
+    if (jsonToken != undefined){
+      let authMessage = 'Bearer ' + jsonToken;
+      let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+      return this.httpClient.get(API_URL,{headers:tokenHeaders})
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+      )
+    }
+    else{
+
+      return this.httpClient.get(API_URL)
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+      )
+    }
   }
 
   UpdatePost(data: PostData): Observable<any>{
@@ -115,16 +137,18 @@ export class PostingService {
     )
   }
 
-  DeleteAllPost(delete_user_Id:UserIdReq): Observable<any>{
+  DeleteAllPost(delete_user_Id:string): Observable<any>{
+    let dataToSent:UserIdReq = {userId:delete_user_Id}
 
-    console.log('deleting post from user '+ delete_user_Id.userId)
-    let API_URL = `${this.backend_post_API}/post/delete`;
+
+    console.log('deleting post from user '+ dataToSent.userId)
+    let API_URL = `${this.backend_post_API}/post/delete-all`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
     
-    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:delete_user_Id})
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:dataToSent})
     .pipe(map((res:any) => {
       return res || {}
     }),

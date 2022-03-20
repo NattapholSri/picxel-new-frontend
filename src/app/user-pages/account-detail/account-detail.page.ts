@@ -70,12 +70,14 @@ export class AccountDetailPage implements OnInit {
         },{
           text: 'แน่นอน',
           handler: () => {
-            let data = {userId: this.usr_acc._id}
-            this.postServ.DeleteAllPost(data).subscribe((res) => {
+            this.postServ.DeleteAllPost(this.usr_acc._id).subscribe((res) => {
               console.log(res)
               this.userServ.deleteUser()
-                .subscribe((res)=> console.log(res))
-              this.ngZone.run(() => this.router.navigateByUrl('/'))
+                .subscribe((res)=> {
+                  console.log(res)
+                  this.ngZone.run(() => this.router.navigateByUrl('/'))
+                })
+              
             })
           }
         }
@@ -127,9 +129,7 @@ export class AccountDetailPage implements OnInit {
   }
 
   clearAllPost(){
-    let Data = {userId: this.usr_acc._id}
-    console.log(Data)
-    this.postServ.DeleteAllPost(Data).subscribe((res) => {
+    this.postServ.DeleteAllPost(this.usr_acc._id).subscribe((res) => {
       console.log(res)
     })
   }

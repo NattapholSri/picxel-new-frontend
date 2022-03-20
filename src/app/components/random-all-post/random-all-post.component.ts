@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { UserService } from 'src/app/services/api/user.service';
@@ -28,13 +28,17 @@ export class RandomAllPostComponent {
     private PostServ: PostingService,
     private tagServ: TagService,
     private userServ: UserService,
-    private activatedRt: ActivatedRoute,
     private alertCtrl: AlertController
   ) {
       this.loadPostAtPage = 1
       this.loadAllTag()
       this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
-      this.randomPost()
+      if (localStorage.getItem("jwt") != undefined){
+        this.randomPost()
+      }
+      else{
+        this.canloadMore = false
+      }
       console.log(this.usr_use_now_id)
   }
 
@@ -47,7 +51,10 @@ export class RandomAllPostComponent {
       console.log(res)
       this.postList = res
       this.Post_Edit()
-    },(err) => console.log(err))
+    },(err) => {
+      console.log(err)
+      this.canloadMore = false
+    })
   }
 
   private Post_Edit(){
