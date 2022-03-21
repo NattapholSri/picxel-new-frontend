@@ -17,9 +17,9 @@ export class PasswordChangePage implements OnInit {
   subbed = false;
   currentUserLogin = localStorage.getItem('current_log_uid')
 
-  old_passwd: string
-  new_passwd: string
-  conf_new_passwd: string
+  old_passwd: string = ''
+  new_passwd: string = ''
+  conf_new_passwd: string = ''
 
   constructor(
     private router: Router,
@@ -53,28 +53,29 @@ export class PasswordChangePage implements OnInit {
   }
 
   checkEditData(){
-    if (/* (this.old_passwd == this.usr_acc.password) && */(this.conf_new_passwd == this.new_passwd)){
+    if ((this.old_passwd != '') && (this.conf_new_passwd == this.new_passwd)){
       this.changePasswd()
     }
-    else if (this.old_passwd != this.usr_acc.password){
-      alert('กรอกรห้สผ่านเดิมไม่ถูกต้อง')
+    else if (this.old_passwd == ''){
+      alert('ไม่ได้กรอกรห้สผ่านเดิม')
     }
     else if (this.conf_new_passwd != this.new_passwd){
       alert('กรอกรห้สผ่านใหม่ไม่ตรงกับรัสในช่องยืนยันรหัสผ่านใหม่')
     }
     else{
-      alert('เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ')
+      alert('โปรดตรวจสอบว่ากรอกข้อมูลครบทุกช่อง')
     }
   }
 
   changePasswd(){
     
     const editForm = new FormGroup({
-      password: new FormControl(this.new_passwd, Validators.required),
+      old_password: new FormControl(this.old_passwd, Validators.required),
+      new_password: new FormControl(this.new_passwd, Validators.required),
     })
 
     console.log(editForm.value)
-    this.userServ.updateUserData(editForm.value)
+    this.userServ.updateUserPassword(editForm.value)
       .subscribe((res) => {
         console.log(res)
         alert('แก้ไขสำเร็จ กลับไปที่หน้าโปรไฟล์')
@@ -87,9 +88,6 @@ export class PasswordChangePage implements OnInit {
   }
 
   // Password check
-  tempLogin(){
-
-  }
 
   revert(){
     this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.user_id))

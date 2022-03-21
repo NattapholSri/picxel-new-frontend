@@ -5,6 +5,7 @@ import { TagService } from 'src/app/services/api/tag.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-view',
@@ -13,12 +14,11 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PostViewComponent{
 
-  currentUser = localStorage.getItem('usr_login')
+  currentUser = localStorage.getItem('usr_login') // name of user who using now
+  currentUserId = localStorage.getItem('current_log_uid')
   postList: any[] = []
   knowtag: any[] = []
-  postOfUser: string
-  u_id: string
-  u_detail: any;
+  u_detail: any;                                  // detail of user's of which account-detail page are loaded
   loadPostAtPage: number
   canloadMore = true
 
@@ -89,6 +89,22 @@ export class PostViewComponent{
 
       let localDate = new Date(post.createdAt)
       post.createdAt = localDate.toLocaleString('th-TH')
+
+      let userWhoLikePost:any[] = []
+      post.thisUserLike = false
+      this.PostServ.LikePostList(post._id).subscribe(
+        (res) => {
+        console.log(res)
+        userWhoLikePost = res.content
+        for (let user of userWhoLikePost){
+          if (user.userId == this.currentUserId){
+            post.thisUserLike = true
+          }
+        }
+      },(err) => {
+        console.log(err)
+      }
+    )
     }
   }
 
@@ -111,6 +127,20 @@ export class PostViewComponent{
       }
     }
     return textTag
+  }
+
+  addUserLikeList(post_id:string):any{
+    let postLikeList:string[] = []
+    this.PostServ.LikePostList(post_id).subscribe(
+      (res) => {
+        console.log(res)
+        return postLikeList = res.content
+      },(err) => {
+        console.log(err)
+        return postLikeList = []
+      }
+    )
+    return postLikeList
   }
 
   deletePost(post_id:string){
@@ -188,4 +218,24 @@ export class PostViewComponent{
   async dismissPopover(){
     await this.popoverCtrl.dismiss();
   }
+
+  likeThisPost(post:any){
+    console.log(post)
+    let likeForm = {postId:post._id}
+    this.PostServ.LikePost(likeForm).subscribe(
+      (res) => {
+        console.log(res)
+        post.thisUserLike = !post.thisUserLike
+        if (post.thisUserLike == true){
+          post.likeCount += 1
+        }
+        else{
+          post.likeCount -= 1
+        }
+      }
+    )
+
+  }
+
+
 }

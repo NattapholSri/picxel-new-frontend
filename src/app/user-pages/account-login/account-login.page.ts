@@ -51,18 +51,18 @@ export class AccountLoginPage implements OnInit {
         console.log(res)
         this.userServ.ReqUserDetail(this.usr_name).subscribe((res) => {
           console.log(res._id)
-          localStorage.setItem('current_log_uid',res._id)
+          localStorage.setItem('current_log_uid',res._id) // user's id who is logging in
         })
-        localStorage.setItem('jwt', JSON.stringify(res))
+        localStorage.setItem('jwt', JSON.stringify(res)) // token
         
-        localStorage.setItem('usr_login',this.usr_name)
+        localStorage.setItem('usr_login',this.usr_name) // user's name who is logging in
         let tokenTimeout = moment().add(25, 'minutes')
 
-        this.loadingCtrl.dismiss().then((res) => {
+        /* this.loadingCtrl.dismiss().then((res) => {
           console.log('Login Success!', res);
         }).catch((error) => {
           console.log('error', error);
-        })
+        }) */
 
         localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         console.log(localStorage.getItem('tkTime'))
@@ -80,13 +80,13 @@ export class AccountLoginPage implements OnInit {
       },
       (err) => {
         console.log(err)
-        this.loadingCtrl.dismiss().then((res) => {
-          console.log('stopped loading', res);
-        }).catch((error) => {
-          console.log('error', error);
-        })
+        alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
         this.ngZone.run(() => {
-          alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
+          this.loadingCtrl.dismiss().then((res) => {
+            console.log('stopped loading', res);
+          }).catch((error) => {
+            console.log('error', error);
+          })
         })
       })
     }

@@ -3,7 +3,7 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import * as moment from "moment";
-import { UserDetails,UserLogin,UserRegistration,JsonMail } from '../data-model/user.model';
+import { UserDetails,UserLogin,UserRegistration,JsonMail,UserPasswdChange } from '../data-model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -157,6 +157,21 @@ export class UserService {
   }
 
   updateUserData(data:UserDetails){
+    let jsonToken = this.loadJwt()
+    let API_URL = `${this.backend_API}/user/update`;
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+  
+    return this.httpClient.put(API_URL, data,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+
+  }
+
+  updateUserPassword(data:UserPasswdChange){
     let jsonToken = this.loadJwt()
     let API_URL = `${this.backend_API}/user/update`;
     let authMessage = 'Bearer ' + jsonToken;

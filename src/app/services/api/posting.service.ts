@@ -55,7 +55,7 @@ export class PostingService {
   }
 
 
-  // Service's function/Methods
+  // Service's main function/Methods for Post
 
   CreatePost(data: PostData): Observable<any>{
     let API_URL = `${this.backend_post_API}/post/create`;
@@ -170,4 +170,72 @@ export class PostingService {
     catchError(this.handleError)
     )
   }
+
+  // Service's Like/Sentiment function for Post
+
+  LikePost(toPost:PostData){
+    let API_URL = `${this.backend_post_API}/post/like`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL, toPost,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  LikePostList(fromPostId:string){
+    let API_URL = `${this.backend_post_API}/post/like/search?postId=${fromPostId}&all=1`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  UserLikePostList(fromUserId:string){
+    let API_URL = `${this.backend_post_API}/post/like/search?userId=${fromUserId}&all=1`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  // Post's comment Service function 
+
+  CommentOnPost(toPostId:PostData){
+    let API_URL = `${this.backend_post_API}/post/comment/create`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL, toPostId,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  searchCommentOnPost(fromPostId:string){
+    let API_URL = `${this.backend_post_API}/post/comment/search?_id=${fromPostId}`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
 }

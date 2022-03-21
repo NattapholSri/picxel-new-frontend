@@ -7,6 +7,11 @@ export interface UserDetails {
     profile_pic?: string;
     firstname?: string;
   }
+
+  export interface UserPasswdChange {
+    old_password?: string;
+    new_password?: string;
+  }
   
   export class UserLogin {
     _id?: string;
