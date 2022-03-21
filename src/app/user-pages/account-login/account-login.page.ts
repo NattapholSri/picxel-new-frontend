@@ -56,37 +56,30 @@ export class AccountLoginPage implements OnInit {
         localStorage.setItem('jwt', JSON.stringify(res)) // token
         
         localStorage.setItem('usr_login',this.usr_name) // user's name who is logging in
-        let tokenTimeout = moment().add(25, 'minutes')
-
-        /* this.loadingCtrl.dismiss().then((res) => {
-          console.log('Login Success!', res);
-        }).catch((error) => {
-          console.log('error', error);
-        }) */
+        let tokenTimeout = moment().add(29, 'minutes')
 
         localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         console.log(localStorage.getItem('tkTime'))
 
+        this.loadingCtrl.dismiss().then((res) => {
+          console.log('Login Success!', res);
+        }).catch((error) => {
+          console.log('error', error);
+        })
 
         this.ngZone.run(() => {
-          this.loadingCtrl.dismiss().then((res) => {
-            console.log('Login Success!', res);
-          }).catch((error) => {
-            console.log('error', error);
-          })
-
           this.router.navigateByUrl('/account-detail/'+this.usr_name)
         })
       },
       (err) => {
         console.log(err)
-        alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
         this.ngZone.run(() => {
           this.loadingCtrl.dismiss().then((res) => {
             console.log('stopped loading', res);
           }).catch((error) => {
             console.log('error', error);
           })
+          alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
         })
       })
     }

@@ -42,9 +42,6 @@ export class RandomAllPostComponent {
       console.log(this.usr_use_now_id)
   }
 
-/*   ngOnInit() {
-  } */
-
   randomPost(){
     this.PostServ.LoadRandomPost().subscribe((res) =>{
       this.postList = []
@@ -79,6 +76,20 @@ export class RandomAllPostComponent {
       }
       let localDate = new Date(post.createdAt)
       post.createdAt = localDate.toLocaleString('th-TH')
+
+      let userWhoLikePost:any[] = []
+      post.thisUserLike = false
+      this.PostServ.LikePostList(post._id).subscribe(
+        (res) => {
+        userWhoLikePost = res.content
+        for (let user of userWhoLikePost){
+          if (user.userId == this.usr_use_now_id){
+            post.thisUserLike = true
+          }
+        }
+      },(err) => {
+        console.log(err)
+      })
     }
   }
 
@@ -187,6 +198,25 @@ export class RandomAllPostComponent {
   goToSelectUserPage(selected_usr:any){
     this.router.navigateByUrl(`/account-detail/${selected_usr.username}`)
   }
+
+  likeThisPost(post:any){
+    console.log(post)
+    let likeForm = {postId:post._id}
+    this.PostServ.LikePost(likeForm).subscribe(
+      (res) => {
+        console.log(res)
+        post.thisUserLike = !post.thisUserLike
+        if (post.thisUserLike == true){
+          post.likeCount += 1
+        }
+        else{
+          post.likeCount -= 1
+        }
+      }
+    )
+  }
+
+
 }
 
 

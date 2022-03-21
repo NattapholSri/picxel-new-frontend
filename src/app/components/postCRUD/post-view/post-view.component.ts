@@ -5,7 +5,6 @@ import { TagService } from 'src/app/services/api/tag.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-view',
@@ -26,7 +25,6 @@ export class PostViewComponent{
     private router: Router,
     private PostServ: PostingService,
     private tagServ: TagService,
-    private activatedRt: ActivatedRoute,
     private alertCtrl: AlertController,
     public formBulider: FormBuilder,
     public popoverCtrl: PopoverController
@@ -36,13 +34,8 @@ export class PostViewComponent{
       this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
       this.u_detail = JSON.parse(localStorage.getItem('usernow'))
       let get_uid:string = this.u_detail._id
-      this.userPost(get_uid)
-      
+      this.userPost(get_uid)   
   }
-
-/*   ngOnInit() {
-  } */
-
 
   userPost(user_id:string){
     this.PostServ.SearchPost(user_id,10,this.loadPostAtPage).subscribe(
@@ -103,8 +96,7 @@ export class PostViewComponent{
         }
       },(err) => {
         console.log(err)
-      }
-    )
+      })
     }
   }
 
@@ -234,7 +226,6 @@ export class PostViewComponent{
         }
       }
     )
-
   }
 
 
