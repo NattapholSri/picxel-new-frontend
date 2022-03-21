@@ -22,6 +22,7 @@ export class AccountEditPage implements OnInit {
     private ngZone: NgZone,
     private userServ: UserService,
   ) { 
+    this.userServ.AutoLogout()
     this.user_now = localStorage.getItem('usr_login')
     this.userServ.ReqUserDetail(this.user_now)
       .subscribe((res) => {

@@ -27,6 +27,8 @@ export class PostUpdateComponent {
   tempTagSearch: any[] = [];
   searchTagValue: string
 
+  subRequire:boolean
+
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
@@ -42,6 +44,7 @@ export class PostUpdateComponent {
       this.picture_list = this.postData.pics
       let temp_tag = this.postData.tags
       this.addTagData(temp_tag)
+      this.subRequire = this.postData.requireSub
     }
   }
 
@@ -56,7 +59,8 @@ export class PostUpdateComponent {
       text : new FormControl(this.post_text),
       pics : new FormControl(this.picture_list),
       tags : new FormControl(postTag),
-      postId : new FormControl(this.postData._id)
+      postId : new FormControl(this.postData._id),
+      requireSub : new FormControl(this.subRequire)
     })
     console.log(postForm.value)
     this.PostServ.UpdatePost(postForm.value)

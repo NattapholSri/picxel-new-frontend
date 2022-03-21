@@ -81,7 +81,9 @@ export class PostViewComponent{
       }
 
       let localDate = new Date(post.createdAt)
-      post.createdAt = localDate.toLocaleString('th-TH')
+      post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      let updateDate = new Date(post.updatedAt)
+      post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
 
       let userWhoLikePost:any[] = []
       post.thisUserLike = false
