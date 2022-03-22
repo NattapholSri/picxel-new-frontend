@@ -50,6 +50,7 @@
           <ion-icon name="heart-outline" *ngIf="post.thisUserLike != true"></ion-icon>
           <ion-icon name="heart" *ngIf="post.thisUserLike == true"></ion-icon>
         </ion-buttons>
+        <p *ngIf="post.thisUserLike == true">&nbsp;คุณได้กดถูกใจโพสต์นี้</p>
         <ion-item>
           <ion-label>Like on this Post</ion-label>
           <ion-badge slot="end">{{post.likeCount}}</ion-badge>
