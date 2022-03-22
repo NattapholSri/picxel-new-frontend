@@ -19,7 +19,7 @@ export class RandomAllPostComponent {
   knowtag: any[] = []
   postOfUser: string
   
-  usr_use_now_id: any = localStorage.getItem('current_log_uid')
+  CurrentSessionId: any = localStorage.getItem('current_log_uid')
   loadPostAtPage: number
   canloadMore = true
 
@@ -39,7 +39,7 @@ export class RandomAllPostComponent {
       else{
         this.canloadMore = false
       }
-      console.log(this.usr_use_now_id)
+      console.log(this.CurrentSessionId)
   }
 
   randomPost(){
@@ -74,22 +74,28 @@ export class RandomAllPostComponent {
           }
         )
       }
-      let localDate = new Date(post.createdAt)
-      post.createdAt = localDate.toLocaleString('th-TH')
 
-      let userWhoLikePost:any[] = []
-      post.thisUserLike = false
-      this.PostServ.LikePostList(post._id).subscribe(
-        (res) => {
-        userWhoLikePost = res.content
-        for (let user of userWhoLikePost){
-          if (user.userId == this.usr_use_now_id){
-            post.thisUserLike = true
+      let localDate = new Date(post.createdAt)
+      post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      let updateDate = new Date(post.updatedAt)
+      post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+
+      if (post.likeCount != 0){
+        console.log('load user who like this post: ' + post._id)
+        let userWhoLikePost:any[] = []
+        post.thisUserLike = false
+        this.PostServ.LikePostList(post._id).subscribe(
+          (res) => {
+          userWhoLikePost = res.content
+          for (let user of userWhoLikePost){
+            if (user.userId == this.CurrentSessionId){
+              post.thisUserLike = true
+            }
           }
-        }
-      },(err) => {
-        console.log(err)
-      })
+        },(err) => {
+          console.log(err)
+        })
+      }
     }
   }
 

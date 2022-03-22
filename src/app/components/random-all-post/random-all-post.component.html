@@ -17,7 +17,7 @@
       <ion-row>
         <ion-text>{{post.createdAt}}</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
-        <ion-item *ngIf="(post.userId == usr_use_now_id) && (post.userName == currentUser)">
+        <ion-item *ngIf="(post.userId == CurrentSessionId) && (post.userName == currentUser)">
           <ion-buttons (click)="postMenu(post._id,post)">
             <ion-icon name="ellipsis-vertical"></ion-icon>
           </ion-buttons>
@@ -47,6 +47,11 @@
           <ion-badge slot="end">{{post.likeCount}}</ion-badge>
         </ion-item>
       </ion-row>
+      <!-- <ion-row class="ion-align-items-center">
+        <ion-col size="10">
+        <app-comment-post [post_id]="post._id"></app-comment-post>
+        </ion-col>
+      </ion-row> -->
     </ion-grid>
   </ion-item>
 </ion-list>

@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
 import { RandomAllPostComponent } from '../components/random-all-post/random-all-post.component';
 import { SmartSearchboxComponent } from '../components/multi-page-use/smart-searchbox/smart-searchbox.component';
+// import { CommentPostComponent } from '../components/multi-page-use/comment-post/comment-post.component';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import { SmartSearchboxComponent } from '../components/multi-page-use/smart-sear
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,SmartSearchboxComponent]
+  declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,SmartSearchboxComponent,/* CommentPostComponent */]
 })
 export class HomePageModule {}

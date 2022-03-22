@@ -1,0 +1,40 @@
+<h6>
+  ความคิดเห็นของโพสต์นี้
+</h6>
+
+<ion-card>
+  <ion-card-content>
+    <ion-list *ngIf="comment_list != []">
+      <ion-item *ngFor="let comment of comment_list">  
+        <ion-avatar>
+          <ion-img src="{{comment.usr_profile_pic}}"></ion-img>    
+        </ion-avatar>
+        <ion-item>
+          <ion-buttons 
+          *ngIf="isLogin && comment.userId == login_session" 
+          slot="end" (click)="deleteComment(comment._id)">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-buttons>
+          <ion-label>
+            <h4>{{comment.usr_name}}</h4>
+            <p>{{comment.text}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="9">
+        <ion-input [(ngModel)]="input_text" placeholder="เขียนความคิดเห็น"></ion-input>
+      </ion-col>
+      <ion-col size="2" >
+        <ion-buttons (click)="createComment()">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

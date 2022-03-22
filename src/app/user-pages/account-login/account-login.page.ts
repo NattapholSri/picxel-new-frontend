@@ -73,12 +73,12 @@ export class AccountLoginPage implements OnInit {
       },
       (err) => {
         console.log(err)
+        this.loadingCtrl.dismiss().then((res) => {
+          console.log('stopped loading', res);
+        }).catch((error) => {
+          console.log('error', error);
+        })
         this.ngZone.run(() => {
-          this.loadingCtrl.dismiss().then((res) => {
-            console.log('stopped loading', res);
-          }).catch((error) => {
-            console.log('error', error);
-          })
           alert('เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก')
         })
       })

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
@@ -85,20 +85,22 @@ export class PostViewComponent{
       let updateDate = new Date(post.updatedAt)
       post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
 
-      let userWhoLikePost:any[] = []
-      post.thisUserLike = false
-      this.PostServ.LikePostList(post._id).subscribe(
-        (res) => {
-        console.log(res)
-        userWhoLikePost = res.content
-        for (let user of userWhoLikePost){
-          if (user.userId == this.currentUserId){
-            post.thisUserLike = true
+      if (post.likeCount != 0){
+        console.log('load user who like this post: ' + post._id)
+        let userWhoLikePost:any[] = []
+        post.thisUserLike = false
+        this.PostServ.LikePostList(post._id).subscribe(
+          (res) => {
+          userWhoLikePost = res.content
+          for (let user of userWhoLikePost){
+            if (user.userId == this.currentUserId){
+              post.thisUserLike = true
+            }
           }
-        }
-      },(err) => {
-        console.log(err)
-      })
+        },(err) => {
+          console.log(err)
+        })
+      }
     }
   }
 

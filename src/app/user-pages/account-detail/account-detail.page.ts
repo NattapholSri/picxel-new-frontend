@@ -18,10 +18,10 @@ import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-vi
 export class AccountDetailPage implements OnInit {
   @ViewChild(PostViewComponent) child: PostViewComponent 
 
-  usr_acc: any = {};
+  usr_acc: any = {}; // this user
   token = localStorage.getItem('jwt');
   knowUser = false;
-  user_id: string;
+  user_id: string; // this username
   subbed = false;
   currentUserLogin = localStorage.getItem('current_log_uid')
 
@@ -43,6 +43,10 @@ export class AccountDetailPage implements OnInit {
       localStorage.setItem('usernow',stringJSON)
       this.usr_acc = res
       console.log(this.usr_acc)
+      if (this.usr_acc.followerCount != 0){
+        console.log('load Follow state')
+        this.getFollowState()
+      }
     },(err) => {
       alert('Oh no! this user not exist. Taking you back to your user detail')
       let main_user = localStorage.getItem('usr_login')
@@ -52,7 +56,7 @@ export class AccountDetailPage implements OnInit {
 
   ngOnInit() {
     this.userServ.AutoLogout()
-    this.getFollowState()
+    
     console.log(localStorage.getItem('tkTime'))
   }
 
@@ -102,7 +106,7 @@ export class AccountDetailPage implements OnInit {
   getFollowState(){
     if (this.usr_acc.password == undefined && this.token != undefined){
       this.followUsr.getUserFollowerFrom(this.currentUserLogin).subscribe((res)=>{
-        console.log(res.content)
+        // console.log(res.content)
         for (let list of res.content){
           if (list.to == this.usr_acc._id){
             console.log('subbed user')

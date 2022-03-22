@@ -228,9 +228,27 @@ export class PostingService {
   }
 
   searchCommentOnPost(fromPostId:string){
-    let API_URL = `${this.backend_post_API}/post/comment/search?_id=${fromPostId}`;
+    let API_URL = `${this.backend_post_API}/post/comment/search?postId=${fromPostId}&all=1`;
 
     return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  deleteComment(delete_commentId:string){
+    console.log('deleting '+ delete_commentId)
+    let sendForm = {commentId:delete_commentId}
+
+    let API_URL = `${this.backend_post_API}/post/comment/delete`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+    
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:sendForm})
     .pipe(map((res:any) => {
       return res || {}
     }),

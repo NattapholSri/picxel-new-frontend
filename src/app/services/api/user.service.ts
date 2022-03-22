@@ -92,6 +92,7 @@ export class UserService {
     localStorage.removeItem("usr_login");
     localStorage.removeItem('tkTime')
     localStorage.removeItem('user_login_data')
+    localStorage.removeItem('current_log_uid')
     // sent logout request to server
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders})
@@ -117,6 +118,7 @@ export class UserService {
     localStorage.removeItem("usr_login");
     localStorage.removeItem('tkTime')
     localStorage.removeItem('user_login_data')
+    localStorage.removeItem('current_log_uid')
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
       .pipe(map((res:any) => {
@@ -145,6 +147,8 @@ export class UserService {
         localStorage.removeItem('jwt')
         localStorage.removeItem('usr_login')
         localStorage.removeItem('user_login_data')
+        localStorage.removeItem('current_log_uid')
+
         console.log('token timeout')
       }
       else{

@@ -1,7 +1,7 @@
 <ion-title color="secondary">โพสต์ล่าสุดจากโปรไฟล์นี้</ion-title>
 
-<div id="container" *ngIf="postList == []"></div>
-<ion-list>
+
+<ion-list *ngIf="postList != []">
   <ion-item *ngFor="let post of postList">
 
     <ion-grid>
@@ -32,7 +32,7 @@
         <!-- </ion-item> -->
       </ion-row>
       
-      <ion-row>
+      <ion-row class="ion-align-items-center">
         <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>
       </ion-row>
 
@@ -54,6 +54,11 @@
           <ion-label>Like on this Post</ion-label>
           <ion-badge slot="end">{{post.likeCount}}</ion-badge>
         </ion-item>
+      </ion-row>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="10">
+        <app-comment-post [post_id]="post._id"></app-comment-post>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </ion-item>
