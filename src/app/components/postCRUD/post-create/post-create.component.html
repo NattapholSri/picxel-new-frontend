@@ -89,7 +89,7 @@
     <ion-row>
       <ion-item>
         <ion-label>เฉพาะผู้ที่ Subscription เท่านั้นจึงจะเห็นโพสต์นี้</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="subRequire" id="accept_agreement_input"></ion-checkbox>
+        <ion-toggle color="primary" slot="start" [(ngModel)]="subRequire" id="accept_agreement_input"></ion-toggle>
       </ion-item>
       <ion-col size="2" offset="3">
         <ion-button (click)="onSubmit()" name="postButton" id="postButton">โพสต์</ion-button>

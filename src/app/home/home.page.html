@@ -19,7 +19,7 @@
 
   <ion-card><app-smart-searchbox></app-smart-searchbox></ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="tokenOn">
     <app-post-create></app-post-create>
   </ion-card>
 
