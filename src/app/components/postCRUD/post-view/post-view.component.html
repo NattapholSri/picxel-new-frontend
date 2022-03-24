@@ -46,11 +46,11 @@
         </ion-chip>
       </ion-row>
       <ion-row *ngIf="currentUser != undefined">
-            <ion-buttons (click)="likeThisPost(post)">
-              <ion-icon name="heart-outline" *ngIf="post.thisUserLike != true"></ion-icon>
-              <ion-icon name="heart" *ngIf="post.thisUserLike == true"></ion-icon>
-            </ion-buttons>
-        
+        <ion-buttons (click)="likeThisPost(post)">
+          <ion-icon name="heart-outline" *ngIf="post.thisUserLike != true"></ion-icon>
+          <ion-icon name="heart" *ngIf="post.thisUserLike == true"></ion-icon>
+        </ion-buttons>
+
         <ion-item>
           <ion-label>Like:</ion-label>
           <ion-badge slot="end">{{post.likeCount}}</ion-badge>
