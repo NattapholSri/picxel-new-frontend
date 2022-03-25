@@ -109,7 +109,7 @@ export class AccountDetailPage implements OnInit {
         // console.log(res.content)
         for (let list of res.content){
           if (list.to == this.usr_acc._id){
-            console.log('subbed user')
+            console.log('followed user')
             this.subbed = true
           } 
         }

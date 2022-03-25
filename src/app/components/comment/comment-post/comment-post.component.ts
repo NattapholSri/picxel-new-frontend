@@ -4,6 +4,7 @@ import { PostingService } from 'src/app/services/api/posting.service';
 import { UserService } from 'src/app/services/api/user.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-comment-post',
@@ -18,6 +19,7 @@ export class CommentPostComponent implements OnInit {
 
   login_session = localStorage.getItem('current_log_uid')
   isLogin:boolean
+  commentEditMode:boolean = false
 
   constructor(
     private router: Router,
@@ -25,6 +27,7 @@ export class CommentPostComponent implements OnInit {
     private userServ: UserService,
     private alertCtrl: AlertController,
     public formBulider: FormBuilder,
+    private popOverCtrl: PopoverController,
   ) { 
     this.isLogin = (localStorage.getItem('usr_login') != undefined)
   }
@@ -76,5 +79,14 @@ export class CommentPostComponent implements OnInit {
 
   reloadComponent() {
     location.reload()
+  }
+
+  async openCommentMenu(comment_id:string){
+    
+  }
+
+  changeToEditMode(value:boolean){
+    this.commentEditMode = value
+    console.log(this.commentEditMode)
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
+import { SharedComponentModule } from '../components/shared-components/shared-component/shared-component.module';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
@@ -16,7 +17,7 @@ import { CommentOnRndPostComponent } from '../components/comment/comment-on-rnd-
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,SharedComponentModule
   ],
   declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,SmartSearchboxComponent,CommentOnRndPostComponent]
 })

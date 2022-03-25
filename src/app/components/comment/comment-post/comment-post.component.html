@@ -10,11 +10,12 @@
           <ion-img src="{{comment.usr_profile_pic}}"></ion-img>    
         </ion-avatar>
         <ion-item>
-          <ion-buttons 
+          <app-comment-menu slot="end" [commentId]="comment._id" (editAllow)="changeToEditMode($event)"></app-comment-menu>
+          <!-- <ion-buttons 
           *ngIf="isLogin && comment.userId == login_session" 
           slot="end" (click)="deleteComment(comment._id)">
             <ion-icon name="close-circle-outline"></ion-icon>
-          </ion-buttons>
+          </ion-buttons> -->
           <ion-label>
             <h4>{{comment.usr_name}}</h4>
             <p>{{comment.text}}</p>
@@ -38,3 +39,4 @@
     </ion-row>
   </ion-grid>
 </ion-card>
+

@@ -15,6 +15,11 @@ export interface UserIdReq{
   userId: string;
 }
 
+export interface CommentData {
+  commentId?: string;
+  text?: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -254,6 +259,23 @@ export class PostingService {
     }),
     catchError(this.handleError)
     )
+  }
+
+  updateComment(comment:CommentData){
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    let API_URL = `${this.backend_post_API}/post/comment/update`;
+
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:comment})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+
   }
 
 }
