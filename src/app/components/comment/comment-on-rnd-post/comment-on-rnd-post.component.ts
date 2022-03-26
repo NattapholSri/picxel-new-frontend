@@ -4,6 +4,8 @@ import { PostingService } from 'src/app/services/api/posting.service';
 import { UserService } from 'src/app/services/api/user.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
+import { CommentMenuComponent } from '../../shared-components/comment-menu/comment-menu.component';
 
 @Component({
   selector: 'app-comment-on-rnd-post',
@@ -20,11 +22,14 @@ export class CommentOnRndPostComponent implements OnInit {
   login_session = localStorage.getItem('current_log_uid')
   isLogin:boolean
 
+  allowCommentEdit:boolean = false
+
   constructor(
     private PostServ: PostingService,
     private userServ: UserService,
     private alertCtrl: AlertController,
     public formBulider: FormBuilder,
+    private popOverCtrl: PopoverController
   ) { 
     this.isLogin = (localStorage.getItem('usr_login') != undefined)
   }
@@ -76,4 +81,30 @@ export class CommentOnRndPostComponent implements OnInit {
   reloadComponent() {
     location.reload()
   }
+
+  changeToEditMode(value:boolean){
+    this.allowCommentEdit = value
+    console.log(this.allowCommentEdit)
+  }
+
+  async callMenu(commentId:string){
+    this.popOverCtrl.create(({
+      component: CommentMenuComponent,
+      showBackdrop: true,
+      componentProps: {
+        commentId: commentId
+      },
+      dismissOnSelect: true
+    }) as any).then(popover => {
+      popover.present()
+      return popover.onDidDismiss().then(
+        (data: any) => {
+          if (data) {
+            console.log(data.editAllow + 'data retured')
+          }
+        })
+    });
+    
+  }
+
 }

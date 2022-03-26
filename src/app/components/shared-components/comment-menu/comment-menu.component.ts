@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { UserService } from 'src/app/services/api/user.service';
+import { PopoverController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-comment-menu',
@@ -14,6 +16,7 @@ export class CommentMenuComponent /* implements OnInit */ {
   constructor(
     private PostServ: PostingService,
     private userServ: UserService,
+    private popOverCtrl: PopoverController
   ) { }
 
   // ngOnInit() {}
@@ -25,6 +28,8 @@ export class CommentMenuComponent /* implements OnInit */ {
   deleteComment(){
     this.PostServ.deleteComment(this.commentId).subscribe((res)=> {
       console.log(res)
+      this.clickFn('Button 2')
+
       /* for (var i = 0; i < this.comment_list.length; i++){
         if (this.comment_list[i]._id == comment_id){
           this.comment_list.splice(i, 1); 
@@ -40,6 +45,11 @@ export class CommentMenuComponent /* implements OnInit */ {
   editRequest(){
     this.editAllow.emit(true)
     this.clickFn('presses btn 1')
+    this.closePopover()
+  }
+
+  closePopover(){
+    this.popOverCtrl.dismiss()
   }
 
 }

@@ -1,16 +1,16 @@
-<ion-buttons>
+<!-- <ion-buttons>
   <ion-button id="trigger-button">
     <ion-icon name="ellipsis-vertical-circle" slot="icon-only"></ion-icon>
   </ion-button>
-</ion-buttons>
+</ion-buttons> -->
 
-<ion-popover trigger="trigger-button" [dismissOnSelect]="true">
+<ion-popover [isOpen]="true">
   <ng-template>
     <ion-content>
       <ion-item [button]="true" (click)="editRequest()">
         <ion-label>แก้ไขความคิดเห็น</ion-label>
       </ion-item>
-      <ion-item [button]="true" (click)="clickFn('presses btn 2')">
+      <ion-item [button]="true" (click)="deleteComment()">
         <ion-label>ลบความคิดเห็น</ion-label>
       </ion-item>
     </ion-content>

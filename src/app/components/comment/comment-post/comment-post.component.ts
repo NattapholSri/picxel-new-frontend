@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/api/user.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
+import { CommentMenuComponent } from '../../shared-components/comment-menu/comment-menu.component';
 
 @Component({
   selector: 'app-comment-post',
@@ -82,7 +83,14 @@ export class CommentPostComponent implements OnInit {
   }
 
   async openCommentMenu(comment_id:string){
-    
+    this.popOverCtrl.create(({
+      component: CommentMenuComponent,
+      showBackdrop: true,
+      componentProps: {
+        commentId: comment_id
+      },
+      dismissOnSelect: true
+    }) as any).then(popover => popover.present()); 
   }
 
   changeToEditMode(value:boolean){

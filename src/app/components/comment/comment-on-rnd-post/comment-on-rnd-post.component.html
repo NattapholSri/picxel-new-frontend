@@ -12,10 +12,15 @@
         <ion-item>
           <ion-buttons 
           *ngIf="isLogin && comment.userId == login_session" 
-          slot="end" (click)="deleteComment(comment._id)">
-            <ion-icon name="close-circle-outline"></ion-icon>
+          slot="end">
+            <ion-button (click)="callMenu(comment._id)">
+            <ion-icon name="ellipsis-vertical-circle" slot="icon-only"></ion-icon>
+            </ion-button>
           </ion-buttons>
-          <app-comment-menu></app-comment-menu>
+          <!-- <app-comment-menu
+          [commentId]="comment._id" (editAllow)="changeToEditMode($event)"
+          slot="end" *ngIf="isLogin && comment.userId == login_session">
+          </app-comment-menu> -->
           <ion-label>
             <h4>{{comment.usr_name}}</h4>
             <p>{{comment.text}}</p>
