@@ -21,6 +21,8 @@ export class CommentPostComponent implements OnInit {
   login_session = localStorage.getItem('current_log_uid')
   isLogin:boolean
   commentEditMode:boolean = false
+  EditingAtComment:string
+  editMessage:string = ''
 
   constructor(
     private router: Router,
@@ -93,8 +95,64 @@ export class CommentPostComponent implements OnInit {
     }) as any).then(popover => popover.present()); 
   }
 
-  changeToEditMode(value:boolean){
-    this.commentEditMode = value
-    console.log(this.commentEditMode)
+  opMenu(commentData:any){
+    console.log(commentData)
+    this.alertCtrl.create(
+      {header: 'เมนูเพิ่มเติมของความคิดเห็น',
+      message: 'คุณต้องการทำอะไรกับความคิดเห็นนี้',
+      buttons: [
+        {
+          text: 'แก้ไขความคิดเห็น',
+          handler: () => {
+            this.changeToEditMode(commentData._id,commentData.text)
+          }
+        },{
+          text: 'ลบความคิดเห็นนี้',
+          handler: () => {
+            this.deleteComment(commentData._id)
+          }
+        },
+        {
+          text: 'ปิดเมนู',
+          role: 'cancel'
+        },
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
   }
+
+  changeToEditMode(atComment:string,oldMessage?:string){
+    this.commentEditMode = true
+    this.EditingAtComment = atComment
+    if (oldMessage != undefined){
+      this.editMessage = oldMessage
+    }
+    console.log('edit comment mode')
+    console.log(this.EditingAtComment)
+  }
+
+  cancelEditComment(){
+    this.commentEditMode = false
+    this.editMessage = ''
+  }
+
+  updateComment(comment_id:string){
+    if (this.editMessage == ''){
+      alert('ไม่สามารถแก้ไขได้ เนื่องจากไม่มีข้อความ')
+    }
+    else{
+      let commentEditForm = new FormGroup({
+        commentId: new FormControl(comment_id),
+        text: new FormControl(this.editMessage)
+      })
+      console.log(commentEditForm.value)
+      this.PostServ.updateComment(commentEditForm.value).subscribe((res) => {
+        console.log(res)
+        this.reloadComponent()
+      })
+    }
+  }
+
 }

@@ -15,7 +15,8 @@
       </ion-row>
       <br>
       <ion-row>
-        <ion-text>{{post.createdAt}}&nbsp;</ion-text>
+        <ion-text *ngIf="post.createdAt == post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;</ion-text>
+        <ion-text *ngIf="post.createdAt != post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;(แก้ไข&nbsp;{{post.updatedAt}})&nbsp;</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
           <!-- <ion-button id="trigger-button">Click to open popover</ion-button>
             <ion-popover trigger="trigger-button">
@@ -24,10 +25,11 @@
                 <ion-item lines="none" detail="false" button (click)="dismissPopover()">Close</ion-item>
               </ng-template>
             </ion-popover> -->
-          <ion-buttons (click)="postMenu(post._id,post)" 
-          *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"
-          id="postMenu">
-            <ion-icon name="ellipsis-vertical"></ion-icon>
+          <ion-buttons 
+          *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
+            <ion-button (click)="postMenu(post._id,post)">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
           </ion-buttons>
         <!-- </ion-item> -->
       </ion-row>

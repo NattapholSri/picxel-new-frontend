@@ -6,7 +6,7 @@ import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ChatMessageService {
+export class SubscriptPlanService {
 
   backend_post_API: string = 'http://katteni.thddns.net:5051';
 
@@ -41,24 +41,23 @@ export class ChatMessageService {
     }
   }
 
-  // Main service function 
+  // service function
 
-  withUsrId(user_id:string,page?:number){
-    if (page == undefined){
-      page = 1
-    }
+  createPlan(){
 
-    let API_URL = `${this.backend_post_API}/post/like/search?userId=${user_id}&limit=8&page=${page}`;
-
-    let jsonToken = this.loadJwt()
-    let authMessage = 'Bearer ' + jsonToken;
-    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
-
-    return this.httpClient.get(API_URL,{headers:tokenHeaders})
-    .pipe(map((res:any) => {
-      return res || {}
-    }),
-    catchError(this.handleError)
-    )
   }
+
+  createSubscription(){
+    
+  }
+
+  searchPlan(){
+    
+  }
+
+  searchSubscription(){
+    
+  }
+
+
 }

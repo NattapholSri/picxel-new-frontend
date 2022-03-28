@@ -269,13 +269,41 @@ export class PostingService {
 
     let API_URL = `${this.backend_post_API}/post/comment/update`;
 
-    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:comment})
+    return this.httpClient.put(API_URL,comment,{headers:tokenHeaders})
     .pipe(map((res:any) => {
       return res || {}
     }),
     catchError(this.handleError)
     )
 
+  }
+
+  likeOnComment(comment_id:string){
+    let data:CommentData = {commentId:comment_id}
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    let API_URL = `${this.backend_post_API}/post/comment/like`;
+
+    return this.httpClient.post(API_URL, data,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  UserLikeCommentList(user_id:string){
+    let API_URL = `${this.backend_post_API}/post/comment/like/search?userId=${user_id}&all=1`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
 }
