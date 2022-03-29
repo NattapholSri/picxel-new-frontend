@@ -150,7 +150,7 @@ export class PostCreateComponent {
             console.log( data.tagName+": "+data.tagDescribe)
             
             let tagForm = new FormGroup({
-              name : new FormControl(data.tagName),
+              _id : new FormControl(data.tagName),
               description : new FormControl(data.tagDescribe),
             })
             

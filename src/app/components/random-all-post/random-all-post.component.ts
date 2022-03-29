@@ -56,7 +56,7 @@ export class RandomAllPostComponent {
 
   private Post_Edit(){
     for (let post of this.postList ){
-      if(post.tags.length != 0){
+      /* if(post.tags.length != 0){
         let tags_name_list = this.addTagName(post.tags)
         post.tags_Nlist = tags_name_list
         this.userServ.ReqUserDetail(post.userId).subscribe(
@@ -66,14 +66,14 @@ export class RandomAllPostComponent {
           }
         )
       }
-      else{
+      else{ */
         this.userServ.ReqUserDetail(post.userId).subscribe(
           (res) => {
             post.userName = res.username
             post.userPic = res.profile_pic
           }
         )
-      }
+      // }
 
       let localDate = new Date(post.createdAt)
       post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})

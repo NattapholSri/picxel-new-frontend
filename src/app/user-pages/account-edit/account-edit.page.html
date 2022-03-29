@@ -30,7 +30,7 @@
   <ion-item name="interested_tag">
     <ion-text slot="start">แท็กที่สนใจ:</ion-text>
     <ion-chip *ngFor="let tag_l of interest_list">
-      <ion-label color="success">{{tag_l.name}}</ion-label>
+      <ion-label color="success">{{tag_l}}</ion-label>
       <ion-buttons><ion-button (click)="removeTag(tag_l)">
         <ion-icon name="close"></ion-icon>
       </ion-button></ion-buttons>
@@ -56,7 +56,7 @@
   <ion-row *ngIf="!(tempTagSearch.length === 0)" name="found_tag">
       <ion-label>ผลการค้นหาแท็ก: </ion-label>
       <ion-chip *ngFor="let tag_s of tempTagSearch" color="secondary" (click)="addTag(tag_s)">
-        <ion-label color="primary">{{tag_s.name}}</ion-label>
+        <ion-label color="primary">{{tag_s._id}}</ion-label>
       </ion-chip>
     </ion-row>
   </ion-grid>

@@ -67,7 +67,8 @@
       <ion-col>
         <ion-text>แท็กที่ถูกเพิ่ม: </ion-text>
         <ion-chip *ngFor="let tag_l of tags_list">
-          <ion-label color="success">{{tag_l.name}}</ion-label>
+          <!-- <ion-label color="success">{{tag_l.name}}</ion-label> -->
+          <ion-label color="success">{{tag_l._id}}</ion-label>
           <ion-buttons><ion-button (click)="removeTag(tag_l)">
             <ion-icon name="close"></ion-icon>
           </ion-button></ion-buttons>
@@ -79,7 +80,8 @@
       <ion-col>
         <ion-text>แท็กที่ใช้ได้: </ion-text>
         <ion-chip *ngFor="let tag_s of tempTagSearch" color="secondary" (click)="addTag(tag_s)">
-          <ion-label color="primary">{{tag_s.name}}</ion-label>
+          <!-- <ion-label color="primary">{{tag_s.name}}</ion-label> -->
+          <ion-label color="primary">{{tag_s._id}}</ion-label>
         </ion-chip>
       </ion-col>
     </ion-row>

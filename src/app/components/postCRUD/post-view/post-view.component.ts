@@ -75,10 +75,11 @@ export class PostViewComponent{
   private Post_Edit(){
 
     for (let post of this.postList ){
-      if(post.tags.length != 0){
+      /* if(post.tags.length != 0){
         let tags_name_list = this.addTagName(post.tags)
         post.tags_Nlist = tags_name_list
-      }
+      } */
+      console.log(post.tags)
 
       let localDate = new Date(post.createdAt)
       post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})

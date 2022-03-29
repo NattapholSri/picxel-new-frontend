@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
 export interface TagDetail {
-  tagId?: string;
+  _id?: string;
   name?: string;
   description?: string;
 }
@@ -64,7 +64,7 @@ export class TagService {
     if (page == undefined){
       page = 1
     }
-    let API_URL = `${this.backend_post_API}/tag/search?name=${keyword}&limit=${limitview}&page=${page}`;
+    let API_URL = `${this.backend_post_API}/tag/search?_id=${keyword}&limit=${limitview}&page=${page}`;
     if (keyword == '' || keyword == undefined){
       API_URL = `${this.backend_post_API}/tag/search?limit=${limitview}&page=${page}&all=1`;
     }

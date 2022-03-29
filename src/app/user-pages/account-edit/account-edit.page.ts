@@ -34,7 +34,7 @@ export class AccountEditPage implements OnInit {
 
   ) { 
     this.userServ.AutoLogout()
-    this.loadAllTag()
+    // this.loadAllTag()
     this.user_now = localStorage.getItem('usr_login')
     this.userServ.ReqUserDetail(this.user_now)
       .subscribe((res) => {
@@ -50,7 +50,8 @@ export class AccountEditPage implements OnInit {
           this.firstname = usr_data.firstname
         }
         if(usr_data.interests != undefined || usr_data.interests.length !== 0){
-          this.addTagData(usr_data.interests)
+          this.interest_list = usr_data.interests
+          //this.addTagData(usr_data.interests)
         }
       })
   }
@@ -62,7 +63,7 @@ export class AccountEditPage implements OnInit {
     let interest_id_list: string[] = []
     for (let item of this.interest_list){
       // console.log(item)
-      interest_id_list.push(item._id)
+      interest_id_list.push(item)
     }
     console.log(interest_id_list)
 
@@ -91,11 +92,11 @@ export class AccountEditPage implements OnInit {
   }
 
   addTag(input_tag:any){
-    if (this.interest_list.includes(input_tag)){
+    if (this.interest_list.includes(input_tag._id)){
       alert('already added interest tag')
     }
     else{
-      this.interest_list.push(input_tag)
+      this.interest_list.push(input_tag._id)
       console.log(this.interest_list)
     }
   }

@@ -36,29 +36,33 @@ export class PostUpdateComponent {
     private alertCtrl: AlertController,
     private tagServ: TagService
   ) { 
-    this.loadAllTag()
+    // this.loadAllTag()
     this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
     this.postData = JSON.parse(localStorage.getItem('selectPost'))
     if (this.postData != undefined || this.postData != {}){
       this.post_text = this.postData.text
       this.picture_list = this.postData.pics
-      let temp_tag = this.postData.tags
-      this.addTagData(temp_tag)
+      /* let temp_tag = this.postData.tags
+      this.addTagData(temp_tag) */
+      this.tags_list = this.postData.tags
       this.subRequire = this.postData.requireSub
+      if (this.subRequire == undefined){
+        this.subRequire = false
+      }
     }
   }
 
   onSubmit(){
-    let postTag: string[] = []
+    /* let postTag: string[] = []
     for (let item of this.tags_list){
-      // console.log(item)
+      console.log(item)
       postTag.push(item._id)
-    }
-    console.log(postTag)
+    } */
+    console.log(this.tags_list)
     let postForm = new FormGroup({
       text : new FormControl(this.post_text),
       pics : new FormControl(this.picture_list),
-      tags : new FormControl(postTag),
+      tags : new FormControl(this.tags_list),
       postId : new FormControl(this.postData._id),
       requireSub : new FormControl(this.subRequire)
     })
@@ -114,11 +118,11 @@ export class PostUpdateComponent {
   }
 
   addTag(input_tag:any){
-    if (this.tags_list.includes(input_tag)){
+    if (this.tags_list.includes(input_tag._id)){
       this.message_mode = 4;
     }
     else{
-      this.tags_list.push(input_tag)
+      this.tags_list.push(input_tag._id)
       console.log(this.tags_list)
     }
   }
@@ -148,7 +152,7 @@ export class PostUpdateComponent {
             console.log( data.tagName+": "+data.tagDescribe)
             
             let tagForm = new FormGroup({
-              name : new FormControl(data.tagName),
+              _id : new FormControl(data.tagName),
               description : new FormControl(data.tagDescribe),
             })
             

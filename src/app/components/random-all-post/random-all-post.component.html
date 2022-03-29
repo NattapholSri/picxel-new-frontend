@@ -34,14 +34,16 @@
       </ion-row>
       <ion-row>
         <ion-text>แท็ก:&nbsp;</ion-text>
-        <ion-chip *ngFor="let tagName of post.tags_Nlist">
+        <ion-chip *ngFor="let tagName of post.tags">
           {{tagName}}
         </ion-chip>
       </ion-row>
       <ion-row *ngIf="currentUser != undefined">
-        <ion-buttons (click)="likeThisPost(post)">
-          <ion-icon name="heart-outline" *ngIf="post.thisUserLike != true"></ion-icon>
-          <ion-icon name="heart" *ngIf="post.thisUserLike == true"></ion-icon>
+        <ion-buttons>
+          <ion-button (click)="likeThisPost(post)">
+            <ion-icon name="heart-outline" *ngIf="post.thisUserLike != true"></ion-icon>
+            <ion-icon name="heart" *ngIf="post.thisUserLike == true"></ion-icon>
+          </ion-button>
         </ion-buttons>
         <ion-item>
           <ion-label>Like on this Post</ion-label>

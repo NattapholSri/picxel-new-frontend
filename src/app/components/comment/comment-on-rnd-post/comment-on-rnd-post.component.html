@@ -44,8 +44,10 @@
         <ion-input [(ngModel)]="input_text" placeholder="เขียนความคิดเห็น"></ion-input>
       </ion-col>
       <ion-col size="2" >
-        <ion-buttons (click)="createComment()">
-          <ion-icon name="send-outline"></ion-icon>
+        <ion-buttons>
+          <ion-button (click)="createComment()">
+            <ion-icon name="send-outline"></ion-icon>
+          </ion-button>
         </ion-buttons>
       </ion-col>
     </ion-row>
