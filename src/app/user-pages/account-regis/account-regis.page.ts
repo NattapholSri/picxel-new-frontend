@@ -46,11 +46,13 @@ export class AccountRegisPage implements OnInit {
       alert("คุณยังไม่ได้กดยอมรับข้อตกลงในการใช้งาน")
     }
     else{
+      let blank_interests: string[] = []
       // create form to sent to server
       const registerForm = new FormGroup({
         email: new FormControl(this.email_addr),
         username: new FormControl(this.usr_name),
-        password: new FormControl(this.passwd)
+        password: new FormControl(this.passwd),
+        interests: new FormControl(blank_interests)
       })
 
       // return respond from server to console

@@ -28,6 +28,7 @@ export interface UserDetails {
     email!: string;
     password!: string;
     mailotp?: string;
+    interests?: string[];
   }
   
   export interface JsonMail {
