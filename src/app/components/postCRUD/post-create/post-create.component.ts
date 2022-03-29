@@ -78,29 +78,7 @@ export class PostCreateComponent {
     })
   }
 
-  removePic(select_item:any){
-
-    for( var i = 0; i < this.picture_list.length; i++){ 
-                                   
-      if ( this.picture_list[i] === select_item) { 
-        this.picture_list.splice(i, 1); 
-        i--; 
-      }
-    }
-  }
-
-  removeTag(select_tag:any){
-    for( var i = 0; i < this.tags_list.length; i++){ 
-                                   
-      if ( this.tags_list[i] === select_tag) { 
-        this.tags_list.splice(i, 1); 
-        i--; 
-      }
-    }
-
-  }
-
-  addPic(){
+    addPic(){
     let input_text = this.picture_url
     if (this.picture_list.includes(input_text)){
       this.message_mode = 1;
@@ -115,6 +93,17 @@ export class PostCreateComponent {
     console.log(this.picture_list)
   }
 
+  removePic(select_item:any){
+
+    for( var i = 0; i < this.picture_list.length; i++){ 
+                                   
+      if ( this.picture_list[i] === select_item) { 
+        this.picture_list.splice(i, 1); 
+        i--; 
+      }
+    }
+  }
+
   addTag(input_tag:any){
     if (this.tags_list.includes(input_tag)){
       this.message_mode = 4;
@@ -123,6 +112,17 @@ export class PostCreateComponent {
       this.tags_list.push(input_tag)
       console.log(this.tags_list)
     }
+  }
+
+  removeTag(select_tag:any){
+    for( var i = 0; i < this.tags_list.length; i++){ 
+                                   
+      if ( this.tags_list[i] === select_tag) { 
+        this.tags_list.splice(i, 1); 
+        i--; 
+      }
+    }
+
   }
 
   createNewTag() {

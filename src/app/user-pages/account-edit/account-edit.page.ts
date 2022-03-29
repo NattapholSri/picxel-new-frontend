@@ -2,6 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../../services/api/user.service';
+import { TagService } from 'src/app/services/api/tag.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-account-edit',
@@ -15,14 +17,24 @@ export class AccountEditPage implements OnInit {
   firstname: string;
   user_now: string;
   username: string;
+  interest_list: any[] = [];
+
+  knowtag: any[] = [];
+
+  tempTagSearch: any[] = [];
+  searchTagValue: string
 
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private userServ: UserService,
+    private tagServ: TagService,
+    private alertCtrl: AlertController,
+
   ) { 
     this.userServ.AutoLogout()
+    this.loadAllTag()
     this.user_now = localStorage.getItem('usr_login')
     this.userServ.ReqUserDetail(this.user_now)
       .subscribe((res) => {
@@ -37,6 +49,9 @@ export class AccountEditPage implements OnInit {
         if (usr_data.firstname != undefined){
           this.firstname = usr_data.firstname
         }
+        if(usr_data.interests != undefined || usr_data.interests.length !== 0){
+          this.addTagData(usr_data.interests)
+        }
       })
   }
 
@@ -44,10 +59,18 @@ export class AccountEditPage implements OnInit {
   }
 
   updateAll(){
+    let interest_id_list: string[] = []
+    for (let item of this.interest_list){
+      // console.log(item)
+      interest_id_list.push(item._id)
+    }
+    console.log(interest_id_list)
+
     const editForm = new FormGroup({
       gender: new FormControl(this.gender, Validators.required),
       profile_pic: new FormControl(this.picture_url, Validators.required),
-      firstname: new FormControl(this.firstname, Validators.required)
+      firstname: new FormControl(this.firstname, Validators.required),
+      interests: new FormControl(interest_id_list),
     })
 
     console.log(editForm.value)
@@ -67,6 +90,99 @@ export class AccountEditPage implements OnInit {
     this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.user_now))
   }
 
+  addTag(input_tag:any){
+    if (this.interest_list.includes(input_tag)){
+      alert('already added interest tag')
+    }
+    else{
+      this.interest_list.push(input_tag)
+      console.log(this.interest_list)
+    }
+  }
 
+  removeTag(select_tag:any){
+    for( var i = 0; i < this.interest_list.length; i++){ 
+                                   
+      if ( this.interest_list[i] === select_tag) { 
+        this.interest_list.splice(i, 1); 
+        i--; 
+      }
+    }
+
+  }
+
+  createNewTag() {
+    this.alertCtrl.create(
+      {header: 'การสร้าง Tag ใหม่',
+      inputs: [
+        {
+          name: 'tagName',
+          type: 'text',
+          placeholder: 'ชื่อแท็ก'
+        },
+        {
+          name: 'tagDescribe',
+          type: 'text',
+          placeholder: 'คำอธิบายแท็ก'
+        }
+      ],
+      buttons: [
+        {
+        text: 'ยกเลิก',
+        role: 'cancel'
+        },{
+          text: 'สร้าง Tag',
+          handler: (data) => {
+            console.log( data.tagName+": "+data.tagDescribe)
+            
+            let tagForm = new FormGroup({
+              name : new FormControl(data.tagName),
+              description : new FormControl(data.tagDescribe),
+            })
+            
+            this.tagServ.CreateTag(tagForm.value)
+              .subscribe((res)=> console.log(res))
+          }
+        }
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
+  }
+
+  getTagByName(){
+    if (this.searchTagValue == undefined){
+      this.searchTagValue = ''
+    }
+    /* if (this.searchTagValue == ''){
+      console.log('search tag service has stopped')
+      return;
+    } */
+    this.tempTagSearch = []
+
+    this.tagServ.SearchTag(this.searchTagValue).subscribe((res) => {
+      let tagDatabase = res
+      this.tempTagSearch = tagDatabase['content']
+    })
+  }
+
+  loadAllTag(){
+    this.tagServ.GetAll().subscribe(
+      (res) => {
+        localStorage.setItem('knowtag',JSON.stringify(res.content))
+      }
+    )
+  }
+
+  addTagData(tag_id_list:string[]){
+    for (let i of tag_id_list){
+      for (let tag of this.knowtag){
+        if (tag._id == i){
+          this.interest_list.push(tag)
+        }
+      }
+    }
+  }
 
 }

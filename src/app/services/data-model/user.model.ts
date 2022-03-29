@@ -6,6 +6,7 @@ export interface UserDetails {
     gender?: string;
     profile_pic?: string;
     firstname?: string;
+    interests?: string[];
   }
 
   export interface UserPasswdChange {

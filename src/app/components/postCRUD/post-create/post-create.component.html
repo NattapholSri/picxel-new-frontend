@@ -66,8 +66,11 @@
     <ion-row *ngIf="!(tags_list.length === 0)" name="selected_tag">
       <ion-col>
         <ion-text>แท็กที่ถูกเพิ่ม: </ion-text>
-        <ion-chip *ngFor="let tag_l of tags_list" (click)="removeTag(tag_l)">
+        <ion-chip *ngFor="let tag_l of tags_list">
           <ion-label color="success">{{tag_l.name}}</ion-label>
+          <ion-buttons><ion-button (click)="removeTag(tag_l)">
+            <ion-icon name="close"></ion-icon>
+          </ion-button></ion-buttons>
         </ion-chip>
       </ion-col>
     </ion-row>

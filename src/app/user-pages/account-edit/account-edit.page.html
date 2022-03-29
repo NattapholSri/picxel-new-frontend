@@ -26,7 +26,43 @@
     <ion-label position="floating">Firstname</ion-label>
     <ion-input type="text" required [(ngModel)]="firstname"  id="f_name_input"></ion-input>
   </ion-item>
+
+  <ion-item name="interested_tag">
+    <ion-text slot="start">แท็กที่สนใจ:</ion-text>
+    <ion-chip *ngFor="let tag_l of interest_list">
+      <ion-label color="success">{{tag_l.name}}</ion-label>
+      <ion-buttons><ion-button (click)="removeTag(tag_l)">
+        <ion-icon name="close"></ion-icon>
+      </ion-button></ion-buttons>
+    </ion-chip>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-searchbar 
+    placeholder="ค้นหาแท็ก" 
+    debounce="1000" 
+    (ionChange)="getTagByName()" 
+    [(ngModel)]="searchTagValue"
+    id="tag_search_bar"></ion-searchbar>
+  <!-- <ion-col>
+    <ion-button name="createTag">search</ion-button>
+  </ion-col> -->
+    <ion-button slot="end" (click)="createNewTag()" name="createTag">สร้างแท็กใหม่</ion-button>
+    <!-- <ion-text *ngIf=" message_mode == 4" color="warning">มีแท็กนี้อยู่แล้ว</ion-text> -->
+  </ion-item>
+
+  <ion-grid>
+  <ion-row *ngIf="!(tempTagSearch.length === 0)" name="found_tag">
+      <ion-label>ผลการค้นหาแท็ก: </ion-label>
+      <ion-chip *ngFor="let tag_s of tempTagSearch" color="secondary" (click)="addTag(tag_s)">
+        <ion-label color="primary">{{tag_s.name}}</ion-label>
+      </ion-chip>
+    </ion-row>
+  </ion-grid>
+
   <ion-button fill="outline" color="warning" (click)="revert()" id="cancel_btn">CANCEL</ion-button>
   <ion-button (click)="updateAll()" id="confirm_edit_btn">บันทึกการแก้ไข</ion-button>
+
 
 </ion-content>
