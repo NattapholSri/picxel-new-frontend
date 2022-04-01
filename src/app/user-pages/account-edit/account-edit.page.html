@@ -64,5 +64,10 @@
   <ion-button fill="outline" color="warning" (click)="revert()" id="cancel_btn">CANCEL</ion-button>
   <ion-button (click)="updateAll()" id="confirm_edit_btn">บันทึกการแก้ไข</ion-button>
 
+  <ion-item>
+    <ion-label>เมนูเพิ่มเติม</ion-label>
+    <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block" id="delete_acc_btn">ลบบัญชีนี้ทิ้ง</ion-button>
+    <ion-button color="danger" (click)='clearAllPost()' shape="round" expand="block">ลบโพสต์ทั้งหมด</ion-button>
+  </ion-item>
 
 </ion-content>

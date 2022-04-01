@@ -4,6 +4,7 @@ import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../../services/api/user.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController } from '@ionic/angular';
+import { PostingService } from 'src/app/services/api/posting.service';
 
 @Component({
   selector: 'app-account-edit',
@@ -17,6 +18,8 @@ export class AccountEditPage implements OnInit {
   firstname: string;
   user_now: string;
   username: string;
+
+  user_id: string;
   interest_list: any[] = [];
 
   knowtag: any[] = [];
@@ -31,6 +34,7 @@ export class AccountEditPage implements OnInit {
     private userServ: UserService,
     private tagServ: TagService,
     private alertCtrl: AlertController,
+    private postServ: PostingService
 
   ) { 
     this.userServ.AutoLogout()
@@ -40,6 +44,7 @@ export class AccountEditPage implements OnInit {
       .subscribe((res) => {
         let usr_data = res
         console.log(usr_data)
+        this.user_id = usr_data._id
         if (usr_data.gender != undefined){
           this.gender = usr_data.gender
         }
@@ -184,6 +189,53 @@ export class AccountEditPage implements OnInit {
         }
       }
     }
+  }
+
+  userLogout(){
+    this.userServ.ReqLogout() 
+    .subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    )
+
+    this.ngZone.run(() => this.router.navigateByUrl('/'))
+  }
+
+  clearAllPost(){
+    this.postServ.DeleteAllPost(this.user_id).subscribe((res) => {
+      console.log(res)
+    })
+  }
+
+  deleteAccount(){
+    // deletion methods
+    console.log('menu of user: ' + this.user_id)
+    this.alertCtrl.create(
+      {header: 'คุณแน่ใจแล้วใช่ไหม',
+      message: 'การลบบัญชีผู้ใช้ ระบบจะทำการลบข้อมูลทั้งหมดที่เกี่ยวข้องกับบัญชีนี้ และไม่สามารถกู้คืนข้อมูลได้',
+      buttons: [
+        {
+        text: 'ยกเลิก',
+        role: 'cancel'
+        },{
+          text: 'แน่นอน',
+          handler: () => {
+            this.postServ.DeleteAllPost(this.user_id).subscribe((res) => {
+              console.log(res)
+              this.userServ.deleteUser()
+                .subscribe((res)=> {
+                  console.log(res)
+                  this.ngZone.run(() => this.router.navigateByUrl('/'))
+                })
+              
+            })
+          }
+        }
+      ]
+      }
+    ).then(alertEl =>{
+      alertEl.present()
+    })
   }
 
 }
