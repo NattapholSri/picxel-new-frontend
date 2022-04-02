@@ -77,4 +77,16 @@ export class FollowUserService {
     catchError(this.handleError)
     )
   }
+
+  FollowToUser(from_user_id:string,to_user_id:string){
+    let API_URL = `${this.backend_post_API}/user/follow/search?_id=${from_user_id}:${to_user_id}`;
+
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
 }

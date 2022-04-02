@@ -108,13 +108,18 @@ export class AccountDetailPage implements OnInit {
 
   getFollowState(){
     if (this.usr_acc.password == undefined && this.token != undefined){
-      this.followUsr.getUserFollowerFrom(this.currentUserLogin).subscribe((res)=>{
-        // console.log(res.content)
-        for (let list of res.content){
+      console.log('login user' + this.currentUserLogin)
+      console.log('this user' + this.usr_acc._id)
+      this.followUsr.FollowToUser(this.currentUserLogin,this.usr_acc._id).subscribe((res)=>{
+        console.log(res)
+        /* for (let list of res.content){
           if (list.to == this.usr_acc._id){
             console.log('followed user')
             this.subbed = true
           } 
+        } */
+        if (res.content != undefined){
+          this.subbed = true
         }
       },(err) => console.log(err))
     }
