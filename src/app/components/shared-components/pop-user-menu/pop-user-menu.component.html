@@ -1,0 +1,16 @@
+<ion-content>
+
+  <ion-list>
+    <ion-item [button]="true" [detail]="false" (click)="gotoEditPage()" id="edit_profile_btn">
+      <ion-label>แก้ไขโปรไฟล์</ion-label>
+    </ion-item>
+    <ion-item [button]="true" [detail]="false" (click)='userLogout()' id="logout_btn">
+      <ion-label color="warning">ออกจากระบบ</ion-label>
+    </ion-item>
+  </ion-list>
+
+<!--   <ion-item>
+    <ion-button (click)="gotoEditPage()" shape="round" id="edit_profile_btn">แก้ไขโปรไฟล์</ion-button>
+    <ion-button color="warning" (click)='userLogout()' shape="round" id="logout_btn">ออกจากระบบ</ion-button>
+  </ion-item> -->
+</ion-content>

@@ -1,6 +1,10 @@
 import { Component,ViewChild } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+
 import { UserService } from '../services/api/user.service';
 import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
+
+import { PopUserMenuComponent } from '../components/shared-components/pop-user-menu/pop-user-menu.component';
 
 
 
@@ -15,10 +19,24 @@ export class HomePage {
   tokenOn:boolean
 
   constructor(
-    userServ: UserService
+    userServ: UserService,
+    private popOverCtrl: PopoverController
     ) {
     userServ.AutoLogout()
     this.tokenOn = localStorage.getItem('jwt') != undefined
+  }
+
+  async showUserMenu(){
+    console.log('clicked')
+
+    const popover = await this.popOverCtrl.create({
+      component: PopUserMenuComponent,
+      dismissOnSelect: true,
+    });
+    await popover.present();
+  
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 
 }
