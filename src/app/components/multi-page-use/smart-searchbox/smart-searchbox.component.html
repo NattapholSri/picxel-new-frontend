@@ -1,6 +1,6 @@
 <ion-grid>
   <ion-row expand="block">
-    <ion-col size="6">
+    <ion-col size="8">
       <ion-searchbar 
       placeholder="ค้นหา" 
       debounce="1000" 
@@ -9,7 +9,7 @@
       id="search_bar">
     </ion-searchbar>
     </ion-col>
-    <ion-col size="3">
+    <ion-col size="4">
       <ion-segment [(ngModel)]="searchMode" (ionChange)="q_searchJunction()">
         <ion-segment-button value="1">
           <ion-icon name="people"></ion-icon>
