@@ -151,7 +151,8 @@ export class CommentPostComponent implements OnInit {
       this.PostServ.updateComment(commentEditForm.value).subscribe((res) => {
         console.log(res)
         this.reloadComponent()
-      })
+      },(err) => console.log(err)
+      )
     }
   }
 
