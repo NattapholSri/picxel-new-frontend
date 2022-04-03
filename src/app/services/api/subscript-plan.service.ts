@@ -3,6 +3,20 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
+export interface planData{
+  _id?: string;
+  createdBy?: string;
+  price?: number;
+  monthCount?: number;
+}
+
+export interface subScription{
+  _id?: string;
+  createdBy?: string;
+  price?: number;
+  monthCount?: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,22 +57,58 @@ export class SubscriptPlanService {
 
   // service function
 
-  createPlan(){
+  createPlan(planData:planData){
+    let API_URL = `${this.backend_post_API}/subscription/plan-create`;
 
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL, planData,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
-  createSubscription(){
-    
+  createSubscription(planData:planData){
+    let API_URL = `${this.backend_post_API}/subscription/subscribe`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL, planData,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
   // no token require
 
-  searchPlan(){
-    
+  searchPlan(userId:string){
+    let API_URL = `${this.backend_post_API}/subscription/plan-search?createdBy=${userId}`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
-  searchSubscription(){
-    
+  searchSubscription(userId:string,creatorId:string){
+    let API_URL = `${this.backend_post_API}/subscription/subscription-search?_id=${userId}:${creatorId}`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
 
