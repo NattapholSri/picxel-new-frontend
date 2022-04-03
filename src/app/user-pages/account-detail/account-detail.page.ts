@@ -26,6 +26,7 @@ export class AccountDetailPage implements OnInit {
   user_id: string; // this username
   subbed = false;
   currentUserLogin = localStorage.getItem('current_log_uid')
+  currentUserName = localStorage.getItem('usr_login')
 
   constructor(
     private router: Router,
@@ -46,9 +47,16 @@ export class AccountDetailPage implements OnInit {
       localStorage.setItem('usernow',stringJSON)
       this.usr_acc = res
       console.log(this.usr_acc)
-      if (this.usr_acc.followerCount != 0){
+      if (
+        (this.usr_acc.followerCount != 0) &&
+        (this.currentUserLogin != undefined) &&
+        (this.currentUserLogin != this.usr_acc._id)
+      ){
         console.log('load Follow state')
         this.getFollowState()
+      }
+      else{
+        console.log('skip loading follow state')
       }
     },(err) => {
       alert('Oh no! this user not exist. Taking you back to your user detail')
@@ -108,8 +116,8 @@ export class AccountDetailPage implements OnInit {
 
   getFollowState(){
     if (this.usr_acc.password == undefined && this.token != undefined){
-      console.log('login user' + this.currentUserLogin)
-      console.log('this user' + this.usr_acc._id)
+      // console.log('login user ' + this.currentUserLogin)
+      // console.log('this user ' + this.usr_acc._id)
       this.followUsr.FollowToUser(this.currentUserLogin,this.usr_acc._id).subscribe((res)=>{
         console.log(res)
         /* for (let list of res.content){
@@ -118,7 +126,7 @@ export class AccountDetailPage implements OnInit {
             this.subbed = true
           } 
         } */
-        if (res.content != undefined){
+        if (res.content != undefined && res.content != null){
           this.subbed = true
         }
       },(err) => console.log(err))
@@ -152,10 +160,11 @@ export class AccountDetailPage implements OnInit {
     const popover = await this.popOverCtrl.create({
       component: PopUserMenuComponent,
       dismissOnSelect: true,
+      componentProps: { username :this.currentUserName }
     });
     await popover.present();
   
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    // console.log('onDidDismiss resolved with role', role);
   }
 }

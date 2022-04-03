@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit,NgZone, Input } from '@angular/core';
 import { UserService } from 'src/app/services/api/user.service';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./pop-user-menu.component.scss'],
 })
 export class PopUserMenuComponent {
+  @Input() username:string
 
   constructor(
     private router: Router,

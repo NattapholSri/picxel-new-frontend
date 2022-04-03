@@ -52,22 +52,27 @@
     <!-- <ion-text *ngIf=" message_mode == 4" color="warning">มีแท็กนี้อยู่แล้ว</ion-text> -->
   </ion-item>
 
-  <ion-grid>
-  <ion-row *ngIf="!(tempTagSearch.length === 0)" name="found_tag">
-      <ion-label>ผลการค้นหาแท็ก: </ion-label>
-      <ion-chip *ngFor="let tag_s of tempTagSearch" color="secondary" (click)="addTag(tag_s)">
-        <ion-label color="primary">{{tag_s._id}}</ion-label>
-      </ion-chip>
-    </ion-row>
-  </ion-grid>
+
+  <ion-item *ngIf="!(tempTagSearch.length === 0)" name="found_tag">
+    <ion-label>ผลการค้นหาแท็ก:</ion-label>
+    <ion-chip *ngFor="let tag_s of tempTagSearch" color="secondary" (click)="addTag(tag_s)">
+      <ion-label color="primary">{{tag_s._id}}</ion-label>
+    </ion-chip>
+  </ion-item>
 
   <ion-button fill="outline" color="warning" (click)="revert()" id="cancel_btn">CANCEL</ion-button>
   <ion-button (click)="updateAll()" id="confirm_edit_btn">บันทึกการแก้ไข</ion-button>
 
-  <ion-item>
-    <ion-label>เมนูเพิ่มเติม</ion-label>
-    <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block" id="delete_acc_btn">ลบบัญชีนี้ทิ้ง</ion-button>
-    <ion-button color="danger" (click)='clearAllPost()' shape="round" expand="block">ลบโพสต์ทั้งหมด</ion-button>
-  </ion-item>
+  <ion-accordion-group>
+    <ion-accordion value="additional menu">
+      <ion-item slot="header">
+        <ion-label>เมนูเพิ่มเติม</ion-label>
+      </ion-item>
+      <ion-item slot="content">
+        <ion-button color="danger" (click)='deleteAccount()' shape="round" expand="block" id="delete_acc_btn">ลบบัญชีนี้ทิ้ง</ion-button>
+        <ion-button color="danger" (click)='clearAllPost()' shape="round" expand="block">ลบโพสต์ทั้งหมด</ion-button>
+      </ion-item>
+    </ion-accordion>
+  </ion-accordion-group>
 
 </ion-content>

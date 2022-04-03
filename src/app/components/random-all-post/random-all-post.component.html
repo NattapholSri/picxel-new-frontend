@@ -14,7 +14,7 @@
           </ion-text>
       </ion-row>
       <br>
-      <ion-row>
+      <ion-item>
         <ion-text *ngIf="post.createdAt == post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;</ion-text>
         <ion-text *ngIf="post.createdAt != post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;(แก้ไข&nbsp;{{post.updatedAt}})&nbsp;</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
@@ -23,7 +23,7 @@
               <ion-icon name="ellipsis-vertical"></ion-icon>
             </ion-button>
           </ion-buttons>
-      </ion-row>
+      </ion-item>
       
       <ion-row>
         <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>

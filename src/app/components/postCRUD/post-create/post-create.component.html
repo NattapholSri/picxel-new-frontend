@@ -36,14 +36,14 @@
     </ion-row>
 
     <ion-row *ngIf="picture_list != []" id="picture_added_list">
-      <ion-col *ngFor="let picture_i of picture_list" size="1">
-        <ion-item>
+        <ion-item *ngFor="let picture_i of picture_list">
           <ion-thumbnail>
             <img src="{{picture_i}}">
           </ion-thumbnail>
-          <ion-icon name="close-circle-outline" id="remove_pic_btn" (click)="removePic(picture_i)"></ion-icon>
+          <ion-buttons><ion-button (click)="removePic(picture_i)">
+            <ion-icon name="close-circle-outline" id="remove_pic_btn"></ion-icon>
+          </ion-button></ion-buttons>
         </ion-item>
-      </ion-col>
     </ion-row>
   
     <ion-row>

@@ -75,10 +75,6 @@ export class PostViewComponent{
   private Post_Edit(){
 
     for (let post of this.postList ){
-      /* if(post.tags.length != 0){
-        let tags_name_list = this.addTagName(post.tags)
-        post.tags_Nlist = tags_name_list
-      } */
       console.log(post)
 
       let localDate = new Date(post.createdAt)
@@ -86,17 +82,17 @@ export class PostViewComponent{
       let updateDate = new Date(post.updatedAt)
       post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
 
-      if (post.likeCount != 0){
-        console.log('load user who like this post: ' + post._id)
-        let userWhoLikePost:any[] = []
+      if (post.likeCount != 0 && this.currentUserId != undefined){
+        console.log('load login user like status: ' + post._id)
+        // let userWhoLikePost:any[] = []
         post.thisUserLike = false
-        this.PostServ.LikePostList(post._id).subscribe(
+        this.PostServ.UserLikeOnPost(this.currentUserId,post._id).subscribe(
           (res) => {
-          userWhoLikePost = res.content
-          for (let user of userWhoLikePost){
-            if (user.userId == this.currentUserId){
-              post.thisUserLike = true
-            }
+            console.log(res.content)
+            if (res.content != null && res.content != undefined){
+              if (res.content.userId == this.currentUserId){
+                post.thisUserLike = true
+            } 
           }
         },(err) => {
           console.log(err)

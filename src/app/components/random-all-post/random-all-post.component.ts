@@ -80,17 +80,16 @@ export class RandomAllPostComponent {
       let updateDate = new Date(post.updatedAt)
       post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
 
-      if (post.likeCount != 0){
+      if (post.likeCount != 0 && this.CurrentSessionId != undefined){
         console.log('load user who like this post: ' + post._id)
-        let userWhoLikePost:any[] = []
+        // let userWhoLikePost:any[] = []
         post.thisUserLike = false
-        this.PostServ.LikePostList(post._id).subscribe(
+        this.PostServ.UserLikeOnPost(this.CurrentSessionId,post._id).subscribe(
           (res) => {
-          userWhoLikePost = res.content
-          for (let user of userWhoLikePost){
-            if (user.userId == this.CurrentSessionId){
-              post.thisUserLike = true
-            }
+            if (res.content != null && res.content != undefined){
+              if (res.content.userId == this.CurrentSessionId){
+                post.thisUserLike = true
+            } 
           }
         },(err) => {
           console.log(err)

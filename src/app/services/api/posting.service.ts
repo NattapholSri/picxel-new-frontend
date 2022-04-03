@@ -216,7 +216,7 @@ export class PostingService {
   }
 
   UserLikeOnPost(user_id:string,post_id:string){
-    let API_URL = `${this.backend_post_API}/post/like/search?_id=${user_id}:${post_id}&all=1`;
+    let API_URL = `${this.backend_post_API}/post/like/search?_id=${user_id}:${post_id}`;
 
     return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {
