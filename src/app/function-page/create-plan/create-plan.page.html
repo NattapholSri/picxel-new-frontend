@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>สร้าง Plan ใหม่</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-item>
+      <ion-label position="stacked">ชื่อของ Plan</ion-label>
+      <ion-input type="text" required [(ngModel)]="plan_name" id="username_input"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>ราคาของ Plan</ion-label>
+      <ion-range slot="end" min="10" max="500" step="5" [(ngModel)]="price" [pin]="true">
+        <ion-label slot="end">{{price}} บาท/เดือน</ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-text>ระยะเวลาของ Plan</ion-text>
+      <ion-range slot="end" min="1" max="24" step="1" snaps="true" [(ngModel)]="month" [pin]="true">
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <ion-label slot="end">{{month}} เดือน</ion-label>
+      </ion-range>
+    </ion-item>
+  </div>
+
+  <ion-button fill="outline" color="warning" (click)="cancelCreate()" id="cancel_btn">CANCEL</ion-button>
+  <ion-button (click)="onSubmit()" id="create_plan_btn">สร้าง Plan</ion-button>
+
+</ion-content>

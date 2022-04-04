@@ -204,12 +204,13 @@ export class AccountEditPage implements OnInit {
   clearAllPost(){
     this.postServ.DeleteAllPost(this.user_id).subscribe((res) => {
       console.log(res)
+      alert('deleted all post')
     })
   }
 
   deleteAccount(){
     // deletion methods
-    console.log('menu of user: ' + this.user_id)
+    console.log('delete user menu: ' + this.user_id)
     this.alertCtrl.create(
       {header: 'คุณแน่ใจแล้วใช่ไหม',
       message: 'การลบบัญชีผู้ใช้ ระบบจะทำการลบข้อมูลทั้งหมดที่เกี่ยวข้องกับบัญชีนี้ และไม่สามารถกู้คืนข้อมูลได้',

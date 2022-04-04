@@ -89,4 +89,8 @@ export class FollowUserService {
     catchError(this.handleError)
     )
   }
+
+  randomUser(){
+    let API_URL = `${this.backend_post_API}/feed/suggest-user`;
+  }
 }

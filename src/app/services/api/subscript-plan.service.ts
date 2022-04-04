@@ -8,6 +8,7 @@ export interface planData{
   createdBy?: string;
   price?: number;
   monthCount?: number;
+  plan_name?: string;
 }
 
 export interface subScription{
