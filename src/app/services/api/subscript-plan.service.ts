@@ -128,7 +128,8 @@ export class SubscriptPlanService {
   }
 
   deletePlan(plan_id:string){
-    let plan_data:planData = {_id:plan_id}
+    console.log(plan_id)
+    let plan_data = { planId:plan_id}
 
     let API_URL = `${this.backend_post_API}/subscription/plan-delete`;
 

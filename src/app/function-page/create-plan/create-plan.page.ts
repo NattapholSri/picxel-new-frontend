@@ -66,7 +66,8 @@ export class CreatePlanPage {
         console.log(res)
       
       //clear Data on Post box
-        this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.currentUser))
+        //this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.currentUser))
+        this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
       },
       (err) => {
         console.log(err)

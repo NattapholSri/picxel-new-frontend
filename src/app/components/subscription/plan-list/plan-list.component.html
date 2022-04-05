@@ -1,14 +1,21 @@
 <ion-content>
-  
   <ion-list>
     <ion-list-header>plan-list works!</ion-list-header>
     <ion-item *ngFor="let plan of planList">
       <ion-label>
-        <h6>ID:{{plan._id}}</h6>
+        ID:{{plan._id}}
         <p>สร้างเมื่อ {{plan.createdAt}}</p>
         <h4>ราคา {{plan.price}} บาท/เดือน</h4>
         <h5>ระยะเวลา {{plan.monthCount}} เดือน</h5>
       </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="pencil"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deletePlan(plan)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>
