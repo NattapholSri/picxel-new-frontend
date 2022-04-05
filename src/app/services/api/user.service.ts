@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import * as moment from "moment";
 import { UserDetails,UserLogin,UserRegistration,JsonMail,UserPasswdChange } from '../data-model/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UserService {
   httpHeaders = new HttpHeaders().set('Content-type','application/json');
   
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private router:Router) { }
 
   ReqLogin(data: UserLogin): Observable<any> {
     let API_URL = `${this.backend_API}/auth/login`;
@@ -150,6 +151,7 @@ export class UserService {
         localStorage.removeItem('current_log_uid')
 
         console.log('token timeout')
+        this.router.navigateByUrl('/account-login')
       }
       else{
         console.log('token is in use')

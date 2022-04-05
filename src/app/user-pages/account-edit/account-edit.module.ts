@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AccountEditPageRoutingModule } from './account-edit-routing.module';
 
 import { AccountEditPage } from './account-edit.page';
+import { SubscriptModule } from 'src/app/components/subscription/subscipt/subscript.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AccountEditPageRoutingModule
+    AccountEditPageRoutingModule,
+    SubscriptModule
   ],
   declarations: [AccountEditPage]
 })

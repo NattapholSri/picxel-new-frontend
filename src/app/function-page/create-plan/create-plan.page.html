@@ -6,21 +6,27 @@
 
 <ion-content>
   <div class="container">
-    <ion-item>
+    <!-- <ion-item>
       <ion-label position="stacked">ชื่อของ Plan</ion-label>
       <ion-input type="text" required [(ngModel)]="plan_name" id="username_input"></ion-input>
-    </ion-item>
+    </ion-item> -->
     <ion-item>
       <ion-label>ราคาของ Plan</ion-label>
-      <ion-range slot="end" min="10" max="500" step="5" [(ngModel)]="price" [pin]="true">
-        <ion-label slot="end">{{price}} บาท/เดือน</ion-label>
+      <ion-range slot="end" min="10" max="1000" [(ngModel)]="price" [pin]="true">
+        <ion-item slot="end">
+        <ion-input type="number" min="10" max="1000" [(ngModel)]="price"></ion-input>
+        <ion-label> บาท/เดือน</ion-label>
+        </ion-item>
       </ion-range>
     </ion-item>
     <ion-item>
       <ion-text>ระยะเวลาของ Plan</ion-text>
       <ion-range slot="end" min="1" max="24" step="1" snaps="true" [(ngModel)]="month" [pin]="true">
         <ion-icon name="calendar" slot="start"></ion-icon>
-        <ion-label slot="end">{{month}} เดือน</ion-label>
+        <ion-item slot="end">
+          <ion-input type="number" min="1" max="24" [(ngModel)]="month"></ion-input>
+          <ion-label> เดือน</ion-label>
+          </ion-item>
       </ion-range>
     </ion-item>
   </div>

@@ -15,7 +15,7 @@ export class CreatePlanPage {
 
   plan_name: string
 
-  price: number = 10
+  price: number = 100
   month: number = 6
 
   constructor(
@@ -29,13 +29,33 @@ export class CreatePlanPage {
 
 
   onSubmit(){
-    if(this.plan_name == '' || this.plan_name == undefined){
+    /* if(this.plan_name == '' || this.plan_name == undefined){
       alert('ยังไม่ได้ตั้งชื่อ Plan')
       console.log('exited submit function')
-    }
-    else{
+    } */
+
+    
+    //else{
+      //limit plan's input value
+      //plan's price
+      if (this.price < 10){
+        this.price = 10
+      }
+      else if(this.price > 1000){
+        this.price = 1000
+        alert('plan มีราคาเกินกำหนด ราคาของ plan จะถูกปรับมาลงที่ 1000 บาท/เดือน')
+      }
+      //plan's duration
+      if(this.month < 1){
+        this.month = 1
+      }
+      else if(this.month > 24){
+        this.month =24
+        alert('plan มีระยะเวลาเกินกำหนด ระยะเวลาของ plan จะถูกปรับมาลงที่ 24 เดือน')
+      }
+
       let planForm = new FormGroup({
-        plan_name: new FormControl(this.plan_name),
+        // plan_name: new FormControl(this.plan_name),
         price : new FormControl(this.price),
         monthCount : new FormControl(this.month),
       })
@@ -51,7 +71,7 @@ export class CreatePlanPage {
       (err) => {
         console.log(err)
       })
-    }
+    //}
   }
 
   cancelCreate(){

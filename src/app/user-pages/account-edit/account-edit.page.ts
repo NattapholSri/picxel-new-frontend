@@ -3,8 +3,11 @@ import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
 import { UserService } from '../../services/api/user.service';
 import { TagService } from 'src/app/services/api/tag.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PopoverController } from '@ionic/angular';
 import { PostingService } from 'src/app/services/api/posting.service';
+
+import { popoverController } from '@ionic/core';
+import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
 
 @Component({
   selector: 'app-account-edit',
@@ -34,7 +37,8 @@ export class AccountEditPage implements OnInit {
     private userServ: UserService,
     private tagServ: TagService,
     private alertCtrl: AlertController,
-    private postServ: PostingService
+    private postServ: PostingService,
+    private popOverCtrl:PopoverController
 
   ) { 
     this.userServ.AutoLogout()
@@ -237,6 +241,16 @@ export class AccountEditPage implements OnInit {
     ).then(alertEl =>{
       alertEl.present()
     })
+  }
+
+  async callPlanList(){
+
+    const popover = await this.popOverCtrl.create({
+      component: PlanListComponent,
+      dismissOnSelect: true,
+      // componentProps: { userId :this.user_id }
+    });
+    await popover.present();
   }
 
 }

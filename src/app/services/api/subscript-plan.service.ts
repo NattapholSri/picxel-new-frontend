@@ -91,7 +91,7 @@ export class SubscriptPlanService {
   // no token require
 
   searchPlan(userId:string){
-    let API_URL = `${this.backend_post_API}/subscription/plan-search?createdBy=${userId}`;
+    let API_URL = `${this.backend_post_API}/subscription/plan-search?all=1&createdBy=${userId}`;
 
     return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {
@@ -110,6 +110,39 @@ export class SubscriptPlanService {
     }),
     catchError(this.handleError)
     )
+  }
+
+  updatePlan(plan:planData){
+    let API_URL = `${this.backend_post_API}/subscription/plan-update`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.put(API_URL, plan,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  deletePlan(plan_id:string){
+    let plan_data:planData = {_id:plan_id}
+
+    let API_URL = `${this.backend_post_API}/subscription/plan-delete`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:plan_data})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+
   }
 
 
