@@ -6,7 +6,6 @@ import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { PostingService } from 'src/app/services/api/posting.service';
 
-import { popoverController } from '@ionic/core';
 import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
 
 @Component({

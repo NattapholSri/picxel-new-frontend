@@ -38,13 +38,18 @@ const routes: Routes = [
   {
     path: 'update-user-post/:postId',
     loadChildren: () => import('./function-page/update-user-post/update-user-post.module').then( m => m.UpdateUserPostPageModule)
-  },  {
+  },
+  {
     path: 'password-change',
     loadChildren: () => import('./user-pages/password-change/password-change.module').then( m => m.PasswordChangePageModule)
   },
   {
     path: 'create-plan',
     loadChildren: () => import('./function-page/create-plan/create-plan.module').then( m => m.CreatePlanPageModule)
+  },
+  {
+    path: 'edit-plan/:planId',
+    loadChildren: () => import('./function-page/edit-plan/edit-plan.module').then( m => m.EditPlanPageModule)
   }
 
 

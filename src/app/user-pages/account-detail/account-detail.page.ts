@@ -5,11 +5,11 @@ import { UserService } from '../../services/api/user.service';
 import { FollowUserService } from 'src/app/services/api/follow-user.service';
 import { PostingService } from 'src/app/services/api/posting.service';
 
-import { AlertController } from '@ionic/angular';
+import { AlertController,PopoverController } from '@ionic/angular';
 import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-view.component';
-import { PopoverController } from '@ionic/angular';
 
 import { PopUserMenuComponent } from 'src/app/components/shared-components/pop-user-menu/pop-user-menu.component';
+import { UserSubscriptComponent } from 'src/app/components/subscription/user-subscript/user-subscript.component';
 
 
 @Component({
@@ -165,6 +165,19 @@ export class AccountDetailPage implements OnInit {
     await popover.present();
   
     const { role } = await popover.onDidDismiss();
+    // console.log('onDidDismiss resolved with role', role);
+  }
+
+  async showSubscriptMenu(){
+    console.log('clicked')
+
+    const popover = await this.popOverCtrl.create({
+      component: UserSubscriptComponent,
+      dismissOnSelect: true,
+      componentProps: { creatorId :this.usr_acc._id }
+    });
+    await popover.present();
+  
     // console.log('onDidDismiss resolved with role', role);
   }
 }

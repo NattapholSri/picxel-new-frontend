@@ -1,18 +1,17 @@
 <ion-content>
   <ion-list>
-    <ion-list-header>plan-list works!</ion-list-header>
+    <ion-list-header>subscribe work</ion-list-header>
     <ion-item *ngFor="let plan of planList">
       <ion-label>
         ID:{{plan._id}}
-        <p>สร้างเมื่อ {{plan.createdAt}}</p>
         <h4>ราคา {{plan.price}} บาท/เดือน</h4>
         <h5>ระยะเวลา {{plan.monthCount}} เดือน</h5>
       </ion-label>
       <ion-buttons slot="end">
-        <ion-button (click)="goToEditPlan(plan)">
+        <ion-button *ngIf="plan._id != userSub.planId" (click)="subscribeToPlan(plan)">
           <ion-icon name="pencil"></ion-icon>
         </ion-button>
-        <ion-button (click)="deletePlan(plan)">
+        <ion-button *ngIf="plan._id == userSub.planId" (click)="unSubscribe()">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
       </ion-buttons>

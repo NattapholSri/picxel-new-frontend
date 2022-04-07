@@ -1,7 +1,7 @@
-import { Component, Input} from '@angular/core';
+import { Component } from '@angular/core';
 import { SubscriptPlanService } from 'src/app/services/api/subscript-plan.service';
-import { UserService } from 'src/app/services/api/user.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plan-list',
@@ -14,8 +14,8 @@ export class PlanListComponent {
 
   constructor(
     private subPlanServ:SubscriptPlanService,
-    private userServ: UserService,
-    private alertCtrl:AlertController
+    private alertCtrl:AlertController,
+    private router: Router,
   ) { 
     this.subPlanServ.searchPlan(localStorage.getItem('current_log_uid')).subscribe((res) => {
       console.log(res)
@@ -42,7 +42,8 @@ export class PlanListComponent {
   }
 
   goToEditPlan(plan:any){
-
+    localStorage.setItem('selected-plan',JSON.stringify(plan))
+    this.router.navigateByUrl('/edit-plan/'+plan._id)
   }
 
   async deletePlan(plan:any){

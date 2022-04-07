@@ -11,11 +11,10 @@ export interface planData{
   plan_name?: string;
 }
 
-export interface subScription{
-  _id?: string;
+export interface subScriptionData{
+  planId?: string;
   createdBy?: string;
-  price?: number;
-  monthCount?: number;
+  subId?: string;
 }
 
 @Injectable({
@@ -73,14 +72,14 @@ export class SubscriptPlanService {
     )
   }
 
-  createSubscription(planData:planData){
+  createSubscription(subData:subScriptionData){
     let API_URL = `${this.backend_post_API}/subscription/subscribe`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
 
-    return this.httpClient.post(API_URL, planData,{headers:tokenHeaders})
+    return this.httpClient.post(API_URL, subData,{headers:tokenHeaders})
     .pipe(map((res:any) => {
       return res || {}
     }),
