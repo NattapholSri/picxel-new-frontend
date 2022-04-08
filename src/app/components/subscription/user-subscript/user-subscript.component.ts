@@ -1,4 +1,4 @@
-import { Component, Input, NgZone } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { SubscriptPlanService } from 'src/app/services/api/subscript-plan.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   templateUrl: './user-subscript.component.html',
   styleUrls: ['./user-subscript.component.scss'],
 })
-export class UserSubscriptComponent {
-  @Input() creatorId:string
+export class UserSubscriptComponent implements OnInit {
+  @Input() creator_id:string
 
   currentViewId = localStorage.getItem('current_log_uid')
 
@@ -21,7 +21,11 @@ export class UserSubscriptComponent {
     private alertCtrl:AlertController,
     private router: Router,
   )  {
-    this.subPlanServ.searchPlan(this.creatorId).subscribe((res) =>{
+  }
+
+  ngOnInit() {
+    console.log(this.creator_id)
+    this.subPlanServ.searchPlan(this.creator_id).subscribe((res) =>{
       console.log(res)
       this.planList = res.content
       if (this.planList.length != 0){
@@ -35,14 +39,16 @@ export class UserSubscriptComponent {
       console.log(err)
     })
 
-    this.checkSubscribe(this.currentViewId,this.creatorId)
+    this.checkSubscribe(this.currentViewId,this.creator_id)
   }
 
   checkSubscribe(user_id:string,creator_id:string){
     this.subPlanServ.searchSubscription(user_id,creator_id).subscribe(
       (res) => {
         console.log(res)
-        this.userSub = res.content
+        if( res.content != null && res.content != undefined){
+          this.userSub = res.content
+        }
       },
       (err) => {
         console.log(err)
@@ -52,6 +58,7 @@ export class UserSubscriptComponent {
 
   subscribeToPlan(plan:any){
     let quickForm = {planId:plan._id}
+    console.log(quickForm)
     this.subPlanServ.createSubscription(quickForm).subscribe((res) => {
       console.log(res)
     },(err) => console.log(err)

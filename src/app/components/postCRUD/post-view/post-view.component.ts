@@ -88,7 +88,7 @@ export class PostViewComponent{
         post.thisUserLike = false
         this.PostServ.UserLikeOnPost(this.currentUserId,post._id).subscribe(
           (res) => {
-            console.log(res.content)
+            // console.log(res.content)
             if (res.content != null && res.content != undefined){
               if (res.content.userId == this.currentUserId){
                 post.thisUserLike = true

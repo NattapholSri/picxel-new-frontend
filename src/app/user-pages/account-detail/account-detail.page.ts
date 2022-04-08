@@ -155,7 +155,7 @@ export class AccountDetailPage implements OnInit {
   }
 
   async showUserMenu(){
-    console.log('clicked')
+    // console.log('clicked')
 
     const popover = await this.popOverCtrl.create({
       component: PopUserMenuComponent,
@@ -169,12 +169,12 @@ export class AccountDetailPage implements OnInit {
   }
 
   async showSubscriptMenu(){
-    console.log('clicked')
+    // console.log('clicked ' + this.usr_acc._id )
 
     const popover = await this.popOverCtrl.create({
       component: UserSubscriptComponent,
       dismissOnSelect: true,
-      componentProps: { creatorId :this.usr_acc._id }
+      componentProps: { creator_id :this.usr_acc._id }
     });
     await popover.present();
   
