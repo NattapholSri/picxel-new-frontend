@@ -72,22 +72,6 @@ export class SubscriptPlanService {
     )
   }
 
-  createSubscription(subData:subScriptionData){
-    let API_URL = `${this.backend_post_API}/subscription/subscribe`;
-
-    console.log(subData)
-    let jsonToken = this.loadJwt()
-    let authMessage = 'Bearer ' + jsonToken;
-    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
-
-    return this.httpClient.post(API_URL, subData,{headers:tokenHeaders})
-    .pipe(map((res:any) => {
-      return res || {}
-    }),
-    catchError(this.handleError)
-    )
-  }
-
   updatePlan(plan:planData){
     let API_URL = `${this.backend_post_API}/subscription/plan-update`;
 
@@ -119,11 +103,26 @@ export class SubscriptPlanService {
     }),
     catchError(this.handleError)
     )
+  }
 
+  createSubscription(subData:subScriptionData){
+    let API_URL = `${this.backend_post_API}/subscription/subscribe`;
+
+    console.log(subData)
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL, subData,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
   deleteSubscription(subData:subScriptionData){
-    let API_URL = `${this.backend_post_API}/subscription//unsubscribe`;
+    let API_URL = `${this.backend_post_API}/subscription/unsubscribe`;
   
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -136,7 +135,6 @@ export class SubscriptPlanService {
     catchError(this.handleError)
     )
   }
-
 
   // no token require
 
