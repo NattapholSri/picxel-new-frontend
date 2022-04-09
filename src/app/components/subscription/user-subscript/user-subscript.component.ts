@@ -67,8 +67,10 @@ export class UserSubscriptComponent implements OnInit {
 
   unSubscribe(){
     let quickForm = {subId:this.userSub._id}
-    this.subPlanServ.createSubscription(quickForm).subscribe((res) => {
+    console.log(quickForm)
+    this.subPlanServ.deleteSubscription(quickForm).subscribe((res) => {
       console.log(res)
+      this.userSub = {}
     },(err) => console.log(err)
     )
   }

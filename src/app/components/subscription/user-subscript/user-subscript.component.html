@@ -8,10 +8,10 @@
         <h5>ระยะเวลา {{plan.monthCount}} เดือน</h5>
       </ion-label>
       <ion-buttons slot="end">
-        <ion-button *ngIf="plan._id != userSub.planId" (click)="subscribeToPlan(plan)">
+        <ion-button *ngIf="plan._id != userSub.planId || userSub.active == false" (click)="subscribeToPlan(plan)">
           <ion-icon name="add"></ion-icon>
         </ion-button>
-        <ion-button *ngIf="plan._id == userSub.planId" (click)="unSubscribe()">
+        <ion-button *ngIf="plan._id == userSub.planId && userSub.active != false" (click)="unSubscribe()">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
       </ion-buttons>

@@ -75,35 +75,12 @@ export class SubscriptPlanService {
   createSubscription(subData:subScriptionData){
     let API_URL = `${this.backend_post_API}/subscription/subscribe`;
 
+    console.log(subData)
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
 
     return this.httpClient.post(API_URL, subData,{headers:tokenHeaders})
-    .pipe(map((res:any) => {
-      return res || {}
-    }),
-    catchError(this.handleError)
-    )
-  }
-
-  // no token require
-
-  searchPlan(userId:string){
-    let API_URL = `${this.backend_post_API}/subscription/plan-search?all=1&createdBy=${userId}`;
-
-    return this.httpClient.get(API_URL)
-    .pipe(map((res:any) => {
-      return res || {}
-    }),
-    catchError(this.handleError)
-    )
-  }
-
-  searchSubscription(userId:string,creatorId:string){
-    let API_URL = `${this.backend_post_API}/subscription/subscription-search?_id=${userId}:${creatorId}`;
-
-    return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {
       return res || {}
     }),
@@ -143,6 +120,46 @@ export class SubscriptPlanService {
     catchError(this.handleError)
     )
 
+  }
+
+  deleteSubscription(subData:subScriptionData){
+    let API_URL = `${this.backend_post_API}/subscription//unsubscribe`;
+  
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+  
+    return this.httpClient.post(API_URL, subData,{headers:tokenHeaders})
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+    catchError(this.handleError)
+    )
+  }
+
+
+  // no token require
+
+  searchPlan(userId:string){
+    let API_URL = `${this.backend_post_API}/subscription/plan-search?all=1&createdBy=${userId}`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  searchSubscription(userId:string,creatorId:string){
+    let API_URL = `${this.backend_post_API}/subscription/subscription-search?_id=${userId}:${creatorId}`;
+
+    return this.httpClient.get(API_URL)
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
 
