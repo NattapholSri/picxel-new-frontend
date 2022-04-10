@@ -7,11 +7,11 @@
 <ion-content>
   <div class="container">
     <ion-item>
-      <ion-label>ราคาของ Plan</ion-label>
+      <ion-label>ราคาของ Plan นี้</ion-label>
       <ion-range slot="end" min="10" max="1000" [(ngModel)]="price" [pin]="true">
         <ion-item slot="end">
         <ion-input type="number" min="10" max="1000" [(ngModel)]="price"></ion-input>
-        <ion-label> บาท/เดือน</ion-label>
+        <ion-label> บาท</ion-label>
         </ion-item>
       </ion-range>
     </ion-item>
@@ -28,6 +28,6 @@
   </div>
 
   <ion-button fill="outline" color="warning" (click)="cancelCreate()" id="cancel_btn">CANCEL</ion-button>
-  <ion-button (click)="onSubmit()" id="update_plan_btn">สร้าง Plan</ion-button>
+  <ion-button (click)="onSubmit()" id="update_plan_btn">แก้ไข Plan</ion-button>
 
 </ion-content>

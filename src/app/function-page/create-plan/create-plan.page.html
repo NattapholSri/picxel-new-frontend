@@ -11,11 +11,11 @@
       <ion-input type="text" required [(ngModel)]="plan_name" id="username_input"></ion-input>
     </ion-item> -->
     <ion-item>
-      <ion-label>ราคาของ Plan</ion-label>
+      <ion-label>ราคาของ Plan นี้</ion-label>
       <ion-range slot="end" min="10" max="1000" [(ngModel)]="price" [pin]="true">
         <ion-item slot="end">
         <ion-input type="number" min="10" max="1000" [(ngModel)]="price"></ion-input>
-        <ion-label> บาท/เดือน</ion-label>
+        <ion-label> บาท</ion-label>
         </ion-item>
       </ion-range>
     </ion-item>
