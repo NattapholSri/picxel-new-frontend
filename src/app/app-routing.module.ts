@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    loadChildren: () => import('./function-page/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
     path: 'account-edit',
@@ -50,7 +50,12 @@ const routes: Routes = [
   {
     path: 'edit-plan/:planId',
     loadChildren: () => import('./function-page/edit-plan/edit-plan.module').then( m => m.EditPlanPageModule)
+  },
+  {
+    path: 'chat-page/:toUserId',
+    loadChildren: () => import('./chat-page/chat-page.module').then( m => m.ChatPagePageModule)
   }
+
 
 
 

@@ -48,7 +48,7 @@ export class ChatMessageService {
       page = 1
     }
 
-    let API_URL = `${this.backend_post_API}/post/like/search?userId=${user_id}&limit=8&page=${page}`;
+    let API_URL = `${this.backend_post_API}/private-message/search?userId=${user_id}&limit=8&page=${page}`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -60,5 +60,9 @@ export class ChatMessageService {
     }),
     catchError(this.handleError)
     )
+  }
+
+  getRecentMsg(){
+    console.log('empty function')
   }
 }
