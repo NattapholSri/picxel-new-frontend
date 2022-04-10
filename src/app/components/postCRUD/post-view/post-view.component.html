@@ -60,6 +60,12 @@
   </ion-item>
 </ion-list>
 
-<ion-button *ngIf="canloadMore == true" (click)="loadThisUsrMore()">โหลดโพสต์เพิ่มเติม</ion-button>
+<!-- <ion-button *ngIf="canloadMore == true" (click)="loadThisUsrMore()">โหลดโพสต์เพิ่มเติม</ion-button> -->
+<ion-infinite-scroll [disabled]="!(canloadMore)" (ionInfinite)="loadThisUsrMore()">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="โหลดโพสต์เพิ่มเติม">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 <ion-text color="warning" *ngIf="canloadMore == false">ไม่มีโพสต์เพิ่มเติมจากผู้ใช้นี้แล้ว</ion-text>
 

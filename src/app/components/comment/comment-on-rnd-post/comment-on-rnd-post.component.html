@@ -23,6 +23,8 @@
           </app-comment-menu> -->
           <ion-label>
             <h4>{{comment.usr_name}}</h4>
+            <h6 *ngIf="comment.createdAt == comment.updatedAt">เวลา {{comment.createdAt}}</h6>
+            <h6 *ngIf="comment.createdAt != comment.updatedAt">(แก้ไข) เวลา {{comment.updatedAt}}</h6>
             <p>{{comment.text}}</p>
           </ion-label>
         </ion-item>

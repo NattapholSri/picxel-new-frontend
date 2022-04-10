@@ -108,7 +108,6 @@ export class SubscriptPlanService {
   createSubscription(subData:subScriptionData){
     let API_URL = `${this.backend_post_API}/subscription/subscribe`;
 
-    console.log(subData)
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
@@ -121,14 +120,31 @@ export class SubscriptPlanService {
     )
   }
 
-  deleteSubscription(subData:subScriptionData){
-    let API_URL = `${this.backend_post_API}/subscription/unsubscribe`;
+  updateSubscription(subData:subScriptionData){
+    let API_URL = `${this.backend_post_API}/subscription/update`;
   
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
   
     return this.httpClient.post(API_URL, subData,{headers:tokenHeaders})
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+    catchError(this.handleError)
+    )
+  }
+
+  // unused/legacy
+
+  deleteSubscription(subData:subScriptionData){
+    let API_URL = `${this.backend_post_API}/subscription/delete`;
+  
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+  
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:subData})
       .pipe(map((res:any) => {
         return res || {}
       }),

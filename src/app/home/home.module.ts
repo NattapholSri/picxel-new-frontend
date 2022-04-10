@@ -10,6 +10,7 @@ import { PostCreateComponent } from '../components/postCRUD/post-create/post-cre
 import { RandomAllPostComponent } from '../components/random-all-post/random-all-post.component';
 import { SmartSearchboxComponent } from '../components/multi-page-use/smart-searchbox/smart-searchbox.component';
 import { CommentOnRndPostComponent } from '../components/comment/comment-on-rnd-post/comment-on-rnd-post.component';
+import { UserSuggestComponent } from '../components/user-suggest/user-suggest.component';
 
 
 @NgModule({
@@ -19,6 +20,6 @@ import { CommentOnRndPostComponent } from '../components/comment/comment-on-rnd-
     IonicModule,
     HomePageRoutingModule,SharedComponentModule
   ],
-  declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,SmartSearchboxComponent,CommentOnRndPostComponent]
+  declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,SmartSearchboxComponent,CommentOnRndPostComponent,UserSuggestComponent]
 })
 export class HomePageModule {}

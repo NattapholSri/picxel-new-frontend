@@ -90,7 +90,20 @@ export class FollowUserService {
     )
   }
 
-  randomUser(){
+  suggestRandomUser(){
     let API_URL = `${this.backend_post_API}/feed/suggest-user`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
+
+
 }

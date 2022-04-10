@@ -1,0 +1,13 @@
+
+<ion-card-content>
+  <p>
+  ผู้คนอื่นๆ ที่แนะนำให้ติดตาม:
+  </p>
+  <ion-chip *ngFor="let user of suggest_usr_list" color="secondary" (click)="toUser(user.username)">
+    <ion-avatar>
+      <img src="{{user.profile_pic}}">
+    </ion-avatar>
+    <ion-label>{{user.username}}</ion-label>
+  </ion-chip>
+</ion-card-content>
+

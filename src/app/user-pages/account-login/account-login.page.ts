@@ -27,7 +27,7 @@ export class AccountLoginPage implements OnInit {
     this.userServ.AutoLogout()
   }
 
-  onSubmit():any {
+  async onSubmit() {
     const loginForm = new FormGroup({
       username: new FormControl(this.usr_name),
       password: new FormControl(this.passwd),
@@ -39,7 +39,7 @@ export class AccountLoginPage implements OnInit {
     } 
     else{
       // console.log(loginForm.value)
-      this.loadingCtrl.create({
+      await this.loadingCtrl.create({
         message: 'กำลังเข้าสู่ระบบ PICXEL',
         spinner: "dots"
       }).then((res) => {
@@ -47,7 +47,7 @@ export class AccountLoginPage implements OnInit {
       })
 
       this.userServ.ReqLogin(loginForm.value)
-      .subscribe((res) => {
+      .subscribe( async (res) => {
         console.log(res)
         this.userServ.ReqUserDetail(this.usr_name).subscribe((res) => {
           console.log(res._id)
@@ -61,7 +61,7 @@ export class AccountLoginPage implements OnInit {
         localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         console.log(localStorage.getItem('tkTime'))
 
-        this.loadingCtrl.dismiss().then((res) => {
+        await this.loadingCtrl.dismiss().then((res) => {
           console.log('Login Success!', res);
         }).catch((error) => {
           console.log('error', error);

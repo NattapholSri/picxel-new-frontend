@@ -46,6 +46,11 @@ export class CommentPostComponent implements OnInit {
             comment_detail.usr_profile_pic = res.profile_pic
             comment_detail.usr_name = res.username
           })
+
+          let raw_create_time = new Date(comment_detail.createdAt)
+          let raw_update_time = new Date(comment_detail.updatedAt)
+          comment_detail.createdAt = raw_create_time.toLocaleString('th-TH',{hour:'numeric',minute:'numeric', year: '2-digit', month: 'short', day: 'numeric'})
+          comment_detail.updatedAt = raw_update_time.toLocaleString('th-TH',{hour:'numeric',minute:'numeric', year: '2-digit', month: 'short', day: 'numeric'})
         }
       }
     })
