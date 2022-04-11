@@ -54,7 +54,12 @@ const routes: Routes = [
   {
     path: 'chat-page/:toUserId',
     loadChildren: () => import('./chat-page/chat-page.module').then( m => m.ChatPagePageModule)
+  },
+  {
+    path: 'add-card',
+    loadChildren: () => import('./function-page/add-card/add-card.module').then( m => m.AddCardPageModule)
   }
+
 
 
 
