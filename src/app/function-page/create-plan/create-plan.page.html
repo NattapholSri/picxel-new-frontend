@@ -21,11 +21,15 @@
     </ion-item>
     <ion-item>
       <ion-text>ระยะเวลาของ Plan</ion-text>
-      <ion-range slot="end" min="1" max="24" step="1" snaps="true" [(ngModel)]="month" [pin]="true">
+      <ion-range slot="end" min="1" max="24" step="1" snaps="true" [(ngModel)]="time" [pin]="true">
         <ion-icon name="calendar" slot="start"></ion-icon>
         <ion-item slot="end">
-          <ion-input type="number" min="1" max="24" [(ngModel)]="month"></ion-input>
-          <ion-label> เดือน</ion-label>
+          <ion-input type="number" min="1" max="30" [(ngModel)]="time"></ion-input>
+          <ion-text>:</ion-text>
+          <ion-select placeholder="หน่วยเวลา" [(ngModel)]="time_type">
+            <ion-select-option value="month">เดือน</ion-select-option>
+            <ion-select-option value="day">วัน</ion-select-option>
+          </ion-select>
           </ion-item>
       </ion-range>
     </ion-item>

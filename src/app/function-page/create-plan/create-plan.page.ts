@@ -16,7 +16,10 @@ export class CreatePlanPage {
   plan_name: string
 
   price: number = 100
-  month: number = 6
+  time: number = 6
+
+  time_type:string = 'month'
+  user_data:any = {}
 
   constructor(
     private userServ: UserService,
@@ -25,6 +28,11 @@ export class CreatePlanPage {
     private router:Router,
     private ngZone:NgZone) { 
       this.userServ.AutoLogout()
+      let user_id = localStorage.getItem('current_log_uid')
+      this.userServ.ReqUserDetail(user_id).subscribe((res) => {
+        console.log(res)
+        this.user_data = res
+      })
     }
 
 
@@ -46,18 +54,21 @@ export class CreatePlanPage {
         alert('plan มีราคาเกินกำหนด ราคาของ plan จะถูกปรับมาลงที่ 1000 บาท/เดือน')
       }
       //plan's duration
-      if(this.month < 1){
-        this.month = 1
+      if(this.time < 1){
+        this.time = 1
       }
-      else if(this.month > 24){
-        this.month =24
+      else if(this.time > 24){
+        this.time =24
         alert('plan มีระยะเวลาเกินกำหนด ระยะเวลาของ plan จะถูกปรับมาลงที่ 24 เดือน')
       }
 
       let planForm = new FormGroup({
         // plan_name: new FormControl(this.plan_name),
         price : new FormControl(this.price),
-        monthCount : new FormControl(this.month),
+        every : new FormControl(this.time),
+        currency: new FormControl('THB'),
+        period: new FormControl(this.time_type),
+        omise_recipient_id: new FormControl()
       })
       console.log(planForm.value)
       this.subPlanServ.createPlan(planForm.value)

@@ -2,20 +2,8 @@ import { Injectable } from '@angular/core';
 import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
+import { planData,subScriptionData } from '../data-model/subscription.model'
 
-export interface planData{
-  _id?: string;
-  createdBy?: string;
-  price?: number;
-  monthCount?: number;
-  plan_name?: string;
-}
-
-export interface subScriptionData{
-  planId?: string;
-  createdBy?: string;
-  subId?: string;
-}
 
 @Injectable({
   providedIn: 'root'
