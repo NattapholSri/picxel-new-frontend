@@ -14,8 +14,12 @@ export class EditPlanPage {
 
   currentUser: string = localStorage.getItem('usr_login')
 
+
   price: number
-  month: number
+  time: number
+
+  time_type:string
+
 
   constructor(
     private userServ: UserService,
@@ -27,33 +31,37 @@ export class EditPlanPage {
       this.userServ.AutoLogout()
       this.plan = JSON.parse(localStorage.getItem('selected-plan'))
       this.price = this.plan.price
-      this.month = this.plan.monthCount
+      this.time = this.plan.every
+      this.time_type = this.plan.period
     }
 
 
   onSubmit(){
     
-      if (this.price < 10){
-        this.price = 10
-      }
-      else if(this.price > 1000){
-        this.price = 1000
-        alert('plan มีราคาเกินกำหนด ราคาของ plan จะถูกปรับมาลงที่ 1000 บาท/เดือน')
-      }
-      //plan's duration
-      if(this.month < 1){
-        this.month = 1
-      }
-      else if(this.month > 24){
-        this.month =24
-        alert('plan มีระยะเวลาเกินกำหนด ระยะเวลาของ plan จะถูกปรับมาลงที่ 24 เดือน')
-      }
+    if (this.price < 10){
+      this.price = 10
+    }
+    else if(this.price > 1000){
+      this.price = 1000
+      alert('plan มีราคาเกินกำหนด ราคาของ plan จะถูกปรับมาลงที่ 1000 บาท/เดือน')
+    }
+    //plan's duration
+    if(this.time < 1){
+      this.time = 1
+    }
+    else if(this.time > 30){
+      this.time = 30
+      alert('plan มีระยะเวลาเกินกำหนด ระยะเวลาของ plan จะถูกปรับมาลงที่ค่าสูงสุดที่สามารถกำหนดได้')
+    }
 
       let updatePlan_Form = new FormGroup({
-        planId : new FormControl(this.plan._id),
         price : new FormControl(this.price),
-        monthCount : new FormControl(this.month),
+        every : new FormControl(this.time),
+        currency: new FormControl(this.plan.currency),
+        period: new FormControl(this.time_type),
+        omise_recipient_id: new FormControl()
       })
+
       console.log(updatePlan_Form.value)
       this.subPlanServ.updatePlan(updatePlan_Form.value)
       .subscribe((res) => {

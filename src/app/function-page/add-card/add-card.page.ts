@@ -5,6 +5,8 @@ import { AlertController } from '@ionic/angular';
 import { environment } from 'src/environments/environment'
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
+import { UserService } from 'src/app/services/api/user.service';
+import { SubscriptPlanService } from 'src/app/services/api/subscript-plan.service';
 declare var Omise: any;
 
 @Component({
@@ -15,14 +17,23 @@ declare var Omise: any;
 export class AddCardPage implements OnInit {
 
   omise_public_key = environment.omise_pub_key
+  user_data:any = {}
 
   constructor(
     private router:Router,
     private ngZone:NgZone,
-    private alertCtrl:AlertController,
     public formBulider: FormBuilder,
-    private paymentServ:PaymentsService
-  ) { }
+    private paymentServ:PaymentsService,
+    private userServ: UserService,
+    private subPlanServ: SubscriptPlanService,
+  ) { 
+    this.userServ.AutoLogout()
+    let user_id = localStorage.getItem('current_log_uid')
+    this.userServ.ReqUserDetail(user_id).subscribe((res) => {
+        console.log(res)
+        this.user_data = res
+    })
+  }
 
   ngOnInit() {
   }

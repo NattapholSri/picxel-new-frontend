@@ -7,6 +7,7 @@ import { AlertController, PopoverController } from '@ionic/angular';
 import { PostingService } from 'src/app/services/api/posting.service';
 
 import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
+import { ManageOmiseComponent } from 'src/app/components/subscription/manage-omise/manage-omise.component';
 
 @Component({
   selector: 'app-account-edit',
@@ -28,6 +29,8 @@ export class AccountEditPage implements OnInit {
 
   tempTagSearch: any[] = [];
   searchTagValue: string
+
+  user_omise_id: string
 
   constructor(
     public formBulider: FormBuilder,
@@ -60,6 +63,13 @@ export class AccountEditPage implements OnInit {
         if(usr_data.interests != undefined || usr_data.interests.length !== 0){
           this.interest_list = usr_data.interests
           //this.addTagData(usr_data.interests)
+        }
+
+        if (usr_data.omise_customer_id != undefined){
+          this.user_omise_id = usr_data.omise_customer_id
+        }
+        else{
+          this.user_omise_id = undefined
         }
       })
   }
@@ -248,6 +258,16 @@ export class AccountEditPage implements OnInit {
       component: PlanListComponent,
       dismissOnSelect: true,
       // componentProps: { userId :this.user_id }
+    });
+    await popover.present();
+  }
+
+  async callPaymentServ(){
+
+    const popover = await this.popOverCtrl.create({
+      component: ManageOmiseComponent,
+      dismissOnSelect: true,
+      componentProps: { customer : this.user_omise_id }
     });
     await popover.present();
   }

@@ -37,15 +37,7 @@ export class CreatePlanPage {
 
 
   onSubmit(){
-    /* if(this.plan_name == '' || this.plan_name == undefined){
-      alert('ยังไม่ได้ตั้งชื่อ Plan')
-      console.log('exited submit function')
-    } */
 
-    
-    //else{
-      //limit plan's input value
-      //plan's price
       if (this.price < 10){
         this.price = 10
       }
@@ -57,13 +49,12 @@ export class CreatePlanPage {
       if(this.time < 1){
         this.time = 1
       }
-      else if(this.time > 24){
-        this.time =24
-        alert('plan มีระยะเวลาเกินกำหนด ระยะเวลาของ plan จะถูกปรับมาลงที่ 24 เดือน')
+      else if(this.time > 30){
+        this.time = 30
+        alert('plan มีระยะเวลาเกินกำหนด ระยะเวลาของ plan จะถูกปรับมาลงที่ค่าสูงสุดที่สามารถกำหนดได้')
       }
 
       let planForm = new FormGroup({
-        // plan_name: new FormControl(this.plan_name),
         price : new FormControl(this.price),
         every : new FormControl(this.time),
         currency: new FormControl('THB'),
