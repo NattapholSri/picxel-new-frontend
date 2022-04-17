@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AccountEditPageRoutingModule } from './account-edit-routing.module';
 
 import { AccountEditPage } from './account-edit.page';
-import { SubscriptModule } from 'src/app/components/subscription/subscipt/subscript.module';
+import { SubscriptModule } from 'src/app/components/subscription/subscript.module';
 
 @NgModule({
   imports: [
