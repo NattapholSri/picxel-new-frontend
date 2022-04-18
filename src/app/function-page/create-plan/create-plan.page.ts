@@ -38,8 +38,8 @@ export class CreatePlanPage {
 
   onSubmit(){
 
-      if (this.price < 10){
-        this.price = 10
+      if (this.price < 25){
+        this.price = 25
       }
       else if(this.price > 1000){
         this.price = 1000
