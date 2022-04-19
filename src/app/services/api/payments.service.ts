@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
+import { omiseRecipt } from '../data-model/omise.model';
 
 @Injectable({
   providedIn: 'root'
@@ -113,7 +114,6 @@ export class PaymentsService {
   addSchedule(omise_card_token:string): Observable<any>{
     let cardTokenData:any = {omiseToken:omise_card_token}
 
-
     let API_URL = `${this.backend_post_API}/payment/schedule`;
 
     let jsonToken = this.loadJwt()
@@ -132,12 +132,35 @@ export class PaymentsService {
 
   }
 
-  createRecipient(){
+  createRecipient(data:omiseRecipt){
 
+    let API_URL = `${this.backend_post_API}/payment/recipient`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL,data,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
-  updateRecipient(){
-    
+  updateRecipient(data:omiseRecipt){
+    let API_URL = `${this.backend_post_API}/payment/recipient`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.put(API_URL,data,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
 }
