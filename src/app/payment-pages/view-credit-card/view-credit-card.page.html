@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="'/account-edit'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>จัดการกับบัตรเครดิต</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let card of card_list">
+      <ion-label>
+        <h4>{{card.brand}}</h4>
+        <h5>{{card.name}}</h5>
+        <p>เลขชุดสุดท้ายของ Card: {{card.last_digits}}</p>
+      </ion-label>
+      <ion-buttons>
+        <ion-button (click)="attentionCardAction(card.id)">
+          <ion-icon name="trash-bin"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

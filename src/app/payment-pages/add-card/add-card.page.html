@@ -19,22 +19,25 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>name</ion-label>
+    <ion-label>ชื่อผู้ถือ card:</ion-label>
     <ion-input type="text" [(ngModel)]="input_card_name"></ion-input>
   </ion-item>
   
   <ion-item>
-    <ion-label>number</ion-label>
-    <ion-input placeholder="16 digit" minlength="16" maxlength="16" type="text" [(ngModel)]="input_card_number"></ion-input>
+    <ion-label>หมายเลข card:</ion-label>
+    <ion-input placeholder="16 digit/16 หลัก" minlength="16" maxlength="16" type="text" [(ngModel)]="input_card_number"></ion-input>
   </ion-item>
   
   <ion-item>
-    <ion-label>security code</ion-label>
-    <ion-input placeholder="cvc" type="number" minlength="3" maxlength="3" [(ngModel)]="input_card_cvc"></ion-input>
+    <ion-label>security code:</ion-label>
+    <ion-input placeholder="เลข cvc 3 หลัก" type="number" minlength="3" maxlength="3" [(ngModel)]="input_card_cvc"></ion-input>
   </ion-item>
 
+  <ion-button [routerLink]="'/account-edit'">
+    กลับหน้าเดิม
+  </ion-button>
   <ion-button (click)="onSubmit()">
-    send
+    เพิ่ม Card
   </ion-button>
 
 </ion-content>

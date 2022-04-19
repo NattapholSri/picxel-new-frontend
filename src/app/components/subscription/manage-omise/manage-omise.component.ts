@@ -55,7 +55,7 @@ export class ManageOmiseComponent implements OnInit {
         },{
           text: 'จัดการบัตรเครดิต',
           handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/view-user-card'))
+            this.ngZone.run(() => this.router.navigateByUrl('/view-credit-card/'+this.customer))
           }
         }
       ]

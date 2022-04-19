@@ -80,8 +80,7 @@ export class PaymentsService {
   deleteCustomerCard(card_id:string): Observable<any>{
     let cardTokenData:any = {cardId:card_id}
 
-
-    let API_URL = `${this.backend_post_API}/payment/customer-card`;
+    let API_URL = `${this.backend_post_API}/payment/card`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -97,7 +96,7 @@ export class PaymentsService {
 
   listCustomerCard(): Observable<any>{
 
-    let API_URL = `${this.backend_post_API}/payment/customer-card`;
+    let API_URL = `${this.backend_post_API}/payment/customer-cards`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -127,6 +126,18 @@ export class PaymentsService {
     }),
     catchError(this.handleError)
     )
+  }
+  
+  listSchedule(){
+
+  }
+
+  createRecipient(){
+
+  }
+
+  updateRecipient(){
+    
   }
 
 }
