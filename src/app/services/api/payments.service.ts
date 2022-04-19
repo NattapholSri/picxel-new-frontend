@@ -43,14 +43,15 @@ export class PaymentsService {
   // Work with Omise service
   // need to change structure if change service
 
-  createCustomer(): Observable<any>{
+  createCustomer(){
     let API_URL = `${this.backend_post_API}/payment/customer`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
+    console.log(authMessage)
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
 
-    return this.httpClient.post(API_URL,{headers:tokenHeaders})
+    return this.httpClient.post(API_URL,undefined,{headers:tokenHeaders})
     .pipe(map((res:any) => {
       return res || {}
     }),

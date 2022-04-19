@@ -8,13 +8,13 @@
   <ion-item>
     <ion-label>expiration month</ion-label>
     <ion-select [(ngModel)]="expiration_month">
-      <ion-select-option *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12]" [value]="number"></ion-select-option>
+      <ion-select-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12]" [value]="number">{{number}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>expiration year</ion-label>
     <ion-select [(ngModel)]="expiration_year">
-      <ion-select-option *ngFor="let number of year_number" [value]="number"></ion-select-option>
+      <ion-select-option *ngFor="let number of year_number" [value]="number">{{number}}</ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -32,5 +32,9 @@
     <ion-label>security code</ion-label>
     <ion-input placeholder="cvc" type="number" minlength="3" maxlength="3" [(ngModel)]="input_card_cvc"></ion-input>
   </ion-item>
+
+  <ion-button (click)="onSubmit()">
+    send
+  </ion-button>
 
 </ion-content>

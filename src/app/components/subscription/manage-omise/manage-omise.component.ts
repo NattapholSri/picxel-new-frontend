@@ -35,7 +35,7 @@ export class ManageOmiseComponent implements OnInit {
 
   createOmiseAccount(){
     this.paymentServ.createCustomer().subscribe((res) => {
-      console.log('success')
+      console.log('success ' + res)
       location.reload()
     },(err) => console.log(err))
   }

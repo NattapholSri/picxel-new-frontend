@@ -69,6 +69,8 @@ export class AddCardPage implements OnInit {
       function (statusCode:any, response:any) {
         console.log("it works");
         console.log(response);
+
+        
       }
     )
 
