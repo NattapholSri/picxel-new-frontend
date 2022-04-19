@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment'
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
 import { UserService } from 'src/app/services/api/user.service';
-import { SubscriptPlanService } from 'src/app/services/api/subscript-plan.service';
 declare var Omise: any;
 
 @Component({
@@ -24,8 +23,8 @@ export class AddCardPage implements OnInit {
   this_year = new Date().getFullYear()
 
   
-  expiration_month: 1
-  expiration_year: 2022
+  expiration_month:number = 1
+  expiration_year:number = 2022
 
   input_card_name:string
   input_card_number:string

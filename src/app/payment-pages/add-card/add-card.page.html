@@ -30,7 +30,7 @@
   
   <ion-item>
     <ion-label>security code:</ion-label>
-    <ion-input placeholder="เลข cvc 3 หลัก" type="number" minlength="3" maxlength="3" [(ngModel)]="input_card_cvc"></ion-input>
+    <ion-input placeholder="เลข cvc 3 หลัก" type="number" max="999" [(ngModel)]="input_card_cvc"></ion-input>
   </ion-item>
 
   <ion-button [routerLink]="'/account-edit'">
