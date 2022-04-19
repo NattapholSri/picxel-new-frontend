@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.picxelplatform.ionic;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -1,5 +1,5 @@
 {
-	"appId": "com.picxel-platform-kmutnb.angular-ionic",
+	"appId": "com.picxelplatform.ionic",
 	"appName": "picxel-new-frontend",
 	"webDir": "www",
 	"bundledWebRuntime": false
