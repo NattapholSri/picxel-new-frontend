@@ -5,5 +5,41 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>ชื่อผู้รับเงิน</ion-label>
+    <ion-input type="text" [(ngModel)]="reciptData.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>อีเมล์</ion-label>
+    <ion-input type="text" [(ngModel)]="reciptData.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>ประเภทบัญชี</ion-label>
+    <ion-input type="text" [(ngModel)]="reciptData.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>ธนาคาร:</ion-label>
+    <ion-input placeholder="เลข cvc 3 หลัก" type="number" max="999" [(ngModel)]="reciptData.bank_account.brand"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>ชื่อบัญชี</ion-label>
+    <ion-input type="text" [(ngModel)]="reciptData.bank_account.name"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>หมายเลขบัญชี</ion-label>
+    <ion-input placeholder="10 digit/10 หลัก" minlength="10" maxlength="10" type="text" [(ngModel)]="reciptData.bank_account.number"></ion-input>
+  </ion-item>
+
+  <ion-button [routerLink]="'/account-edit'">
+    กลับหน้าเดิม
+  </ion-button>
+  <ion-button (click)="submit()">
+    เพิ่มบัญชีในการรับเงิน
+  </ion-button>
 
 </ion-content>

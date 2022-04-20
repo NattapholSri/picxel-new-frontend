@@ -113,20 +113,4 @@ export class AddCardPage implements OnInit {
 
   }
 
-  sendToBackend(token:string){
-    this.paymentServ.addCustomerCard(token).subscribe(
-      async (res) => {
-        console.log(res)
-        await this.loadingCtrl.dismiss().then((res) => {
-          console.log('Done', res);
-        }).catch((error) => {
-          console.log('error', error);
-        })
-        alert('add card complete')
-        this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
-      },
-      (err) => console.log(err)
-    )
-  }
-
 }
