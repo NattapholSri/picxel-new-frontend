@@ -13,4 +13,6 @@ export interface subScriptionData{
     planId?: string;
     createdBy?: string;
     subId?: string;
+    cardId?: string;
+    reCount?: number;
 }

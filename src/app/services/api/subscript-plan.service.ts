@@ -94,7 +94,7 @@ export class SubscriptPlanService {
   }
 
   createSubscription(subData:subScriptionData){
-    let API_URL = `${this.backend_post_API}/subscription/subscribe`;
+    let API_URL = `${this.backend_post_API}/payment/subscribe`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -108,7 +108,9 @@ export class SubscriptPlanService {
     )
   }
 
-  updateSubscription(subData:subScriptionData){
+  // unused/legacy
+
+ /*  updateSubscription(subData:subScriptionData){
     let API_URL = `${this.backend_post_API}/subscription/update`;
   
     let jsonToken = this.loadJwt()
@@ -121,12 +123,10 @@ export class SubscriptPlanService {
       }),
     catchError(this.handleError)
     )
-  }
-
-  // unused/legacy
+  } */
 
   deleteSubscription(subData:subScriptionData){
-    let API_URL = `${this.backend_post_API}/subscription/delete`;
+    let API_URL = `${this.backend_post_API}/payment/unsubscribe`;
   
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -164,5 +164,19 @@ export class SubscriptPlanService {
     )
   }
 
+  listSubscription(){
+    let API_URL = `${this.backend_post_API}/payment/customer-schedules`;
+  
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+  
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders})
+      .pipe(map((res:any) => {
+        return res || {}
+      }),
+    catchError(this.handleError)
+    )
+  }
 
 }
