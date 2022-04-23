@@ -14,7 +14,3 @@ export interface subScriptionData{
     createdBy?: string;
     subId?: string;
 }
-
-export interface OmiseData{
-
-}
