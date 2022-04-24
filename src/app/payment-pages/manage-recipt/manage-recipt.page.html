@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="'/account-edit'"></ion-back-button>
+    </ion-buttons>
     <ion-title>manage-recipt</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -8,8 +11,15 @@
   <ion-list>
     <ion-item *ngFor="let recipient of recipt_list">
       <ion-label>
-        List
+        <h4>{{recipient.bank_account.brand}}</h4>
+        <h5>{{recipient.bank_account.name}}</h5>
+        <p>เลข 4 หลักสุดท้ายของบัญชี: {{recipient.bank_account.last_digits}}</p>
       </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="attentionReciptAction(recipient.id)">
+          <ion-icon name="trash-bin"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>

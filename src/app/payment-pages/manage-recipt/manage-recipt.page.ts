@@ -26,21 +26,31 @@ export class ManageReciptPage implements OnInit {
   ) {
     this.userServ.AutoLogout()
 
-    /* this.paymentServ.listCustomerRecipt().subscribe(
+    this.paymentServ.getCustomerReciptInfo().subscribe(
       (res) => {
-        console.log(res.list.data)
-        //this.recipt_list = res.list.data
+        console.log(res.customer.metadata.recipients)
+        let recipt_data = res.customer.metadata.recipients
+        let recipt_key = Object.keys(recipt_data)
+        console.log(recipt_key)
+        for (let key of recipt_key){
+          this.paymentServ.getRecipientInfo(key).subscribe(
+            (res) =>{
+              console.log(res.resp)
+              this.recipt_list.push(res.resp)
+            }
+          )
+        }
       }
-    ) */
+    )
   }
 
   ngOnInit() {
   }
 
-  async attentionReciptAction(card_tk_id:string){
-    console.log(card_tk_id)
+  async attentionReciptAction(tk_id:string){
+    console.log(tk_id)
     const alert = await this.alertCtrl.create({
-      header: 'ลบบัตรเครดิตนี้ ?',
+      header: 'ลบบัญชีนี้ ?',
       buttons: [
         {
         text: 'ยกเลิก',
@@ -48,7 +58,7 @@ export class ManageReciptPage implements OnInit {
         },{
           text: 'ลบ',
           handler: () => {
-            this.deleteRecipt(card_tk_id)
+            this.deleteRecipt(tk_id)
           }
         }
       ]
@@ -59,8 +69,8 @@ export class ManageReciptPage implements OnInit {
   }
 
   deleteRecipt(card_tk_id:string){
-    let data: omiseRecipt
-    this.paymentServ.updateRecipient(data).subscribe(
+    console.log(card_tk_id)
+    this.paymentServ.deleteRecipient(card_tk_id).subscribe(
       (res) => {
         console.log(res)
         location.reload()

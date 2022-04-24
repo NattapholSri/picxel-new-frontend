@@ -30,7 +30,7 @@
   <ion-item>
     <ion-label>ธนาคาร</ion-label>
     <ion-select slot="end" placeholder="เลือกธนาคาร" [(ngModel)]="reciptData.bank_account.brand">
-      <ion-select-option *ngFor="let bank of bankList" value="{{bank.abbriviation}}">{{bank.bankname}}</ion-select-option>
+      <ion-select-option *ngFor="let bank of bankList" value="{{bank.bankcode}}">{{bank.bankname}}</ion-select-option>
     </ion-select>
   </ion-item>
 

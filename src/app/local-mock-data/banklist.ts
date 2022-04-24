@@ -2,17 +2,20 @@
 import { bankName } from "../services/data-model/bankname.model"
 
 export const BankNameList: bankName[] = [
-    { bankname: 'ธนาคารไทยพาณิชย์', abbriviation: 'scb' },
-    { bankname: 'ธนาคารกรุงเทพ', abbriviation: 'bbl' },
-    { bankname: 'ธนาคารกสิกรไทย', abbriviation: 'kbank' },
-    { bankname: 'ธนาคารยูโอบี', abbriviation: 'uob' },
-    { bankname: 'ธนาคารกรุงศรีอยุธยา', abbriviation: 'bay' },
-    { bankname: 'ธนาคารกรุงไทย', abbriviation: 'ktb' },
-    { bankname: 'ธนาคารทหารไทย', abbriviation: 'tmb' },
-    { bankname: 'ธนาคารธนชาต', abbriviation: 'tbank' },
-    { bankname: 'ธนาคารรซีไอเอ็มบีไทย', abbriviation: 'cimb' },
-    { bankname: 'ธนาคารแลนด์แอนด์เฮ้าส์', abbriviation: 'lh' },
-    { bankname: 'ธนาคารออมสิน', abbriviation: 'gsb' },
-    { bankname: 'ธนาคารเกียรตินาคิน', abbriviation: 'kkp' },
+    { bankname: 'ธนาคารไทยพาณิชย์', bankcode: 'scb' },
+    { bankname: 'ธนาคารกรุงเทพ', bankcode: 'bbl' },
+    { bankname: 'ธนาคารกสิกรไทย', bankcode: 'kbank' },
+    { bankname: 'ธนาคารยูโอบี', bankcode: 'uob' },
+    { bankname: 'ธนาคารกรุงศรีอยุธยา', bankcode: 'bay' },
+    { bankname: 'ธนาคารกรุงไทย', bankcode: 'ktb' },
+    { bankname: 'ธนาคารทหารไทย-ธนชาต', bankcode: 'ttb' },
+    { bankname: 'ธนาคารรซีไอเอ็มบีไทย', bankcode: 'cimb' },
+    { bankname: 'ธนาคารแลนด์แอนด์เฮ้าส์', bankcode: 'lhb' },
+    { bankname: 'ธนาคารออมสิน', bankcode: 'gsb' },
+    { bankname: 'ธนาคารเกียรตินาคิน', bankcode: 'kk' },
+    { bankname: 'ธนาคาร HSBC (ไทย)', bankcode: 'hsbc' },
+    { bankname: 'ธนาคารสแตนดาร์ดชาร์เตอร์ด', bankcode: 'sc' },
+    { bankname: 'ธนาคารไทยเครดิต', bankcode: 'tcrb' },
+    { bankname: 'ธนาคารธนาคารทิสโก้', bankcode: 'tisco' },
 
   ]

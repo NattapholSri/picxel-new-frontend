@@ -148,14 +148,15 @@ export class PaymentsService {
     )
   }
 
-  updateRecipient(data:omiseRecipt){
+  deleteRecipient(data:string){
+    let reqForm = {respId: data}
     let API_URL = `${this.backend_post_API}/payment/recipient`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
 
-    return this.httpClient.put(API_URL,data,{headers:tokenHeaders})
+    return this.httpClient.delete(API_URL,{headers:tokenHeaders,body:reqForm})
     .pipe(map((res:any) => {
       return res || {}
     }),
@@ -163,15 +164,33 @@ export class PaymentsService {
     )
   }
 
-  listCustomerRecipt(){
+  // list specific customer recipt
 
-    let API_URL = `${this.backend_post_API}/payment/recipient`;
+  getCustomerReciptInfo(){
+
+    let API_URL = `${this.backend_post_API}/payment/customer`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
 
     return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  getRecipientInfo(recipt_tk_id:string){
+    let reqForm = {respId: recipt_tk_id}
+    let API_URL = `${this.backend_post_API}/payment/get-recipient`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL,reqForm,{headers:tokenHeaders})
     .pipe(map((res:any) => {
       return res || {}
     }),

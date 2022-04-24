@@ -1,4 +1,4 @@
 export interface bankName{
     bankname: string
-    abbriviation: string 
+    bankcode: string 
 }
