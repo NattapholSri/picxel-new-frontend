@@ -46,6 +46,10 @@ export class PlanListComponent {
     this.router.navigateByUrl('/edit-plan/'+plan._id)
   }
 
+  goToCreatePlan(){
+    this.router.navigateByUrl('/create-plan')
+  }
+
   async deletePlan(plan:any){
     console.log('deleting plan: ' + plan._id)
     await this.alertCtrl.create(

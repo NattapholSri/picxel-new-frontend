@@ -8,6 +8,11 @@
     <ion-item [button]="true" [detail]="false" (click)="gotoEditPage()" id="edit_profile_btn">
       <ion-label>แก้ไขโปรไฟล์</ion-label>
     </ion-item>
+    <ion-item [button]="true" (click)="callPlanList()">
+      <ion-label>
+        จัดการ plan
+      </ion-label>
+    </ion-item>
     <ion-item [button]="true" [detail]="false" (click)='userLogout()' id="logout_btn">
       <ion-label color="warning">ออกจากระบบ</ion-label>
     </ion-item>

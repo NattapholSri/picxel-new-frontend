@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-recipt</ion-title>
+    <ion-title>add-recipient</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,11 @@
 
   <ion-item>
     <ion-label>อีเมล์:</ion-label>
-    <ion-input type="email" [(ngModel)]="reciptData.email"></ion-input>
+    <ion-item slot="end">
+      <ion-label>อีเมล์เดียวกันกับบัญชี picxel</ion-label>
+      <ion-checkbox [(ngModel)]="useDefaultEmail" (ionChange)="changeToDefEmail()">ใช้อีเมล์เดียวกันกับบัญชี</ion-checkbox>
+    </ion-item>
+    <ion-input [disabled]="useDefaultEmail" type="email" [(ngModel)]="reciptData.email"></ion-input>
   </ion-item>
 
   <ion-item>

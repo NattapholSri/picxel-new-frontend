@@ -55,7 +55,8 @@ export class UserService {
   private isOwnAccount(accountName:string):any{
     let hasToken = localStorage.getItem('jwt') != undefined;
     let isAccont = localStorage.getItem('usr_login') == accountName;
-    return hasToken && isAccont
+    let isSameId = localStorage.getItem('current_log_uid') == accountName;
+    return hasToken && (isAccont || isSameId)
   }
 
   // can use username or user_id

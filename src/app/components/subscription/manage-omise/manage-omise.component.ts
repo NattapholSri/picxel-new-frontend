@@ -75,15 +75,16 @@ export class ManageOmiseComponent implements OnInit {
         },{
           text: 'เพิ่มช่องทางในการรับเงิน',
           handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/add-user-recipt'))
+            this.ngZone.run(() => this.router.navigateByUrl('add-recipient'))
           }
         },{
           text: 'จัดการช่องทางในการรับเงิน',
           handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/update-user-recipt'))
+            this.ngZone.run(() => this.router.navigateByUrl('manage-recipient'))
           }
         }
-      ]
+      ],
+      mode: "md",
     });
 
     await alert.present();

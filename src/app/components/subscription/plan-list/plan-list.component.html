@@ -1,4 +1,10 @@
 <ion-content>
+  <ion-toolbar>
+    <ion-header>
+      จัดการ plan
+    </ion-header>
+    <ion-button slot="primary" mode="md" (click)="goToCreatePlan()">สร้าง plan ใหม่</ion-button>
+  </ion-toolbar>
   <ion-list>
     <ion-list-header>plan-list works!</ion-list-header>
     <ion-item *ngFor="let plan of planList">

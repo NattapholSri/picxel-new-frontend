@@ -5,7 +5,7 @@ import { LoadingController } from '@ionic/angular';
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
 import { UserService } from 'src/app/services/api/user.service';
-import { omiseRecipt } from 'src/app/services/data-model/omise.model';
+import { omiseRecipt, recipientDetail } from 'src/app/services/data-model/omise.model';
 
 import { BankNameList } from 'src/app/local-mock-data/banklist';
 
@@ -21,7 +21,7 @@ export class AddReciptPage implements OnInit {
 
   user_data:any = {}
 
-  reciptData: omiseRecipt = {
+  reciptData: recipientDetail = {
     name: '',
     email: '',
     type: '',
@@ -32,6 +32,7 @@ export class AddReciptPage implements OnInit {
     }
   }
 
+  useDefaultEmail:boolean = true
 
   constructor(
     private router:Router,
@@ -45,10 +46,18 @@ export class AddReciptPage implements OnInit {
     this.userServ.ReqUserDetail(user_id).subscribe((res) => {
         console.log(res)
         this.user_data = res
-    })
+        this.changeToDefEmail()
+    })  
    }
 
   ngOnInit() {
+  }
+
+  changeToDefEmail(){
+    if (this.useDefaultEmail){
+      this.reciptData.email = this.user_data.email
+    }
+    console.log(this.reciptData.email)
   }
 
   checkMissingField():boolean{
@@ -67,12 +76,14 @@ export class AddReciptPage implements OnInit {
   }
 
   submit(){
+    this.changeToDefEmail()
     console.log(this.reciptData)
     if(this.checkMissingField()){
-      alert('กรอกข้อมูลไม่ โปรดตรวจสอบ')
+      alert('กรอกข้อมูลไม่ครบ โปรดตรวจสอบ')
     }
-    // else {
-    /* this.paymentServ.createRecipient(this.reciptData).subscribe(
+    else {
+    let sendForm:omiseRecipt = {recipient:this.reciptData}
+    this.paymentServ.createRecipient(sendForm).subscribe(
       (res) => {
         console.log(res)
         this.reciptData = {name: '',email: '',type: '',
@@ -85,7 +96,7 @@ export class AddReciptPage implements OnInit {
                           bank_account: {name:'',number:'',brand:''}}
         alert('เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ โปรดลองใหม่อีกครั้งหรือลองใหม่ภายหลัง')
       }
-    )}*/
+    )}
   } 
 
 }

@@ -62,12 +62,13 @@ const routes: Routes = [
   {
     path: 'view-credit-card/:omiseId',
     loadChildren: () => import('./payment-pages/view-credit-card/view-credit-card.module').then( m => m.ViewCreditCardPageModule)
-  },  {
-    path: 'add-recipt',
+  },
+  {
+    path: 'add-recipient',
     loadChildren: () => import('./payment-pages/add-recipt/add-recipt.module').then( m => m.AddReciptPageModule)
   },
   {
-    path: 'manage-recipt',
+    path: 'manage-recipient',
     loadChildren: () => import('./payment-pages/manage-recipt/manage-recipt.module').then( m => m.ManageReciptPageModule)
   }
 

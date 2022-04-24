@@ -163,4 +163,20 @@ export class PaymentsService {
     )
   }
 
+  listCustomerRecipt(){
+
+    let API_URL = `${this.backend_post_API}/payment/recipient`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
 }

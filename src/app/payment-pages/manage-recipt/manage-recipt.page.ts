@@ -26,12 +26,12 @@ export class ManageReciptPage implements OnInit {
   ) {
     this.userServ.AutoLogout()
 
-    this.paymentServ.listCustomerCard().subscribe(
+    /* this.paymentServ.listCustomerRecipt().subscribe(
       (res) => {
         console.log(res.list.data)
         //this.recipt_list = res.list.data
       }
-    )
+    ) */
   }
 
   ngOnInit() {

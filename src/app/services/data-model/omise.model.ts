@@ -1,4 +1,4 @@
-export interface omiseRecipt {
+export interface recipientDetail {
     name?: string;
 	email?: string;
 	type?: string;
@@ -9,5 +9,9 @@ export interface bankAccount {
     brand?: string;
 	number?: string;
 	name?: string;
+}
+
+export interface omiseRecipt{
+	recipient: recipientDetail
 }
   

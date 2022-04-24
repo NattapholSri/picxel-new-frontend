@@ -258,6 +258,7 @@ export class AccountEditPage implements OnInit {
       component: PlanListComponent,
       dismissOnSelect: true,
       // componentProps: { userId :this.user_id }
+      mode: "md",
     });
     await popover.present();
   }
@@ -267,7 +268,8 @@ export class AccountEditPage implements OnInit {
     const popover = await this.popOverCtrl.create({
       component: ManageOmiseComponent,
       dismissOnSelect: true,
-      componentProps: { customer : this.user_omise_id }
+      componentProps: { customer : this.user_omise_id },
+      mode: "md",
     });
     await popover.present();
   }
