@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  
   <ion-item>
     <ion-label>expiration month</ion-label>
     <ion-select [(ngModel)]="expiration_month">
@@ -31,6 +32,9 @@
   <ion-item>
     <ion-label>security code:</ion-label>
     <ion-input placeholder="เลข cvc 3 หลัก" type="number" max="999" [(ngModel)]="input_card_cvc"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-text>*รองรับแค่ Visa กับ MasterCard</ion-text>
   </ion-item>
 
   <ion-button [routerLink]="'/account-edit'">
