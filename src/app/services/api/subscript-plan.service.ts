@@ -143,7 +143,7 @@ export class SubscriptPlanService {
   // no token require
 
   searchPlan(userId:string){
-    let API_URL = `${this.backend_post_API}/subscription/plan-search?all=1&createdBy=${userId}`;
+    let API_URL = `${this.backend_post_API}/subscription/plan-search?all=1&userId=${userId}`;
 
     return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {

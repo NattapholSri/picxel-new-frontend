@@ -12,7 +12,7 @@
         ID:{{plan._id}}
         <p>สร้างเมื่อ {{plan.createdAt}}</p>
         <h4>ราคา {{plan.price}} บาท</h4>
-        <h5>ระยะเวลา {{plan.monthCount}} เดือน</h5>
+        <h5>ระยะเวลา {{plan.every}}&nbsp;{{plan.period}}</h5>
       </ion-label>
       <ion-buttons slot="end">
         <ion-button (click)="goToEditPlan(plan)">

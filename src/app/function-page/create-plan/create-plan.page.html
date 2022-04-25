@@ -33,6 +33,14 @@
           </ion-item>
       </ion-range>
     </ion-item>
+    <ion-item>
+      <ion-label>เลือกบัญชีที่ใช้ในการรับเงินเข้า</ion-label>
+      <ion-select [(ngModel)]="omise_resp_id">
+        <ion-select-option *ngFor="let recipient of recipt_list" value="{{recipient.id}}">
+            {{recipient.bank_account.bank_code}}:&nbsp;{{recipient.bank_account.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
   </div>
 
   <ion-button fill="outline" color="warning" (click)="cancelCreate()" id="cancel_btn">CANCEL</ion-button>

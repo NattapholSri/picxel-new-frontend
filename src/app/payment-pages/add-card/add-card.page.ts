@@ -76,13 +76,19 @@ export class AddCardPage implements OnInit {
     Omise.createToken(
       "card",
       creditCardForm,
-      (statusCode:any, response:any) => {
+      async (statusCode:any, response:any) => {
         if (response.object == "error") {
           // Display an error message.
           let message_text = "SET YOUR SECURITY CODE CHECK FAILED MESSAGE";
           if(response.object == "error") {
             message_text = response.message;
           }
+          await this.loadingCtrl.dismiss().then((res) => {
+            console.log('Done', res);
+          }).catch((error) => {
+            console.log('error', error);
+          })
+          alert('error')
         }
         else{
           console.log(response)

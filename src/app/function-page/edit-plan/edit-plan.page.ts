@@ -3,6 +3,9 @@ import { UserService } from 'src/app/services/api/user.service';
 import { SubscriptPlanService } from 'src/app/services/api/subscript-plan.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { PaymentsService } from 'src/app/services/api/payments.service';
+
 @Component({
   selector: 'app-edit-plan',
   templateUrl: './edit-plan.page.html',
@@ -14,6 +17,8 @@ export class EditPlanPage {
 
   currentUser: string = localStorage.getItem('usr_login')
 
+  omise_resp_id:string
+  recipt_list:any[] = []
 
   price: number
   time: number
@@ -26,17 +31,36 @@ export class EditPlanPage {
     private subPlanServ: SubscriptPlanService,
     public formBulider: FormBuilder,
     private router:Router,
-    private ngZone:NgZone) 
+    private ngZone:NgZone,
+    private paymentServ:PaymentsService, 
+    ) 
     { 
       this.userServ.AutoLogout()
       this.plan = JSON.parse(localStorage.getItem('selected-plan'))
       this.price = this.plan.price
       this.time = this.plan.every
       this.time_type = this.plan.period
+      this.omise_resp_id = this.plan.omise_recipient_id
+
+      this.paymentServ.getCustomerReciptInfo().subscribe(
+        (res) => {
+          let recipt_data = res.customer.metadata.recipients
+          let recipt_key = Object.keys(recipt_data)
+          console.log(recipt_key)
+          for (let key of recipt_key){
+            this.paymentServ.getRecipientInfo(key).subscribe(
+              (res) =>{
+                console.log(res.resp)
+                this.recipt_list.push(res.resp)
+              }
+            )
+          }
+        }
+      )
     }
 
 
-  onSubmit(){
+  onSubmit(plan_id:string){
     
     if (this.price < 25){
       this.price = 25
@@ -55,11 +79,12 @@ export class EditPlanPage {
     }
 
       let updatePlan_Form = new FormGroup({
+        planId: new FormControl(plan_id),
         price : new FormControl(this.price),
         every : new FormControl(this.time),
         currency: new FormControl(this.plan.currency),
         period: new FormControl(this.time_type),
-        omise_recipient_id: new FormControl()
+        omise_recipient_id: new FormControl(this.omise_resp_id)
       })
 
       console.log(updatePlan_Form.value)

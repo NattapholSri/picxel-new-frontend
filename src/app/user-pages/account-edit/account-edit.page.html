@@ -28,7 +28,7 @@
   </ion-item>
 
   <ion-item name="interested_tag">
-    <ion-text slot="start">แท็กที่สนใจ:</ion-text>
+    <ion-text>แท็กที่สนใจ:</ion-text>
     <ion-chip *ngFor="let tag_l of interest_list">
       <ion-label color="success">{{tag_l}}</ion-label>
       <ion-buttons><ion-button (click)="removeTag(tag_l)" slot="end">
