@@ -11,7 +11,7 @@
       <ion-label>
         ID:{{plan._id}}
         <p>สร้างเมื่อ {{plan.createdAt}}</p>
-        <h4>ราคา {{plan.price}} บาท</h4>
+        <h4>ราคา {{plan.price/100}} บาท</h4>
         <h5>ระยะเวลา {{plan.every}}&nbsp;{{plan.period}}</h5>
       </ion-label>
       <ion-buttons slot="end">

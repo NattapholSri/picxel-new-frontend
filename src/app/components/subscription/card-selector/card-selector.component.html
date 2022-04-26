@@ -1,0 +1,5 @@
+<ion-select (ionChange)="sendCardId($event)">
+  <ion-select-option *ngFor="let card of card_list" value="{{card.id}}">
+    {{card.brand}}: **** {{card.last_digits}}
+  </ion-select-option>
+</ion-select>

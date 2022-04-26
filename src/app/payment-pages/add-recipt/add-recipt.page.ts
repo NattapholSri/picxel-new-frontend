@@ -2,13 +2,11 @@ import { Component, OnInit,NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 
-
 import { PaymentsService } from 'src/app/services/api/payments.service';
 import { UserService } from 'src/app/services/api/user.service';
 import { omiseRecipt, recipientDetail } from 'src/app/services/data-model/omise.model';
 
 import { BankNameList } from 'src/app/local-mock-data/banklist';
-
 
 @Component({
   selector: 'app-add-recipt',

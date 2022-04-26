@@ -100,7 +100,7 @@ export class SubscriptPlanService {
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
 
-    return this.httpClient.post(API_URL, subData,{headers:tokenHeaders})
+    return this.httpClient.post(API_URL,subData,{headers:tokenHeaders})
     .pipe(map((res:any) => {
       return res || {}
     }),

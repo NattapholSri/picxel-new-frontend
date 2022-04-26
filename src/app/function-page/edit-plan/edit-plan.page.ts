@@ -37,7 +37,7 @@ export class EditPlanPage {
     { 
       this.userServ.AutoLogout()
       this.plan = JSON.parse(localStorage.getItem('selected-plan'))
-      this.price = this.plan.price
+      this.price = this.plan.price/100
       this.time = this.plan.every
       this.time_type = this.plan.period
       this.omise_resp_id = this.plan.omise_recipient_id
@@ -80,7 +80,7 @@ export class EditPlanPage {
 
       let updatePlan_Form = new FormGroup({
         planId: new FormControl(plan_id),
-        price : new FormControl(this.price),
+        price : new FormControl(this.price*100),
         every : new FormControl(this.time),
         currency: new FormControl(this.plan.currency),
         period: new FormControl(this.time_type),

@@ -82,7 +82,7 @@ export class CreatePlanPage {
 
       if (this.omise_resp_id != undefined && this.omise_resp_id != ''){
         let planForm:planData = ({
-        price : this.price,
+        price : this.price*100,
         every : this.time,
         currency: 'THB',
         period: this.time_type,

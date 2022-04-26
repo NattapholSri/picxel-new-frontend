@@ -70,7 +70,11 @@ const routes: Routes = [
   {
     path: 'manage-recipient',
     loadChildren: () => import('./payment-pages/manage-recipt/manage-recipt.module').then( m => m.ManageReciptPageModule)
+  },  {
+    path: 'confirm-subscription',
+    loadChildren: () => import('./payment-pages/confirm-subscription/confirm-subscription.module').then( m => m.ConfirmSubscriptionPageModule)
   }
+
 
 
 

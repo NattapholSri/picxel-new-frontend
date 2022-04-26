@@ -121,6 +121,7 @@ export class UserService {
     localStorage.removeItem('tkTime')
     localStorage.removeItem('user_login_data')
     localStorage.removeItem('current_log_uid')
+    localStorage.clear()
 
     return this.httpClient.delete(API_URL,{headers:tokenHeaders,responseType:"text"})
       .pipe(map((res:any) => {
@@ -150,6 +151,7 @@ export class UserService {
         localStorage.removeItem('usr_login')
         localStorage.removeItem('user_login_data')
         localStorage.removeItem('current_log_uid')
+        localStorage.clear()
 
         console.log('token timeout')
         this.router.navigateByUrl('/account-login')

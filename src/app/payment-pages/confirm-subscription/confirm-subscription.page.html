@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>confirm Subscription On plan ID:{{selected_plan._id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>
+      <h4>ราคา {{selected_plan.price/100}} บาท</h4>
+      <h5>ระยะเวลา {{selected_plan.every}}&nbsp;{{selected_plan.period}}</h5>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-item>
+      <ion-label position="stacked">จำนวนครั้งที่ต้องการ subscription</ion-label>
+      <ion-input type="number" min="1" [(ngModel)]="round"></ion-input>
+    </ion-item>    
+  </ion-item>
+  <ion-item>
+    <ion-label>เลือกบัตรเครดิตที่ใช้ในการชำระ:</ion-label>
+    <ion-select [(ngModel)]="card_id">
+      <ion-select-option *ngFor="let card of card_list" value="{{card.id}}">
+        {{card.brand}}: **** {{card.last_digits}}, {{card.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    ต้องชำระเงินทั้งสิ้นจำนวน: {{selected_plan.price * round / 100}} บาท
+  </ion-item>
+
+  <ion-button fill="outline" color="warning" (click)="revert()" id="cancel_btn">CANCEL</ion-button>
+  <ion-button (click)="attentionSub(selected_plan)">
+    ทำการ subscription plan นี้
+  </ion-button>
+
+</ion-content>
