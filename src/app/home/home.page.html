@@ -15,6 +15,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshThisPage($event)">
+    <ion-refresher-content
+      refreshingSpinner="lines"
+      refreshingText="กำลังโหลดหน้านี้ใหม่...">
+    </ion-refresher-content>
+  </ion-refresher>
   <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">PICXEL</ion-title>

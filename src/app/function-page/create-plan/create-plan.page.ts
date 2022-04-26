@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/api/user.service';
 import { SubscriptPlanService } from 'src/app/services/api/subscript-plan.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
 import { planData } from 'src/app/services/data-model/subscription.model';
@@ -34,7 +35,8 @@ export class CreatePlanPage {
     public formBulider: FormBuilder,
     private router:Router,
     private ngZone:NgZone,
-    private paymentServ:PaymentsService
+    private paymentServ:PaymentsService,
+    private toastCtrl:ToastController
     ) { 
       this.userServ.AutoLogout()
       let user_id = localStorage.getItem('current_log_uid')
@@ -47,6 +49,9 @@ export class CreatePlanPage {
           console.log(res.customer.metadata.recipients)
           let recipt_data = res.customer.metadata.recipients
           let recipt_key = Object.keys(recipt_data)
+          if (recipt_key.length === 0){
+            this.warningNoAccount()
+          }
           console.log(recipt_key)
           for (let key of recipt_key){
             this.paymentServ.getRecipientInfo(key).subscribe(
@@ -59,7 +64,7 @@ export class CreatePlanPage {
         }
       )
 
-    }
+  }
 
 
   onSubmit(){
@@ -82,7 +87,7 @@ export class CreatePlanPage {
 
       if (this.omise_resp_id != undefined && this.omise_resp_id != ''){
         let planForm:planData = ({
-        price : this.price*100,
+        price : this.price,
         every : this.time,
         currency: 'THB',
         period: this.time_type,
@@ -95,8 +100,8 @@ export class CreatePlanPage {
           console.log(res)
       
         //clear Data on Post box
-          //this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.currentUser))
-          this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
+          this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.currentUser))
+          //this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
         },
         (err) => {
           console.log(err)
@@ -105,9 +110,15 @@ export class CreatePlanPage {
       else{
         alert('missing recipient id')
       }
-
-      
     //}
+  }
+
+  async warningNoAccount() {
+    const toast = await this.toastCtrl.create({
+      message: 'ไม่มีบัญชีรับเงินที่ใช้ได้ กรุณาเพิ่มบัญชีก่อน',
+      duration: 5000
+    });
+    toast.present();
   }
 
   cancelCreate(){

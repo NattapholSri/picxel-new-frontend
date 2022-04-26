@@ -156,15 +156,12 @@ export class AccountDetailPage implements OnInit {
 
   async showUserMenu(){
     // console.log('clicked')
-
     const popover = await this.popOverCtrl.create({
       component: PopUserMenuComponent,
       dismissOnSelect: true,
       componentProps: { username :this.currentUserName }
     });
     await popover.present();
-  
-    const { role } = await popover.onDidDismiss();
     // console.log('onDidDismiss resolved with role', role);
   }
 
@@ -179,5 +176,15 @@ export class AccountDetailPage implements OnInit {
     await popover.present();
   
     // console.log('onDidDismiss resolved with role', role);
+  }
+
+  refreshThisPage(event){
+
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      location.reload();
+      event.target.complete();
+    }, 1000);
   }
 }

@@ -84,17 +84,41 @@
 
     <ion-row>
       <ion-col>
-
+        <h5>ดูได้เฉพาะ:</h5>
+      </ion-col>
+      <ion-col size="9">
+        
+      <ion-item>
+        <ion-segment [(ngModel)]="postBuyMode" (ionChange)="postModeShifter()">
+          <ion-segment-button value="0">
+            <ion-label>ทุกคน</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="1">
+            <ion-label>subscribe</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="2" [disabled]="safetyDisbale">
+            <ion-label>คนที่ซื้อโพสต์นี้</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <!-- <ion-toggle color="primary" slot="start" [(ngModel)]="subRequire" id=""></ion-toggle> -->
+      </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row size="10">
       <ion-item>
-        <ion-item>
-          <ion-label>เฉพาะผู้ที่ Subscription เท่านั้นจึงจะเห็นโพสต์นี้</ion-label>
-          <ion-toggle color="primary" slot="start" [(ngModel)]="subRequire" id="sub-require"></ion-toggle>
-        </ion-item>
-        <ion-button (click)="onSubmit()" name="postButton" id="postButton" slot="end">โพสต์</ion-button>
+        <ion-label>ราคาของโพสนี้(บาท):</ion-label>
+        <ion-input [disabled]="(!buyRequire)" type="number" min="25" max="1000" [(ngModel)]="postprice"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>เลือกบัญชีที่ใช้ในการรับเงินเข้า</ion-label>
+        <ion-select [disabled]="(!buyRequire)" [(ngModel)]="omise_resp_id">
+          <ion-select-option *ngFor="let recipient of recipt_list" value="{{recipient.id}}">
+            {{recipient.bank_account.bank_code}}:&nbsp;{{recipient.bank_account.name}}
+          </ion-select-option>
+        </ion-select>
       </ion-item>
     </ion-row>
+    <ion-row>
+      <ion-button (click)="onSubmit()" name="postButton" id="postButton">โพสต์</ion-button>
+    </ion-row>
   </ion-grid>
-</ion-card>

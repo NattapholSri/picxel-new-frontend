@@ -9,6 +9,13 @@ export interface PostData {
   pics?: string[];
   tags?: string[];
   requireSub?: boolean;
+  requirePurchase?: boolean;
+  purchase?: purchaseData
+}
+
+export interface purchaseData {
+  price: number;
+  omise_recipient_id: string;
 }
 
 export interface UserIdReq{

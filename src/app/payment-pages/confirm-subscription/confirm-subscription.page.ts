@@ -73,7 +73,7 @@ export class ConfirmSubscriptionPage implements OnInit {
     else{
       const alert = await this.alertCtrl.create({
       header: 'ยืนยันในการชำระเงิน',
-      message: `คุณจะต้องจ่ายเงินทั้งหมดจำนวน ${this.round * plan.price /100} บาท ต้องการดำเนินการต่อใช่หรือไม่`,
+      message: `คุณจะต้องจ่ายเงินทั้งหมดจำนวน ${this.round * plan.price} บาท ต้องการดำเนินการต่อใช่หรือไม่`,
       buttons: [
         {
         text: 'ยกเลิก',

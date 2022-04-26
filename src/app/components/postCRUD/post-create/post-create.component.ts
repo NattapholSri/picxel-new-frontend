@@ -1,8 +1,11 @@
 import { Component, NgZone } from '@angular/core';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
-import { PostingService } from 'src/app/services/api/posting.service';
+import { PostingService,PostData,purchaseData } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController } from '@ionic/angular';
+
+import { PaymentsService } from 'src/app/services/api/payments.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -27,19 +30,43 @@ export class PostCreateComponent {
   searchTagValue: string
 
   subRequire:boolean = false
+  buyRequire:boolean = false
+  postBuyMode: number = 0
 
+  recipt_list:any[] = []
+
+  postprice:number = 25
+  omise_resp_id:string
+
+  safetyDisbale:boolean = false
   constructor(
     public formBulider: FormBuilder,
-    
     private PostServ: PostingService,
     private alertCtrl: AlertController,
-    private tagServ: TagService
-  ) { /* this.tagServ.GetAll().subscribe((res) => {
-    let tagDatabase = res
-    this.knowTag = tagDatabase['content']
-    console.log(this.knowTag)
-  })
-     */
+    private tagServ: TagService,
+    private paymentServ: PaymentsService,
+    private toastCtrl:ToastController
+  ) { 
+    this.paymentServ.getCustomerReciptInfo().subscribe(
+      (res) => {
+        console.log(res.customer.metadata.recipients)
+        let recipt_data = res.customer.metadata.recipients
+        let recipt_key = Object.keys(recipt_data)
+        if (recipt_key.length === 0){
+          this.warningNoRespAccount()
+          this.safetyDisbale = true
+        }
+        console.log(recipt_key)
+        for (let key of recipt_key){
+          this.paymentServ.getRecipientInfo(key).subscribe(
+            (res) =>{
+              console.log(res.resp)
+              this.recipt_list.push(res.resp)
+            }
+          )
+        }
+      }
+    )
   }
 
   onSubmit(){
@@ -49,14 +76,38 @@ export class PostCreateComponent {
       postTag.push(item._id)
     }
     console.log(postTag)
-    let postForm = new FormGroup({
-      text : new FormControl(this.post_text),
-      pics : new FormControl(this.picture_list),
-      tags : new FormControl(postTag),
-      requireSub : new FormControl(this.subRequire)
-    })
-    console.log(postForm.value)
-    this.PostServ.CreatePost(postForm.value)
+    if (this.buyRequire != true && this.postBuyMode != 2){
+      var postForm:PostData = {
+        text : this.post_text,
+        pics : this.picture_list,
+        tags : postTag,
+        requireSub : this.subRequire,
+        requirePurchase: this.buyRequire
+      }
+    }
+    else{
+      if (this.postprice >= 25 && this.postprice <= 1000 && this.postprice != undefined  &&
+          this.omise_resp_id != undefined && this.omise_resp_id != '' 
+        ){
+        var reciptData:purchaseData = {price:this.postprice,omise_recipient_id:this.omise_resp_id}
+      }
+      else{
+        alert('error: no post price value or recipt')
+        return
+      }
+      
+      var postForm:PostData ={
+        text : this.post_text,
+        pics : this.picture_list,
+        tags : postTag,
+        requirePurchase: this.buyRequire,
+        purchase: reciptData,
+        requireSub : this.subRequire
+      }
+    }
+    
+    console.log(postForm)
+    this.PostServ.CreatePost(postForm)
     .subscribe((res) => {
       alert("Posted")
       console.log(res)
@@ -178,15 +229,29 @@ export class PostCreateComponent {
       let tagDatabase = res
       this.tempTagSearch = tagDatabase['content']
     })
-    //type 2 
+  }
 
-    /* for (let tag of this.knowTag){
-      if (tag['name'].toLowerCase().includes(this.searchTagValue.toLowerCase()) 
-          || tag['description'].toLowerCase().includes(this.searchTagValue.toLowerCase())){
-        this.tempTagSearch.push(tag)
-      }
-    } */
-    // console.log(this.tempTagSearch)
+  async warningNoRespAccount() {
+    const toast = await this.toastCtrl.create({
+      message: 'ไม่มีบัญชีรับเงินที่ใช้ได้ กรุณาเพิ่มบัญชีก่อน',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  postModeShifter(){
+    if(this.postBuyMode == 1){
+      this.subRequire = true
+      this.buyRequire = false
+    }
+    else if (this.postBuyMode == 2){
+      this.buyRequire = true
+      this.subRequire = false
+    }
+    else{
+      this.subRequire = false
+      this.buyRequire = false
+    }
   }
 
 }

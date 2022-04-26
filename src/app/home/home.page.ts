@@ -6,8 +6,6 @@ import { PostCreateComponent } from '../components/postCRUD/post-create/post-cre
 
 import { PopUserMenuComponent } from '../components/shared-components/pop-user-menu/pop-user-menu.component';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,6 +15,7 @@ export class HomePage {
   @ViewChild(PostCreateComponent) child: PostCreateComponent
    
   tokenOn:boolean
+  currentUserName = localStorage.getItem('usr_login')
 
   constructor(
     userServ: UserService,
@@ -32,11 +31,18 @@ export class HomePage {
     const popover = await this.popOverCtrl.create({
       component: PopUserMenuComponent,
       dismissOnSelect: true,
+      componentProps: { username :this.currentUserName }
     });
     await popover.present();
-  
-    const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
+
+  refreshThisPage(event){
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      location.reload();
+      event.target.complete();
+    }, 1000);
+  }
 }

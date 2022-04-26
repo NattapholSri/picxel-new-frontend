@@ -8,7 +8,7 @@
 
   <ion-item>
     <ion-label>
-      <h4>ราคา {{selected_plan.price/100}} บาท</h4>
+      <h4>ราคา {{selected_plan.price}} บาท</h4>
       <h5>ระยะเวลา {{selected_plan.every}}&nbsp;{{selected_plan.period}}</h5>
     </ion-label>
   </ion-item>
@@ -28,7 +28,7 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    ต้องชำระเงินทั้งสิ้นจำนวน: {{selected_plan.price * round / 100}} บาท
+    ต้องชำระเงินทั้งสิ้นจำนวน: {{selected_plan.price * round}} บาท
   </ion-item>
 
   <ion-button fill="outline" color="warning" (click)="revert()" id="cancel_btn">CANCEL</ion-button>

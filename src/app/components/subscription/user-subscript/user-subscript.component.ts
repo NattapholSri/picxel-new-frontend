@@ -3,7 +3,6 @@ import { SubscriptPlanService } from 'src/app/services/api/subscript-plan.servic
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PaymentsService } from 'src/app/services/api/payments.service';
-import { subScriptionData } from 'src/app/services/data-model/subscription.model';
 
 @Component({
   selector: 'app-user-subscript',
