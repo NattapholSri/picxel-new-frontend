@@ -85,10 +85,13 @@ export class PostUpdateComponent {
           this.paymentServ.getRecipientInfo(key).subscribe(
             (res) =>{
               console.log(res.resp)
+              let original_text:string = res.resp.bank_account.bank_code
+              res.resp.bank_account.bank_code = original_text.toUpperCase()
               this.recipt_list.push(res.resp)
             }
           )
         }
+        this.bankCodetoUpper()
       }
     )
   }
@@ -294,6 +297,13 @@ export class PostUpdateComponent {
     else{
       this.subRequire = false
       this.buyRequire = false
+    }
+  }
+
+  bankCodetoUpper(){
+    for (let recipient of this.recipt_list){
+      let original_text:string = recipient.bank_account.bank_code
+      recipient.bank_account.bank_code = original_text.toUpperCase()
     }
   }
   
