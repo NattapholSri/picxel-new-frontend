@@ -121,6 +121,11 @@
         </ion-select>
       </ion-item>
     </ion-row>
+    <ion-row *ngIf="safetyDisbale">
+      <ion-text color="warning">
+        <h6>*ต้องสมัครบริการชำระเงินก่อนหรือต้องเพิ่มบัญชีที่ใช้ในการรับเงินเข้าก่อน จึงจะสามารถขายผลงานได้</h6>
+      </ion-text>
+    </ion-row>
     <ion-row>
       <ion-button (click)="onSubmit()" name="postButton" id="postButton">โพสต์</ion-button>
     </ion-row>

@@ -56,7 +56,17 @@ export class AccountLoginPage implements OnInit {
         localStorage.setItem('jwt', JSON.stringify(res)) // token
         
         localStorage.setItem('usr_login',this.usr_name) // user's name who is logging in
-        let tokenTimeout = moment().add(29, 'minutes')
+        let tokenTimeout = moment().add(35, 'minutes')
+
+        // if has omise_customer
+        if (res.omise_customer_id != undefined && res.omise_customer_id != null){
+          console.log('saved omise id')
+          localStorage.setItem('current_omise_customer',res.omise_customer_id)
+        }
+        else{
+          console.log('no omise id')
+          localStorage.removeItem('current_omise_customer')
+        }
 
         localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         console.log(localStorage.getItem('tkTime'))

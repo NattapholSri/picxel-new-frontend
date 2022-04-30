@@ -110,13 +110,18 @@
         <ion-input [disabled]="(!buyRequire)" type="number" min="25" max="1000" [(ngModel)]="postprice"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>เลือกบัญชีที่ใช้ในการรับเงินเข้า</ion-label>
-        <ion-select [disabled]="(!buyRequire)" [(ngModel)]="omise_resp_id">
+        <ion-label>บัญชีที่เลือก:</ion-label>
+        <ion-select [disabled]="(!buyRequire)" [(ngModel)]="omise_resp_id" placeholder="เลือกบัญชีที่ใช้ในการรับเงินเข้า">
           <ion-select-option *ngFor="let recipient of recipt_list" value="{{recipient.id}}">
             {{recipient.bank_account.bank_code}}:&nbsp;{{recipient.bank_account.name}}
           </ion-select-option>
         </ion-select>
       </ion-item>
+    </ion-row>
+    <ion-row *ngIf="safetyDisbale">
+      <ion-text color="warning">
+        <h6>*ต้องสมัครบริการชำระเงินก่อนหรือต้องเพิ่มบัญชีที่ใช้ในการรับเงินเข้าก่อน จึงจะสามารถขายผลงานได้</h6>
+      </ion-text>
     </ion-row>
     <ion-row>
       <ion-button (click)="onSubmit()" name="postButton" id="postButton">โพสต์</ion-button>

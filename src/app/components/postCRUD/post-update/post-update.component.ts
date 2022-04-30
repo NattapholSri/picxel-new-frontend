@@ -71,7 +71,8 @@ export class PostUpdateComponent {
       }
       this.synchronizeMode()
     }
-    this.paymentServ.getCustomerReciptInfo().subscribe(
+    if (localStorage.getItem('current_omise_customer') != undefined) {
+      this.paymentServ.getCustomerReciptInfo().subscribe(
       (res) => {
         console.log(res.customer.metadata.recipients)
         let recipt_data = res.customer.metadata.recipients
@@ -91,9 +92,16 @@ export class PostUpdateComponent {
             }
           )
         }
-        this.bankCodetoUpper()
-      }
-    )
+      },(err) => {
+        this.warningNoRespAccount()
+        this.safetyDisbale = true
+      })
+    }
+    else{
+      console.log('no omise id')
+      this.warningNoOmiseId()
+      this.safetyDisbale = true
+    }
   }
 
   synchronizeMode(){
@@ -307,5 +315,12 @@ export class PostUpdateComponent {
     }
   }
   
+  async warningNoOmiseId() {
+    const toast = await this.toastCtrl.create({
+      message: 'ต้องสมัครใช้บริการ omise ก่อน จึงจะสามารถขายผลงานได้',
+      duration: 5000
+    });
+    toast.present();
+  }
 
 }

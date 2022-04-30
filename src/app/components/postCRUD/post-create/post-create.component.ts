@@ -46,8 +46,9 @@ export class PostCreateComponent {
     private tagServ: TagService,
     private paymentServ: PaymentsService,
     private toastCtrl:ToastController
-  ) { 
-    this.paymentServ.getCustomerReciptInfo().subscribe(
+  ) {
+    if (localStorage.getItem('current_omise_customer') != undefined) {
+      this.paymentServ.getCustomerReciptInfo().subscribe(
       (res) => {
         console.log(res.customer.metadata.recipients)
         let recipt_data = res.customer.metadata.recipients
@@ -67,8 +68,16 @@ export class PostCreateComponent {
             }
           )
         }
-      }
-    )
+      },(err) => {
+        this.warningNoRespAccount()
+        this.safetyDisbale = true
+      })
+    }
+    else{
+      console.log('no omise id')
+      this.warningNoOmiseId()
+      this.safetyDisbale = true
+    } 
   }
 
   onSubmit(){
@@ -236,6 +245,14 @@ export class PostCreateComponent {
   async warningNoRespAccount() {
     const toast = await this.toastCtrl.create({
       message: 'ไม่มีบัญชีรับเงินที่ใช้ได้ กรุณาเพิ่มบัญชีก่อน',
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  async warningNoOmiseId() {
+    const toast = await this.toastCtrl.create({
+      message: 'ต้องสมัครใช้บริการ omise ก่อน จึงจะสามารถขายผลงานได้',
       duration: 5000
     });
     toast.present();
