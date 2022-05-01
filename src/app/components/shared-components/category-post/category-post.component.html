@@ -56,3 +56,10 @@
     </ion-grid>
   </ion-item>
 </ion-list>
+
+<ion-infinite-scroll [disabled]="!(canloadMore)" (ionInfinite)="loadThisTagMore()">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="โหลดโพสต์เพิ่มเติม">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>

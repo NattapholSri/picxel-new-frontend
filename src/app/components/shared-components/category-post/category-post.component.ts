@@ -51,11 +51,10 @@ export class CategoryPostComponent implements OnInit {
     )
   }
 
-  loadThisTagMore(tag){
-    //this.loadAllTag()
+  loadThisTagMore(){
     this.loadPostAtPage += 1;
-    console.log('load more data:'+tag)
-    this.PostServ.SearchPost(tag._id,10,this.loadPostAtPage).subscribe(
+    console.log('load more data:'+this.tagname)
+    this.PostServ.SearchPost(this.tagname,10,this.loadPostAtPage).subscribe(
       (res) => {
         console.log(res)
         let MorePostList = res.content
