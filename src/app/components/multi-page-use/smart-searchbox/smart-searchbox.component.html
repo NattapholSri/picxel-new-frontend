@@ -1,6 +1,6 @@
 <ion-grid>
   <ion-row expand="block">
-    <ion-col size="8">
+    <ion-col size="6">
       <ion-searchbar 
       placeholder="ค้นหา" 
       debounce="1000" 
@@ -9,7 +9,7 @@
       id="search_bar">
     </ion-searchbar>
     </ion-col>
-    <ion-col size="4">
+    <ion-col>
       <ion-segment [(ngModel)]="searchMode" (ionChange)="q_searchJunction()">
         <ion-segment-button value="1">
           <ion-icon name="people"></ion-icon>
@@ -29,10 +29,10 @@
       </ion-item>
     </ion-list>
   </ion-row>
-  <ion-row *ngIf="(search_text != '') && (searchMode == 2) ">
-    <ion-text>แท็กที่พบ: </ion-text>
-      <ion-chip *ngFor="let tag_s of tempSearch" color="secondary">
-        <ion-label color="primary">{{tag_s.name}}</ion-label>
+  <ion-item *ngIf="(search_text != '') && (searchMode == 2) ">
+    <ion-text><h6>แท็กที่พบ:&nbsp;</h6></ion-text>
+      <ion-chip *ngFor="let tag_s of tempSearch" color="secondary" (click)="goToCategory(tag_s._id)">
+        <ion-label color="primary">{{tag_s._id}}</ion-label>
       </ion-chip>
-  </ion-row>
+  </ion-item>
 </ion-grid>

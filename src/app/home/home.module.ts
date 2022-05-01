@@ -8,7 +8,6 @@ import { SharedComponentModule } from '../components/shared-components/shared-co
 import { HomePageRoutingModule } from './home-routing.module';
 import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
 import { RandomAllPostComponent } from '../components/random-all-post/random-all-post.component';
-import { SmartSearchboxComponent } from '../components/multi-page-use/smart-searchbox/smart-searchbox.component';
 import { CommentOnRndPostComponent } from '../components/comment/comment-on-rnd-post/comment-on-rnd-post.component';
 import { UserSuggestComponent } from '../components/user-suggest/user-suggest.component';
 
@@ -20,6 +19,6 @@ import { UserSuggestComponent } from '../components/user-suggest/user-suggest.co
     IonicModule,
     HomePageRoutingModule,SharedComponentModule
   ],
-  declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,SmartSearchboxComponent,CommentOnRndPostComponent,UserSuggestComponent]
+  declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,CommentOnRndPostComponent,UserSuggestComponent]
 })
 export class HomePageModule {}

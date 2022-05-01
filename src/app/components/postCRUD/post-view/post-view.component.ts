@@ -229,5 +229,7 @@ export class PostViewComponent{
     )
   }
 
-
+  goToCategory(tag_name:string){
+    this.router.navigateByUrl(`/post-with-tag/${tag_name}`)
+  }
 }

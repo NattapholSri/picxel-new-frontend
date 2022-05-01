@@ -28,6 +28,10 @@ export class CreatePlanPage {
   omise_resp_id:string
 
   recipt_list:any[] = []
+  submitDisable:boolean = false
+
+  codeNoAccount:number = 0
+  disableMessage:string
 
   constructor(
     private userServ: UserService,
@@ -44,25 +48,39 @@ export class CreatePlanPage {
         console.log(res)
         this.user_data = res
       })
-      this.paymentServ.getCustomerReciptInfo().subscribe(
+      if (localStorage.getItem('current_omise_customer') != undefined) {
+        this.paymentServ.getCustomerReciptInfo().subscribe(
         (res) => {
           console.log(res.customer.metadata.recipients)
           let recipt_data = res.customer.metadata.recipients
           let recipt_key = Object.keys(recipt_data)
           if (recipt_key.length === 0){
-            this.warningNoAccount()
+            this.disableMessage = 'ไม่มีบัญชีรับเงินที่ใช้ได้ กรุณาเพิ่มบัญชีก่อน'
+            this.warningNoAccount(1)
+            this.submitDisable = true
           }
           console.log(recipt_key)
           for (let key of recipt_key){
             this.paymentServ.getRecipientInfo(key).subscribe(
               (res) =>{
                 console.log(res.resp)
+                let original_text:string = res.resp.bank_account.bank_code
+                res.resp.bank_account.bank_code = original_text.toUpperCase()
                 this.recipt_list.push(res.resp)
               }
             )
           }
-        }
-      )
+        },(err) => {
+          this.warningNoAccount(1)
+          this.submitDisable = true
+        })
+      }
+      else{
+        console.log('no omise id')
+        this.warningNoAccount(2)
+        this.submitDisable = true
+        this.disableMessage = 'ยังไม่ได้สมัครบริการชำระเงิน โปรดทำการสมัครในเมนูตั้งค่าผู้ใช้'
+      }
 
   }
 
@@ -113,16 +131,33 @@ export class CreatePlanPage {
     //}
   }
 
-  async warningNoAccount() {
-    const toast = await this.toastCtrl.create({
+  async warningNoAccount(code:number) {
+    if (code == 1){
+      const toast = await this.toastCtrl.create({
       message: 'ไม่มีบัญชีรับเงินที่ใช้ได้ กรุณาเพิ่มบัญชีก่อน',
       duration: 5000
-    });
-    toast.present();
+      });
+      toast.present();
+      
+    }
+    else if (code == 2){
+      const toast = await this.toastCtrl.create({
+      message: 'ยังไม่ได้สมัครบริการชำระเงิน โปรดทำการสมัครในเมนูตั้งค่าผู้ใช้',
+      duration: 5000
+      });
+      toast.present();
+      
+    }
   }
 
+
   cancelCreate(){
-    this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
+    if (this.submitDisable){
+      this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
+    }
+    else{
+      this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+ this.currentUser))
+    }
   }
 
 }

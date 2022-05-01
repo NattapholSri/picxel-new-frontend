@@ -159,14 +159,14 @@ export class AccountDetailPage implements OnInit {
     const popover = await this.popOverCtrl.create({
       component: PopUserMenuComponent,
       dismissOnSelect: true,
-      componentProps: { username :this.currentUserName }
+      componentProps: { username :this.currentUserName },
+      align: 'start',
+      side: "bottom"
     });
     await popover.present();
-    // console.log('onDidDismiss resolved with role', role);
   }
 
   async showSubscriptMenu(){
-    // console.log('clicked ' + this.usr_acc._id )
 
     const popover = await this.popOverCtrl.create({
       component: UserSubscriptComponent,
@@ -174,8 +174,6 @@ export class AccountDetailPage implements OnInit {
       componentProps: { creator_id :this.usr_acc._id }
     });
     await popover.present();
-  
-    // console.log('onDidDismiss resolved with role', role);
   }
 
   refreshThisPage(event){

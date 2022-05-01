@@ -34,7 +34,7 @@
       </ion-row>
       <ion-row>
         <ion-text>แท็ก:&nbsp;</ion-text>
-        <ion-chip *ngFor="let tagName of post.tags">
+        <ion-chip *ngFor="let tagName of post.tags" (click)="goToCategory(tagName)">
           {{tagName}}
         </ion-chip>
       </ion-row>

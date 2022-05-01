@@ -34,16 +34,21 @@
       </ion-range>
     </ion-item>
     <ion-item>
-      <ion-label>เลือกบัญชีที่ใช้ในการรับเงินเข้า</ion-label>
-      <ion-select [(ngModel)]="omise_resp_id">
+      <ion-label>บัญชีที่ใช้ในการรับเงินเข้า</ion-label>
+      <ion-select [(ngModel)]="omise_resp_id" placeholder="เลือกบัญชีธนาคาร" [disabled]="submitDisable" >
         <ion-select-option *ngFor="let recipient of recipt_list" value="{{recipient.id}}">
             {{recipient.bank_account.bank_code}}:&nbsp;{{recipient.bank_account.name}}
         </ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-item *ngIf="submitDisable">
+      <ion-text color="warning">
+      <h6>{{disableMessage}} ใน "เมนูการตั้งค่าผู้ใช้"</h6>
+      </ion-text>
+    </ion-item>
   </div>
 
   <ion-button fill="outline" color="warning" (click)="cancelCreate()" id="cancel_btn">CANCEL</ion-button>
-  <ion-button (click)="onSubmit()" id="create_plan_btn">สร้าง Plan</ion-button>
+  <ion-button (click)="onSubmit()" [disabled]="submitDisable" id="create_plan_btn">สร้าง Plan</ion-button>
 
 </ion-content>

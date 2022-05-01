@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button onclick="history.back()"></ion-back-button>
+      <ion-button [routerLink]="'/home'">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>PICXEL Post</ion-title>
+    <ion-buttons slot="end" *ngIf="tokenOn">
+      <ion-button (click)="showUserMenu()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refreshThisPage($event)">
+    <ion-refresher-content
+      refreshingSpinner="lines"
+      refreshingText="กำลังโหลดหน้านี้ใหม่...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <app-smart-searchbox></app-smart-searchbox>
+   
+  </ion-card>
+  <ion-card>
+    <ion-card-title>
+      หมวดหมู่: {{tag_category}}
+    </ion-card-title>
+    <ion-card-subtitle *ngIf=" category_descript != '' ">
+      {{category_descript}}
+    </ion-card-subtitle>
+    <app-category-post [tagname]="tag_category"></app-category-post>
+  </ion-card>
+</ion-content>

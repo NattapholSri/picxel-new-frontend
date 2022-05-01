@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { UserService } from 'src/app/services/api/user.service';
 import { AlertController } from '@ionic/angular';
-import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
-
 
 @Component({
-  selector: 'app-random-all-post',
-  templateUrl: './random-all-post.component.html',
-  styleUrls: ['./random-all-post.component.scss'],
+  selector: 'app-category-post',
+  templateUrl: './category-post.component.html',
+  styleUrls: ['./category-post.component.scss'],
 })
-export class RandomAllPostComponent {
+export class CategoryPostComponent implements OnInit {
+  @Input() tagname:string
 
   currentUser = localStorage.getItem('usr_login')
   postList: any[] = []
@@ -20,7 +19,7 @@ export class RandomAllPostComponent {
   postOfUser: string
   
   CurrentSessionId: any = localStorage.getItem('current_log_uid')
-  loadPostAtPage: number
+  loadPostAtPage: number = 1
   canloadMore = true
 
   constructor(
@@ -30,29 +29,48 @@ export class RandomAllPostComponent {
     private userServ: UserService,
     private alertCtrl: AlertController
   ) {
-      this.loadPostAtPage = 1
-      this.loadAllTag()
-      this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
-      if (localStorage.getItem("jwt") != undefined){
-        this.randomPost()
-      }
-      else{
-        this.canloadMore = false
-      }
-      console.log(this.CurrentSessionId)
+    //this.loadAllTag()
   }
 
-  randomPost(){
-    this.PostServ.LoadRandomPost().subscribe((res) =>{
-      this.postList = []
-      console.log(res)
-      this.postList = res
-      this.Post_Edit()
-    },(err) => {
-      console.log(err)
-      this.canloadMore = false
-    })
+  ngOnInit() {
+    this.tagPost(this.tagname)
   }
+
+  tagPost(tag:string){
+    this.PostServ.SearchPostByTag(tag,10,this.loadPostAtPage).subscribe(
+      (res) => {
+        this.postList = res.content
+        if (this.postList.length !== 10){
+          this.canloadMore = false
+        }
+        //if (this.knowtag != []){
+          this.Post_Edit()
+        //}
+        console.log(this.postList)
+      }
+    )
+  }
+
+  loadThisTagMore(tag){
+    //this.loadAllTag()
+    this.loadPostAtPage += 1;
+    console.log('load more data:'+tag)
+    this.PostServ.SearchPost(tag._id,10,this.loadPostAtPage).subscribe(
+      (res) => {
+        console.log(res)
+        let MorePostList = res.content
+        console.log(MorePostList)
+        if (MorePostList.length !== 10){
+          this.canloadMore = false
+        }
+        else{
+          this.postList += MorePostList
+          console.log(this.postList)
+        }
+      }
+    )
+  }
+
 
   private Post_Edit(){
     for (let post of this.postList ){
@@ -70,7 +88,6 @@ export class RandomAllPostComponent {
 
       if (post.likeCount != 0 && this.CurrentSessionId != undefined){
         console.log('load user who like this post: ' + post._id)
-        // let userWhoLikePost:any[] = []
         post.thisUserLike = false
         this.PostServ.UserLikeOnPost(this.CurrentSessionId,post._id).subscribe(
           (res) => {
@@ -96,10 +113,10 @@ export class RandomAllPostComponent {
   }
 
   deletePost(post_id:string){
-    const sendForm = new FormGroup({
-      postId: new FormControl(post_id)
-    })
-    this.PostServ.DeletePost(sendForm.value).subscribe((res)=>{
+    const sendForm = {
+      postId: post_id
+    }
+    this.PostServ.DeletePost(sendForm).subscribe((res)=>{
       console.log(res)
 
       for( var i = 0; i < this.postList.length; i++){                           
@@ -185,8 +202,7 @@ export class RandomAllPostComponent {
         else{
           post.likeCount -= 1
         }
-      }
-    )
+      })
   }
 
   goToCategory(tag_name:string){
@@ -194,5 +210,4 @@ export class RandomAllPostComponent {
   }
 
 }
-
 

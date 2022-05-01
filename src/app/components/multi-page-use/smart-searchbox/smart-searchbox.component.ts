@@ -56,4 +56,8 @@ export class SmartSearchboxComponent {
     this.router.navigateByUrl(`/account-detail/${userData.username}`)
   }
 
+  goToCategory(tag_name:string){
+    this.router.navigateByUrl(`/post-with-tag/${tag_name}`)
+  }
+
 }

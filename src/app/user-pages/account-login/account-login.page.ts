@@ -52,6 +52,15 @@ export class AccountLoginPage implements OnInit {
         this.userServ.ReqUserDetail(this.usr_name).subscribe((res) => {
           console.log(res._id)
           localStorage.setItem('current_log_uid',res._id) // user's id who is logging in
+          if (res.omise_customer_id != undefined && res.omise_customer_id != null){
+            console.log('saved omise id')
+            localStorage.setItem('current_omise_customer',res.omise_customer_id)
+          }
+          else{
+            console.log('no omise id')
+            localStorage.removeItem('current_omise_customer')
+          }
+  
         })
         localStorage.setItem('jwt', JSON.stringify(res)) // token
         
@@ -59,15 +68,7 @@ export class AccountLoginPage implements OnInit {
         let tokenTimeout = moment().add(35, 'minutes')
 
         // if has omise_customer
-        if (res.omise_customer_id != undefined && res.omise_customer_id != null){
-          console.log('saved omise id')
-          localStorage.setItem('current_omise_customer',res.omise_customer_id)
-        }
-        else{
-          console.log('no omise id')
-          localStorage.removeItem('current_omise_customer')
-        }
-
+        
         localStorage.setItem('tkTime',tokenTimeout.format("HH:mm DD-MM-YYYY"))
         console.log(localStorage.getItem('tkTime'))
 

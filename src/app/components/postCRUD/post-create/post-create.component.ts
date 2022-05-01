@@ -39,6 +39,7 @@ export class PostCreateComponent {
   omise_resp_id:string
 
   safetyDisbale:boolean = false
+  
   constructor(
     public formBulider: FormBuilder,
     private PostServ: PostingService,
