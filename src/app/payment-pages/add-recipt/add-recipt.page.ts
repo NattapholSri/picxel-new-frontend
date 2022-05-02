@@ -75,12 +75,12 @@ export class AddReciptPage implements OnInit {
 
   submit(){
     this.changeToDefEmail()
-    console.log(this.reciptData)
     if(this.checkMissingField()){
       alert('กรอกข้อมูลไม่ครบ โปรดตรวจสอบ')
     }
     else {
     let sendForm:omiseRecipt = {recipient:this.reciptData}
+    console.log(sendForm)
     this.paymentServ.createRecipient(sendForm).subscribe(
       (res) => {
         console.log(res)

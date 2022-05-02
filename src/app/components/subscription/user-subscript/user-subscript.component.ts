@@ -11,7 +11,7 @@ import { PaymentsService } from 'src/app/services/api/payments.service';
 })
 export class UserSubscriptComponent implements OnInit {
   @Input() creator_id:string
-  @Input() CreatorStatus:boolean = true
+  @Input() creatorStatus:boolean = true
 
   currentViewId = localStorage.getItem('current_log_uid')
 
@@ -78,6 +78,17 @@ export class UserSubscriptComponent implements OnInit {
       this.userSub = {}
     },(err) => console.log(err)
     )
+  }
+
+  async showSubdetail(){
+    const alert = await this.alertCtrl.create({
+      header: 'รายละเอียดของ subscription',
+      subHeader: '*ต้องรอ plan นี้หมดอายุก่อน จึงจะทำการ subscription แพลนอื่นได้',
+      message:  `วันหมดอายุของ subscription:${this.userSub.endDate}`,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
     
 

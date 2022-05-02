@@ -116,16 +116,10 @@ export class AccountDetailPage implements OnInit {
 
   getFollowState(){
     if (this.usr_acc.password == undefined && this.token != undefined){
-      // console.log('login user ' + this.currentUserLogin)
-      // console.log('this user ' + this.usr_acc._id)
+
       this.followUsr.FollowToUser(this.currentUserLogin,this.usr_acc._id).subscribe((res)=>{
         console.log(res)
-        /* for (let list of res.content){
-          if (list.to == this.usr_acc._id){
-            console.log('followed user')
-            this.subbed = true
-          } 
-        } */
+
         if (res.content != undefined && res.content != null){
           this.subbed = true
         }
@@ -167,11 +161,18 @@ export class AccountDetailPage implements OnInit {
   }
 
   async showSubscriptMenu(){
+    let c_mode:boolean
+    if (this.usr_acc.creatorMode == undefined){
+      c_mode = true
+    }
+    else{
+      c_mode = this.usr_acc.creatorMode
+    }
 
     const popover = await this.popOverCtrl.create({
       component: UserSubscriptComponent,
       dismissOnSelect: true,
-      componentProps: { creator_id :this.usr_acc._id }
+      componentProps: { creator_id :this.usr_acc._id,creatorStatus:c_mode }
     });
     await popover.present();
   }
