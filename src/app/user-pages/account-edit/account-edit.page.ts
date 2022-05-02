@@ -32,6 +32,8 @@ export class AccountEditPage implements OnInit {
 
   user_omise_id: string
 
+  create_mode:boolean = true
+
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
@@ -65,6 +67,10 @@ export class AccountEditPage implements OnInit {
           //this.addTagData(usr_data.interests)
         }
 
+        if (usr_data.creatorMode != undefined){
+          this.create_mode = usr_data.creatorMode
+        }
+
         if (usr_data.omise_customer_id != undefined){
           this.user_omise_id = usr_data.omise_customer_id
         }
@@ -90,6 +96,7 @@ export class AccountEditPage implements OnInit {
       profile_pic: new FormControl(this.picture_url, Validators.required),
       firstname: new FormControl(this.firstname, Validators.required),
       interests: new FormControl(interest_id_list),
+      cretorMode: new  FormControl(this.create_mode)
     })
 
     console.log(editForm.value)

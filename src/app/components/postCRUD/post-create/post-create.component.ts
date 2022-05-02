@@ -49,6 +49,7 @@ export class PostCreateComponent {
     private toastCtrl:ToastController
   ) {
     if (localStorage.getItem('current_omise_customer') != undefined) {
+      console.log('omise customer found')
       this.paymentServ.getCustomerReciptInfo().subscribe(
       (res) => {
         console.log(res.customer.metadata.recipients)
@@ -57,6 +58,7 @@ export class PostCreateComponent {
         if (recipt_key.length === 0){
           this.warningNoRespAccount()
           this.safetyDisbale = true
+          console.log('but no omise recipt')
         }
         console.log(recipt_key)
         for (let key of recipt_key){

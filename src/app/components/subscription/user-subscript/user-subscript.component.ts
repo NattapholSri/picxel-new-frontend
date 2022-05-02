@@ -11,6 +11,7 @@ import { PaymentsService } from 'src/app/services/api/payments.service';
 })
 export class UserSubscriptComponent implements OnInit {
   @Input() creator_id:string
+  @Input() CreatorStatus:boolean = true
 
   currentViewId = localStorage.getItem('current_log_uid')
 
@@ -34,7 +35,7 @@ export class UserSubscriptComponent implements OnInit {
       if (this.planList.length != 0){
         for (let plan of this.planList){
           let createdDate = new Date(plan.createdAt)
-          plan.createdAt = createdDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric'})
+          plan.createdAt = createdDate.toLocaleString('th-TH',{year: '2-digit', month: 'narrow', day: '2-digit'})
           
         }
       }
@@ -52,6 +53,9 @@ export class UserSubscriptComponent implements OnInit {
         console.log(res)
         if( res.content != null && res.content != undefined){
           this.userSub = res.content
+          let oldFormat = new Date(this.userSub.endDate)
+          this.userSub.endDate = oldFormat.toLocaleString('th-TH',{year: '2-digit', month: 'narrow', day: '2-digit'})
+          console.log(this.userSub)
         }
       },
       (err) => {
@@ -60,24 +64,10 @@ export class UserSubscriptComponent implements OnInit {
     )
   }
 
- /*  setCardId(card_id_input:string){
-    this.card_id = card_id_input
-    console.log('selected card id: '+this.card_id)
-  } */
-
   subscribeToPlan(plan:any){
     localStorage.removeItem('plan-selected')
     localStorage.setItem('plan-selected',JSON.stringify(plan))
     this.ngZone.run(() => this.router.navigateByUrl('/confirm-subscription'))
-   /*  let quickForm:subScriptionData = {
-      planId:plan._id
-
-    }
-    console.log(quickForm)
-    this.subPlanServ.createSubscription(quickForm).subscribe((res) => {
-      console.log(res)
-    },(err) => console.log(err)
-    ) */
   }
 
   unSubscribe(){
@@ -89,35 +79,6 @@ export class UserSubscriptComponent implements OnInit {
     },(err) => console.log(err)
     )
   }
-
-  /* async attentionSub(plan:any){
-    if (this.card_id == undefined || this.card_id == ''){
-      alert('โปรดเลือกบัตรเครดิตที่ต้องการชำระ')
-    }
-    else{
-      const alert = await this.alertCtrl.create({
-      header: 'ยืนยันในการชำระเงิน',
-      message: `คุณจะต้องจ่ายเงินทั้งหมดจำนวน${this.round * plan.price}`,
-      buttons: [
-        {
-        text: 'ยกเลิก',
-        role: 'cancel'
-        },{
-          text: 'ยืนยัน',
-          handler: () => {
-            this.subscribeToPlan(plan)
-          }
-        } ,{
-          text: 'จัดการบัตรเครดิต',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/view-credit-card/'+this.customer))
-          }
-        }
-      ]
-    });
-    await alert.present();
-    }
-  } */
     
 
 }

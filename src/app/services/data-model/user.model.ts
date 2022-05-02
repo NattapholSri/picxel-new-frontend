@@ -7,6 +7,7 @@ export interface UserDetails {
     profile_pic?: string;
     firstname?: string;
     interests?: string[];
+    creatorMode?: boolean;
   }
 
   export interface UserPasswdChange {

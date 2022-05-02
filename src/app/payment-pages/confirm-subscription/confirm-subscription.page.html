@@ -20,10 +20,10 @@
     </ion-item>    
   </ion-item>
   <ion-item>
-    <ion-label>เลือกบัตรเครดิตที่ใช้ในการชำระ:</ion-label>
-    <ion-select [(ngModel)]="card_id">
+    <ion-label>บัตรเครดิตที่ใช้ชำระเงิน:</ion-label>
+    <ion-select [(ngModel)]="card_id" placeholder="เลือกบัตรเครดิต">
       <ion-select-option *ngFor="let card of card_list" value="{{card.id}}">
-        {{card.brand}}: **** {{card.last_digits}}, {{card.name}}
+        {{card.brand}}: เลข 4 ตัวท้าย: {{card.last_digits}}, {{card.name}}
       </ion-select-option>
     </ion-select>
   </ion-item>
