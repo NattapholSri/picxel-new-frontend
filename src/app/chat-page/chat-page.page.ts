@@ -23,7 +23,7 @@ export class ChatPagePage implements OnInit {
     private activatedRt: ActivatedRoute,
   ) 
   { 
-    this.with_id = this.activatedRt.snapshot.paramMap.get('toUserId')
+    this.with_id = this.activatedRt.snapshot.paramMap.get('messageBoxId')
     this.userServ.ReqUserDetail(this.with_id).subscribe((res) => {
       this.chat_usr_data = res
       this.chatMsgServ.withUsrId(this.chat_usr_data._id,this.msg_page).subscribe(
@@ -36,6 +36,10 @@ export class ChatPagePage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  loadOlderMessage(){
+    
   }
 
 }

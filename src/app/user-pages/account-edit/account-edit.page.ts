@@ -33,6 +33,7 @@ export class AccountEditPage implements OnInit {
   user_omise_id: string
 
   create_mode:boolean = true
+  false_from_backend:boolean = false
 
   constructor(
     public formBulider: FormBuilder,
@@ -69,6 +70,10 @@ export class AccountEditPage implements OnInit {
 
         if (usr_data.creatorMode != undefined){
           this.create_mode = usr_data.creatorMode
+          if (usr_data.creatorMode == false){
+            this.false_from_backend = true
+          }
+          console.log('use_backend:'+this.false_from_backend)
         }
 
         if (usr_data.omise_customer_id != undefined){
@@ -96,7 +101,7 @@ export class AccountEditPage implements OnInit {
       profile_pic: new FormControl(this.picture_url, Validators.required),
       firstname: new FormControl(this.firstname, Validators.required),
       interests: new FormControl(interest_id_list),
-      cretorMode: new  FormControl(this.create_mode)
+      creatorMode: new  FormControl(this.create_mode)
     })
 
     console.log(editForm.value)

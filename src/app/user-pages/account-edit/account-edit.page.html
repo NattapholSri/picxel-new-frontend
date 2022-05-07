@@ -71,12 +71,16 @@
               จัดการกับระบบ payment
             </ion-label>
           </ion-item>
-          <ion-text color="danger" *ngIf="create_mode">ต้องปิดโหมด "ผู้สร้าง" (creator mode) ก่อนจึงจะสามารถใช้งานฟังก์ชั่นด้านล่างได้</ion-text>
-          <ion-item [disabled]="create_mode">
-            
-            <ion-button color="danger" (click)='deleteAccount()' shape="round" id="delete_acc_btn">ลบบัญชีนี้ทิ้ง</ion-button>
-            <ion-button color="danger" (click)='clearAllPost()' shape="round" id="del_all_post_btn">ลบโพสต์ทั้งหมด</ion-button>
+          <ion-text color="danger" *ngIf="create_mode || (!false_from_backend)">ต้องปิดโหมด "ผู้สร้าง" (creator mode) ก่อนจึงจะสามารถใช้งานฟังก์ชั่นด้านล่างได้</ion-text>
+          <ion-item [disabled]="create_mode || (!false_from_backend)" [button]="true" (click)="deleteAccount()" id="delete_acc_btn">
+            <ion-label color="danger">ลบบัญชีนี้ทิ้ง</ion-label>
+            <!-- <ion-button color="danger" (click)='deleteAccount()' shape="round" id="delete_acc_btn">ลบบัญชีนี้ทิ้ง</ion-button>
+            <ion-button color="danger" (click)='clearAllPost()' shape="round" id="del_all_post_btn">ลบโพสต์ทั้งหมด</ion-button> -->
           </ion-item>
+          <ion-item (click)='clearAllPost()' id="del_all_post_btn" [disabled]="create_mode || (!false_from_backend)" [button]="true">
+            <ion-label color="danger">ลบโพสต์ทั้งหมด</ion-label>
+          </ion-item>
+
         </ion-list>
       </ion-item>
     </ion-accordion>

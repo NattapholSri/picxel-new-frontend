@@ -52,7 +52,7 @@ const routes: Routes = [
     loadChildren: () => import('./function-page/edit-plan/edit-plan.module').then( m => m.EditPlanPageModule)
   },
   {
-    path: 'chat-page/:toUserId',
+    path: 'chat-page/:messageBoxId',
     loadChildren: () => import('./chat-page/chat-page.module').then( m => m.ChatPagePageModule)
   },
   {
