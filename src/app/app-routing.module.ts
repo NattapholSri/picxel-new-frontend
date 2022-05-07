@@ -78,7 +78,12 @@ const routes: Routes = [
   {
     path: 'post-with-tag/:tagname',
     loadChildren: () => import('./function-page/post-with-tag/post-with-tag.module').then( m => m.PostWithTagPageModule)
+  },
+  {
+    path: 'post-with-id/:postID',
+    loadChildren: () => import('./function-page/post-with-id/post-with-id.module').then( m => m.PostWithIdPageModule)
   }
+
 
 
 
