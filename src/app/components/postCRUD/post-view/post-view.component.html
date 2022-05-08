@@ -26,7 +26,7 @@
       </ion-item>
       
       <ion-row class="ion-align-items-center">
-        <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>
+        <ion-img *ngFor="let picture of post.pics" [src]="picture" (click)="goToOnlyPost(post._id)"></ion-img>
       </ion-row>
 
       <ion-row>

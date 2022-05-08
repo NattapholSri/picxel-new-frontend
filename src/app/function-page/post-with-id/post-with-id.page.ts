@@ -16,11 +16,11 @@ export class PostWithIdPage {
 
   currentUser = localStorage.getItem('usr_login') // name of user who using now
   currentUserId = localStorage.getItem('current_log_uid')
-  postList: any[] = []
+  postData: any = {}
   knowtag: any[] = []
   u_detail: any;                                  // detail of user's of which account-detail page are loaded
   loadPostAtPage: number
-  canloadMore = true
+  thisPostID:string
 
   constructor(
     private router: Router,
@@ -31,52 +31,47 @@ export class PostWithIdPage {
     public activatedRt: ActivatedRoute
   ) {
     this.loadPostAtPage = 1
-    this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
     this.u_detail = JSON.parse(localStorage.getItem('usernow'))
-    let get_pid:string = this.activatedRt.snapshot.paramMap.get('username')
-    this.loadPost(get_pid)
+    this.thisPostID = this.activatedRt.snapshot.paramMap.get('postID')
+    console.log(this.thisPostID)
+    this.loadPost(this.thisPostID)
   }
 
   loadPost(p_id:string){
-    this.PostServ.SearchPostById(p_id,10,this.loadPostAtPage).subscribe(
+    this.PostServ.SearchPostById(p_id,2,this.loadPostAtPage).subscribe(
       (res) => {
-        this.postList = res.content
-        if (this.postList.length !== 10){
-          this.canloadMore = false
-        }
+        console.log(res)
+        this.postData = res.content
         this.Post_Edit()
-        console.log(this.postList)
+        console.log(this.postData)
       }
     )
   }
 
   private Post_Edit(){
 
-    for (let post of this.postList ){
-      console.log(post)
+      let localDate = new Date(this.postData.createdAt)
+      this.postData.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      let updateDate = new Date(this.postData.updatedAt)
+      this.postData.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
 
-      let localDate = new Date(post.createdAt)
-      post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
-      let updateDate = new Date(post.updatedAt)
-      post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
-
-      if (post.likeCount != 0 && this.currentUserId != undefined){
-        console.log('load login user like status: ' + post._id)
+      if (this.postData.likeCount != 0 && this.currentUserId != undefined){
+        // console.log('load login user like status: ' + post._id)
         // let userWhoLikePost:any[] = []
-        post.thisUserLike = false
-        this.PostServ.UserLikeOnPost(this.currentUserId,post._id).subscribe(
+        this.postData.thisUserLike = false
+        this.PostServ.UserLikeOnPost(this.currentUserId,this.postData._id).subscribe(
           (res) => {
             // console.log(res.content)
             if (res.content != null && res.content != undefined){
               if (res.content.userId == this.currentUserId){
-                post.thisUserLike = true
-            } 
+                this.postData.thisUserLike = true
+            }
+            console.log(this.postData) 
           }
         },(err) => {
           console.log(err)
         })
       }
-    }
   }
 
   addUserLikeList(post_id:string):any{
@@ -100,13 +95,13 @@ export class PostWithIdPage {
     this.PostServ.DeletePost(sendForm.value).subscribe((res)=>{
       console.log(res)
 
-      for( var i = 0; i < this.postList.length; i++){                           
-        if ( this.postList[i]._id == post_id) { 
-          this.postList.splice(i, 1); 
+      for( var i = 0; i < this.postData.length; i++){                           
+        if ( this.postData[i]._id == post_id) { 
+          this.postData.splice(i, 1); 
           i--; 
         }
       }
-      console.log(this.postList)
+      console.log(this.postData)
       this.router.navigateByUrl(`/account-detail/${this.u_detail.username}`)
     })
   }

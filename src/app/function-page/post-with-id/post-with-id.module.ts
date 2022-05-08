@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PostWithIdPageRoutingModule } from './post-with-id-routing.module';
 
 import { PostWithIdPage } from './post-with-id.page';
+import { CommentSinglePostComponent } from 'src/app/components/comment/comment-single-post/comment-single-post.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PostWithIdPage } from './post-with-id.page';
     IonicModule,
     PostWithIdPageRoutingModule
   ],
-  declarations: [PostWithIdPage]
+  declarations: [PostWithIdPage,CommentSinglePostComponent]
 })
 export class PostWithIdPageModule {}

@@ -1,0 +1,55 @@
+<h6>
+  ความคิดเห็นของโพสต์นี้
+</h6>
+
+<ion-card>
+  <ion-card-content>
+    <ion-list *ngIf="comment_list != []">
+      <ion-item *ngFor="let comment of comment_list">  
+        <ion-avatar>
+          <ion-img src="{{comment.usr_profile_pic}}"></ion-img>    
+        </ion-avatar>
+        <ion-item *ngIf="(!(commentEditMode) || (EditingAtComment != comment._id) )">
+          <!-- <app-comment-menu slot="end" [commentId]="comment._id" (editAllow)="changeToEditMode($event)"></app-comment-menu> -->
+          <ion-buttons 
+          *ngIf="isLogin && comment.userId == login_session" 
+          slot="end">
+            <ion-button (click)="opMenu(comment)">
+            <ion-icon name="ellipsis-vertical-circle" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-label>
+            <h4>{{comment.usr_name}}</h4>
+            <h6 *ngIf="comment.createdAt == comment.updatedAt">เวลา {{comment.createdAt}}</h6>
+            <h6 *ngIf="comment.createdAt != comment.updatedAt">(แก้ไข) เวลา {{comment.updatedAt}}</h6>
+            <p>{{comment.text}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="(commentEditMode && (EditingAtComment == comment._id) )">
+          <ion-input [(ngModel)]="editMessage"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button (click)="updateComment(EditingAtComment)" color="secondary">บันทึกการเปลี่ยนแปลง</ion-button>
+            <ion-button (click)="cancelEditComment()" color="warning">ยกเลิก</ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10">
+        <ion-input [(ngModel)]="input_text" placeholder="เขียนความคิดเห็น"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-buttons>
+          <ion-button (click)="createComment()">
+            <ion-icon name="send-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+

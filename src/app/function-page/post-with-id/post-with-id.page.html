@@ -1,9 +1,67 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>postWithId</ion-title>
+    <ion-title>postWithId:{{thisPostID}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card *ngIf="postData != {}">
+      <ion-item>
+        <ion-grid>
+          <ion-row>        
+              <ion-avatar>
+                <ion-img src="{{u_detail.profile_pic}}"></ion-img>
+              </ion-avatar>
+              <ion-text>
+                <h4>&nbsp;{{u_detail.username}}</h4>
+              </ion-text>
+          </ion-row>
+          <br>
+          <ion-item>
+            <ion-text *ngIf="postData.createdAt == postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;</ion-text>
+            <ion-text *ngIf="postData.createdAt != postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;(แก้ไข&nbsp;{{postData.updatedAt}})&nbsp;</ion-text>
+              <ion-buttons slot="end"
+              *ngIf="(postData.userId == u_detail._id) && (u_detail.username == currentUser)">
+                <ion-button (click)="postMenu(postData._id,postData)">
+                  <ion-icon name="ellipsis-vertical"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+          </ion-item>
+          
+          <ion-row class="ion-align-items-center">
+            <ion-img *ngFor="let picture of postData.pics" [src]="picture"></ion-img>
+          </ion-row>
+    
+          <ion-row>
+            <ion-text><h2>{{postData.text}}</h2></ion-text>
+          </ion-row>
+          <ion-row>
+            <ion-text>แท็ก:&nbsp;</ion-text>
+            <ion-chip *ngFor="let tagName of postData.tags" (click)="goToCategory(tagName)">
+              {{tagName}}
+            </ion-chip>
+          </ion-row>
+          <ion-row *ngIf="currentUser != undefined">
+            <ion-buttons>
+              <ion-button (click)="likeThisPost(postData)">
+                <ion-icon name="heart-outline" *ngIf="postData.thisUserLike != true"></ion-icon>
+                <ion-icon name="heart" *ngIf="postData.thisUserLike == true"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+    
+            <ion-item>
+              <ion-label>Like:</ion-label>
+              <ion-badge slot="end">{{postData.likeCount}}</ion-badge>
+            </ion-item>
+          </ion-row>
+          <ion-text></ion-text>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="12">
+            <app-comment-single-post [post_id]="thisPostID"></app-comment-single-post>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+  </ion-card>
 
 </ion-content>
