@@ -161,4 +161,8 @@ export class CommentPostComponent implements OnInit {
     }
   }
 
+  likeComment(){
+    
+  }
+
 }

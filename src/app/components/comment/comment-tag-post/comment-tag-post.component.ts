@@ -170,4 +170,8 @@ export class CommentTagPostComponent implements OnInit {
     }
   }
 
+  likeComment(){
+    
+  }
+
 }

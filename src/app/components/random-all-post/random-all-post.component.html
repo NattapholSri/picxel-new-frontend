@@ -18,8 +18,12 @@
         <ion-text *ngIf="post.createdAt == post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;</ion-text>
         <ion-text *ngIf="post.createdAt != post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;(แก้ไข&nbsp;{{post.updatedAt}})&nbsp;</ion-text>
         <!-- <ion-item *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)"> -->
-          <ion-buttons *ngIf="(post.userId == CurrentSessionId) && (post.userName == currentUser)">
-            <ion-button (click)="postMenu(post._id,post)">
+          <ion-buttons slot="end" >
+            <ion-button shape="round" color="secondary" fill="solid" (click)="goToOnlyPost(post._id)">
+              ดูรายละเอียดโพสต์
+            </ion-button>
+            <ion-button (click)="postMenu(post._id,post)"
+            *ngIf="(post.userId == CurrentSessionId) && (post.userName == currentUser)">
               <ion-icon name="ellipsis-vertical"></ion-icon>
             </ion-button>
           </ion-buttons>

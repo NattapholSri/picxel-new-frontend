@@ -170,4 +170,8 @@ export class CommentOnRndPostComponent implements OnInit {
     }
   }
 
+  likeComment(){
+    
+  }
+
 }

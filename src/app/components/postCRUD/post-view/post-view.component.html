@@ -2,8 +2,7 @@
 
 
 <ion-list *ngIf="postList != []">
-  <ion-item *ngFor="let post of postList">
-
+  <ion-item *ngFor="let post of postList" >
     <ion-grid>
       <ion-row>        
           <ion-avatar>
@@ -17,16 +16,20 @@
       <ion-item>
         <ion-text *ngIf="post.createdAt == post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;</ion-text>
         <ion-text *ngIf="post.createdAt != post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;(แก้ไข&nbsp;{{post.updatedAt}})&nbsp;</ion-text>
-          <ion-buttons slot="end"
-          *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)">
-            <ion-button (click)="postMenu(post._id,post)">
+          <ion-buttons slot="end">
+            <ion-button shape="round" color="secondary" fill="solid" (click)="goToOnlyPost(post._id)">
+              ดูรายละเอียดโพสต์
+            </ion-button>
+            <ion-button *ngIf="(post.userId == u_detail._id) && (u_detail.username == currentUser)" 
+                        (click)="postMenu(post._id,post)">
               <ion-icon name="ellipsis-vertical"></ion-icon>
             </ion-button>
+
           </ion-buttons>
       </ion-item>
       
       <ion-row class="ion-align-items-center">
-        <ion-img *ngFor="let picture of post.pics" [src]="picture" (click)="goToOnlyPost(post._id)"></ion-img>
+        <ion-img *ngFor="let picture of post.pics" [src]="picture"></ion-img>
       </ion-row>
 
       <ion-row>

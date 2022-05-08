@@ -193,6 +193,10 @@ export class RandomAllPostComponent {
     this.router.navigateByUrl(`/post-with-tag/${tag_name}`)
   }
 
+  goToOnlyPost(post_id:string){
+    this.router.navigateByUrl(`/post-with-id/${post_id}`)
+  }
+
 }
 
 
