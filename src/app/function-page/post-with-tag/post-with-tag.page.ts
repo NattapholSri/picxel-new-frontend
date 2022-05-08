@@ -18,8 +18,8 @@ import { PopUserMenuComponent } from 'src/app/components/shared-components/pop-u
 })
 export class PostWithTagPage implements OnInit {
 
-  tokenOn:boolean
-  currentUserName = localStorage.getItem('usr_login')
+ tokenOn:boolean
+  currentUserName = localStorage.getItem('usr_login') 
 
   tag_category:string = ''
 
@@ -31,7 +31,6 @@ export class PostWithTagPage implements OnInit {
     private userServ: UserService,
     private activatedRt: ActivatedRoute,
     private alertCtrl: AlertController,
-    private followUsr: FollowUserService,
     private postServ: PostingService,
     private popOverCtrl: PopoverController,
     private tagServ: TagService
@@ -74,5 +73,6 @@ export class PostWithTagPage implements OnInit {
       event.target.complete();
     }, 1000);
   }
+  
 
 }

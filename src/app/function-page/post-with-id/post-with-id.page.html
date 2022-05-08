@@ -1,6 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>postWithId:{{thisPostID}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button onclick="history.back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="'/home'">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Post Details</ion-title>
+    <ion-buttons slot="end" *ngIf="tokenOn">
+      <ion-button (click)="showUserMenu()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

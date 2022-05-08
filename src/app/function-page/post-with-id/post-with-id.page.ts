@@ -1,10 +1,10 @@
 import { Component} from '@angular/core';
 import { Router,ActivatedRoute  } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
-import { TagService } from 'src/app/services/api/tag.service';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
-import { PopoverController } from '@ionic/angular';
+import { AlertController,PopoverController } from '@ionic/angular';
+
+import { PopUserMenuComponent } from 'src/app/components/shared-components/pop-user-menu/pop-user-menu.component';
 
 
 @Component({
@@ -22,15 +22,20 @@ export class PostWithIdPage {
   loadPostAtPage: number
   thisPostID:string
 
+  tokenOn:boolean
+  currentUserName = localStorage.getItem('usr_login')
+
   constructor(
     private router: Router,
     private PostServ: PostingService,
     private alertCtrl: AlertController,
     public formBulider: FormBuilder,
     public popoverCtrl: PopoverController,
-    public activatedRt: ActivatedRoute
+    public activatedRt: ActivatedRoute,
+    private popOverCtrl: PopoverController
   ) {
     this.loadPostAtPage = 1
+    this.tokenOn = localStorage.getItem('jwt') != undefined
     this.u_detail = JSON.parse(localStorage.getItem('usernow'))
     this.thisPostID = this.activatedRt.snapshot.paramMap.get('postID')
     console.log(this.thisPostID)
@@ -183,6 +188,17 @@ export class PostWithIdPage {
 
   goToCategory(tag_name:string){
     this.router.navigateByUrl(`/post-with-tag/${tag_name}`)
+  }
+
+  async showUserMenu(){
+    console.log('clicked')
+
+    const popover = await this.popOverCtrl.create({
+      component: PopUserMenuComponent,
+      dismissOnSelect: true,
+      componentProps: { username :this.currentUserName }
+    });
+    await popover.present();
   }
   
 }
