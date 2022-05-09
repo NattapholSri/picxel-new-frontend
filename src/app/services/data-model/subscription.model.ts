@@ -16,3 +16,9 @@ export interface subScriptionData{
     cardId?: string;
     reCount?: number;
 }
+
+export interface donateForm{
+    cardId: string;
+	creatorId: string;
+	amount: number;
+}

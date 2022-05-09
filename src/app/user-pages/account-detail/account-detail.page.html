@@ -44,6 +44,10 @@
       <ion-button (click)="showSubscriptMenu()">
         Subscription
       </ion-button>
+      <ion-button [disabled]="(usr_acc.creatorMode == false) || (currentUserOmise == undefined) || (usr_acc.omise_donate_recipient_id == undefined)" 
+      (click)="donatingPopMenu()">
+        Donate
+      </ion-button>
     </ion-buttons> 
 
   </ion-item>

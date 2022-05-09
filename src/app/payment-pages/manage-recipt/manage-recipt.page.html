@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start" [routerLink]="'/account-edit'">
-      back
-    </ion-button>
+    <ion-buttons slot="start">
+      <ion-button onclick="history.back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
     <ion-title>manage-recipt</ion-title>
+    <ion-button slot="end" [routerLink]="'/add-recipient'">
+      เพิ่มบัญชีธนาคาร
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -16,6 +22,13 @@
         <p>เลข 4 หลักสุดท้ายของบัญชี: {{recipient.bank_account.last_digits}}</p>
       </ion-label>
       <ion-buttons slot="end">
+        <ion-button *ngIf="recipient.id != default_acc" (click)="setDefaultRecipt(recipient.id)">
+          set เป็นบัญชีสำหรับโดเนท
+        </ion-button>
+        <ion-button *ngIf="recipient.id == default_acc" [disabled]="true">
+          บัญชีสำหรับโดเนท
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
         <ion-button (click)="attentionReciptAction(recipient.id)">
           <ion-icon name="trash-bin"></ion-icon>
         </ion-button>

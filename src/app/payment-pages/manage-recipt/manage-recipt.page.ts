@@ -6,6 +6,7 @@ import { PaymentsService } from 'src/app/services/api/payments.service';
 import { UserService } from 'src/app/services/api/user.service';
 
 import { omiseRecipt } from 'src/app/services/data-model/omise.model';
+import { UserDetails } from 'src/app/services/data-model/user.model';
 
 
 @Component({
@@ -17,6 +18,9 @@ export class ManageReciptPage implements OnInit {
 
   recipt_list:any[] = []
 
+  currentUser = localStorage.getItem('usr_login')
+  default_acc:string
+
   constructor(
     private router:Router,
     private ngZone:NgZone,
@@ -25,6 +29,14 @@ export class ManageReciptPage implements OnInit {
     private alertCtrl: AlertController
   ) {
     this.userServ.AutoLogout()
+    this.userServ.ReqUserDetail(this.currentUser).subscribe(
+      (res) => {
+        console.log(res)
+        if (res.omise_donate_recipient_id != undefined){
+          this.default_acc = res.omise_donate_recipient_id
+        }
+      },(err) => console.log(err)
+    )
 
     this.paymentServ.getCustomerReciptInfo().subscribe(
       (res) => {
@@ -77,6 +89,20 @@ export class ManageReciptPage implements OnInit {
       },(err) => console.log(err)
     )
 
+  }
+
+  setDefaultRecipt(acc_tk_id:string){
+    console.log(acc_tk_id)
+    let update_data:UserDetails = {omise_donate_recipient_id:acc_tk_id}
+    this.userServ.updateUserData(update_data).subscribe(
+      (res) => {
+        console.log(res)
+        location.reload()
+      },(err) =>{
+        alert('เกิดข้อผิดพลาด โปรดลองใหม่ในภายหลัง')
+        console.log(err)
+      }
+    )
   }
 
 }

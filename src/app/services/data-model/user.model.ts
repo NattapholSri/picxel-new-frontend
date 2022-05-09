@@ -8,6 +8,7 @@ export interface UserDetails {
     firstname?: string;
     interests?: string[];
     creatorMode?: boolean;
+    omise_donate_recipient_id?:string
   }
 
   export interface UserPasswdChange {

@@ -10,6 +10,7 @@ import { PostViewComponent } from 'src/app/components/postCRUD/post-view/post-vi
 
 import { PopUserMenuComponent } from 'src/app/components/shared-components/pop-user-menu/pop-user-menu.component';
 import { UserSubscriptComponent } from 'src/app/components/subscription/user-subscript/user-subscript.component';
+import { DonateToCreatorComponent } from 'src/app/components/subscription/donate-to-creator/donate-to-creator.component';
 
 
 @Component({
@@ -27,6 +28,9 @@ export class AccountDetailPage implements OnInit {
   subbed = false;
   currentUserLogin = localStorage.getItem('current_log_uid')
   currentUserName = localStorage.getItem('usr_login')
+  currentUserOmise = localStorage.getItem('current_omise_customer')
+
+  disableDonation:boolean = false
 
   constructor(
     private router: Router,
@@ -185,5 +189,16 @@ export class AccountDetailPage implements OnInit {
       location.reload();
       event.target.complete();
     }, 1000);
+  }
+
+  async donatingPopMenu(){
+    const popover = await this.popOverCtrl.create({
+      component:  DonateToCreatorComponent,
+      dismissOnSelect: false,
+      componentProps: { creator_id:this.usr_acc._id },
+      align: 'start',
+      side: "bottom"
+    });
+    await popover.present();
   }
 }

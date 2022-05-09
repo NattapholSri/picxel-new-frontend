@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start" [routerLink]="'/account-edit'">
-      back
-    </ion-button>
+    <ion-buttons slot="start">
+      <ion-button onclick="history.back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>จัดการกับบัตรเครดิต</ion-title>
+    <ion-button slot="end" [routerLink]="'/add-card'">
+      เพิ่มบัตรเครดิต
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 

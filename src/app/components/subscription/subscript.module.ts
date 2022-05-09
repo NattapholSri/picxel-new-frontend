@@ -7,13 +7,18 @@ import { PlanListComponent } from './plan-list/plan-list.component';
 import { UserSubscriptComponent } from './user-subscript/user-subscript.component';
 import { ManageOmiseComponent } from './manage-omise/manage-omise.component';
 import { CardSelectorComponent } from './card-selector/card-selector.component';
+import { DonateToCreatorComponent } from './donate-to-creator/donate-to-creator.component';
 
 
 @NgModule({
-  declarations: [PlanListComponent,UserSubscriptComponent,ManageOmiseComponent,CardSelectorComponent],
+  declarations: [PlanListComponent,
+    UserSubscriptComponent,
+    ManageOmiseComponent,
+    CardSelectorComponent,
+    DonateToCreatorComponent],
   imports: [
     CommonModule,IonicModule,FormsModule
   ],
-  exports: [PlanListComponent,UserSubscriptComponent,ManageOmiseComponent,CardSelectorComponent]
+  exports: [PlanListComponent,UserSubscriptComponent,ManageOmiseComponent,CardSelectorComponent,DonateToCreatorComponent]
 })
 export class SubscriptModule { }
