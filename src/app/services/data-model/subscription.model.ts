@@ -22,3 +22,8 @@ export interface donateForm{
 	creatorId: string;
 	amount: number;
 }
+
+export interface buySinglePost{
+    postId: string;
+	cardId: string;
+}

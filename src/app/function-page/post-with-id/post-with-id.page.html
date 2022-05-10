@@ -42,6 +42,15 @@
           </ion-item>
           
           <ion-row class="ion-align-items-center">
+            <ion-item *ngIf="postData.pics == undefined && postData.requirePurchase == true">
+              <ion-label color="warning"><h6 >*เจ้าของได้ตั้งขายผลงานในโพสต์นี้ ต้องซื้อก่อน จึงจะสามารถรับชมผลงานได้</h6></ion-label>
+              <ion-button (click)="buyPost(postData)">ซื้อโพสต์</ion-button>
+            </ion-item>
+
+            <ion-text *ngIf="postData.pics == undefined && postData.requireSub == true" color="warning">
+              <h6>*ต้องสมัครติดตามผลงานผู้สร้าง(subscribe) ก่อน จึงจะสามารถรับชมผลงานได้</h6>
+            </ion-text>
+            
             <ion-img *ngFor="let picture of postData.pics" [src]="picture"></ion-img>
           </ion-row>
     

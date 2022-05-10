@@ -100,6 +100,8 @@ export class PostCreateComponent {
       }
     }
     else{
+      console.log('price '+this.postprice )
+      console.log('omise_id: '+this.omise_resp_id)
       if (this.postprice >= 25 && this.postprice <= 1000 && this.postprice != undefined  &&
           this.omise_resp_id != undefined && this.omise_resp_id != '' 
         ){

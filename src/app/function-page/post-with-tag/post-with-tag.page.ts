@@ -73,6 +73,5 @@ export class PostWithTagPage implements OnInit {
       event.target.complete();
     }, 1000);
   }
-  
 
 }

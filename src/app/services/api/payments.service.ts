@@ -3,7 +3,7 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { omiseRecipt } from '../data-model/omise.model';
-import { donateForm } from '../data-model/subscription.model';
+import { donateForm,buySinglePost } from '../data-model/subscription.model';
 
 @Injectable({
   providedIn: 'root'
@@ -201,6 +201,21 @@ export class PaymentsService {
   
   donateTo(data:donateForm){
     let API_URL = `${this.backend_post_API}/user/donate`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.post(API_URL,data,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  purchasePost(data:buySinglePost){
+    let API_URL = `${this.backend_post_API}/purchase/`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;

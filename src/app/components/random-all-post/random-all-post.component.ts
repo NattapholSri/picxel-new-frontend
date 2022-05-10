@@ -3,8 +3,11 @@ import { Router } from '@angular/router';
 import { PostingService } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { UserService } from 'src/app/services/api/user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController,PopoverController } from '@ionic/angular';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
+
+import { BuyPostComponent } from '../shared-components/buy-post/buy-post.component';
+
 
 
 @Component({
@@ -28,7 +31,8 @@ export class RandomAllPostComponent {
     private PostServ: PostingService,
     private tagServ: TagService,
     private userServ: UserService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private popOverCtrl:PopoverController,
   ) {
       this.loadPostAtPage = 1
       this.loadAllTag()
@@ -195,6 +199,16 @@ export class RandomAllPostComponent {
 
   goToOnlyPost(post_id:string){
     this.router.navigateByUrl(`/post-with-id/${post_id}`)
+  }
+
+  async buyPost(postObject:any){
+    
+    const popover = await this.popOverCtrl.create({
+      component: BuyPostComponent,
+      dismissOnSelect: false,
+      componentProps: { post_id:postObject._id,sell_price:postObject.purchase.price }
+    });
+    await popover.present();
   }
 
 }

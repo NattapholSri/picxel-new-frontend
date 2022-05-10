@@ -5,6 +5,7 @@ import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController,PopoverController } from '@ionic/angular';
 
 import { PopUserMenuComponent } from 'src/app/components/shared-components/pop-user-menu/pop-user-menu.component';
+import { BuyPostComponent } from 'src/app/components/shared-components/buy-post/buy-post.component';
 
 
 @Component({
@@ -197,6 +198,16 @@ export class PostWithIdPage {
       component: PopUserMenuComponent,
       dismissOnSelect: true,
       componentProps: { username :this.currentUserName }
+    });
+    await popover.present();
+  }
+
+  async buyPost(postObject:any){
+    
+    const popover = await this.popOverCtrl.create({
+      component: BuyPostComponent,
+      dismissOnSelect: false,
+      componentProps: { post_id:postObject._id,sell_price:postObject.purchase.price }
     });
     await popover.present();
   }

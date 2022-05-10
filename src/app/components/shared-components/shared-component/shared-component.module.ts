@@ -9,6 +9,7 @@ import { PopUserMenuComponent } from '../pop-user-menu/pop-user-menu.component';
 import { SmartSearchboxComponent } from '../../multi-page-use/smart-searchbox/smart-searchbox.component';
 import { CategoryPostComponent } from '../category-post/category-post.component';
 import { CommentTagPostComponent } from '../../comment/comment-tag-post/comment-tag-post.component';
+import { BuyPostComponent } from '../buy-post/buy-post.component';
 
 
 @NgModule({
@@ -17,11 +18,12 @@ import { CommentTagPostComponent } from '../../comment/comment-tag-post/comment-
     PopUserMenuComponent,
     SmartSearchboxComponent,
     CategoryPostComponent,
-    CommentTagPostComponent
+    CommentTagPostComponent,
+    BuyPostComponent
   ],
   imports: [
     CommonModule,IonicModule,FormsModule,RouterModule
   ],
-  exports: [CommentMenuComponent,PopUserMenuComponent,SmartSearchboxComponent,CategoryPostComponent,CommentTagPostComponent],
+  exports: [CommentMenuComponent,PopUserMenuComponent,SmartSearchboxComponent,CategoryPostComponent,CommentTagPostComponent, BuyPostComponent],
 })
 export class SharedComponentModule { }

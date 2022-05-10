@@ -6,6 +6,8 @@ import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 
+import { BuyPostComponent } from '../../shared-components/buy-post/buy-post.component';
+
 @Component({
   selector: 'app-post-view',
   templateUrl: './post-view.component.html',
@@ -27,7 +29,7 @@ export class PostViewComponent{
     private tagServ: TagService,
     private alertCtrl: AlertController,
     public formBulider: FormBuilder,
-    public popoverCtrl: PopoverController
+    public popOverCtrl: PopoverController
   ) {
       this.loadPostAtPage = 1
       this.loadAllTag()
@@ -209,7 +211,7 @@ export class PostViewComponent{
   }
 
   async dismissPopover(){
-    await this.popoverCtrl.dismiss();
+    await this.popOverCtrl.dismiss();
   }
 
   likeThisPost(post:any){
@@ -236,4 +238,15 @@ export class PostViewComponent{
   goToOnlyPost(post_id:string){
     this.router.navigateByUrl(`/post-with-id/${post_id}`)
   }
+
+  async buyPost(postObject:any){
+    
+    const popover = await this.popOverCtrl.create({
+      component: BuyPostComponent,
+      dismissOnSelect: false,
+      componentProps: { post_id:postObject._id,sell_price:postObject.purchase.price }
+    });
+    await popover.present();
+  }
+  
 }
