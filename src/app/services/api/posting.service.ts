@@ -162,7 +162,7 @@ export class PostingService {
 
     let jsonToken = this.loadJwt()
    
-    let API_URL = `${this.backend_post_API}/post/search?_id=${postId}&limit=${limitview}&page=${page}`;
+    let API_URL = `${this.backend_post_API}/post/${postId}`;
 
     if (jsonToken != undefined){
       let authMessage = 'Bearer ' + jsonToken;

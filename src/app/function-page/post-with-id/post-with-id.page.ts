@@ -47,7 +47,7 @@ export class PostWithIdPage {
     this.PostServ.SearchPostById(p_id,2,this.loadPostAtPage).subscribe(
       (res) => {
         console.log(res)
-        this.postData = res.content
+        this.postData = res.post
         this.Post_Edit()
         console.log(this.postData)
       }
