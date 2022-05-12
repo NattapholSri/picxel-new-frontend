@@ -176,7 +176,8 @@ export class AccountDetailPage implements OnInit {
     const popover = await this.popOverCtrl.create({
       component: UserSubscriptComponent,
       dismissOnSelect: true,
-      componentProps: { creator_id :this.usr_acc._id,creatorStatus:c_mode }
+      componentProps: { creator_id :this.usr_acc._id,creatorStatus:c_mode },
+      cssClass: 'expanded-popover'
     });
     await popover.present();
   }
@@ -197,7 +198,7 @@ export class AccountDetailPage implements OnInit {
       dismissOnSelect: false,
       componentProps: { creator_id:this.usr_acc._id },
       align: 'start',
-      side: "bottom"
+      side: "bottom",
     });
     await popover.present();
   }
