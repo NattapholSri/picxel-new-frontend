@@ -317,9 +317,15 @@ export class PostingService {
     )
   }
 
-  searchCommentOnPost(fromPostId:string){
-    let API_URL = `${this.backend_post_API}/post/comment/search?postId=${fromPostId}&all=1`;
+  searchCommentOnPost(fromPostId:string,load_all?:boolean){
 
+    if (load_all == true){
+      var API_URL = `${this.backend_post_API}/post/comment/search?postId=${fromPostId}&all=1`;
+    }
+    else{
+      var API_URL = `${this.backend_post_API}/post/comment/search?postId=${fromPostId}&limit=5&page=1`;
+    }
+  
     return this.httpClient.get(API_URL)
     .pipe(map((res:any) => {
       return res || {}
