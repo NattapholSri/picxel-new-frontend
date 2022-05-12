@@ -236,10 +236,13 @@
 
 }
 
-ion-popover {
-  --width: 400px;
+
+
+
+.md ion-popover {
+  --width: 360px;
 }
 
-ion-alert {
-  --width: 420px;
+.ios ion-popover {
+  --width: 75%;
 }

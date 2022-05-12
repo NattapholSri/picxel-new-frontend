@@ -38,7 +38,7 @@ export class CommentSinglePostComponent implements OnInit {
   ngOnInit() {
     console.log('load comment on post ' + this.post_id)
     if (this.post_id != undefined){
-    this.PostServ.searchCommentOnPost(this.post_id).subscribe((res) => {
+    this.PostServ.searchCommentOnPost(this.post_id,true).subscribe((res) => {
       console.log(res)
       this.comment_list = res.content
       if (this.comment_list.length != 0){
