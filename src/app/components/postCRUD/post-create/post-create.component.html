@@ -39,27 +39,33 @@
         <ion-text *ngIf=" message_mode == 5">no picture added</ion-text>
 
       </ion-col> -->
-      <ion-col size="2">
+      <ion-col>
         <!-- <ion-button (click)="addPic()" name="picture_add_btn" id="picture_add_btn">
           <ion-icon name="add-circle-outline" slot="start"></ion-icon>
           เพิ่มรูปภาพ
         </ion-button> -->
 
        <!--  <input accept="image/*" type="file" class="file-upload" onchange="console.log(event.target.files)"> -->
-       <ion-button type="button" (click)="fileInput.click()">
+
+      <!-- <form id="uploadForm"></form> -->
+      <ion-button type="button" (click)="fileInput.click()">
         อัพโหลดไฟล์รูปภาพ
         <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" />
       </ion-button>
-
-        
       </ion-col>
-      <ion-col *ngIf="picture_temp" offset="4">
-        <ion-thumbnail>
-          <img [src]="picture_temp"/>
-        </ion-thumbnail>
+      <ion-col>
+        <ion-button type="button" (click)="getUpURL()">check upload url</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button type="button" (click)="uploadFile()">upload test</ion-button>
       </ion-col>
     </ion-row>
 
+    <!-- <ion-row *ngIf="localfileinput.length != 0">
+      <ion-thumbnail *ngFor="let pic of localfileinput">
+        <img [src]="pic"/>
+      </ion-thumbnail>
+    </ion-row> -->
     
   
     <ion-row>

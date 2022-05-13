@@ -43,11 +43,31 @@ export class PictureManageService {
   }
 
   reqUploadURL(){
-    let API_URL = `${this.backend_post_API}/post/update`;
+    let API_URL  = `${this.backend_post_API}/post/pic-upload-url`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
     let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+  }
+
+  uploadPicToURL(api_url:string,file:File){
+
+    let uploadHeader = new HttpHeaders().set('Content-Type','multipart/form-data');
+
+    return this.httpClient.put(api_url,file,{headers:uploadHeader})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
+
   }
 
 }

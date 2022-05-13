@@ -2,10 +2,10 @@ import { Component, NgZone } from '@angular/core';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { PostingService,PostData,purchaseData } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController,ToastController,LoadingController } from '@ionic/angular';
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
-import { ToastController } from '@ionic/angular';
+import { PictureManageService } from 'src/app/services/api/picture-manage.service';
 
 
 @Component({
@@ -16,9 +16,8 @@ import { ToastController } from '@ionic/angular';
 export class PostCreateComponent {
 
   //postForm: FormGroup;
-
   post_text: string;
-  picture_list: string[] = [];
+  picture_list: any[] = [];
   tags_list: any[] = [];
 
   picture_url: string = '';
@@ -41,7 +40,7 @@ export class PostCreateComponent {
   safetyDisbale:boolean = false
   localfileinput:any[] = []
 
-  picture_temp
+  picture_temp:any
   
   constructor(
     public formBulider: FormBuilder,
@@ -49,7 +48,10 @@ export class PostCreateComponent {
     private alertCtrl: AlertController,
     private tagServ: TagService,
     private paymentServ: PaymentsService,
-    private toastCtrl:ToastController
+    private toastCtrl:ToastController,
+    private pictureServ:PictureManageService,
+    private loadingCtrl:LoadingController,
+    private ngZone:NgZone
   ) {
     if (localStorage.getItem('current_omise_customer') != undefined) {
       console.log('omise customer found')
@@ -86,13 +88,24 @@ export class PostCreateComponent {
     } 
   }
 
-  onSubmit(){
+  async onSubmit(){
+
+    await this.loadingCtrl.create({
+      message: 'กำลังสร้างโพสต์',
+      spinner: "circular"
+    }).then((res) => {
+      res.present();
+    })
+
     let postTag: string[] = []
     for (let item of this.tags_list){
       // console.log(item)
       postTag.push(item._id)
     }
     console.log(postTag)
+
+
+    this.picture_list = await this.uploadFile()
     if (this.buyRequire != true && this.postBuyMode != 2){
       var postForm:PostData = {
         text : this.post_text,
@@ -127,7 +140,14 @@ export class PostCreateComponent {
     
     console.log(postForm)
     this.PostServ.CreatePost(postForm)
-    .subscribe((res) => {
+    .subscribe(async (res) => {
+      await this.loadingCtrl.dismiss().then((res) => {
+        console.log('Login Success!', res);
+      }).catch((error) => {
+        console.log('error', error);
+      })
+
+
       alert("Posted")
       console.log(res)
       
@@ -139,11 +159,17 @@ export class PostCreateComponent {
       this.tempTagSearch = []
       this.message_mode = 0
       
-      window.location.reload()
+      this.ngZone.run(() => location.reload())
       //this.router.navigateByUrl('/home')
     },
-    (err) => {
+    async (err) => {
       console.log(err)
+      alert('ไม่สามารถสร้างโพสต์ได้ กรุณาลองใหม่')
+      await this.loadingCtrl.dismiss().then((res) => {
+        console.log('Login Success!', res);
+      }).catch((error) => {
+        console.log('error', error);
+      })
     })
   }
 
@@ -167,10 +193,13 @@ export class PostCreateComponent {
     for( var i = 0; i < this.picture_list.length; i++){ 
                                    
       if ( this.picture_list[i] === select_item) { 
-        this.picture_list.splice(i, 1); 
+        this.picture_list.splice(i, 1);
+        this.localfileinput.splice(i ,1) 
         i--; 
       }
     }
+    console.log(this.picture_list)
+    console.log(this.localfileinput)
   }
 
   addTag(input_tag:any){
@@ -289,26 +318,60 @@ export class PostCreateComponent {
   }
 
   onFileInput(event){
-    this.localfileinput.push(event.target.files)
-    console.log(this.localfileinput)
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (event:any) => {
-        this.picture_temp = event.target.result;
+        let pic_temp = event.target.result;
+        this.picture_list.push(pic_temp)
+        console.log(this.picture_list)
       }
       reader.readAsDataURL(event.target.files[0]);  // to trigger onload
     }
     
     let fileList: FileList = event.target.files;  
     let file: File = fileList[0];
-    console.log('file list length:'+ fileList.length)
+    this.localfileinput.push(file)
     console.log(file);
+    console.log(this.localfileinput)
   }
 
-  // get url for upload picture
+  async uploadFile():Promise<any>{
+    for(let picture of this.localfileinput){
+    // get url for upload picture
+      this.pictureServ.reqUploadURL().subscribe(
+        (res) => {
+          let object_upload = res
+          let up_url = object_upload.uploadUrl
+          let timenow = new Date()
+          console.log(timenow.getTime())
+          this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
+            (res) => console.log(res),
+            (err) => console.log(err)
+          )
+        }
+      )
 
-  // upload picture to AWS
+    // upload picture to AWS
+      //this.pictureServ.uploadPicToURL(up_url,picture)
 
-  // send list off key to function
+    // send list off key to function
+    }
+  }
+ 
 
+  namingForFile(){
+    let newFilename:string
+    let user_post_id:string = localStorage.getItem('current_log_uid')
+    let time = new Date()
+    newFilename = user_post_id + time.getTime().toString()
+    return newFilename
+  }
+
+  getUpURL(){
+    this.pictureServ.reqUploadURL().subscribe(
+      (res) => {
+        console.log(res)
+      },(err) => console.log(err)
+    )
+  }
 }
