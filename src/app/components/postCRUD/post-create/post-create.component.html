@@ -13,27 +13,6 @@
         id="post_detail"></ion-textarea>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <ion-textarea 
-        placeholder="URL รูปภาพ" 
-        rows="1" cols="80" 
-        inputmode="text" 
-        [(ngModel)]="picture_url" 
-        name="url_box"
-        id="url_box"></ion-textarea>
-        <ion-text *ngIf=" message_mode == 1" color="danger">this picture has been added already</ion-text>
-        <ion-text *ngIf=" message_mode == 2" color="success">added picture</ion-text>
-        <ion-text *ngIf=" message_mode == 5">no picture added</ion-text>
-
-      </ion-col>
-      <ion-col size="2">
-        <ion-button (click)="addPic()" name="picture_add_btn" id="picture_add_btn">
-          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
-          เพิ่มรูปภาพ
-        </ion-button>
-      </ion-col>
-    </ion-row>
 
     <ion-row *ngIf="picture_list != []" id="picture_added_list">
         <ion-item *ngFor="let picture_i of picture_list">
@@ -45,6 +24,43 @@
           </ion-button></ion-buttons>
         </ion-item>
     </ion-row>
+    
+    <ion-row>
+      <!-- <ion-col size="6">
+        <ion-textarea 
+        placeholder="URL รูปภาพ" 
+        rows="1" cols="80" 
+        inputmode="text" 
+        [(ngModel)]="picture_url" 
+        name="url_box"
+        id="url_box"></ion-textarea>
+        <ion-text *ngIf=" message_mode == 1" color="danger">this picture has been added already</ion-text>
+        <ion-text *ngIf=" message_mode == 2" color="success">added picture</ion-text>
+        <ion-text *ngIf=" message_mode == 5">no picture added</ion-text>
+
+      </ion-col> -->
+      <ion-col size="2">
+        <!-- <ion-button (click)="addPic()" name="picture_add_btn" id="picture_add_btn">
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          เพิ่มรูปภาพ
+        </ion-button> -->
+
+       <!--  <input accept="image/*" type="file" class="file-upload" onchange="console.log(event.target.files)"> -->
+       <ion-button type="button" (click)="fileInput.click()">
+        อัพโหลดไฟล์รูปภาพ
+        <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" />
+      </ion-button>
+
+        
+      </ion-col>
+      <ion-col *ngIf="picture_temp" offset="4">
+        <ion-thumbnail>
+          <img [src]="picture_temp"/>
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+
+    
   
     <ion-row>
       <ion-col size="7">

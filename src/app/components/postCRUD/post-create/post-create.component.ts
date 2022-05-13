@@ -39,6 +39,9 @@ export class PostCreateComponent {
   omise_resp_id:string
 
   safetyDisbale:boolean = false
+  localfileinput:any[] = []
+
+  picture_temp
   
   constructor(
     public formBulider: FormBuilder,
@@ -284,5 +287,23 @@ export class PostCreateComponent {
       recipient.bank_account.bank_code = original_text.toUpperCase()
     }
   }
+
+  onFileInput(event){
+    this.localfileinput.push(event.target.files)
+    console.log(this.localfileinput)
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.picture_temp = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);  // to trigger onload
+    }
+    
+    let fileList: FileList = event.target.files;  
+    let file: File = fileList[0];
+    console.log(file);
+  }
+
+  
 
 }
