@@ -301,9 +301,14 @@ export class PostCreateComponent {
     
     let fileList: FileList = event.target.files;  
     let file: File = fileList[0];
+    console.log('file list length:'+ fileList.length)
     console.log(file);
   }
 
-  
+  // get url for upload picture
+
+  // upload picture to AWS
+
+  // send list off key to function
 
 }
