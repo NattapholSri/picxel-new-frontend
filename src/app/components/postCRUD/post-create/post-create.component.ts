@@ -3,9 +3,12 @@ import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { PostingService,PostData,purchaseData } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController,ToastController,LoadingController } from '@ionic/angular';
+import AWSS3UploadAshClient from 'aws-s3-upload-ash';
+import { environment } from 'src/environments/environment';
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
 import { PictureManageService } from 'src/app/services/api/picture-manage.service';
+import { UploadResponse } from 'aws-s3-upload-ash/dist/types';
 
 
 @Component({
@@ -41,6 +44,17 @@ export class PostCreateComponent {
   localfileinput:any[] = []
 
   picture_temp:any
+
+
+  aws_config = {
+    bucketName: 'picxel-post-pictures',
+    dirname: 'photos',
+    region: 'ap-southeast-1',
+    s3Url: 'https://picxel-post-pictures.s3.ap-southeast-1.amazonaws.com/',
+    accessKeyId: environment.aws_access_key,
+    secretAccessKey: environment.aws_secret_key
+  }
+  aws_uploadClient: AWSS3UploadAshClient = new AWSS3UploadAshClient(this.aws_config)
   
   constructor(
     public formBulider: FormBuilder,
@@ -85,7 +99,10 @@ export class PostCreateComponent {
       console.log('no omise id')
       this.warningNoOmiseId()
       this.safetyDisbale = true
-    } 
+    }
+    
+    
+
   }
 
   async onSubmit(){
@@ -339,39 +356,47 @@ export class PostCreateComponent {
     for(let picture of this.localfileinput){
     // get url for upload picture
     let filename:string = picture.name
+    let filetype:string = picture.type
+    console.log('name:'+filename+' type:'+filetype)
     let ext:string[] = filename.split(".")
+    let file_name = this.namingForFile(ext[1])
+
+    /* await this.aws_uploadClient.uploadFile(picture,filetype,undefined,file_name)
+        .then((data:UploadResponse) => console.log(data))
+        .catch((err:any) => console.log(err)) */
+    
       this.pictureServ.reqUploadURL(ext[1]).subscribe(
         async (res) => {
           let object_upload = res
           let up_url = object_upload.uploadUrl
 
-          let upload_res = await fetch(up_url,{
-            method: "PUT",
-            body: picture
-            })
-          console.log(upload_res)
+         /*  await this.aws_uploadClient.uploadFile(picture,filetype,up_url)
+          .then((data:UploadResponse) => console.log(data))
+          .catch((err:any) => console.log(err)) */
 
-
-          /* this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
+          
+          this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
             (res) => console.log(res),
             (err) => console.log(err)
-          ) */
+          )
         }
-      )
+      ) 
 
     // upload picture to AWS
-      //this.pictureServ.uploadPicToURL(up_url,picture)
 
     // send list off key to function
     }
   }
  
 
-  namingForFile(){
+  namingForFile(extension?:string){
     let newFilename:string
     let user_post_id:string = localStorage.getItem('current_log_uid')
     let time = new Date()
-    newFilename = user_post_id + time.getTime().toString()
+    newFilename = time.getTime().toString() + "_" + user_post_id  
+    if (extension != undefined){
+      newFilename = newFilename + "." + extension
+    }
     return newFilename
   }
 
