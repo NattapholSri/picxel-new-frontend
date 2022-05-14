@@ -5,6 +5,7 @@ import { UserService } from '../../services/api/user.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { PostingService } from 'src/app/services/api/posting.service';
+import { PictureManageService } from 'src/app/services/api/picture-manage.service';
 
 import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
 import { ManageOmiseComponent } from 'src/app/components/subscription/manage-omise/manage-omise.component';
@@ -34,6 +35,9 @@ export class AccountEditPage implements OnInit {
 
   create_mode:boolean = true
   false_from_backend:boolean = false
+  img1:any
+
+  picture_file:File
 
   constructor(
     public formBulider: FormBuilder,
@@ -43,7 +47,8 @@ export class AccountEditPage implements OnInit {
     private tagServ: TagService,
     private alertCtrl: AlertController,
     private postServ: PostingService,
-    private popOverCtrl:PopoverController
+    private popOverCtrl:PopoverController,
+    private pictureServ:PictureManageService
 
   ) { 
     this.userServ.AutoLogout()
@@ -284,6 +289,59 @@ export class AccountEditPage implements OnInit {
       mode: "md",
     });
     await popover.present();
+  }
+
+  onFileInput(event){
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.img1 = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);  // to trigger onload
+    }
+    
+    let fileList: FileList = event.target.files;  
+    let file: File = fileList[0];
+    this.picture_file = file
+    console.log(file);
+  }
+
+  async uploadFile():Promise<any>{
+    let stringname = this.picture_file.name.split(".")
+    this.pictureServ.requestProfilePicURL(stringname[1]).subscribe(
+      async (res) => {
+        let object_upload = res
+        let up_url = object_upload.uploadUrl
+    
+        let upload_res = await fetch(up_url,{
+          method: "PUT",
+          body: this.picture_file,
+              // headers: {'Content-Type':'multipart/form-data'}
+          })
+        console.log(upload_res)
+      },(err) => console.log(err)
+    )
+    // get url for upload picture
+      
+
+          /* this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
+            (res) => console.log(res),
+            (err) => console.log(err)
+          ) */
+    // upload picture to AWS
+      //this.pictureServ.uploadPicToURL(up_url,picture)
+
+    // send list off key to function
+  }
+
+
+  getUpURL(){
+    let stringname = this.picture_file.name.split(".")
+    this.pictureServ.requestProfilePicURL(stringname[1]).subscribe(
+      (res) => {
+        console.log(res)
+      },(err) => console.log(err)
+    )
   }
 
 }

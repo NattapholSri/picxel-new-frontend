@@ -42,8 +42,8 @@ export class PictureManageService {
     }
   }
 
-  reqUploadURL(){
-    let API_URL  = `${this.backend_post_API}/post/pic-upload-url`;
+  reqUploadURL(file_type:string){
+    let API_URL  = `${this.backend_post_API}/post/pic-upload-url?type=${file_type}`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;
@@ -61,13 +61,31 @@ export class PictureManageService {
 
     let uploadHeader = new HttpHeaders().set('Content-Type','multipart/form-data');
 
-    return this.httpClient.put(api_url,file,{headers:uploadHeader})
+    console.log(api_url)
+    console.log(file)
+
+    return this.httpClient.put(api_url,file)
     .pipe(map((res:any) => {
       return res || {}
     }),
     catchError(this.handleError)
     )
 
+  }
+
+  requestProfilePicURL(file_type:string){
+    let API_URL  = `${this.backend_post_API}/user/pic-upload-url?type=${file_type}`;
+
+    let jsonToken = this.loadJwt()
+    let authMessage = 'Bearer ' + jsonToken;
+    let tokenHeaders = new HttpHeaders().set('Authorization',authMessage);
+
+    return this.httpClient.get(API_URL,{headers:tokenHeaders})
+    .pipe(map((res:any) => {
+      return res || {}
+    }),
+    catchError(this.handleError)
+    )
   }
 
 }

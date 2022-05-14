@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  omise_pub_key: "pkey_test_5q7y10905wrdfyfy8nc"
+  omise_pub_key: "pkey_test_5q7y10905wrdfyfy8nc",
+  aws_access_key: "AKIAUEQF3MIV3HAC7ROY",
+  aws_secret_key: "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"
 };
 
 /*

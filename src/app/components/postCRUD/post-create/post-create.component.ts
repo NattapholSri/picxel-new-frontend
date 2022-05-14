@@ -338,16 +338,24 @@ export class PostCreateComponent {
   async uploadFile():Promise<any>{
     for(let picture of this.localfileinput){
     // get url for upload picture
-      this.pictureServ.reqUploadURL().subscribe(
-        (res) => {
+    let filename:string = picture.name
+    let ext:string[] = filename.split(".")
+      this.pictureServ.reqUploadURL(ext[1]).subscribe(
+        async (res) => {
           let object_upload = res
           let up_url = object_upload.uploadUrl
-          let timenow = new Date()
-          console.log(timenow.getTime())
-          this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
+
+          let upload_res = await fetch(up_url,{
+            method: "PUT",
+            body: picture
+            })
+          console.log(upload_res)
+
+
+          /* this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
             (res) => console.log(res),
             (err) => console.log(err)
-          )
+          ) */
         }
       )
 
@@ -368,10 +376,14 @@ export class PostCreateComponent {
   }
 
   getUpURL(){
-    this.pictureServ.reqUploadURL().subscribe(
+    for(let picture of this.localfileinput){
+      // get url for upload picture
+      let filename:string = picture.name
+      let ext:string[] = filename.split(".")
+      this.pictureServ.reqUploadURL(ext[1]).subscribe(
       (res) => {
         console.log(res)
       },(err) => console.log(err)
-    )
+    )}
   }
 }
