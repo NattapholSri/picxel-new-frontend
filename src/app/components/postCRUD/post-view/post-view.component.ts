@@ -42,15 +42,14 @@ export class PostViewComponent{
   userPost(user_id:string){
     this.PostServ.SearchPost(user_id,10,this.loadPostAtPage).subscribe(
       (res) => {
+        console.log(res)
         this.postList = res.content
         if (this.postList.length !== 10){
           this.canloadMore = false
         }
-        if (this.knowtag != []){
-          this.Post_Edit()
-        }
+        this.Post_Edit()
         console.log(this.postList)
-      }
+      },(err) =>console.log(err)
     )
   }
 

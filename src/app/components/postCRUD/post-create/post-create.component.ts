@@ -3,12 +3,36 @@ import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { PostingService,PostData,purchaseData } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController,ToastController,LoadingController } from '@ionic/angular';
-import AWSS3UploadAshClient from 'aws-s3-upload-ash';
-import { environment } from 'src/environments/environment';
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
 import { PictureManageService } from 'src/app/services/api/picture-manage.service';
-import { UploadResponse } from 'aws-s3-upload-ash/dist/types';
+
+import { initializeApp } from "firebase/app";
+import { getStorage, ref,uploadBytes } from "firebase/storage";
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+
+// Create a storage reference from our storage service
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCUWgMprUGflxVowZHuQ0baVHI4SHejsr0",
+  authDomain: "project-y4-c9b6b.firebaseapp.com",
+  databaseURL: "https://project-y4-c9b6b-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "project-y4-c9b6b",
+  storageBucket: "project-y4-c9b6b.appspot.com",
+  messagingSenderId: "609181833694",
+  appId: "1:609181833694:web:d610b294193cd39a18e54f",
+  measurementId: "G-THXLKCKEMR"
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+const storage = getStorage(firebaseApp);
+const storageRef = ref(storage);
+
 
 
 @Component({
@@ -44,17 +68,6 @@ export class PostCreateComponent {
   localfileinput:any[] = []
 
   picture_temp:any
-
-
-  aws_config = {
-    bucketName: 'picxel-post-pictures',
-    dirname: 'photos',
-    region: 'ap-southeast-1',
-    s3Url: 'https://picxel-post-pictures.s3.ap-southeast-1.amazonaws.com/',
-    accessKeyId: environment.aws_access_key,
-    secretAccessKey: environment.aws_secret_key
-  }
-  aws_uploadClient: AWSS3UploadAshClient = new AWSS3UploadAshClient(this.aws_config)
   
   constructor(
     public formBulider: FormBuilder,
@@ -122,11 +135,12 @@ export class PostCreateComponent {
     console.log(postTag)
 
 
-    this.picture_list = await this.uploadFile()
+    let path_picture_list = await this.uploadFile()
+
     if (this.buyRequire != true && this.postBuyMode != 2){
       var postForm:PostData = {
         text : this.post_text,
-        pics : this.picture_list,
+        pics : path_picture_list,
         tags : postTag,
         requireSub : this.subRequire,
         requirePurchase: this.buyRequire
@@ -147,7 +161,7 @@ export class PostCreateComponent {
       
       var postForm:PostData ={
         text : this.post_text,
-        pics : this.picture_list,
+        pics : path_picture_list,
         tags : postTag,
         requirePurchase: this.buyRequire,
         purchase: reciptData,
@@ -353,39 +367,25 @@ export class PostCreateComponent {
   }
 
   async uploadFile():Promise<any>{
+    let uploadList:string[] = []
     for(let picture of this.localfileinput){
-    // get url for upload picture
-    let filename:string = picture.name
-    let filetype:string = picture.type
-    console.log('name:'+filename+' type:'+filetype)
-    let ext:string[] = filename.split(".")
-    let file_name = this.namingForFile(ext[1])
+      let filename:string = picture.name
+      let filetype:string = picture.type
+      console.log('name:'+filename+' type:'+ filetype)
+      let ext:string[] = filename.split(".")
+      let new_filename = this.namingForFile(ext[ext.length-1])
+      console.log(new_filename)
+      let uploadPicRef = ref(storage, 'post-pics/'+ new_filename);
 
-    /* await this.aws_uploadClient.uploadFile(picture,filetype,undefined,file_name)
-        .then((data:UploadResponse) => console.log(data))
-        .catch((err:any) => console.log(err)) */
-    
-      this.pictureServ.reqUploadURL(ext[1]).subscribe(
-        async (res) => {
-          let object_upload = res
-          let up_url = object_upload.uploadUrl
-
-         /*  await this.aws_uploadClient.uploadFile(picture,filetype,up_url)
-          .then((data:UploadResponse) => console.log(data))
-          .catch((err:any) => console.log(err)) */
-
-          
-          this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
-            (res) => console.log(res),
-            (err) => console.log(err)
-          )
-        }
-      ) 
-
-    // upload picture to AWS
+      await uploadBytes(uploadPicRef,picture).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+        uploadList.push('post-pics/'+ new_filename)
+      }).catch((err)=> console.log(err))
 
     // send list off key to function
     }
+    console.log(uploadList)
+    return uploadList
   }
  
 
@@ -398,17 +398,5 @@ export class PostCreateComponent {
       newFilename = newFilename + "." + extension
     }
     return newFilename
-  }
-
-  getUpURL(){
-    for(let picture of this.localfileinput){
-      // get url for upload picture
-      let filename:string = picture.name
-      let ext:string[] = filename.split(".")
-      this.pictureServ.reqUploadURL(ext[1]).subscribe(
-      (res) => {
-        console.log(res)
-      },(err) => console.log(err)
-    )}
   }
 }

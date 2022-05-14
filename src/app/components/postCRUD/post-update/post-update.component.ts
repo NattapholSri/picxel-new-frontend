@@ -51,7 +51,7 @@ export class PostUpdateComponent {
     // this.loadAllTag()
     this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
     this.postData = JSON.parse(localStorage.getItem('selectPost'))
-    if (this.postData != undefined || this.postData != {}){
+    if (this.postData != undefined || Object.keys(this.postData).length  !== 0){
       this.post_text = this.postData.text
       this.picture_list = this.postData.pics
       /* let temp_tag = this.postData.tags

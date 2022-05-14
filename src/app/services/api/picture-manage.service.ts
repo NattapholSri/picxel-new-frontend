@@ -41,7 +41,7 @@ export class PictureManageService {
     }
   }
 
-  reqUploadURL(file_type:string){
+  /* reqUploadURL(file_type:string){
     let API_URL  = `${this.backend_post_API}/post/pic-upload-url?type=${file_type}`;
 
     let jsonToken = this.loadJwt()
@@ -53,8 +53,8 @@ export class PictureManageService {
       return res || {}
     }),
     catchError(this.handleError)
-    )
-  }
+    ) 
+  } */
 
   uploadPicToURL(api_url:string,file:File){
 

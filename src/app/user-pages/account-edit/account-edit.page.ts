@@ -10,6 +10,32 @@ import { PictureManageService } from 'src/app/services/api/picture-manage.servic
 import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
 import { ManageOmiseComponent } from 'src/app/components/subscription/manage-omise/manage-omise.component';
 
+import { initializeApp } from "firebase/app";
+import { getStorage, ref,uploadBytes } from "firebase/storage";
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+
+// Create a storage reference from our storage service
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCUWgMprUGflxVowZHuQ0baVHI4SHejsr0",
+  authDomain: "project-y4-c9b6b.firebaseapp.com",
+  databaseURL: "https://project-y4-c9b6b-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "project-y4-c9b6b",
+  storageBucket: "project-y4-c9b6b.appspot.com",
+  messagingSenderId: "609181833694",
+  appId: "1:609181833694:web:d610b294193cd39a18e54f",
+  measurementId: "G-THXLKCKEMR"
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+const storage = getStorage(firebaseApp);
+const storageRef = ref(storage);
+
 @Component({
   selector: 'app-account-edit',
   templateUrl: './account-edit.page.html',
@@ -100,6 +126,10 @@ export class AccountEditPage implements OnInit {
       interest_id_list.push(item)
     }
     console.log(interest_id_list)
+
+    if (this.picture_file != undefined){
+      this.uploadFile(this.picture_file)
+    }
 
     const editForm = new FormGroup({
       gender: new FormControl(this.gender, Validators.required),
@@ -306,42 +336,32 @@ export class AccountEditPage implements OnInit {
     console.log(file);
   }
 
-  async uploadFile():Promise<any>{
-    let stringname = this.picture_file.name.split(".")
-    this.pictureServ.requestProfilePicURL(stringname[1]).subscribe(
-      async (res) => {
-        let object_upload = res
-        let up_url = object_upload.uploadUrl
-    
-        let upload_res = await fetch(up_url,{
-          method: "PUT",
-          body: this.picture_file,
-              // headers: {'Content-Type':'multipart/form-data'}
-          })
-        console.log(upload_res)
-      },(err) => console.log(err)
-    )
-    // get url for upload picture
-      
+  async uploadFile(file_picture:File):Promise<any>{
 
-          /* this.pictureServ.uploadPicToURL(up_url,picture).subscribe(
-            (res) => console.log(res),
-            (err) => console.log(err)
-          ) */
-    // upload picture to AWS
-      //this.pictureServ.uploadPicToURL(up_url,picture)
+    let filename:string = file_picture.name
+    let filetype:string = file_picture.type
+    console.log('name:'+filename+' type:'+ filetype)
+    let ext:string[] = filename.split(".")
+    let new_filename = this.namingForFile(ext[ext.length-1])
+    console.log(new_filename)
+    let uploadPicRef = ref(storage, 'profile-pics/'+ new_filename);
+
+    await uploadBytes(uploadPicRef,file_picture).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+    }).catch((err)=>console.log(err))
 
     // send list off key to function
+    return 'post-pics/'+ new_filename
   }
 
-
-  getUpURL(){
-    let stringname = this.picture_file.name.split(".")
-    this.pictureServ.requestProfilePicURL(stringname[1]).subscribe(
-      (res) => {
-        console.log(res)
-      },(err) => console.log(err)
-    )
+  namingForFile(extension?:string){
+    let newFilename:string
+    let user_post_id:string = localStorage.getItem('current_log_uid')
+    let time = new Date()
+    newFilename = time.getTime().toString() + "_" + user_post_id  
+    if (extension != undefined){
+      newFilename = newFilename + "." + extension
+    }
+    return newFilename
   }
-
 }

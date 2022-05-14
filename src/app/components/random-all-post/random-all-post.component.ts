@@ -50,7 +50,7 @@ export class RandomAllPostComponent {
     this.PostServ.LoadRandomPost().subscribe((res) =>{
       this.postList = []
       console.log(res)
-      this.postList = res
+      this.postList = res.content
       this.Post_Edit()
     },(err) => {
       console.log(err)
