@@ -22,7 +22,22 @@
       อัพโหลดไฟล์รูปภาพ
       <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" />
     </ion-button>
+    <ion-button type="button" (click)="uploadFile(picture_file)">test uploadFile to cloud
+    </ion-button>
   </ion-item>
+  <ion-item *ngIf="picture_file != undefined">
+    รูปที่จะใช้เปลี่ยน:
+    <ion-thumbnail>
+      <img [src]="img1">
+    </ion-thumbnail>
+    <ion-buttons><ion-button (click)="removePreviewPic()">
+      <ion-icon name="close-circle-outline" id="remove_pic_btn"></ion-icon>
+    </ion-button></ion-buttons>
+  </ion-item>
+
+    <!--  <ion-label position="floating">กรอก URL รูปภาพ</ion-label>
+     <ion-input type="text" required [(ngModel)]="picture_url" id="user_picture_url"></ion-input> -->
+
   <ion-item>
     <ion-label position="fixed">Firstname:</ion-label>
     <ion-input type="text" required [(ngModel)]="firstname"  id="f_name_input"></ion-input>

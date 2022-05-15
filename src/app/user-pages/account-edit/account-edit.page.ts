@@ -43,6 +43,7 @@ export class AccountEditPage implements OnInit {
 
   gender: string;
   picture_url: string;
+  old_picture_path:string;
   firstname: string;
   user_now: string;
   username: string;
@@ -86,6 +87,7 @@ export class AccountEditPage implements OnInit {
         }
         if (usr_data.profile_pic != undefined){
           this.picture_url = usr_data.profile_pic
+          this.old_picture_path = usr_data.profile_pic
         }
         if (usr_data.firstname != undefined){
           this.firstname = usr_data.firstname
@@ -123,10 +125,16 @@ export class AccountEditPage implements OnInit {
     }
     console.log(interest_id_list)
 
-    if (this.picture_file != undefined){
-      this.uploadFile(this.picture_file)
-    }
 
+
+    if (this.picture_file != undefined){
+      let picture_path:string = await this.uploadFile(this.picture_file)
+      this.picture_url = picture_path
+    }
+    if (this.picture_url == this.old_picture_path){
+      this.picture_url = undefined
+    }
+    
     let editForm = {
       gender: this.gender,
       profile_pic: this.picture_url,
@@ -341,25 +349,16 @@ export class AccountEditPage implements OnInit {
     console.log(new_filename)
     let uploadPicRef = ref(storage, 'profile-pics/'+ new_filename);
 
-    let func_output = 'profile-pics/'+ new_filename
+    let func_output:string
 
     await uploadBytes(uploadPicRef,file_picture).then(async (snapshot) => {
       console.log('Uploaded a blob or file!');
-      // return URL
-     await getDownloadURL(uploadPicRef)
-        .then((url) => {
-        // `url` is the download URL for 'images/stars.jpg'
-          func_output = url
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.log(error)
-      })
+      console.log(snapshot)
+      func_output = 'profile-pics/'+ new_filename
 
     }).catch((err)=>console.log(err))
 
     // send list off key to function
-
     // return file path
     return func_output
   }
@@ -375,8 +374,10 @@ export class AccountEditPage implements OnInit {
     return newFilename
   }
 
-  isUrl(s:string) {
-    var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-    return regexp.test(s);
+  removePreviewPic(){
+    this.picture_file = undefined
+    this.img1 = undefined
   }
+
+
 }

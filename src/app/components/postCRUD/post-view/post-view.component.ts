@@ -40,11 +40,11 @@ export class PostViewComponent{
   }
 
   userPost(user_id:string){
-    this.PostServ.SearchPost(user_id,10,this.loadPostAtPage).subscribe(
+    this.PostServ.SearchPost(user_id,8,this.loadPostAtPage).subscribe(
       (res) => {
         console.log(res)
         this.postList = res.content
-        if (this.postList.length !== 10){
+        if (this.postList.length < 8){
           this.canloadMore = false
         }
         this.Post_Edit()
@@ -57,16 +57,19 @@ export class PostViewComponent{
     this.loadAllTag()
     this.loadPostAtPage += 1;
     console.log(this.u_detail._id)
-    this.PostServ.SearchPost(this.u_detail._id,10,this.loadPostAtPage).subscribe(
+    this.PostServ.SearchPost(this.u_detail._id,8,this.loadPostAtPage).subscribe(
       (res) => {
         console.log(res)
-        let MorePostList = res.content
+        let MorePostList:any[] = res.content
+        MorePostList = this.more_post_Edit(MorePostList)
         console.log(MorePostList)
-        if (MorePostList.length !== 10){
+        if (MorePostList.length < 8){
           this.canloadMore = false
+          this.postList = this.postList.concat(MorePostList)
+          console.log(this.postList)
         }
         else{
-          this.postList += MorePostList
+          this.postList = this.postList.concat(MorePostList)
           console.log(this.postList)
         }
       }
@@ -100,6 +103,38 @@ export class PostViewComponent{
         })
       }
     }
+  }
+
+  more_post_Edit(input_array:any[]){
+
+    let this_array = input_array
+
+    for (let post of this_array){
+      console.log(post)
+
+      let localDate = new Date(post.createdAt)
+      post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      let updateDate = new Date(post.updatedAt)
+      post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+
+      if (post.likeCount != 0 && this.currentUserId != undefined){
+        console.log('load login user like status: ' + post._id)
+        // let userWhoLikePost:any[] = []
+        post.thisUserLike = false
+        this.PostServ.UserLikeOnPost(this.currentUserId,post._id).subscribe(
+          (res) => {
+            // console.log(res.content)
+            if (res.content != null && res.content != undefined){
+              if (res.content.userId == this.currentUserId){
+                post.thisUserLike = true
+            } 
+          }
+        },(err) => {
+          console.log(err)
+        })
+      }
+    }
+    return this_array
   }
 
   loadAllTag(){
