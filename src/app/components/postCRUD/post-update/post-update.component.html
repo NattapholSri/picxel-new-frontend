@@ -12,7 +12,7 @@
         id="post_detail"></ion-textarea>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="8">
         <ion-textarea 
         placeholder="URL รูปภาพ" 
@@ -29,17 +29,26 @@
           เพิ่มรูปภาพ
         </ion-button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
     <ion-row *ngIf="picture_list != []" id="picture_added_list">
       <ion-item *ngFor="let picture_i of picture_list">
         <ion-thumbnail>
-          <img src="{{picture_i}}">
+          <img src="{{picture_i.url}}">
         </ion-thumbnail>
         <ion-buttons><ion-button (click)="removePic(picture_i)">
           <ion-icon name="close-circle-outline" id="remove_pic_btn"></ion-icon>
         </ion-button></ion-buttons>
       </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+      <ion-button type="button" (click)="fileInput.click()">
+        อัพโหลดไฟล์รูปภาพ
+        <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" />
+      </ion-button>
+      </ion-col>
     </ion-row>
   
     <ion-row>

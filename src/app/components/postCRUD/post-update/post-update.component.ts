@@ -5,6 +5,34 @@ import { PostingService,PostData,purchaseData } from 'src/app/services/api/posti
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController,ToastController } from '@ionic/angular';
 import { PaymentsService } from 'src/app/services/api/payments.service';
+import { UserService } from 'src/app/services/api/user.service';
+
+// firebase setup
+import { initializeApp } from "firebase/app";
+import { getStorage, ref,uploadBytes } from "firebase/storage";
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+
+// Create a storage reference from our storage service
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCUWgMprUGflxVowZHuQ0baVHI4SHejsr0",
+  authDomain: "project-y4-c9b6b.firebaseapp.com",
+  databaseURL: "https://project-y4-c9b6b-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "project-y4-c9b6b",
+  storageBucket: "project-y4-c9b6b.appspot.com",
+  messagingSenderId: "609181833694",
+  appId: "1:609181833694:web:d610b294193cd39a18e54f",
+  measurementId: "G-THXLKCKEMR"
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+const storage = getStorage(firebaseApp);
+
+//--------------------------------------------- 
 
 @Component({
   selector: 'app-post-update',
@@ -13,11 +41,13 @@ import { PaymentsService } from 'src/app/services/api/payments.service';
 })
 export class PostUpdateComponent {
 
+  post_id:string = ''
+
   //postForm: FormGroup;
   postData: any = {}
 
   post_text: string;
-  picture_list: string[] = [];
+  picture_list: any[] = [];
   tags_list: any[] = [];
   knowtag: any[] = [];
 
@@ -39,6 +69,9 @@ export class PostUpdateComponent {
 
   safetyDisbale:boolean = false
 
+  old_picture_key:string[] = []
+  localfileinput:File[] = []
+
   constructor(
     public formBulider: FormBuilder,
     private router: Router,
@@ -46,31 +79,42 @@ export class PostUpdateComponent {
     private alertCtrl: AlertController,
     private tagServ: TagService,
     private paymentServ: PaymentsService,
-    private toastCtrl:ToastController
+    private toastCtrl:ToastController,
+    private userServ:UserService
   ) { 
+    this.userServ.AutoLogout()
     // this.loadAllTag()
     this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
-    this.postData = JSON.parse(localStorage.getItem('selectPost'))
-    if (this.postData != undefined || Object.keys(this.postData).length  !== 0){
-      this.post_text = this.postData.text
-      this.picture_list = this.postData.pics
-      /* let temp_tag = this.postData.tags
-      this.addTagData(temp_tag) */
-      this.tags_list = this.postData.tags
-      this.subRequire = this.postData.requireSub
-      this.buyRequire = this.postData.requirePurchase
-      if (this.postData.purchase != undefined){
-        this.postprice = this.postData.purchase.price
-        this.omise_resp_id =  this.postData.purchase.omise_recipient_id
-      }
-      if (this.subRequire == undefined){
-        this.subRequire = false
-      }
-      if (this.buyRequire == undefined){
-        this.buyRequire = false
-      }
-      this.synchronizeMode()
-    }
+    //this.postData = JSON.parse(localStorage.getItem('selectPost'))
+    this.post_id = localStorage.getItem('selectPostId')
+
+    this.PostServ.SearchPostById(this.post_id).subscribe(
+      (res) =>{
+        console.log(res)
+        this.postData = res.content
+        this.post_text = this.postData.text
+        this.picture_list = this.postData.pics
+        for (let pic_data of this.picture_list){
+          this.old_picture_key.push(pic_data.path)
+        }
+        this.tags_list = this.postData.tags
+        this.subRequire = this.postData.requireSub
+        this.buyRequire = this.postData.requirePurchase
+        if (this.postData.purchase != undefined){
+          this.postprice = this.postData.purchase.price
+          this.omise_resp_id =  this.postData.purchase.omise_recipient_id
+        }
+        if (this.subRequire == undefined){
+          this.subRequire = false
+        }
+        if (this.buyRequire == undefined){
+          this.buyRequire = false
+        }
+        this.synchronizeMode()
+      },
+      (err) => console.log(err)
+    )
+
     if (localStorage.getItem('current_omise_customer') != undefined) {
       this.paymentServ.getCustomerReciptInfo().subscribe(
       (res) => {
@@ -116,12 +160,22 @@ export class PostUpdateComponent {
     }
   }
 
-  onSubmit(){
+  async onSubmit(){
     console.log(this.tags_list)
+
+    let new_file_path:string[] = await this.uploadFile()
+    console.log(new_file_path)
+    let full_path:string[] = this.old_picture_key.concat(new_file_path)
+    console.log('update_pic_list:'+full_path)
+    if (full_path.length != this.picture_list.length){
+      return
+    }
+    
+
     if (this.buyRequire != true && this.postBuyMode != 2){
       var postForm:PostData = {
         text : this.post_text,
-        pics : this.picture_list,
+        pics : full_path,
         tags : this.tags_list,
         requireSub : this.subRequire,
         requirePurchase: this.buyRequire,
@@ -141,7 +195,7 @@ export class PostUpdateComponent {
       
       var postForm:PostData ={
         text : this.post_text,
-        pics : this.picture_list,
+        pics : full_path,
         tags : this.tags_list,
         requirePurchase: this.buyRequire,
         purchase: reciptData,
@@ -168,10 +222,22 @@ export class PostUpdateComponent {
     for( var i = 0; i < this.picture_list.length; i++){ 
                                    
       if ( this.picture_list[i] === select_item) { 
-        this.picture_list.splice(i, 1); 
+        this.picture_list.splice(i, 1)
+        if (i >= this.old_picture_key.length){
+          console.log('number_of_file_array:' + (i - this.old_picture_key.length))
+          this.localfileinput.splice(i - this.old_picture_key.length,1)
+          console.log('delete local file:' + this.localfileinput)
+        }
+        else{
+          this.old_picture_key.splice(i, 1)
+          console.log('delete post file')
+        }
         i--; 
       }
     }
+    console.log(this.picture_list)
+    console.log(this.old_picture_key)
+    console.log(this.localfileinput)
   }
 
   removeTag(select_tag:any){
@@ -182,7 +248,6 @@ export class PostUpdateComponent {
         i--; 
       }
     }
-
   }
 
   addPic(){
@@ -321,6 +386,57 @@ export class PostUpdateComponent {
       duration: 5000
     });
     toast.present();
+  }
+
+  onFileInput(event){
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event:any) => {
+        let pic_temp = event.target.result;
+        this.picture_list.push({url:pic_temp})
+        console.log(this.picture_list)
+      }
+      reader.readAsDataURL(event.target.files[0]);  // to trigger onload
+    }
+    
+    let fileList: FileList = event.target.files;  
+    let file: File = fileList[0];
+    this.localfileinput.push(file)
+    console.log(file);
+    console.log(this.localfileinput)
+  }
+
+  async uploadFile():Promise<string[]>{
+    let uploadList:string[] = []
+    for(let picture of this.localfileinput){
+      let filename:string = picture.name
+      let filetype:string = picture.type
+      console.log('name:'+filename+' type:'+ filetype)
+      let ext:string[] = filename.split(".")
+      let new_filename = this.namingForFile(ext[ext.length-1])
+      console.log(new_filename)
+      let uploadPicRef = ref(storage, 'post-pics/'+ new_filename);
+
+      await uploadBytes(uploadPicRef,picture).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+        uploadList.push('post-pics/'+ new_filename)
+      }).catch((err)=> console.log(err))
+
+    // send list off key to function
+    }
+    console.log(uploadList)
+    return uploadList
+  }
+
+  namingForFile(extension?:string){
+    let newFilename:string
+    let user_post_id:string = localStorage.getItem('current_log_uid')
+    let time = new Date()
+    newFilename = time.getTime().toString() + "_" + user_post_id  
+    if (extension != undefined){
+      newFilename = newFilename + "." + extension
+    }
+    return newFilename
   }
 
 }

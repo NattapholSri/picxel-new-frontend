@@ -5,13 +5,12 @@ import { UserService } from '../../services/api/user.service';
 import { TagService } from 'src/app/services/api/tag.service';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { PostingService } from 'src/app/services/api/posting.service';
-import { PictureManageService } from 'src/app/services/api/picture-manage.service';
 
 import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
 import { ManageOmiseComponent } from 'src/app/components/subscription/manage-omise/manage-omise.component';
 
 import { initializeApp } from "firebase/app";
-import { getStorage, ref,uploadBytes } from "firebase/storage";
+import { getStorage, ref,uploadBytes,getDownloadURL } from "firebase/storage";
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 
@@ -34,7 +33,6 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 const storage = getStorage(firebaseApp);
-const storageRef = ref(storage);
 
 @Component({
   selector: 'app-account-edit',
@@ -74,8 +72,6 @@ export class AccountEditPage implements OnInit {
     private alertCtrl: AlertController,
     private postServ: PostingService,
     private popOverCtrl:PopoverController,
-    private pictureServ:PictureManageService
-
   ) { 
     this.userServ.AutoLogout()
     // this.loadAllTag()
@@ -119,7 +115,7 @@ export class AccountEditPage implements OnInit {
   ngOnInit() {
   }
 
-  updateAll(){
+  async updateAll(){
     let interest_id_list: string[] = []
     for (let item of this.interest_list){
       // console.log(item)
@@ -131,16 +127,16 @@ export class AccountEditPage implements OnInit {
       this.uploadFile(this.picture_file)
     }
 
-    const editForm = new FormGroup({
-      gender: new FormControl(this.gender, Validators.required),
-      profile_pic: new FormControl(this.picture_url, Validators.required),
-      firstname: new FormControl(this.firstname, Validators.required),
-      interests: new FormControl(interest_id_list),
-      creatorMode: new  FormControl(this.create_mode)
-    })
+    let editForm = {
+      gender: this.gender,
+      profile_pic: this.picture_url,
+      firstname: this.firstname,
+      interests: interest_id_list,
+      creatorMode: this.create_mode
+    }
 
-    console.log(editForm.value)
-    this.userServ.updateUserData(editForm.value)
+    console.log(editForm)
+    this.userServ.updateUserData(editForm)
       .subscribe((res) => {
         console.log(res)
 
@@ -336,8 +332,7 @@ export class AccountEditPage implements OnInit {
     console.log(file);
   }
 
-  async uploadFile(file_picture:File):Promise<any>{
-
+  async uploadFile(file_picture:File):Promise<string>{
     let filename:string = file_picture.name
     let filetype:string = file_picture.type
     console.log('name:'+filename+' type:'+ filetype)
@@ -346,12 +341,27 @@ export class AccountEditPage implements OnInit {
     console.log(new_filename)
     let uploadPicRef = ref(storage, 'profile-pics/'+ new_filename);
 
-    await uploadBytes(uploadPicRef,file_picture).then((snapshot) => {
+    let func_output = 'profile-pics/'+ new_filename
+
+    await uploadBytes(uploadPicRef,file_picture).then(async (snapshot) => {
       console.log('Uploaded a blob or file!');
+      // return URL
+     await getDownloadURL(uploadPicRef)
+        .then((url) => {
+        // `url` is the download URL for 'images/stars.jpg'
+          func_output = url
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.log(error)
+      })
+
     }).catch((err)=>console.log(err))
 
     // send list off key to function
-    return 'post-pics/'+ new_filename
+
+    // return file path
+    return func_output
   }
 
   namingForFile(extension?:string){
@@ -363,5 +373,10 @@ export class AccountEditPage implements OnInit {
       newFilename = newFilename + "." + extension
     }
     return newFilename
+  }
+
+  isUrl(s:string) {
+    var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+    return regexp.test(s);
   }
 }

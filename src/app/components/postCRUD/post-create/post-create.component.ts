@@ -114,8 +114,6 @@ export class PostCreateComponent {
       this.safetyDisbale = true
     }
     
-    
-
   }
 
   async onSubmit(){

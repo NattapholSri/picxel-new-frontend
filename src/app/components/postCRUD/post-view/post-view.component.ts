@@ -179,6 +179,7 @@ export class PostViewComponent{
   goToUpdate(post_ID:string,postData:any){
     console.log(post_ID)
     localStorage.setItem('selectPost',JSON.stringify(postData))
+    localStorage.setItem('selectPostId',post_ID)
     this.router.navigateByUrl(`/update-user-post/${post_ID}`)
   }
 
