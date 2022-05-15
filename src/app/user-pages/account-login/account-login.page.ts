@@ -79,7 +79,8 @@ export class AccountLoginPage implements OnInit {
         })
 
         this.ngZone.run(() => {
-          this.router.navigateByUrl('/account-detail/'+this.usr_name)
+          //this.router.navigateByUrl('/account-detail/'+this.usr_name)
+          this.router.navigateByUrl('/home')
         })
       },
       (err) => {
