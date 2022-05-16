@@ -65,7 +65,7 @@ export class AccountLoginPage implements OnInit {
         localStorage.setItem('jwt', JSON.stringify(res)) // token
         
         localStorage.setItem('usr_login',this.usr_name) // user's name who is logging in
-        let tokenTimeout = moment().add(35, 'minutes')
+        let tokenTimeout = moment().add(60, 'minutes')
 
         // if has omise_customer
         
