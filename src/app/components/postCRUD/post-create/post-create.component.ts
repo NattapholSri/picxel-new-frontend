@@ -397,4 +397,19 @@ export class PostCreateComponent {
     }
     return newFilename
   }
+
+  getTestLink(){
+    // let uploadList:string[] = []
+    for(let picture of this.localfileinput){
+      let filename:string = picture.name
+      let filetype:string = picture.type
+      console.log('name:'+filename+' type:'+ filetype)
+      let ext:string[] = filename.split(".")
+
+      this.pictureServ.reqUploadURL(ext[ext.length-1]).subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      )
+    }
+  }
 }

@@ -45,7 +45,7 @@
           เพิ่มรูปภาพ
         </ion-button> -->
 
-       <!--  <input accept="image/*" type="file" class="file-upload" onchange="console.log(event.target.files)"> -->
+      <!--  <input accept="image/*" type="file" class="file-upload" onchange="console.log(event.target.files)"> -->
 
       <!-- <form id="uploadForm"></form> -->
       <ion-button type="button" (click)="fileInput.click()">
@@ -53,9 +53,9 @@
         <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" />
       </ion-button>
       </ion-col>
-      <!-- <ion-col>
-        <ion-button type="button" (click)="uploadFile()">upload test</ion-button>
-      </ion-col> -->
+      <ion-col>
+        <ion-button type="button" (click)="getTestLink()">get AWS link test</ion-button>
+      </ion-col>
     </ion-row>
 
     <!-- <ion-row *ngIf="localfileinput.length != 0">
