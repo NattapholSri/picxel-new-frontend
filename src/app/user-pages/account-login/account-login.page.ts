@@ -28,17 +28,19 @@ export class AccountLoginPage implements OnInit {
   }
 
   async onSubmit() {
-    const loginForm = new FormGroup({
+    let setTimeout = {duration:60,time_unit:'minutes'} // timeout in set
+
+    let loginForm = new FormGroup({
       username: new FormControl(this.usr_name),
       password: new FormControl(this.passwd),
-      exp: new FormControl("30m")
+      exp: new FormControl('60m')
     })
     
     if (this.passwd == undefined || this.usr_name == undefined) {
       alert("คุณยังกรอกข้อมูลไม่ครบ")
     } 
     else{
-      // console.log(loginForm.value)
+      console.log(loginForm.value)
       await this.loadingCtrl.create({
         message: 'กำลังเข้าสู่ระบบ PICXEL',
         spinner: "dots"

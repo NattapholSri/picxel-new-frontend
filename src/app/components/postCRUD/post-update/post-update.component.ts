@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component,Input,NgZone } from '@angular/core';
 import { FormBuilder,FormControl,FormGroup } from '@angular/forms';
 import { PostingService,PostData,purchaseData } from 'src/app/services/api/posting.service';
 import { TagService } from 'src/app/services/api/tag.service';
@@ -41,6 +40,8 @@ const storage = getStorage(firebaseApp);
 })
 export class PostUpdateComponent {
 
+  @Input() with_post_id:string
+
   post_id:string = ''
 
   //postForm: FormGroup;
@@ -74,7 +75,7 @@ export class PostUpdateComponent {
 
   constructor(
     public formBulider: FormBuilder,
-    private router: Router,
+    private ngZone:NgZone,
     private PostServ: PostingService,
     private alertCtrl: AlertController,
     private tagServ: TagService,
@@ -86,7 +87,15 @@ export class PostUpdateComponent {
     // this.loadAllTag()
     this.knowtag = JSON.parse(localStorage.getItem('knowtag'))
     //this.postData = JSON.parse(localStorage.getItem('selectPost'))
+
     this.post_id = localStorage.getItem('selectPostId')
+
+    if(localStorage.getItem('selectPostId') != undefined){
+      this.post_id = localStorage.getItem('selectPostId')
+    }
+    else if(this.with_post_id != undefined) {
+      this.post_id = this.with_post_id
+    }
 
     this.PostServ.SearchPostById(this.post_id).subscribe(
       (res) =>{
@@ -168,12 +177,15 @@ export class PostUpdateComponent {
     let full_path:string[] = this.old_picture_key.concat(new_file_path)
     console.log('update_pic_list:'+full_path)
     if (full_path.length != this.picture_list.length){
+      console.log('picture path arr:' + this.picture_list)
+      alert('มีปัญหากับระบบอัพโหลดไฟล์ โปรดลองแก้ไขอีกครั้ง')
       return
     }
-    
+
+    console.log('beginning update')
 
     if (this.buyRequire != true && this.postBuyMode != 2){
-      var postForm:PostData = {
+      let postForm:PostData = {
         text : this.post_text,
         pics : full_path,
         tags : this.tags_list,
@@ -181,6 +193,16 @@ export class PostUpdateComponent {
         requirePurchase: this.buyRequire,
         postId:this.postData._id
       }
+      console.log(postForm)
+      this.PostServ.UpdatePost(postForm)
+      .subscribe((res) => {
+        alert("Updated")
+        console.log(res)
+        this.ngZone.run(() => history.back())
+      },
+      (err) => {
+        console.log(err)
+      })
     }
     else{
       if (this.postprice >= 25 && this.postprice <= 1000 && this.postprice != undefined  &&
@@ -193,7 +215,7 @@ export class PostUpdateComponent {
         return
       }
       
-      var postForm:PostData ={
+      let postForm:PostData ={
         text : this.post_text,
         pics : full_path,
         tags : this.tags_list,
@@ -207,9 +229,7 @@ export class PostUpdateComponent {
       .subscribe((res) => {
         alert("Updated")
         console.log(res)
-      
-        localStorage.removeItem('selectPost')
-        history.back()
+        this.ngZone.run(() => history.back())
       },
       (err) => {
         console.log(err)

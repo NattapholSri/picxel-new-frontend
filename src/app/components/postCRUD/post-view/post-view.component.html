@@ -3,19 +3,18 @@
 
 <ion-list *ngIf="postList != []">
   <ion-item *ngFor="let post of postList" >
-    <ion-grid>
-      <ion-row>        
-          <ion-avatar>
+    <ion-grid fixed="true">
+      <ion-row><ion-col>
+        <ion-item>     
+          <ion-avatar slot="start">
             <ion-img src="{{u_detail.profile_pic}}"></ion-img>
           </ion-avatar>
-          <ion-text>
-            <h4>&nbsp;{{u_detail.username}}</h4>
-          </ion-text>
-      </ion-row>
-      <br>
-      <ion-item>
-        <ion-text *ngIf="post.createdAt == post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;</ion-text>
-        <ion-text *ngIf="post.createdAt != post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;(แก้ไข&nbsp;{{post.updatedAt}})&nbsp;</ion-text>
+          <ion-label expandable="true" class="ion-text-wrap">
+            <h4>{{u_detail.username}}</h4>
+            <p *ngIf="post.createdAt == post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;</p>
+            <p *ngIf="post.createdAt != post.updatedAt">สร้างเมื่อ&nbsp;{{post.createdAt}}&nbsp;(แก้ไข&nbsp;{{post.updatedAt}})&nbsp;</p>
+          </ion-label>
+      
           <ion-buttons slot="end">
             <ion-button shape="round" color="secondary" fill="solid" (click)="goToOnlyPost(post._id)">
               ดูรายละเอียดโพสต์
@@ -24,9 +23,9 @@
                         (click)="postMenu(post._id,post)">
               <ion-icon name="ellipsis-vertical"></ion-icon>
             </ion-button>
-
           </ion-buttons>
-      </ion-item>
+        </ion-item></ion-col>
+      </ion-row>
       
       <ion-row class="ion-align-items-center">
 

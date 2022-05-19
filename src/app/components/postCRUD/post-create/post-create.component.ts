@@ -311,7 +311,7 @@ export class PostCreateComponent {
   async warningNoRespAccount() {
     const toast = await this.toastCtrl.create({
       message: 'ไม่มีบัญชีรับเงินที่ใช้ได้ กรุณาเพิ่มบัญชีก่อน',
-      duration: 5000
+      duration: 3500
     });
     toast.present();
   }
@@ -319,7 +319,7 @@ export class PostCreateComponent {
   async warningNoOmiseId() {
     const toast = await this.toastCtrl.create({
       message: 'ต้องสมัครใช้บริการ omise ก่อน จึงจะสามารถขายผลงานได้',
-      duration: 5000
+      duration: 4000
     });
     toast.present();
   }

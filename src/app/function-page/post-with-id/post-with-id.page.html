@@ -19,27 +19,26 @@
 
 <ion-content>
   <ion-card *ngIf="postData != {} && thisPostID != undefined">
-      <ion-item>
-        <ion-grid>
-          <ion-row>        
-              <ion-avatar>
-                <ion-img src="{{u_detail.profile_pic}}"></ion-img>
-              </ion-avatar>
-              <ion-text>
-                <h4>&nbsp;{{u_detail.username}}</h4>
-              </ion-text>
-          </ion-row>
-          <br>
-          <ion-item>
-            <ion-text *ngIf="postData.createdAt == postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;</ion-text>
-            <ion-text *ngIf="postData.createdAt != postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;(แก้ไข&nbsp;{{postData.updatedAt}})&nbsp;</ion-text>
-              <ion-buttons slot="end"
-              *ngIf="(postData.userId == u_detail._id) && (u_detail.username == currentUser)">
-                <ion-button (click)="postMenu(postData._id,postData)">
-                  <ion-icon name="ellipsis-vertical"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-          </ion-item>
+    <ion-grid fixed="true">
+      <ion-row><ion-col>
+        <ion-item>     
+          <ion-avatar slot="start">
+            <ion-img src="{{u_detail.profile_pic}}"></ion-img>
+          </ion-avatar>
+          <ion-label expandable="true" class="ion-text-wrap">
+            <h4>{{u_detail.username}}</h4>
+            <p *ngIf="postData.createdAt == postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;</p>
+            <p *ngIf="postData.createdAt != postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;(แก้ไข&nbsp;{{postData.updatedAt}})&nbsp;</p>
+          </ion-label>
+      
+          <ion-buttons slot="end">
+            <ion-button *ngIf="(postData.userId == u_detail._id) && (u_detail.username == currentUser)" 
+                        (click)="postMenu(postData._id,postData)">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item></ion-col>
+      </ion-row>
           
           <ion-row class="ion-align-items-center">
             <ion-item *ngIf="postData.pics == undefined && postData.requirePurchase == true">
@@ -83,7 +82,6 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-      </ion-item>
   </ion-card>
 
 </ion-content>
