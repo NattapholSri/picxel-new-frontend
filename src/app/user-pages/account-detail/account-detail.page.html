@@ -35,7 +35,8 @@
     </ion-card-content>
     
     <ion-item>
-      <ion-label slot="start" *ngIf="usr_acc.followerCount != undefined"><h5>จำนวนผู้ติดตามบัญชีนี้: {{usr_acc.followerCount}}</h5></ion-label>
+      <ion-label class="ion-text-wrap" *ngIf="usr_acc.followerCount != undefined"><h5>จำนวนผู้ติดตามบัญชีนี้: {{usr_acc.followerCount}}</h5></ion-label>
+      
       <ion-buttons *ngIf="(usr_acc.password == undefined) && (token != undefined)" slot="end">
         <ion-button *ngIf="!(subbed)" color="secondary" (click)="followToThisUserToggle()">
           follow
@@ -54,7 +55,7 @@
       </ion-button>
     </ion-buttons> 
 
-  </ion-item>
+    </ion-item>
   </ion-card>
 
   
