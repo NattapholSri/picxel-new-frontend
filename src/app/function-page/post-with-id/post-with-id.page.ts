@@ -7,6 +7,8 @@ import { AlertController,PopoverController } from '@ionic/angular';
 import { PopUserMenuComponent } from 'src/app/components/shared-components/pop-user-menu/pop-user-menu.component';
 import { BuyPostComponent } from 'src/app/components/shared-components/buy-post/buy-post.component';
 
+import { UserService } from 'src/app/services/api/user.service';
+
 
 @Component({
   selector: 'app-post-with-id',
@@ -33,7 +35,8 @@ export class PostWithIdPage {
     public formBulider: FormBuilder,
     public popoverCtrl: PopoverController,
     public activatedRt: ActivatedRoute,
-    private popOverCtrl: PopoverController
+    private popOverCtrl: PopoverController,
+    private userServ: UserService
   ) {
     this.loadPostAtPage = 1
     this.tokenOn = localStorage.getItem('jwt') != undefined
@@ -55,6 +58,12 @@ export class PostWithIdPage {
   }
 
   private Post_Edit(){
+    this.userServ.ReqUserDetail(this.postData.userId).subscribe(
+      (res) => {
+        this.postData.userName = res.username
+        this.postData.userPic = res.profile_pic
+      }
+    )
 
       let localDate = new Date(this.postData.createdAt)
       this.postData.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})

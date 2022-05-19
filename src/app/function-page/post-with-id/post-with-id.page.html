@@ -23,10 +23,10 @@
       <ion-row><ion-col>
         <ion-item>     
           <ion-avatar slot="start">
-            <ion-img src="{{u_detail.profile_pic}}"></ion-img>
+            <ion-img src="{{postData.userPic}}"></ion-img>
           </ion-avatar>
           <ion-label expandable="true" class="ion-text-wrap">
-            <h4>{{u_detail.username}}</h4>
+            <h4>{{postData.userName}}</h4>
             <p *ngIf="postData.createdAt == postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;</p>
             <p *ngIf="postData.createdAt != postData.updatedAt">สร้างเมื่อ&nbsp;{{postData.createdAt}}&nbsp;(แก้ไข&nbsp;{{postData.updatedAt}})&nbsp;</p>
           </ion-label>

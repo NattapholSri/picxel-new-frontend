@@ -5,6 +5,9 @@
   </ion-header>
 
   <ion-list>
+    <ion-item [button]="true" [detail]="false" [routerLink]="'/account-detail/'+username" id="my_profile_btn">
+      <ion-label>หน้าหลักของฉัน</ion-label>
+    </ion-item>
     <ion-item [button]="true" [detail]="false" (click)="gotoEditPage()" id="edit_profile_btn">
       <ion-label>แก้ไขโปรไฟล์</ion-label>
     </ion-item>
