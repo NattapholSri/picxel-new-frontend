@@ -40,7 +40,7 @@
           <h6>*ต้องสมัครติดตามผลงานผู้สร้าง(subscribe) ก่อน จึงจะสามารถรับชมผลงานได้</h6>
         </ion-text>
 
-        <ion-img *ngFor="let picture of post.pics" [src]="picture.url"></ion-img>
+        <ion-img *ngFor="let picture of post.pics" [src]="picture.url" onContextMenu="return false;"></ion-img>
       </ion-row>
 
       <ion-row>
