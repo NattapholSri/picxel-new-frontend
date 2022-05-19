@@ -26,15 +26,19 @@
       <ion-avatar>
         <ion-img src="{{usr_acc.profile_pic}}"></ion-img>
       </ion-avatar>
+      <ion-card-title>
+        {{usr_acc.username}}
+      </ion-card-title>
+      <ion-card-subtitle *ngIf=" usr_acc.firstname != undefined">
+        <ion-text>{{usr_acc.firstname}}</ion-text>
+      </ion-card-subtitle>
     </ion-card-content>
+    
     <ion-item>
-    <ion-card-title>
-      {{usr_acc.username}}
-    </ion-card-title>
-
-    <ion-buttons *ngIf="(usr_acc.password == undefined) && (token != undefined)" slot="end">
-      <ion-button *ngIf="!(subbed)" color="secondary" (click)="followToThisUserToggle()">
-        follow
+      <ion-label slot="start" *ngIf="usr_acc.followerCount != undefined"><h5>จำนวนผู้ติดตามบัญชีนี้: {{usr_acc.followerCount}}</h5></ion-label>
+      <ion-buttons *ngIf="(usr_acc.password == undefined) && (token != undefined)" slot="end">
+        <ion-button *ngIf="!(subbed)" color="secondary" (click)="followToThisUserToggle()">
+          follow
         <ion-icon name="enter-outline"></ion-icon>
       </ion-button>
       <ion-button *ngIf="subbed" color="secondary" (click)="followToThisUserToggle()">
@@ -51,14 +55,9 @@
     </ion-buttons> 
 
   </ion-item>
-
-    <ion-card-subtitle *ngIf=" usr_acc.firstname != undefined">
-      <ion-text>{{usr_acc.firstname}}</ion-text>
-    </ion-card-subtitle>
   </ion-card>
 
-  <ion-text *ngIf="usr_acc.followerCount != undefined"><h5>จำนวนผู้ติดตามบัญชีนี้: {{usr_acc.followerCount}}</h5></ion-text>
-    <ion-text slot="end">Hello</ion-text>
+  
 
     <!-- <ion-grid *ngIf=" usr_acc.password != undefined">
       <ion-row>
