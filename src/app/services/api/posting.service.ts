@@ -222,7 +222,7 @@ export class PostingService {
 
 
     console.log('deleting post from user '+ dataToSent.userId)
-    let API_URL = `${this.backend_post_API}/post/delete-all`;
+    let API_URL = `${this.backend_post_API}/post/delete`;
 
     let jsonToken = this.loadJwt()
     let authMessage = 'Bearer ' + jsonToken;

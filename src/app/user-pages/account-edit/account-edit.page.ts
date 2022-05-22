@@ -285,15 +285,18 @@ export class AccountEditPage implements OnInit {
         },{
           text: 'แน่นอน',
           handler: () => {
-            this.postServ.DeleteAllPost(this.user_id).subscribe((res) => {
-              console.log(res)
+            /* this.postServ.DeleteAllPost(this.user_id).subscribe((res) => {
+              console.log(res) */
               this.userServ.deleteUser()
                 .subscribe((res)=> {
                   console.log(res)
+                  alert('ลบบัญชีเรียบร้อย กลับไปยังหน้าล็อกอิน')
                   this.ngZone.run(() => this.router.navigateByUrl('/'))
-                })
+                },
+                (err) => alert('เกิดข้อผิดพลาดในการลบ User โปรดตรวจสอบว่า mode creator ปิดอยู่ แล้วลองลบใหม่ หากยังเกิดข้อผิพลาดให้ติดต่อผู้ดูแลระบบ')  
+              )
               
-            })
+           // },(err) => alert('เกิดข้อผิดพลาดในการลบ User โปรดตรวจสอบว่า mode creator ปิดอยู่ แล้วลองลบใหม่ หากยังเกิดข้อผิพลาดให้ติดต่อผู้ดูแลระบบ'))
           }
         }
       ]

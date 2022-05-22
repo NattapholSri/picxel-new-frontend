@@ -12,6 +12,7 @@ import { PlanListComponent } from '../../subscription/plan-list/plan-list.compon
 })
 export class PopUserMenuComponent{
   @Input() username:string
+  @Input() profile_pic_src:string
 
   constructor(
     private router: Router,
