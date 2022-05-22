@@ -14,6 +14,7 @@ ${sign_up}    http://localhost:8100/account-login
 ${regis_page}    http://localhost:8100/registration
 ${forgot_psw_page}    http://localhost:8100/forgot-password
 ${current_url} =  Execute Javascript  return window.location.href
+${server} = http://localhost:8100
 
 *** Test Cases ***
 test_practice
@@ -108,7 +109,7 @@ registeration_no_confirm_password
     I fill in username_box with reg_my_username
     Sleep  0.5s
     I fill in password_box with reg_my_password
-    Sleep  0.5s
+    Sleep  0.5s 
     I check in check_box
     Sleep  0.5s
     I click ลงทะเบียน
@@ -899,6 +900,7 @@ log_out
     # check if the changed has made 
     Sleep  0.5s 
     I should see login page
+
 *** Keywords ***
 
 practice_test
@@ -1157,8 +1159,8 @@ I should see alert message โปรดกรอกข้อมูลให้�
 ## Scenario: reset password
 I click reset password button
     Click Element    id=reset_password_button    รีเซ็ทรหัสผ่าน
-I fill in email_box with reg_my_email
-    Input Text    id=email_box    wasawat_non1@gmail.com
+#I fill in email_box with reg_my_email
+#   Input Text    id=email_box    wasawat_non1@gmail.com
 I click request reset password
     Click Element    id=request_password_button    ส่งคำขอ RESET PASSWORD
 I should see alert message your request has been sent to your email
