@@ -1,15 +1,15 @@
 <ion-content>
 
   <ion-text *ngIf="(!creatorStatus)" color="warning">
-    <h4>User ได้ทำการ ยกเลิกสถานะ Creator ไปแล้ว ทำให้ไม่สามารถ subscription ได้</h4>
+    <h4>Creator บัญชีนี้ ได้ทำการ ยกเลิกสถานะ Creator ไปแล้ว ทำให้ไม่สามารถ subscription ได้</h4>
   </ion-text>
 
   
 
   <ion-list>
     <ion-list-header>subscribe plan</ion-list-header>
-    <ion-text *ngIf="userSub != {}" color="warning">
-      <p>ไม่สามารถ subscription ได้ เนื่องจากยังมี การ subscription เดิมอยู่</p>
+    <ion-text *ngIf="warning_has_sub && userSub.active == false" color="warning">
+      <p>ไม่สามารถ subscription ใหม่ได้ เนื่องจากยังมี การ subscription เดิมอยู่</p>
     </ion-text>
     <ion-item *ngFor="let plan of planList">
       <ion-label>

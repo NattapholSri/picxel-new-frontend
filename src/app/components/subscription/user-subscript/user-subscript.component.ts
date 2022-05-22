@@ -16,7 +16,9 @@ export class UserSubscriptComponent implements OnInit {
   currentViewId = localStorage.getItem('current_log_uid')
 
   planList:any[] = []
-  userSub:any = {} 
+  userSub:any = {}
+  
+  warning_has_sub:boolean
 
   constructor(
     private subPlanServ:SubscriptPlanService,
@@ -51,12 +53,16 @@ export class UserSubscriptComponent implements OnInit {
     this.subPlanServ.searchSubscription(user_id,creator_id).subscribe(
       (res) => {
         console.log(res)
-        if( res.content != null && res.content != undefined){
+        if(res.content != null && res.content != undefined){
           this.userSub = res.content
           let oldFormat = new Date(this.userSub.endDate)
           this.userSub.endDate = oldFormat.toLocaleString('th-TH',{year: '2-digit', month: 'narrow', day: '2-digit'})
-          console.log(this.userSub)
+          this.warning_has_sub = true  
         }
+        else{
+          this.userSub = {}
+        }
+        console.log(this.userSub)
       },
       (err) => {
         console.log(err)

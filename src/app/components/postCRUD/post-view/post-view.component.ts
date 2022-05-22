@@ -82,9 +82,9 @@ export class PostViewComponent{
       console.log(post)
 
       let localDate = new Date(post.createdAt)
-      post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      post.createdAt = localDate.toLocaleString('th-TH',{year: '2-digit', month: 'short', day: 'numeric',hour:'numeric',minute:'numeric'})
       let updateDate = new Date(post.updatedAt)
-      post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      post.updatedAt = updateDate.toLocaleString('th-TH',{year: '2-digit', month: 'short', day: 'numeric',hour:'numeric',minute:'numeric'})
 
       if (post.likeCount != 0 && this.currentUserId != undefined){
         console.log('load login user like status: ' + post._id)

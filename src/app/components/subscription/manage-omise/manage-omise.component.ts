@@ -43,7 +43,7 @@ export class ManageOmiseComponent implements OnInit {
 
   async manageCard(){
     const alert = await this.alertCtrl.create({
-      header: 'ตัวในเลือกการกับบัตรเครดิต',
+      header: 'ตัวในเลือกจัดการการกับบัตรเครดิต',
       buttons: [
         {
         text: 'ปิดเมนู',
@@ -68,7 +68,7 @@ export class ManageOmiseComponent implements OnInit {
 
   async manageRecipt(){
     const alert = await this.alertCtrl.create({
-      header: 'ตัวในเลือกการกับบัตรเครดิต',
+      header: 'ตัวในเลือกการจัดการกับบัญชีที่ในใช้ในการรับเงิน',
       buttons: [
         {
         text: 'ปิดเมนู',
@@ -104,7 +104,8 @@ export class ManageOmiseComponent implements OnInit {
 
   async createOmiseAlert(){
     const alert = await this.alertCtrl.create({
-      header: 'ตัวในเลือกการกับบัตรเครดิต',
+      header: 'ดำเนินการเปิดบัญชี Omise',
+      message: 'เมื่อเปิดบัญชีแล้วจะสามารถ ใช้งานบริการซื้อขายบนแพลตฟอร์มได้ ผ่านผู้ให้บริการ Payment gateway (Omise), ต้องการดำเนินการต่อหรือไม่',
       buttons: [
         {
         text: 'ยกเลิก',

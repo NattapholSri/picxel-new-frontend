@@ -6,7 +6,7 @@
     <ion-button slot="primary" mode="md" (click)="goToCreatePlan()">สร้าง plan ใหม่</ion-button>
   </ion-toolbar>
   <ion-list>
-    <ion-list-header>plan-list works!</ion-list-header>
+    <ion-list-header *ngIf="planList.length == 0">no plan created in your account</ion-list-header>
     <ion-item *ngFor="let plan of planList">
       <ion-label>
         ID:{{plan._id}}
