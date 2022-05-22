@@ -3,7 +3,7 @@
     <ion-label>บัตรเครดิตที่ใช้ชำระเงิน:</ion-label>
     <ion-select [(ngModel)]="selected_card" placeholder="เลือกบัตรเครดิต">
       <ion-select-option *ngFor="let card of user_card_list" value="{{card.id}}">
-        {{card.brand}}: เลข 4 ตัวท้าย: {{card.last_digits}}, {{card.name}}
+        * {{card.last_digits}},{{card.brand}}:{{card.name}}
       </ion-select-option>
     </ion-select>
   </ion-item>
