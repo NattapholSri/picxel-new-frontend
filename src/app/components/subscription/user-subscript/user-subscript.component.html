@@ -18,7 +18,7 @@
         <h5>ระยะเวลา {{plan.every}}&nbsp;{{plan.period}}</h5>
       </ion-label>
       <ion-buttons slot="end" >
-        <ion-button *ngIf="plan._id != userSub.planId && userSub.active != false && creatorStatus" 
+        <ion-button *ngIf="plan._id != userSub.planId && userSub.active == undefined && creatorStatus" 
                     (click)="subscribeToPlan(plan)">
           <ion-icon name="add"></ion-icon>
         </ion-button>
