@@ -8,8 +8,8 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label position="stacked">กรอกจำนวนเงินที่ต้องการโดเนท</ion-label>
-    <ion-input [(ngModel)]="money_amount" type="number" min="30" max="1000" [required]="true"></ion-input>
+    <ion-label position="stacked">กรอกจำนวนเงินที่ต้องการโดเนท(บาท)</ion-label>
+    <ion-input [(ngModel)]="money_amount" type="number" min="30" max="1000" [required]="true" placeholder="รองรับการบริจาคขั้นต่ำ 30 บาทขึ้นไป"></ion-input>
   </ion-item>
   <ion-button (click)="onDonate()">
     Donate

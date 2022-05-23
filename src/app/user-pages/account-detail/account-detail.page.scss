@@ -1,3 +1,8 @@
 ion-select {
     min-width: 70%;
 }
+
+.expand-popup {
+    --min-width: 75% !important;
+    --max-width: 90%;
+}

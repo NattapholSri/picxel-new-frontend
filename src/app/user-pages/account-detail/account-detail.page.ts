@@ -199,6 +199,7 @@ export class AccountDetailPage implements OnInit {
       componentProps: { creator_id:this.usr_acc._id },
       align: 'start',
       side: "bottom",
+      cssClass: 'expand-popup'
     });
     await popover.present();
   }

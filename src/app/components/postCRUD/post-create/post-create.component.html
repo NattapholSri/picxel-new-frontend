@@ -27,27 +27,7 @@
     </ion-row>
     
     <ion-row>
-      <!-- <ion-col size="6">
-        <ion-textarea 
-        placeholder="URL รูปภาพ" 
-        rows="1" cols="80" 
-        inputmode="text" 
-        [(ngModel)]="picture_url" 
-        name="url_box"
-        id="url_box"></ion-textarea>
-        <ion-text *ngIf=" message_mode == 1" color="danger">this picture has been added already</ion-text>
-        <ion-text *ngIf=" message_mode == 2" color="success">added picture</ion-text>
-        <ion-text *ngIf=" message_mode == 5">no picture added</ion-text>
-
-      </ion-col> -->
       <ion-col>
-        <!-- <ion-button (click)="addPic()" name="picture_add_btn" id="picture_add_btn">
-          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
-          เพิ่มรูปภาพ
-        </ion-button> -->
-
-      <!--  <input accept="image/*" type="file" class="file-upload" onchange="console.log(event.target.files)"> -->
-
       <!-- <form id="uploadForm"></form> -->
       <ion-button type="button" (click)="fileInput.click()">
         อัพโหลดไฟล์รูปภาพ
@@ -57,14 +37,7 @@
       <!-- <ion-col>
         <ion-button type="button" (click)="getTestLink()">get AWS link test</ion-button>
       </ion-col> -->
-    </ion-row>
-
-    <!-- <ion-row *ngIf="localfileinput.length != 0">
-      <ion-thumbnail *ngFor="let pic of localfileinput">
-        <img [src]="pic"/>
-      </ion-thumbnail>
-    </ion-row> -->
-    
+    </ion-row>    
   
     <ion-row>
       <ion-col size="7">
@@ -106,13 +79,14 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <h5>ดูได้เฉพาะ:</h5>
-      </ion-col>
-      <ion-col size="9">
+      <!-- <ion-col>
+        <h5>สิทธิในการดูผลงาน:</h5>
+      </ion-col> -->
+      <ion-col col-auto>
         
       <ion-item>
-        <ion-segment [(ngModel)]="postBuyMode" (ionChange)="postModeShifter()">
+        <ion-label><h4>สิทธิในการดูผลงาน:</h4></ion-label>
+        <!-- <ion-segment [(ngModel)]="postBuyMode" (ionChange)="postModeShifter()">
           <ion-segment-button value="0">
             <ion-label>ทุกคน</ion-label>
           </ion-segment-button>
@@ -122,12 +96,25 @@
           <ion-segment-button value="2" [disabled]="safetyDisbale">
             <ion-label>คนที่ซื้อโพสต์นี้</ion-label>
           </ion-segment-button>
-        </ion-segment>
+        </ion-segment> -->
+
+        <ion-select [(ngModel)]="postBuyMode" (ionChange)="postModeShifter()" placeholder="ค่าเริ่มต้น: ทุกคนดูได้" interface="popover">
+          <ion-select-option value='0'>
+            ทุกคนดูได้
+          </ion-select-option>
+          <ion-select-option value='1' [disabled]="safetyDisbale">
+            เฉพาะคนที่ subscribe
+          </ion-select-option>
+          <ion-select-option value='2' [disabled]="safetyDisbale">
+            เฉพาะคนที่ซื้อโพสต์นี้
+          </ion-select-option>
+        </ion-select>
+
         <!-- <ion-toggle color="primary" slot="start" [(ngModel)]="subRequire" id=""></ion-toggle> -->
       </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row size="10">
+    <ion-row size="10" *ngIf="buyRequire">
       <ion-item>
         <ion-label>ราคาของโพสนี้(บาท):</ion-label>
         <ion-input [disabled]="(!buyRequire)" type="number" min="25" max="1000" [(ngModel)]="postprice"></ion-input>
