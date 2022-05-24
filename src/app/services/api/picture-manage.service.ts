@@ -3,14 +3,14 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
-import { S3Client } from "@aws-sdk/client-s3";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+//import { S3Client } from "@aws-sdk/client-s3";
+//import { PutObjectCommand } from "@aws-sdk/client-s3";
 
 
 // Set the AWS Region.
-const REGION = "ap-southeast-1"; //e.g. "us-east-1"
+//const REGION = "ap-southeast-1"; //e.g. "us-east-1"
 // Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
+//const s3Client = new S3Client({ region: REGION });
 
 @Injectable({
   providedIn: 'root'
@@ -96,7 +96,7 @@ export class PictureManageService {
     )
   }
 
-  direct_upload_aws(file:File,file_name?:string){
+  /* direct_upload_aws(file:File,file_name?:string){
     if (file_name != undefined){
       var bucketParams = {
         Bucket: "picxel-post-pictures",
@@ -115,6 +115,6 @@ export class PictureManageService {
       }
     }
 
-  }
+  } */
 
 }
