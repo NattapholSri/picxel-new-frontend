@@ -87,7 +87,7 @@ export class AddReciptPage implements OnInit {
         this.reciptData = {name: '',email: '',type: '',
                           bank_account: {name:'',number:'',brand:''}}
         alert('add recipt complete')
-        this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
+        this.ngZone.run(() => history.back())
       },(err) => {
         console.log(err)
         this.reciptData = {name: '',email: '',type: '',

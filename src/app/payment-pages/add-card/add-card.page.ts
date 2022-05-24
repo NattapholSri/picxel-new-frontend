@@ -102,7 +102,7 @@ export class AddCardPage implements OnInit {
                 console.log('error', error);
               })
               alert('add card complete')
-              this.ngZone.run(() => this.router.navigateByUrl('/account-edit'))
+              this.ngZone.run(() => history.back())
             },
             async (err) => {
               console.log(err)

@@ -49,7 +49,7 @@
     <ion-input placeholder="10 digit/10 หลัก" minlength="10" maxlength="10" type="text" [(ngModel)]="reciptData.bank_account.number"></ion-input>
   </ion-item>
 
-  <ion-button [routerLink]="'/account-edit'">
+  <ion-button onclick="history.back()">
     กลับหน้าแก้ไขข้อมูล
   </ion-button>
   <ion-button (click)="submit()">
