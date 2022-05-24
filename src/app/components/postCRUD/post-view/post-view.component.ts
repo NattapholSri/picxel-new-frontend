@@ -40,11 +40,11 @@ export class PostViewComponent{
   }
 
   userPost(user_id:string){
-    this.PostServ.SearchPost(user_id,8,this.loadPostAtPage).subscribe(
+    this.PostServ.SearchPost(user_id,6,this.loadPostAtPage).subscribe(
       (res) => {
         console.log(res)
         this.postList = res.content
-        if (this.postList.length < 8){
+        if (this.postList.length < 6){
           this.canloadMore = false
         }
         this.Post_Edit()
@@ -57,13 +57,13 @@ export class PostViewComponent{
     this.loadAllTag()
     this.loadPostAtPage += 1;
     console.log(this.u_detail._id)
-    this.PostServ.SearchPost(this.u_detail._id,8,this.loadPostAtPage).subscribe(
+    this.PostServ.SearchPost(this.u_detail._id,6,this.loadPostAtPage).subscribe(
       (res) => {
         console.log(res)
         let MorePostList:any[] = res.content
         MorePostList = this.more_post_Edit(MorePostList)
         console.log(MorePostList)
-        if (MorePostList.length < 8){
+        if (MorePostList.length < 6){
           this.canloadMore = false
           this.postList = this.postList.concat(MorePostList)
           console.log(this.postList)

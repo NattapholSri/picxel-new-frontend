@@ -22,8 +22,8 @@
       อัพโหลดไฟล์รูปภาพ
       <input #fileInput type="file" accept="image/*" (change)="onFileInput($event)" style="display:none;" />
     </ion-button>
-    <ion-button type="button" (click)="uploadFile(picture_file)">test uploadFile to cloud
-    </ion-button>
+    <!-- <ion-button type="button" (click)="uploadFile(picture_file)">test uploadFile to cloud
+    </ion-button> -->
   </ion-item>
   <ion-item *ngIf="picture_file != undefined">
     รูปที่จะใช้เปลี่ยน:
