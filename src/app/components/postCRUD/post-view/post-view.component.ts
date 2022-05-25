@@ -42,7 +42,7 @@ export class PostViewComponent{
   userPost(user_id:string){
     this.PostServ.SearchPost(user_id,6,this.loadPostAtPage).subscribe(
       (res) => {
-        console.log(res)
+        //console.log(res)
         this.postList = res.content
         if (this.postList.length < 6){
           this.canloadMore = false
@@ -78,8 +78,8 @@ export class PostViewComponent{
 
   private Post_Edit(){
 
-    for (let post of this.postList ){
-      console.log(post)
+    for (let post of this.postList){
+      //console.log(post)
 
       let localDate = new Date(post.createdAt)
       post.createdAt = localDate.toLocaleString('th-TH',{year: '2-digit', month: 'short', day: 'numeric',hour:'numeric',minute:'numeric'})

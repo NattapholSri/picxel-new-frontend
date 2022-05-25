@@ -41,55 +41,13 @@ export class ManageOmiseComponent implements OnInit {
     },(err) => console.log(err))
   }
 
-  async manageCard(){
-    const alert = await this.alertCtrl.create({
-      header: 'ตัวในเลือกจัดการการกับบัตรเครดิต',
-      buttons: [
-        {
-        text: 'ปิดเมนู',
-        role: 'cancel'
-        },{
-          text: 'เพิ่มบัตรเครดิต',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/add-card'))
-          }
-        },{
-          text: 'จัดการบัตรเครดิต',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/view-credit-card/'+this.customer))
-          }
-        }
-      ]
-    });
-
-    await alert.present();
+  manageCard(){
+    this.ngZone.run(() => this.router.navigateByUrl('/view-credit-card/'+this.customer))
 
   }
 
-  async manageRecipt(){
-    const alert = await this.alertCtrl.create({
-      header: 'ตัวในเลือกการจัดการกับบัญชีที่ในใช้ในการรับเงิน',
-      buttons: [
-        {
-        text: 'ปิดเมนู',
-        role: 'cancel'
-        },{
-          text: 'เพิ่มช่องทางในการรับเงิน',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('add-recipient'))
-          }
-        },{
-          text: 'จัดการช่องทางในการรับเงิน',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('manage-recipient'))
-          }
-        }
-      ],
-      mode: "md",
-    });
-
-    await alert.present();
-
+  manageRecipt(){
+    this.ngZone.run(() => this.router.navigateByUrl('manage-recipient'))
   }
 
   userLogout(){
