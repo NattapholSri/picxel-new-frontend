@@ -86,9 +86,7 @@
       <ion-item slot="content">
         <ion-list>
           <ion-item button (click)="callPaymentServ()">
-            <ion-label>
-              จัดการกับระบบ payment
-            </ion-label>
+            <ion-label>จัดการกับระบบ payment</ion-label>
           </ion-item>
           <ion-text color="danger" *ngIf="create_mode || (!false_from_backend)">ต้องปิดโหมด "ผู้สร้าง" (creator mode) ก่อนจึงจะสามารถใช้งานฟังก์ชั่นด้านล่างได้</ion-text>
           <ion-item [disabled]="create_mode || (!false_from_backend)" [button]="true" (click)="deleteAccount()" id="delete_acc_btn">
@@ -104,10 +102,11 @@
       </ion-item>
     </ion-accordion>
   </ion-accordion-group>
-
-  <ion-button fill="outline" color="warning" (click)="revert()" id="cancel_btn">CANCEL</ion-button>
-  <ion-button (click)="updateAll()" id="confirm_edit_btn">บันทึกการแก้ไข</ion-button>
-
+  <br>
+  <ion-item lines="none">
+    <ion-button fill="outline" (click)="revert()" id="cancel_btn">CANCEL</ion-button>
+    <ion-button (click)="updateAll()" id="confirm_edit_btn">บันทึกการแก้ไข</ion-button>
+  </ion-item>
   
 
 </ion-content>
