@@ -5,6 +5,7 @@ import { UserService } from '../services/api/user.service';
 import { PostCreateComponent } from '../components/postCRUD/post-create/post-create.component';
 
 import { PopUserMenuComponent } from '../components/shared-components/pop-user-menu/pop-user-menu.component';
+import { MenuController } from '@ionic/angular'
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomePage {
 
   constructor(
     userServ: UserService,
-    private popOverCtrl: PopoverController
+    private popOverCtrl: PopoverController,
+    private menuCtrl: MenuController
     ) {
     userServ.AutoLogout()
     this.tokenOn = localStorage.getItem('jwt') != undefined
@@ -34,6 +36,10 @@ export class HomePage {
       componentProps: { username :this.currentUserName }
     });
     await popover.present();
+  }
+
+  async showNewUserMenu(){
+    await this.menuCtrl.open('end');
   }
 
 

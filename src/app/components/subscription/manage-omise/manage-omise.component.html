@@ -3,24 +3,17 @@
 </h5>
 
 <ion-list>
-  <!-- <ion-list-header *ngIf="activeAllow">
-    <ion-label>
-      มีบริการ omise สำหรับการชำระเงินแล้ว
-    </ion-label>
-  </ion-list-header> -->
   <ion-item *ngIf="!activeAllow" [disabled]="activeAllow" button (click)="createOmiseAlert()">
     <ion-label>
       สร้าง account omise สำหรับการชำระเงิน
     </ion-label>
   </ion-item>
   <ion-item [disabled]="!activeAllow" button (click)="manageCard()">
-    <ion-label>
-      จัดการกับ card
-    </ion-label>
+    <ion-icon name="card" slot="start"></ion-icon>
+    <ion-label>จัดการกับบัตรเครดิต</ion-label>
   </ion-item>
   <ion-item [disabled]="!activeAllow" button (click)="manageRecipt()">
-    <ion-label>
-      จัดการกับวิธีการรับเงิน
-    </ion-label>
+    <ion-icon name="cash" slot="start"></ion-icon>
+    <ion-label>จัดการกับบัญชีที่ใช้ในรับเงินเข้า</ion-label>
   </ion-item>
 </ion-list>
