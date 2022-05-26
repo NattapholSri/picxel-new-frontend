@@ -1,10 +1,12 @@
-<ion-content>
+<ion-header>
   <ion-toolbar>
-    <ion-header>
-      จัดการ plan
-    </ion-header>
-    <ion-button slot="primary" mode="md" (click)="goToCreatePlan()">สร้าง plan ใหม่</ion-button>
+    <ion-title color="primary">จัดการ plan</ion-title>
+  
+    <ion-button slot="end" (click)="goToCreatePlan()">สร้าง plan ใหม่</ion-button>
   </ion-toolbar>
+</ion-header>
+
+<ion-content>
   <ion-list>
     <ion-list-header *ngIf="planList.length == 0">no plan created in your account</ion-list-header>
     <ion-item *ngFor="let plan of planList">

@@ -105,12 +105,12 @@ export class AccountEditPage implements OnInit {
           console.log('use_backend:'+this.false_from_backend)
         }
 
-        if (usr_data.omise_customer_id != undefined){
+        /* if (usr_data.omise_customer_id != undefined){
           this.user_omise_id = usr_data.omise_customer_id
         }
         else{
           this.user_omise_id = undefined
-        }
+        } */
       })
   }
 
@@ -157,7 +157,7 @@ export class AccountEditPage implements OnInit {
   }
 
   revert(){
-    this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.user_now))
+    this.ngZone.run(() => history.back())
   }
 
   addTag(input_tag:any){
@@ -317,7 +317,7 @@ export class AccountEditPage implements OnInit {
     await popover.present();
   }
 
-  async callPaymentServ(){
+  /* async callPaymentServ(){
 
     const popover = await this.popOverCtrl.create({
       component: ManageOmiseComponent,
@@ -326,7 +326,7 @@ export class AccountEditPage implements OnInit {
       mode: "md",
     });
     await popover.present();
-  }
+  } */
 
   onFileInput(event){
     if (event.target.files && event.target.files[0]) {
