@@ -36,8 +36,9 @@ export class AccountLoginPage implements OnInit {
       exp: new FormControl('60m')
     })
     
-    if (this.passwd == undefined || this.usr_name == undefined) {
-      alert("คุณยังกรอกข้อมูลไม่ครบ")
+    if (this.passwd == undefined || this.usr_name == undefined
+      || this.usr_name == '' || this.passwd == '') {
+      alert("คุณยังกรอกข้อมูลในช่องไม่ครบ")
     } 
     else{
       console.log(loginForm.value)

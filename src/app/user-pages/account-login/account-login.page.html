@@ -9,12 +9,12 @@
   <div class="box-container">
     <ion-item>
       <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
-      <ion-input type="text" required [(ngModel)]="usr_name" id="username_input"></ion-input>
+      <ion-input type="text" required [(ngModel)]="usr_name" id="username_input" (keyup.enter)="onSubmit()"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">กรอกรหัสผ่าน</ion-label>
-      <ion-input type="password" required [(ngModel)]="passwd" id="password_input"></ion-input>
+      <ion-input type="password" required [(ngModel)]="passwd" id="password_input" (keyup.enter)="onSubmit()"></ion-input>
     </ion-item>
   </div>
   <br>
