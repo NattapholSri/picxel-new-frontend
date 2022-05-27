@@ -34,38 +34,44 @@ export class DonateToCreatorComponent implements OnInit {
   ngOnInit() {}
 
   onDonate(){
-    let donation:donateForm = {
-      creatorId:this.creator_id,
-      cardId:this.selected_card,
-      amount:this.money_amount
+    if (this.money_amount < 30 || this.money_amount == undefined){
+      alert('จำนวนเงินที่จะใช้ในการบริจาคมีน้อยเกินไป (ขั้นต่ำ 30 บาท)')
     }
-
-    console.log(donation)
-
-    this.paymentServ.donateTo(donation).subscribe(
-      async (res) => {
-        console.log(res)
-        const alert = await this.alertCtrl.create({
-          header: 'บริจาคสำเร็จ',
-          message: 'เงินของคุณถูกส่งไปไปให้กับผู้สร้างผลงานคนนี้แล้ว',
-          buttons: ['OK']
-        });
-    
-        await alert.present();
-        this.DismissClick()
-
-
-      }, async (err) =>{
-        console.log(err)
-        const alert = await this.alertCtrl.create({
-          header: 'เกิดข้อผิดพลาด',
-          message: 'เกิดข้อผิดพลาดกับระบบบริจาค',
-          buttons: ['OK']
-        });
-    
-        await alert.present();
+    else{
+      let donation:donateForm = {
+        creatorId:this.creator_id,
+        cardId:this.selected_card,
+        amount:this.money_amount
       }
-    )
+  
+      console.log(donation)
+  
+      this.paymentServ.donateTo(donation).subscribe(
+        async (res) => {
+          console.log(res)
+          const alert = await this.alertCtrl.create({
+            header: 'บริจาคสำเร็จ',
+            message: 'เงินของคุณถูกส่งไปไปให้กับผู้สร้างผลงานคนนี้แล้ว',
+            buttons: ['OK']
+          });
+      
+          await alert.present();
+          this.DismissClick()
+  
+  
+        }, async (err) =>{
+          console.log(err)
+          const alert = await this.alertCtrl.create({
+            header: 'เกิดข้อผิดพลาด',
+            message: 'เกิดข้อผิดพลาดกับระบบบริจาค',
+            buttons: ['OK']
+          });
+      
+          await alert.present();
+        }
+      )
+    }
+    
   }
 
   async DismissClick() {

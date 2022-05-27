@@ -13,7 +13,7 @@ import { ManageOmiseComponent } from '../../subscription/manage-omise/manage-omi
 })
 export class PopUserMenuComponent implements OnInit{
   @Input() username:string
-  @Input() profile_pic_src:string
+  @Input() user_page_name:string
 
   user_omise_id:string
 

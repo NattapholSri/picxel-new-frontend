@@ -7,9 +7,9 @@
   </ion-header>
 
   <ion-list>
-    <ion-item [button]="true" [detail]="false" [routerLink]="'/account-detail/'+ username" id="my_profile_btn">
+    <ion-item [button]="true" [detail]="false" [routerLink]="'/account-detail/'+ username" id="my_profile_btn" [disabled]="username == user_page_name">
       <ion-icon name="person" slot="start"></ion-icon>
-      <ion-label>หน้าหลักของฉัน</ion-label>
+      <ion-label>หน้าโปรไฟล์ของฉัน</ion-label>
     </ion-item>
     <ion-item [button]="true" [detail]="false" (click)="gotoEditPage()" id="edit_profile_btn">
       <ion-icon name="settings" slot="start"></ion-icon>

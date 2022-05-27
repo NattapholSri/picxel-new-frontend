@@ -157,7 +157,7 @@ export class AccountDetailPage implements OnInit {
     const popover = await this.popOverCtrl.create({
       component: PopUserMenuComponent,
       dismissOnSelect: true,
-      componentProps: { username :this.currentUserName },
+      componentProps: { username :this.currentUserName, user_page_name:this.user_id },
       align: 'start',
       side: "bottom"
     });
