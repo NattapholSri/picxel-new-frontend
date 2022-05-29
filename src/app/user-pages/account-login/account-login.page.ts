@@ -28,7 +28,6 @@ export class AccountLoginPage implements OnInit {
   }
 
   async onSubmit() {
-    let setTimeout = {duration:60,time_unit:'minutes'} // timeout in set
 
     let loginForm = new FormGroup({
       username: new FormControl(this.usr_name),
