@@ -7,10 +7,9 @@ import { AlertController, PopoverController } from '@ionic/angular';
 import { PostingService } from 'src/app/services/api/posting.service';
 
 import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
-import { ManageOmiseComponent } from 'src/app/components/subscription/manage-omise/manage-omise.component';
 
 import { initializeApp } from "firebase/app";
-import { getStorage, ref,uploadBytes,getDownloadURL } from "firebase/storage";
+import { getStorage, ref,uploadBytes} from "firebase/storage";
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 

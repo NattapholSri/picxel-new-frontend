@@ -3,14 +3,6 @@ import { catchError,map } from 'rxjs/operators'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
-//import { S3Client } from "@aws-sdk/client-s3";
-//import { PutObjectCommand } from "@aws-sdk/client-s3";
-
-
-// Set the AWS Region.
-//const REGION = "ap-southeast-1"; //e.g. "us-east-1"
-// Create an Amazon S3 service client object.
-//const s3Client = new S3Client({ region: REGION });
 
 @Injectable({
   providedIn: 'root'
@@ -95,26 +87,5 @@ export class PictureManageService {
     catchError(this.handleError)
     )
   }
-
-  /* direct_upload_aws(file:File,file_name?:string){
-    if (file_name != undefined){
-      var bucketParams = {
-        Bucket: "picxel-post-pictures",
-        Key: file_name,
-        Body: file,
-      }
-    }
-    else{
-      var bucketParams = {
-      Bucket: "picxel-post-pictures",
-      // Specify the name of the new object. For example, 'index.html'.
-      // To create a directory for the object, use '/'. For example, 'myApp/package.json'.
-      Key: file.name,
-      // Content of the new object.
-      Body: file,
-      }
-    }
-
-  } */
 
 }

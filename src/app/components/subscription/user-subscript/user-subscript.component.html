@@ -1,19 +1,23 @@
-<ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Available subscription</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
 
+
+<ion-content>
   <ion-text *ngIf="(!creatorStatus)" color="warning">
-    <h4>Creator บัญชีนี้ ได้ทำการ ยกเลิกสถานะ Creator ไปแล้ว ทำให้ไม่สามารถ subscription ได้</h4>
+    <h6>Creator บัญชีนี้ ได้ทำการยกเลิกการรับเงินเข้าไปแล้ว ทำให้ไม่สามารถทำการ subscribe ได้</h6>
   </ion-text>
 
-  
-
   <ion-list>
-    <ion-list-header>subscribe plan</ion-list-header>
+    <ion-list-header *ngIf="creatorStatus">Plan ที่สามารถเลือกได้</ion-list-header>
     <ion-text *ngIf="warning_has_sub && userSub.active == false" color="warning">
       <p>ไม่สามารถ subscription ใหม่ได้ เนื่องจากยังมี การ subscription เดิมอยู่</p>
     </ion-text>
     <ion-item *ngFor="let plan of planList">
       <ion-label>
-        ID:{{plan._id}}
         <h4>ราคา {{plan.price}} บาท</h4>
         <h5>ระยะเวลา {{plan.every}}&nbsp;{{plan.period}}</h5>
       </ion-label>

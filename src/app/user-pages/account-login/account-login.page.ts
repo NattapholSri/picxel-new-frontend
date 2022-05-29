@@ -40,7 +40,6 @@ export class AccountLoginPage implements OnInit {
       alert("คุณยังกรอกข้อมูลในช่องไม่ครบ")
     } 
     else{
-      console.log(loginForm.value)
       await this.loadingCtrl.create({
         message: 'กำลังเข้าสู่ระบบ PICXEL',
         spinner: "dots"

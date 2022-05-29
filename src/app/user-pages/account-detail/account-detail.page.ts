@@ -50,7 +50,7 @@ export class AccountDetailPage implements OnInit {
       let stringJSON = JSON.stringify(res)
       localStorage.setItem('usernow',stringJSON)
       this.usr_acc = res
-      //console.log(this.usr_acc)
+      console.log(this.usr_acc)
       if (
         (this.usr_acc.followerCount != 0) &&
         (this.currentUserLogin != undefined) &&
