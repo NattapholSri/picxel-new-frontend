@@ -1,177 +1,1242 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.8.0 on win32)" generated="20220523 02:14:24.705" rpa="false" schemaversion="3">
-<suite id="s1" name="5 Follow Test Case" source="D:\4.Work_in_Drive_D\Project_4th_year\Front_End\picxel-new-frontend\test_robot\sub_test\user_test\5_follow_test_case.robot">
-<test id="s1-t1" name="sign_in" line="16">
-<kw name="I am on Sign-In page" library="0_user_keywords">
+<robot generator="Robot 5.0.1 (Python 3.8.0 on win32)" generated="20220526 21:47:55.444" rpa="false" schemaversion="3">
+<suite id="s1" name="1 Sign Up Test Case" source="D:\4.Work_in_Drive_D\Project_4th_year\Front_End\picxel-new-frontend\test_robot\sub_test\user_test\1_sign_up_test_case.robot">
+<test id="s1-t1" name="registeration" line="16">
+<kw name="I am on Regis page" library="0_user_keywords">
 <kw name="Open Browser" library="SeleniumLibrary">
-<arg>${sign_up}</arg>
-<arg>chrome</arg>
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220523 02:14:24.928" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/account-login'.</msg>
-<status status="PASS" starttime="20220523 02:14:24.928" endtime="20220523 02:14:26.970"/>
+<msg timestamp="20220526 21:47:55.916" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:47:55.916" endtime="20220526 21:47:58.867"/>
 </kw>
-<status status="PASS" starttime="20220523 02:14:24.928" endtime="20220523 02:14:26.970"/>
+<status status="PASS" starttime="20220526 21:47:55.915" endtime="20220526 21:47:58.868"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220523 02:14:27.472" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220523 02:14:26.971" endtime="20220523 02:14:27.472"/>
+<msg timestamp="20220526 21:47:59.369" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:47:58.868" endtime="20220526 21:47:59.369"/>
 </kw>
-<kw name="I fill in username_box with login_my_username" library="0_user_keywords">
+<kw name="I fill in email_box with reg_my_email" library="0_user_keywords">
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>name=ion-input-0</arg>
-<arg>dummy</arg>
+<arg>wasawat_non1@gmail.com</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220523 02:14:27.472" level="INFO">Typing text 'dummy' into text field 'name=ion-input-0'.</msg>
-<status status="PASS" starttime="20220523 02:14:27.472" endtime="20220523 02:14:27.533"/>
+<msg timestamp="20220526 21:47:59.370" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:47:59.370" endtime="20220526 21:47:59.495"/>
 </kw>
-<status status="PASS" starttime="20220523 02:14:27.472" endtime="20220523 02:14:27.534"/>
+<status status="PASS" starttime="20220526 21:47:59.369" endtime="20220526 21:47:59.496"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220523 02:14:28.034" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220523 02:14:27.534" endtime="20220523 02:14:28.034"/>
+<msg timestamp="20220526 21:47:59.998" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:47:59.497" endtime="20220526 21:47:59.998"/>
 </kw>
-<kw name="I fill in password_box with login_my_password" library="0_user_keywords">
+<kw name="I fill in username_box with reg_my_username" library="0_user_keywords">
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>name=ion-input-1</arg>
-<arg>dummy1234</arg>
+<arg>wasawat_non1</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220523 02:14:28.035" level="INFO">Typing text 'dummy1234' into text field 'name=ion-input-1'.</msg>
-<status status="PASS" starttime="20220523 02:14:28.034" endtime="20220523 02:14:28.099"/>
+<msg timestamp="20220526 21:47:59.999" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:47:59.999" endtime="20220526 21:48:00.067"/>
 </kw>
-<status status="PASS" starttime="20220523 02:14:28.034" endtime="20220523 02:14:28.099"/>
+<status status="PASS" starttime="20220526 21:47:59.998" endtime="20220526 21:48:00.067"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220523 02:14:28.600" level="INFO">Slept 500 milliseconds</msg>
-<status status="PASS" starttime="20220523 02:14:28.099" endtime="20220523 02:14:28.600"/>
+<msg timestamp="20220526 21:48:00.569" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:00.067" endtime="20220526 21:48:00.569"/>
 </kw>
-<kw name="I click ลงชื่อเข้าใช้" library="0_user_keywords">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-login/ion-content/div[2]/ion-button</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220523 02:14:28.601" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-login/ion-content/div[2]/ion-button'.</msg>
-<status status="PASS" starttime="20220523 02:14:28.601" endtime="20220523 02:14:28.636"/>
-</kw>
-<status status="PASS" starttime="20220523 02:14:28.600" endtime="20220523 02:14:28.637"/>
-</kw>
-<kw name="Set Selenium Speed" library="SeleniumLibrary">
-<arg>${delay}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220523 02:14:28.637" endtime="20220523 02:14:28.638"/>
-</kw>
-<kw name="I should see account_detail page" library="0_user_keywords">
-<kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>PICXEL</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220523 02:14:30.687" level="INFO">Current page contains text 'PICXEL'.</msg>
-<status status="PASS" starttime="20220523 02:14:28.638" endtime="20220523 02:14:30.687"/>
-</kw>
-<status status="PASS" starttime="20220523 02:14:28.638" endtime="20220523 02:14:30.687"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220523 02:14:32.689" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220523 02:14:30.687" endtime="20220523 02:14:32.689"/>
-</kw>
-<status status="PASS" starttime="20220523 02:14:24.927" endtime="20220523 02:14:32.689"/>
-</test>
-<test id="s1-t2" name="search_user" line="33">
-<kw name="I type username in the box" library="0_user_keywords">
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
 <kw name="Input Text" library="SeleniumLibrary">
-<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-home/ion-content/ion-card[1]/app-smart-searchbox/ion-grid/ion-row/ion-col[1]/ion-searchbar/div/input</arg>
-<arg>Saimon_Charles</arg>
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220523 02:14:32.691" level="INFO">Typing text 'Saimon_Charles' into text field 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-home/ion-content/ion-card[1]/app-smart-searchbox/ion-grid/ion-row/ion-col[1]/ion-searchbar/div/input'.</msg>
-<status status="PASS" starttime="20220523 02:14:32.691" endtime="20220523 02:14:35.774"/>
+<msg timestamp="20220526 21:48:00.570" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:48:00.570" endtime="20220526 21:48:00.640"/>
 </kw>
-<status status="PASS" starttime="20220523 02:14:32.691" endtime="20220523 02:14:35.774"/>
+<status status="PASS" starttime="20220526 21:48:00.569" endtime="20220526 21:48:00.640"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
+<arg>0.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220523 02:14:37.775" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220523 02:14:35.774" endtime="20220523 02:14:37.775"/>
+<msg timestamp="20220526 21:48:01.142" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:00.641" endtime="20220526 21:48:01.142"/>
 </kw>
-<kw name="I click username that I have search" library="0_user_keywords">
+<kw name="I fill in confirm_password_box with reg_my_confirm_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:01.143" level="INFO">Typing text '0123456789' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:48:01.143" endtime="20220526 21:48:01.215"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:01.142" endtime="20220526 21:48:01.215"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:01.717" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:01.215" endtime="20220526 21:48:01.717"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
 <kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-home/ion-content/ion-card[1]/app-smart-searchbox/ion-grid/ion-row[2]/ion-list</arg>
+<arg>tag=ion-checkbox</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220523 02:14:37.776" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-home/ion-content/ion-card[1]/app-smart-searchbox/ion-grid/ion-row[2]/ion-list'.</msg>
-<status status="PASS" starttime="20220523 02:14:37.775" endtime="20220523 02:14:39.866"/>
+<msg timestamp="20220526 21:48:01.718" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:48:01.718" endtime="20220526 21:48:01.765"/>
 </kw>
-<status status="PASS" starttime="20220523 02:14:37.775" endtime="20220523 02:14:39.866"/>
+<status status="PASS" starttime="20220526 21:48:01.717" endtime="20220526 21:48:01.765"/>
 </kw>
-<kw name="Set Selenium Speed" library="SeleniumLibrary">
-<arg>${delay}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220523 02:14:39.866" endtime="20220523 02:14:39.867"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:02.267" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:01.766" endtime="20220526 21:48:02.267"/>
 </kw>
-<status status="PASS" starttime="20220523 02:14:32.690" endtime="20220523 02:14:39.867"/>
-</test>
-<test id="s1-t3" name="follow section" line="38">
-<kw name="I should see that user profile" library="0_user_keywords">
-<kw name="Pass Execution" library="BuiltIn">
-<arg>pass</arg>
-<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
-<msg timestamp="20220523 02:14:39.868" level="INFO">Execution passed with message:
-pass</msg>
-<status status="PASS" starttime="20220523 02:14:39.868" endtime="20220523 02:14:39.869"/>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:02.268" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:48:02.268" endtime="20220526 21:48:02.329"/>
 </kw>
-<status status="PASS" starttime="20220523 02:14:39.868" endtime="20220523 02:14:39.869"/>
-</kw>
-<kw name="Set Selenium Speed" library="SeleniumLibrary">
-<arg>${delay}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="NOT RUN" starttime="20220523 02:14:39.869" endtime="20220523 02:14:39.869"/>
-</kw>
-<status status="PASS" starttime="20220523 02:14:39.868" endtime="20220523 02:14:39.870">pass</status>
-</test>
-<test id="s1-t4" name="follow user" line="42">
-<kw name="wait for follow button" library="0_user_keywords">
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>follow</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<msg timestamp="20220523 02:14:46.996" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-88.png"&gt;&lt;img src="selenium-screenshot-88.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20220523 02:14:46.997" level="FAIL">Element 'follow' not visible after 5 seconds.</msg>
-<status status="FAIL" starttime="20220523 02:14:39.871" endtime="20220523 02:14:46.998"/>
-</kw>
-<status status="FAIL" starttime="20220523 02:14:39.871" endtime="20220523 02:14:46.998"/>
+<status status="PASS" starttime="20220526 21:48:02.267" endtime="20220526 21:48:02.329"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20220523 02:14:46.999" endtime="20220523 02:14:46.999"/>
-</kw>
-<kw name="I click follow him" library="0_user_keywords">
-<status status="NOT RUN" starttime="20220523 02:14:46.999" endtime="20220523 02:14:46.999"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20220523 02:14:47.000" endtime="20220523 02:14:47.000"/>
+<msg timestamp="20220526 21:48:03.331" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:48:02.329" endtime="20220526 21:48:03.331"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220523 02:14:47.000" endtime="20220523 02:14:50.050"/>
+<status status="PASS" starttime="20220526 21:48:03.331" endtime="20220526 21:48:05.414"/>
 </kw>
-<status status="FAIL" starttime="20220523 02:14:39.871" endtime="20220523 02:14:50.050">Element 'follow' not visible after 5 seconds.</status>
+<status status="PASS" starttime="20220526 21:47:55.915" endtime="20220526 21:48:05.414"/>
 </test>
-<status status="FAIL" starttime="20220523 02:14:24.707" endtime="20220523 02:14:50.052"/>
+<test id="s1-t2" name="registeration_no_username" line="37">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:48:05.416" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:48:05.416" endtime="20220526 21:48:07.896"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:05.416" endtime="20220526 21:48:07.896"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:08.398" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:07.897" endtime="20220526 21:48:08.398"/>
+</kw>
+<kw name="I fill in email_box with reg_my_email" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-0</arg>
+<arg>wasawat_non1@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:08.399" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:48:08.399" endtime="20220526 21:48:08.494"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:08.398" endtime="20220526 21:48:08.494"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:08.995" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:08.494" endtime="20220526 21:48:08.995"/>
+</kw>
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:08.996" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:48:08.995" endtime="20220526 21:48:09.053"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:08.995" endtime="20220526 21:48:09.053"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:09.555" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:09.054" endtime="20220526 21:48:09.555"/>
+</kw>
+<kw name="I fill in confirm_password_box with reg_my_confirm_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:09.555" level="INFO">Typing text '0123456789' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:48:09.555" endtime="20220526 21:48:09.612"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:09.555" endtime="20220526 21:48:09.612"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:10.114" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:09.613" endtime="20220526 21:48:10.114"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>tag=ion-checkbox</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:10.115" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:48:10.115" endtime="20220526 21:48:10.147"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:10.114" endtime="20220526 21:48:10.147"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:10.649" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:10.148" endtime="20220526 21:48:10.649"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:10.650" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:48:10.650" endtime="20220526 21:48:10.699"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:10.649" endtime="20220526 21:48:10.699"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:11.701" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:48:10.700" endtime="20220526 21:48:11.701"/>
+</kw>
+<kw name="I should see all info must be filled alert _message" library="0_user_keywords">
+<kw name="Alert Should Be Present" library="SeleniumLibrary">
+<arg>คุณยังกรอกข้อมูลไม่ครบ</arg>
+<doc>Verifies that an alert is present and by default, accepts it.</doc>
+<msg timestamp="20220526 21:48:11.702" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<status status="PASS" starttime="20220526 21:48:11.702" endtime="20220526 21:48:11.706"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:11.701" endtime="20220526 21:48:11.706"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:12.208" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:11.707" endtime="20220526 21:48:12.208"/>
+</kw>
+<kw name="I should see regis page" library="0_user_keywords">
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกชื่อผู้ใช้</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:12.311" level="INFO">Current page contains text 'กรอกชื่อผู้ใช้'.</msg>
+<status status="PASS" starttime="20220526 21:48:12.209" endtime="20220526 21:48:12.311"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:12.324" level="INFO">Current page contains text 'กรอกรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:12.311" endtime="20220526 21:48:12.324"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ยืนยันรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:12.334" level="INFO">Current page contains text 'ยืนยันรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:12.324" endtime="20220526 21:48:12.335"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:12.346" level="INFO">Current page contains text 'ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ'.</msg>
+<status status="PASS" starttime="20220526 21:48:12.335" endtime="20220526 21:48:12.346"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ลงทะเบียน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:12.355" level="INFO">Current page contains text 'ลงทะเบียน'.</msg>
+<status status="PASS" starttime="20220526 21:48:12.346" endtime="20220526 21:48:12.355"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:12.208" endtime="20220526 21:48:12.355"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:48:12.356" endtime="20220526 21:48:14.458"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:05.415" endtime="20220526 21:48:14.458"/>
+</test>
+<test id="s1-t3" name="registeration_no_email" line="55">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:48:14.460" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:48:14.460" endtime="20220526 21:48:16.778"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:14.460" endtime="20220526 21:48:16.778"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:17.280" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:16.778" endtime="20220526 21:48:17.280"/>
+</kw>
+<kw name="I fill in username_box with reg_my_username" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-1</arg>
+<arg>wasawat_non1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:17.281" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:48:17.281" endtime="20220526 21:48:17.357"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:17.280" endtime="20220526 21:48:17.358"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:17.860" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:17.358" endtime="20220526 21:48:17.860"/>
+</kw>
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:17.861" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:48:17.861" endtime="20220526 21:48:17.922"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:17.860" endtime="20220526 21:48:17.922"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:18.424" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:17.923" endtime="20220526 21:48:18.424"/>
+</kw>
+<kw name="I fill in confirm_password_box with reg_my_confirm_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:18.425" level="INFO">Typing text '0123456789' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:48:18.425" endtime="20220526 21:48:18.487"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:18.424" endtime="20220526 21:48:18.487"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:18.989" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:18.488" endtime="20220526 21:48:18.989"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>tag=ion-checkbox</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:18.990" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:48:18.990" endtime="20220526 21:48:19.026"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:18.989" endtime="20220526 21:48:19.026"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:19.528" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:19.027" endtime="20220526 21:48:19.528"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:19.529" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:48:19.529" endtime="20220526 21:48:19.567"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:19.528" endtime="20220526 21:48:19.568"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:20.570" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:48:19.568" endtime="20220526 21:48:20.570"/>
+</kw>
+<kw name="I should see all info must be filled alert _message" library="0_user_keywords">
+<kw name="Alert Should Be Present" library="SeleniumLibrary">
+<arg>คุณยังกรอกข้อมูลไม่ครบ</arg>
+<doc>Verifies that an alert is present and by default, accepts it.</doc>
+<msg timestamp="20220526 21:48:20.571" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<status status="PASS" starttime="20220526 21:48:20.571" endtime="20220526 21:48:20.575"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:20.570" endtime="20220526 21:48:20.575"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:21.077" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:20.576" endtime="20220526 21:48:21.077"/>
+</kw>
+<kw name="I should see regis page" library="0_user_keywords">
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกชื่อผู้ใช้</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:21.089" level="INFO">Current page contains text 'กรอกชื่อผู้ใช้'.</msg>
+<status status="PASS" starttime="20220526 21:48:21.078" endtime="20220526 21:48:21.089"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:21.100" level="INFO">Current page contains text 'กรอกรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:21.090" endtime="20220526 21:48:21.101"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ยืนยันรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:21.111" level="INFO">Current page contains text 'ยืนยันรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:21.101" endtime="20220526 21:48:21.112"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:21.122" level="INFO">Current page contains text 'ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ'.</msg>
+<status status="PASS" starttime="20220526 21:48:21.112" endtime="20220526 21:48:21.122"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ลงทะเบียน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:21.131" level="INFO">Current page contains text 'ลงทะเบียน'.</msg>
+<status status="PASS" starttime="20220526 21:48:21.122" endtime="20220526 21:48:21.132"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:21.078" endtime="20220526 21:48:21.132"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:48:21.132" endtime="20220526 21:48:23.220"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:14.459" endtime="20220526 21:48:23.220"/>
+</test>
+<test id="s1-t4" name="registeration_no_password" line="73">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:48:23.223" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:48:23.222" endtime="20220526 21:48:25.339"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:23.222" endtime="20220526 21:48:25.339"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:25.841" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:25.339" endtime="20220526 21:48:25.841"/>
+</kw>
+<kw name="I fill in email_box with reg_my_email" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-0</arg>
+<arg>wasawat_non1@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:25.842" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:48:25.842" endtime="20220526 21:48:25.912"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:25.841" endtime="20220526 21:48:25.912"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:26.415" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:25.913" endtime="20220526 21:48:26.415"/>
+</kw>
+<kw name="I fill in username_box with reg_my_username" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-1</arg>
+<arg>wasawat_non1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:26.416" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:48:26.415" endtime="20220526 21:48:26.474"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:26.415" endtime="20220526 21:48:26.474"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:26.976" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:26.475" endtime="20220526 21:48:26.976"/>
+</kw>
+<kw name="I fill in confirm_password_box with reg_my_confirm_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:26.977" level="INFO">Typing text '0123456789' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:48:26.977" endtime="20220526 21:48:27.038"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:26.976" endtime="20220526 21:48:27.038"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:27.540" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:27.039" endtime="20220526 21:48:27.540"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>tag=ion-checkbox</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:27.541" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:48:27.541" endtime="20220526 21:48:27.574"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:27.540" endtime="20220526 21:48:27.574"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:28.075" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:27.575" endtime="20220526 21:48:28.075"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:28.076" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:48:28.076" endtime="20220526 21:48:28.118"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:28.075" endtime="20220526 21:48:28.118"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:28.621" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:28.119" endtime="20220526 21:48:28.621"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:29.622" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:48:28.621" endtime="20220526 21:48:29.622"/>
+</kw>
+<kw name="I should see invalid password input alert _message" library="0_user_keywords">
+<kw name="Alert Should Be Present" library="SeleniumLibrary">
+<arg>รหัสผ่านกับรหัสในช่องยืนยันไม่ตรงกัน</arg>
+<doc>Verifies that an alert is present and by default, accepts it.</doc>
+<msg timestamp="20220526 21:48:29.623" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<status status="PASS" starttime="20220526 21:48:29.622" endtime="20220526 21:48:29.626"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:29.622" endtime="20220526 21:48:29.626"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:30.128" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:29.627" endtime="20220526 21:48:30.128"/>
+</kw>
+<kw name="I should see regis page" library="0_user_keywords">
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกชื่อผู้ใช้</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:30.139" level="INFO">Current page contains text 'กรอกชื่อผู้ใช้'.</msg>
+<status status="PASS" starttime="20220526 21:48:30.129" endtime="20220526 21:48:30.139"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:30.148" level="INFO">Current page contains text 'กรอกรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:30.139" endtime="20220526 21:48:30.148"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ยืนยันรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:30.157" level="INFO">Current page contains text 'ยืนยันรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:30.148" endtime="20220526 21:48:30.157"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:30.167" level="INFO">Current page contains text 'ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ'.</msg>
+<status status="PASS" starttime="20220526 21:48:30.158" endtime="20220526 21:48:30.168"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ลงทะเบียน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:30.178" level="INFO">Current page contains text 'ลงทะเบียน'.</msg>
+<status status="PASS" starttime="20220526 21:48:30.168" endtime="20220526 21:48:30.178"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:30.128" endtime="20220526 21:48:30.178"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:48:30.179" endtime="20220526 21:48:32.260"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:23.221" endtime="20220526 21:48:32.260"/>
+</test>
+<test id="s1-t5" name="registeration_no_confirm_password" line="92">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:48:32.263" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:48:32.262" endtime="20220526 21:48:34.306"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:32.262" endtime="20220526 21:48:34.306"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:34.807" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:34.307" endtime="20220526 21:48:34.807"/>
+</kw>
+<kw name="I fill in email_box with reg_my_email" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-0</arg>
+<arg>wasawat_non1@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:34.808" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:48:34.808" endtime="20220526 21:48:34.869"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:34.807" endtime="20220526 21:48:34.869"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:35.371" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:34.870" endtime="20220526 21:48:35.371"/>
+</kw>
+<kw name="I fill in username_box with reg_my_username" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-1</arg>
+<arg>wasawat_non1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:35.372" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:48:35.371" endtime="20220526 21:48:35.433"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:35.371" endtime="20220526 21:48:35.433"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:35.936" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:35.434" endtime="20220526 21:48:35.936"/>
+</kw>
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:35.937" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:48:35.936" endtime="20220526 21:48:35.995"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:35.936" endtime="20220526 21:48:35.995"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:36.497" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:35.996" endtime="20220526 21:48:36.497"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>tag=ion-checkbox</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:36.498" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:48:36.498" endtime="20220526 21:48:36.531"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:36.497" endtime="20220526 21:48:36.531"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:37.033" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:36.532" endtime="20220526 21:48:37.033"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:37.034" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:48:37.034" endtime="20220526 21:48:37.071"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:37.033" endtime="20220526 21:48:37.071"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:37.573" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:37.072" endtime="20220526 21:48:37.573"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:38.575" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:48:37.573" endtime="20220526 21:48:38.575"/>
+</kw>
+<kw name="I should see invalid password input alert _message" library="0_user_keywords">
+<kw name="Alert Should Be Present" library="SeleniumLibrary">
+<arg>รหัสผ่านกับรหัสในช่องยืนยันไม่ตรงกัน</arg>
+<doc>Verifies that an alert is present and by default, accepts it.</doc>
+<msg timestamp="20220526 21:48:38.576" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<status status="PASS" starttime="20220526 21:48:38.576" endtime="20220526 21:48:38.579"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:38.575" endtime="20220526 21:48:38.579"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:39.080" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:38.579" endtime="20220526 21:48:39.080"/>
+</kw>
+<kw name="I should see regis page" library="0_user_keywords">
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกชื่อผู้ใช้</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:39.091" level="INFO">Current page contains text 'กรอกชื่อผู้ใช้'.</msg>
+<status status="PASS" starttime="20220526 21:48:39.081" endtime="20220526 21:48:39.091"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:39.102" level="INFO">Current page contains text 'กรอกรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:39.091" endtime="20220526 21:48:39.102"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ยืนยันรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:39.111" level="INFO">Current page contains text 'ยืนยันรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:39.102" endtime="20220526 21:48:39.112"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:39.122" level="INFO">Current page contains text 'ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ'.</msg>
+<status status="PASS" starttime="20220526 21:48:39.112" endtime="20220526 21:48:39.122"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ลงทะเบียน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:39.132" level="INFO">Current page contains text 'ลงทะเบียน'.</msg>
+<status status="PASS" starttime="20220526 21:48:39.122" endtime="20220526 21:48:39.132"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:39.080" endtime="20220526 21:48:39.132"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:48:39.133" endtime="20220526 21:48:41.213"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:32.262" endtime="20220526 21:48:41.214"/>
+</test>
+<test id="s1-t6" name="registeration_no_check_box" line="111">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:48:41.216" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:48:41.216" endtime="20220526 21:48:43.331"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:41.215" endtime="20220526 21:48:43.331"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:43.833" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:43.331" endtime="20220526 21:48:43.833"/>
+</kw>
+<kw name="I fill in email_box with reg_my_email" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-0</arg>
+<arg>wasawat_non1@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:43.835" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:48:43.834" endtime="20220526 21:48:43.911"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:43.834" endtime="20220526 21:48:43.911"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:44.413" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:43.912" endtime="20220526 21:48:44.413"/>
+</kw>
+<kw name="I fill in username_box with reg_my_username" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-1</arg>
+<arg>wasawat_non1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:44.414" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:48:44.413" endtime="20220526 21:48:44.468"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:44.413" endtime="20220526 21:48:44.468"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:44.970" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:44.469" endtime="20220526 21:48:44.970"/>
+</kw>
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:44.971" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:48:44.970" endtime="20220526 21:48:45.027"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:44.970" endtime="20220526 21:48:45.027"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:45.529" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:45.028" endtime="20220526 21:48:45.529"/>
+</kw>
+<kw name="I fill in confirm_password_box with reg_my_confirm_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:45.530" level="INFO">Typing text '0123456789' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:48:45.529" endtime="20220526 21:48:45.588"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:45.529" endtime="20220526 21:48:45.589"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:46.089" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:45.589" endtime="20220526 21:48:46.089"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:46.090" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:48:46.090" endtime="20220526 21:48:46.125"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:46.089" endtime="20220526 21:48:46.125"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:47.126" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:48:46.126" endtime="20220526 21:48:47.126"/>
+</kw>
+<kw name="I should see all info must accept user policies" library="0_user_keywords">
+<kw name="Alert Should Be Present" library="SeleniumLibrary">
+<arg>คุณยังไม่ได้กดยอมรับข้อตกลงในการใช้งาน</arg>
+<doc>Verifies that an alert is present and by default, accepts it.</doc>
+<msg timestamp="20220526 21:48:47.127" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<status status="PASS" starttime="20220526 21:48:47.126" endtime="20220526 21:48:47.130"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:47.126" endtime="20220526 21:48:47.130"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:47.633" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:47.131" endtime="20220526 21:48:47.633"/>
+</kw>
+<kw name="I should see regis page" library="0_user_keywords">
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกชื่อผู้ใช้</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:47.642" level="INFO">Current page contains text 'กรอกชื่อผู้ใช้'.</msg>
+<status status="PASS" starttime="20220526 21:48:47.633" endtime="20220526 21:48:47.642"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>กรอกรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:47.650" level="INFO">Current page contains text 'กรอกรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:47.642" endtime="20220526 21:48:47.651"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ยืนยันรหัสผ่าน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:47.659" level="INFO">Current page contains text 'ยืนยันรหัสผ่าน'.</msg>
+<status status="PASS" starttime="20220526 21:48:47.651" endtime="20220526 21:48:47.659"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:47.668" level="INFO">Current page contains text 'ฉันยอมรับและตกลงเงื่อนไขในการใช้บริการ'.</msg>
+<status status="PASS" starttime="20220526 21:48:47.659" endtime="20220526 21:48:47.668"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>ลงทะเบียน</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220526 21:48:47.676" level="INFO">Current page contains text 'ลงทะเบียน'.</msg>
+<status status="PASS" starttime="20220526 21:48:47.668" endtime="20220526 21:48:47.677"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:47.633" endtime="20220526 21:48:47.677"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:48:47.677" endtime="20220526 21:48:49.755"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:41.215" endtime="20220526 21:48:49.755"/>
+</test>
+<test id="s1-t7" name="registeration_username_already_taken" line="129">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:48:49.756" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:48:49.756" endtime="20220526 21:48:51.730"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:49.756" endtime="20220526 21:48:51.730"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:52.232" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:51.731" endtime="20220526 21:48:52.232"/>
+</kw>
+<kw name="I fill in email_box with reg_my_email" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-0</arg>
+<arg>wasawat_non1@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:52.233" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:48:52.232" endtime="20220526 21:48:52.300"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:52.232" endtime="20220526 21:48:52.300"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:52.802" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:52.301" endtime="20220526 21:48:52.802"/>
+</kw>
+<kw name="I fill in username_box with alreday_reg_my_username" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-1</arg>
+<arg>wasawat_non1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:52.803" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:48:52.802" endtime="20220526 21:48:52.857"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:52.802" endtime="20220526 21:48:52.857"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:53.359" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:52.857" endtime="20220526 21:48:53.359"/>
+</kw>
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:53.360" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:48:53.360" endtime="20220526 21:48:53.422"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:53.359" endtime="20220526 21:48:53.422"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:53.923" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:53.422" endtime="20220526 21:48:53.923"/>
+</kw>
+<kw name="I fill in confirm_password_box with reg_my_confirm_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:53.924" level="INFO">Typing text '0123456789' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:48:53.924" endtime="20220526 21:48:53.983"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:53.923" endtime="20220526 21:48:53.984"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:54.485" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:53.984" endtime="20220526 21:48:54.485"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>tag=ion-checkbox</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:54.486" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:48:54.486" endtime="20220526 21:48:54.519"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:54.485" endtime="20220526 21:48:54.519"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:55.022" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:48:54.520" endtime="20220526 21:48:55.022"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:48:55.023" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:48:55.023" endtime="20220526 21:48:55.056"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:55.022" endtime="20220526 21:48:55.056"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:48:56.058" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:48:55.057" endtime="20220526 21:48:56.058"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:48:56.058" endtime="20220526 21:48:58.139"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:49.756" endtime="20220526 21:48:58.139"/>
+</test>
+<test id="s1-t8" name="registeration_email_alreday_taken" line="149">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:48:58.142" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:48:58.141" endtime="20220526 21:49:00.193"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:58.141" endtime="20220526 21:49:00.193"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:00.695" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:00.194" endtime="20220526 21:49:00.695"/>
+</kw>
+<kw name="I fill in email_box with alreday_reg_my_email" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-0</arg>
+<arg>wasawat_non1@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:00.696" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:49:00.695" endtime="20220526 21:49:00.759"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:00.695" endtime="20220526 21:49:00.759"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:01.261" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:00.760" endtime="20220526 21:49:01.261"/>
+</kw>
+<kw name="I fill in username_box with reg_my_username" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-1</arg>
+<arg>wasawat_non1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:01.262" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:49:01.261" endtime="20220526 21:49:01.322"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:01.261" endtime="20220526 21:49:01.323"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:01.824" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:01.323" endtime="20220526 21:49:01.824"/>
+</kw>
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:01.825" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:49:01.824" endtime="20220526 21:49:01.882"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:01.824" endtime="20220526 21:49:01.882"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:02.384" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:01.882" endtime="20220526 21:49:02.384"/>
+</kw>
+<kw name="I fill in confirm_password_box with reg_my_confirm_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:02.385" level="INFO">Typing text '0123456789' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:49:02.385" endtime="20220526 21:49:02.448"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:02.384" endtime="20220526 21:49:02.449"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:02.949" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:02.449" endtime="20220526 21:49:02.949"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>tag=ion-checkbox</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:02.950" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:49:02.950" endtime="20220526 21:49:02.982"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:02.949" endtime="20220526 21:49:02.982"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:03.484" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:02.983" endtime="20220526 21:49:03.484"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:03.485" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:49:03.484" endtime="20220526 21:49:03.514"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:03.484" endtime="20220526 21:49:03.514"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:04.516" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:49:03.515" endtime="20220526 21:49:04.516"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:49:04.516" endtime="20220526 21:49:06.597"/>
+</kw>
+<status status="PASS" starttime="20220526 21:48:58.141" endtime="20220526 21:49:06.597"/>
+</test>
+<test id="s1-t9" name="registeration_password_does_not_match" line="169">
+<kw name="I am on Regis page" library="0_user_keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${regis_page}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220526 21:49:06.600" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8100/registration'.</msg>
+<status status="PASS" starttime="20220526 21:49:06.599" endtime="20220526 21:49:08.601"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:06.599" endtime="20220526 21:49:08.601"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:09.104" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:08.601" endtime="20220526 21:49:09.104"/>
+</kw>
+<kw name="I fill in email_box with reg_my_email" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-0</arg>
+<arg>wasawat_non1@gmail.com</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:09.105" level="INFO">Typing text 'wasawat_non1@gmail.com' into text field 'name=ion-input-0'.</msg>
+<status status="PASS" starttime="20220526 21:49:09.104" endtime="20220526 21:49:09.172"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:09.104" endtime="20220526 21:49:09.172"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:09.674" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:09.173" endtime="20220526 21:49:09.674"/>
+</kw>
+<kw name="I fill in username_box with reg_my_username" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-1</arg>
+<arg>wasawat_non1</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:09.675" level="INFO">Typing text 'wasawat_non1' into text field 'name=ion-input-1'.</msg>
+<status status="PASS" starttime="20220526 21:49:09.674" endtime="20220526 21:49:09.728"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:09.674" endtime="20220526 21:49:09.729"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:10.231" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:09.729" endtime="20220526 21:49:10.231"/>
+</kw>
+<kw name="I fill in password_box with reg_my_password" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-2</arg>
+<arg>0123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:10.231" level="INFO">Typing text '0123456789' into text field 'name=ion-input-2'.</msg>
+<status status="PASS" starttime="20220526 21:49:10.231" endtime="20220526 21:49:10.301"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:10.231" endtime="20220526 21:49:10.301"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:10.803" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:10.302" endtime="20220526 21:49:10.803"/>
+</kw>
+<kw name="I fill in confirm_password_box with unmatch_password_box" library="0_user_keywords">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=ion-input-3</arg>
+<arg>unmatch_password_box</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:10.804" level="INFO">Typing text 'unmatch_password_box' into text field 'name=ion-input-3'.</msg>
+<status status="PASS" starttime="20220526 21:49:10.803" endtime="20220526 21:49:10.866"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:10.803" endtime="20220526 21:49:10.866"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:11.368" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:10.866" endtime="20220526 21:49:11.368"/>
+</kw>
+<kw name="I check in check_box" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>tag=ion-checkbox</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:11.369" level="INFO">Clicking element 'tag=ion-checkbox'.</msg>
+<status status="PASS" starttime="20220526 21:49:11.368" endtime="20220526 21:49:11.399"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:11.368" endtime="20220526 21:49:11.399"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:11.901" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20220526 21:49:11.399" endtime="20220526 21:49:11.901"/>
+</kw>
+<kw name="I click ลงทะเบียน" library="0_user_keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220526 21:49:11.902" level="INFO">Clicking element 'xpath=/html/body/app-root/ion-app/ion-router-outlet/app-account-regis/ion-content/ion-button'.</msg>
+<status status="PASS" starttime="20220526 21:49:11.901" endtime="20220526 21:49:11.937"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:11.901" endtime="20220526 21:49:11.937"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220526 21:49:12.939" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220526 21:49:11.938" endtime="20220526 21:49:12.939"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220526 21:49:12.939" endtime="20220526 21:49:15.022"/>
+</kw>
+<status status="PASS" starttime="20220526 21:49:06.598" endtime="20220526 21:49:15.022"/>
+</test>
+<status status="PASS" starttime="20220526 21:47:55.446" endtime="20220526 21:49:15.024"/>
 </suite>
 <statistics>
 <total>
-<stat pass="3" fail="1" skip="0">All Tests</stat>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="3" fail="1" skip="0" id="s1" name="5 Follow Test Case">5 Follow Test Case</stat>
+<stat pass="9" fail="0" skip="0" id="s1" name="1 Sign Up Test Case">1 Sign Up Test Case</stat>
 </suite>
 </statistics>
 <errors>

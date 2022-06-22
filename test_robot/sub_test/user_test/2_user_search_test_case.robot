@@ -28,11 +28,12 @@ sign_in
     #Sleep  0.5s
     # **check user profile page
     I should see account_detail page
-    Sleep  2
+    Sleep  2s
 
 search_user
+    Sleep  4s
     I type username in the box
-    Sleep  2
+    Sleep  2s
     I click username that I have search
     Set Selenium Speed    ${delay}
     #page assertion

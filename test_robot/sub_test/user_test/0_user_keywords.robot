@@ -8,6 +8,7 @@
 Library    SeleniumLibrary
 *** Variables ***
 ${url}=    http://localhost:8100/sign-in 
+#${browser}    chrome
 ${browser}    chrome
 ${google}    https://google.com/ 
 ${sign_up}    http://localhost:8100/account-login
@@ -20,7 +21,7 @@ ${DELAY} =    1
 *** Keywords ***
 
 practice_test
-    Open Browser    http://www.google.co.th    chrome
+    Open Browser    http://www.google.co.th    ${browser}
 
 #=======================
 # Feature: Log In
@@ -28,7 +29,7 @@ practice_test
 
 
 I am on Sign-In page
-    Open Browser    ${sign_up}    chrome
+    Open Browser    ${sign_up}    ${browser}
 
 I fill in username_box with login_my_username
     Input Text    name=ion-input-0    dummy
@@ -63,6 +64,10 @@ I should see please fill username alert message
 #---PAGE ASSERTION---#
 
 # Login-Page Assertion
+I should see invalid input username alert
+    Alert Should Be Present    คุณยังกรอกข้อมูลไม่ครบ
+I should see invalid input no password alert
+    Alert Should Be Present    คุณยังกรอกข้อมูลไม่ครบ
 I should see invalid input alert
     Alert Should Be Present    เกิดข้อผิดพลาด โปรดตรวจสอบข้อมูลที่กรอก
 ## test keyword check all elements of Login-Page in 1 keyword
@@ -147,7 +152,7 @@ I should see password changing page
 #=======================
 
 I am on Regis page
-    Open Browser    ${regis_page}    chrome
+    Open Browser    ${regis_page}    ${browser}
 I fill in email_box with reg_my_email
     Input Text    name=ion-input-0    wasawat_non1@gmail.com
 I fill in username_box with reg_my_username
@@ -164,6 +169,9 @@ Then I should see "please check your email"_message
 
 I should see all info must be filled alert _message
     Alert Should Be Present    คุณยังกรอกข้อมูลไม่ครบ
+    
+I should see invalid password input alert _message
+    Alert Should Be Present    รหัสผ่านกับรหัสในช่องยืนยันไม่ตรงกัน
 
 I should see all info must accept user policies
     Alert Should Be Present    คุณยังไม่ได้กดยอมรับข้อตกลงในการใช้งาน
@@ -312,6 +320,13 @@ I should see alert message incorrect info
 #=======================
 # Follow
 #=======================
+# try locate follow button
+@try locate follow
+    Click Element At Coordinates    tag=h5  911  208   
+    
+    #
+    #'จำนวนผู้ติดตามบัญชีนี้: 0'
+    #Page Should Contain     ดูรายละเอียดโพสต์ 
 wait for follow button
     Wait Until Element Is Visible     follow  
 I click follow him

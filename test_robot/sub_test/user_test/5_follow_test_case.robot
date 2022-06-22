@@ -39,9 +39,10 @@ follow section
     #page assertion
     I should see that user profile
     Set Selenium Speed    ${delay}
-follow user
-    wait for follow button
-    Sleep  1s
-    I click follow him
-    Sleep  2s
+#follow user
+#    @try locate follow
+#    Sleep  4s
+#    wait for follow button
+#    I click follow him
+#    Sleep  2s
     [Teardown]    Close Browser

@@ -84,7 +84,7 @@ sign_in_no_username
     I click ลงชื่อเข้าใช้
 
     Sleep  1s
-    I should see invalid input alert
+    I should see invalid input username alert
     # login page assertion
     Sleep  0.5s
     I should see login page
@@ -102,7 +102,7 @@ sign_in_no_password
     I click ลงชื่อเข้าใช้
 
     Sleep  1s
-    I should see invalid input alert 
+    I should see invalid input no password alert
     # login page assertion
     Sleep  0.5s
     I should see login page
