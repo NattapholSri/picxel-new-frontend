@@ -5,7 +5,7 @@
         <ion-icon name="home-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>account-detail</ion-title>
+    <ion-title>Account-Detail</ion-title>
     <ion-buttons slot="end" *ngIf=" currentUserLogin != undefined">
       <ion-button (click)="showUserMenu()">
         <ion-icon name="person-circle-outline"></ion-icon>
@@ -47,7 +47,7 @@
         <ion-icon name="checkbox-outline"></ion-icon>
       </ion-button>
       <ion-button (click)="showSubscriptMenu()">
-        Subscription
+        Subscribe
       </ion-button>
       <ion-button [disabled]="(usr_acc.creatorMode == false) || (currentUserOmise == undefined) || (usr_acc.omise_donate_recipient_id == undefined)" 
       (click)="donatingPopMenu()">
@@ -57,8 +57,6 @@
 
     </ion-item>
   </ion-card>
-
-  
 
     <!-- <ion-grid *ngIf=" usr_acc.password != undefined">
       <ion-row>

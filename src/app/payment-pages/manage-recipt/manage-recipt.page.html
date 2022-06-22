@@ -19,7 +19,7 @@
       <ion-label>
         <h4>{{recipient.bank_account.brand}}</h4>
         <h5>{{recipient.bank_account.name}}</h5>
-        <p>เลข 4 หลักสุดท้ายของบัญชี: {{recipient.bank_account.last_digits}}</p>
+        <p>เลขชุดสุดท้ายของบัญชี: {{recipient.bank_account.last_digits}}</p>
       </ion-label>
       <ion-buttons slot="end">
         <ion-button *ngIf="recipient.id != default_acc" (click)="setDefaultRecipt(recipient.id)">
@@ -35,4 +35,7 @@
       </ion-buttons>
     </ion-item>
   </ion-list>
+  <div class="center" *ngIf="recipt_list.length == 0">
+    <h3>ยังไม่มีบัญชีรับเงิน สามารถเพิ่มได้จาก 'เพิ่มบัญชีธนาคาร'</h3>
+  </div>
 </ion-content>

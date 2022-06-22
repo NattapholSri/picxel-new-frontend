@@ -1,14 +1,21 @@
+<!-- <ion-app>
+<ion-menu side="end" type="push" content-id="user-content">
+  <ion-content>
+    <app-pop-user-menu [username]="currentUserName"></app-pop-user-menu>
+  </ion-content>
+</ion-menu> -->
+
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button onclick="history.back()"></ion-back-button>
-    </ion-buttons>
     <ion-title>PICXEL</ion-title>
   
     <ion-buttons slot="end" *ngIf="tokenOn">
       <ion-button (click)="showUserMenu()">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-button>
+      <!-- <ion-button (click)="showNewUserMenu()" id="user-content">
+        <ion-icon name="reorder-three"></ion-icon>
+      </ion-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -48,5 +55,6 @@
   </div> -->
 
 </ion-content>
+
 
 

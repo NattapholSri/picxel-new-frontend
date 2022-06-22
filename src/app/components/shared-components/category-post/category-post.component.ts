@@ -40,10 +40,10 @@ export class CategoryPostComponent implements OnInit {
   }
 
   tagPost(tag:string){
-    this.PostServ.SearchPostByTag(tag,10,this.loadPostAtPage).subscribe(
+    this.PostServ.SearchPostByTag(tag,8,this.loadPostAtPage).subscribe(
       (res) => {
         this.postList = res.content
-        if (this.postList.length !== 10){
+        if (this.postList.length < 8){
           this.canloadMore = false
         }
         //if (this.knowtag != []){
@@ -57,16 +57,18 @@ export class CategoryPostComponent implements OnInit {
   loadThisTagMore(){
     this.loadPostAtPage += 1;
     console.log('load more data:'+this.tagname)
-    this.PostServ.SearchPost(this.tagname,10,this.loadPostAtPage).subscribe(
+    this.PostServ.SearchPost(this.tagname,8,this.loadPostAtPage).subscribe(
       (res) => {
         console.log(res)
         let MorePostList = res.content
         console.log(MorePostList)
-        if (MorePostList.length !== 10){
+        if (MorePostList.length < 8){
           this.canloadMore = false
+          this.postList = this.postList.concat(MorePostList)
+          console.log(this.postList)
         }
         else{
-          this.postList += MorePostList
+          this.postList = this.postList.concat(MorePostList)
           console.log(this.postList)
         }
       }

@@ -1,9 +1,11 @@
-<ion-content>
-  <ion-text>
-    <h5>โพสต์นี้ตั้งที่ขายราคา {{sell_price}} บาท</h5>
-    <p>หากต้องการซื้อกรุณาเลือกบัตรที่จะใช้ในการชำระเงิน</p>
-  </ion-text>
+<ion-header>
+  <ion-title>
+    <p>โพสต์นี้ตั้งที่ขายราคา {{sell_price}} บาท</p>
+    <h6>หากต้องการซื้อกรุณาเลือกบัตรที่จะใช้ในการชำระเงิน</h6>
+  </ion-title>
+</ion-header>
 
+<ion-content>
   <ion-item>
     <ion-label>บัตรเครดิตที่ใช้ชำระเงิน:</ion-label>
     <ion-select [(ngModel)]="selected_card" placeholder="เลือกบัตรเครดิต">

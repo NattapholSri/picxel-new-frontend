@@ -7,10 +7,9 @@ import { AlertController, PopoverController } from '@ionic/angular';
 import { PostingService } from 'src/app/services/api/posting.service';
 
 import { PlanListComponent } from 'src/app/components/subscription/plan-list/plan-list.component';
-import { ManageOmiseComponent } from 'src/app/components/subscription/manage-omise/manage-omise.component';
 
 import { initializeApp } from "firebase/app";
-import { getStorage, ref,uploadBytes,getDownloadURL } from "firebase/storage";
+import { getStorage, ref,uploadBytes} from "firebase/storage";
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 
@@ -105,12 +104,12 @@ export class AccountEditPage implements OnInit {
           console.log('use_backend:'+this.false_from_backend)
         }
 
-        if (usr_data.omise_customer_id != undefined){
+        /* if (usr_data.omise_customer_id != undefined){
           this.user_omise_id = usr_data.omise_customer_id
         }
         else{
           this.user_omise_id = undefined
-        }
+        } */
       })
   }
 
@@ -157,7 +156,7 @@ export class AccountEditPage implements OnInit {
   }
 
   revert(){
-    this.ngZone.run(() => this.router.navigateByUrl('/account-detail/'+this.user_now))
+    this.ngZone.run(() => history.back())
   }
 
   addTag(input_tag:any){
@@ -285,15 +284,18 @@ export class AccountEditPage implements OnInit {
         },{
           text: 'แน่นอน',
           handler: () => {
-            this.postServ.DeleteAllPost(this.user_id).subscribe((res) => {
-              console.log(res)
+            /* this.postServ.DeleteAllPost(this.user_id).subscribe((res) => {
+              console.log(res) */
               this.userServ.deleteUser()
                 .subscribe((res)=> {
                   console.log(res)
+                  alert('ลบบัญชีเรียบร้อย กลับไปยังหน้าล็อกอิน')
                   this.ngZone.run(() => this.router.navigateByUrl('/'))
-                })
+                },
+                (err) => alert('เกิดข้อผิดพลาดในการลบ User โปรดตรวจสอบว่า mode creator ปิดอยู่ แล้วลองลบใหม่ หากยังเกิดข้อผิพลาดให้ติดต่อผู้ดูแลระบบ')  
+              )
               
-            })
+           // },(err) => alert('เกิดข้อผิดพลาดในการลบ User โปรดตรวจสอบว่า mode creator ปิดอยู่ แล้วลองลบใหม่ หากยังเกิดข้อผิพลาดให้ติดต่อผู้ดูแลระบบ'))
           }
         }
       ]
@@ -314,7 +316,7 @@ export class AccountEditPage implements OnInit {
     await popover.present();
   }
 
-  async callPaymentServ(){
+  /* async callPaymentServ(){
 
     const popover = await this.popOverCtrl.create({
       component: ManageOmiseComponent,
@@ -323,7 +325,7 @@ export class AccountEditPage implements OnInit {
       mode: "md",
     });
     await popover.present();
-  }
+  } */
 
   onFileInput(event){
     if (event.target.files && event.target.files[0]) {

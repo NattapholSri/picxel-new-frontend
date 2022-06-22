@@ -113,7 +113,7 @@ export class PostCreateComponent {
       this.warningNoOmiseId()
       this.safetyDisbale = true
     }
-    
+    console.log(this.postBuyMode)
   }
 
   async onSubmit(){
@@ -325,6 +325,7 @@ export class PostCreateComponent {
   }
 
   postModeShifter(){
+    console.log(this.postBuyMode)
     if(this.postBuyMode == 1){
       this.subRequire = true
       this.buyRequire = false

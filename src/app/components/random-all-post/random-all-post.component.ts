@@ -68,9 +68,9 @@ export class RandomAllPostComponent {
         )
 
       let localDate = new Date(post.createdAt)
-      post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      post.createdAt = localDate.toLocaleString('th-TH',{year: 'numeric', month: 'short', day: 'numeric',hour:'numeric',minute:'numeric'})
       let updateDate = new Date(post.updatedAt)
-      post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'long', day: 'numeric',hour:'numeric',minute:'numeric'})
+      post.updatedAt = updateDate.toLocaleString('th-TH',{year: 'numeric', month: 'short', day: 'numeric',hour:'numeric',minute:'numeric'})
 
       if (post.likeCount != 0 && this.CurrentSessionId != undefined){
         console.log('load user who like this post: ' + post._id)

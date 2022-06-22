@@ -2,3 +2,20 @@
     min-width: 20%;
     max-width: 70% !important;
 }
+
+.expandItem{
+    --border-width: 50%
+}
+
+.picture-gal{
+    max-width: 30% !important;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.center-content{
+    justify-content: center;
+    align-self: center;
+}

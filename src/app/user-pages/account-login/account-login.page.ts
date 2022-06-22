@@ -28,7 +28,6 @@ export class AccountLoginPage implements OnInit {
   }
 
   async onSubmit() {
-    let setTimeout = {duration:60,time_unit:'minutes'} // timeout in set
 
     let loginForm = new FormGroup({
       username: new FormControl(this.usr_name),
@@ -36,11 +35,11 @@ export class AccountLoginPage implements OnInit {
       exp: new FormControl('60m')
     })
     
-    if (this.passwd == undefined || this.usr_name == undefined) {
-      alert("คุณยังกรอกข้อมูลไม่ครบ")
+    if (this.passwd == undefined || this.usr_name == undefined
+      || this.usr_name == '' || this.passwd == '') {
+      alert("คุณยังกรอกข้อมูลในช่องไม่ครบ")
     } 
     else{
-      console.log(loginForm.value)
       await this.loadingCtrl.create({
         message: 'กำลังเข้าสู่ระบบ PICXEL',
         spinner: "dots"

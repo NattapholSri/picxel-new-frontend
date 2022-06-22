@@ -68,6 +68,7 @@ export class AccountRegisPage implements OnInit {
       },
       (err) => {
         console.log(err)
+        alert('เกิดข้อผิดพลาด: username อาจจะมีอยู่ในระบบอยู่แล้ว โปรดลองเปลี่ยนชื่อ User แล้วลองดูอีกรอบ')
       })
     }
   }

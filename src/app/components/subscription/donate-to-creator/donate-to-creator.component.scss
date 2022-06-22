@@ -1,5 +1,6 @@
 
-.my-custom-interface .select-interface-option {
-    color: red;
-    min-width: 75%;
+.my-custom-interface {
+  --min-width: 60% ;
+  --max-width: 80% ;
 }
+

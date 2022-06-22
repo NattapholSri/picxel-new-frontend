@@ -36,55 +36,45 @@ export class ManageOmiseComponent implements OnInit {
   createOmiseAccount(){
     this.paymentServ.createCustomer().subscribe((res) => {
       console.log('success ' + res)
-      location.reload()
+      alert('เปิดใช้ระบบสำหรับการทำธุรกรรมเสร็จสิ้น ต้องเข้าสู่ระบบอีกครั้งเพื่อใช้งาน')
+      this.ngZone.run(() => this.userLogout())
     },(err) => console.log(err))
   }
 
-  async manageCard(){
-    const alert = await this.alertCtrl.create({
-      header: 'ตัวในเลือกการกับบัตรเครดิต',
-      buttons: [
-        {
-        text: 'ปิดเมนู',
-        role: 'cancel'
-        },{
-          text: 'เพิ่มบัตรเครดิต',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/add-card'))
-          }
-        },{
-          text: 'จัดการบัตรเครดิต',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('/view-credit-card/'+this.customer))
-          }
-        }
-      ]
-    });
-
-    await alert.present();
+  manageCard(){
+    this.ngZone.run(() => this.router.navigateByUrl('/view-credit-card/'+this.customer))
 
   }
 
-  async manageRecipt(){
+  manageRecipt(){
+    this.ngZone.run(() => this.router.navigateByUrl('manage-recipient'))
+  }
+
+  userLogout(){
+    this.userServ.ReqLogout() 
+    .subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    )
+
+    this.ngZone.run(() => this.router.navigateByUrl('/'))
+  }
+
+  async createOmiseAlert(){
     const alert = await this.alertCtrl.create({
-      header: 'ตัวในเลือกการกับบัตรเครดิต',
+      header: 'ดำเนินการเปิดบัญชี Omise',
+      message: 'เมื่อเปิดบัญชีแล้วจะสามารถ ใช้งานบริการซื้อขายบนแพลตฟอร์มได้ ผ่านผู้ให้บริการ Payment gateway (Omise), ต้องการดำเนินการต่อหรือไม่',
       buttons: [
         {
-        text: 'ปิดเมนู',
+        text: 'ยกเลิก',
         role: 'cancel'
         },{
-          text: 'เพิ่มช่องทางในการรับเงิน',
+          text: 'ตกลงและดำเนินต่อ',
           handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('add-recipient'))
-          }
-        },{
-          text: 'จัดการช่องทางในการรับเงิน',
-          handler: () => {
-            this.ngZone.run(() => this.router.navigateByUrl('manage-recipient'))
+            this.createOmiseAccount()
           }
         }
-      ],
-      mode: "md",
+      ]
     });
 
     await alert.present();
