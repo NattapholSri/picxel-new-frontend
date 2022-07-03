@@ -6,7 +6,8 @@
 
 <ion-content>
   <br>
-  <div class="box-container">
+  <ion-card class="card-container">
+  <div>
     <ion-item>
       <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
       <ion-input type="text" required [(ngModel)]="usr_name" id="username_input" (keyup.enter)="onSubmit()"></ion-input>
@@ -18,19 +19,20 @@
     </ion-item>
   </div>
   <br>
-  <div class="box-container">
+  <div>
     <ion-button (click)="onSubmit()" id="login_btn" expand="block" shape="round">ลงชื่อเข้าใช้งาน</ion-button>
   </div>
   <br>
-  <div class="box-container">
+  <div>
       <ion-text>&nbsp;&nbsp;ยังไม่มีบัญชี?</ion-text>
       <ion-button fill="outline" [routerLink]="'/registration'" id="register_btn" expand="block" shape="round">ลงทะเบียน</ion-button>
   </div>
   <br>
-  <div class="box-container">
+  <div>
     <ion-text>
       &nbsp;&nbsp;ลืมรหัสผ่าน?
     </ion-text>
     <ion-button color="warning" [routerLink]="'/forgot-password'" id="forgot_passwd_btn" expand="block" shape="round">รีเซ็ตรหัสผ่าน</ion-button>
   </div>
+  </ion-card>
 </ion-content>
