@@ -13,6 +13,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshThisPage($event)">
+    <ion-refresher-content
+      refreshingSpinner="lines"
+      refreshingText="กำลังโหลดหน้านี้ใหม่...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item *ngFor="let card of card_list">
       <ion-label>

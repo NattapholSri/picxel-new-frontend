@@ -105,4 +105,14 @@ export class ManageReciptPage implements OnInit {
     )
   }
 
+  refreshThisPage(event){
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      location.reload();
+      event.target.complete();
+    }, 1000);
+  }
 }
+
+

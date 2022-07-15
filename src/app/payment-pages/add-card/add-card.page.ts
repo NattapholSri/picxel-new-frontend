@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController,AlertController } from '@ionic/angular';
 import { environment } from 'src/environments/environment'
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
@@ -37,7 +37,8 @@ export class AddCardPage implements OnInit {
     public formBulider: FormBuilder,
     private paymentServ:PaymentsService,
     private userServ: UserService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) { 
     for (let i = this.this_year; i < this.this_year+15; i++){
       this.year_number.push(i)
@@ -52,6 +53,16 @@ export class AddCardPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  async errorAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: 'ไม่สามารถเพิ่มบัตรเครดิตได้ โปรดตรวจสอบข้อมูลแล้วลองใหม่',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   async onSubmit(){
@@ -88,7 +99,7 @@ export class AddCardPage implements OnInit {
           }).catch((error) => {
             console.log('error', error);
           })
-          alert('error')
+          this.errorAlert()
         }
         else{
           console.log(response)

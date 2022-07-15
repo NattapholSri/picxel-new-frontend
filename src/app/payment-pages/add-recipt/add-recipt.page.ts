@@ -1,6 +1,6 @@
 import { Component, OnInit,NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController,AlertController } from '@ionic/angular';
 
 import { PaymentsService } from 'src/app/services/api/payments.service';
 import { UserService } from 'src/app/services/api/user.service';
@@ -37,7 +37,8 @@ export class AddReciptPage implements OnInit {
     private ngZone:NgZone,
     private paymentServ:PaymentsService,
     private userServ: UserService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {
     this.userServ.AutoLogout()
     let user_id = localStorage.getItem('current_log_uid')
@@ -49,6 +50,16 @@ export class AddReciptPage implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  async errorAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: 'ไม่สามารถเพิ่มบัญชีธนาคารได้ โปรดตรวจสอบข้อมูลแล้วลองใหม่',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   changeToDefEmail(){
@@ -92,7 +103,7 @@ export class AddReciptPage implements OnInit {
         console.log(err)
         this.reciptData = {name: '',email: '',type: '',
                           bank_account: {name:'',number:'',brand:''}}
-        alert('เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ โปรดลองใหม่อีกครั้งหรือลองใหม่ภายหลัง')
+        this.errorAlert()
       }
     )}
   } 
