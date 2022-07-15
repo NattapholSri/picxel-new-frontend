@@ -58,7 +58,7 @@ export class AddCardPage implements OnInit {
   async errorAlert() {
     const alert = await this.alertCtrl.create({
       header: 'เกิดข้อผิดพลาด',
-      message: 'ไม่สามารถเพิ่มบัตรเครดิตได้ โปรดตรวจสอบข้อมูลแล้วลองใหม่',
+      message: 'ไม่สามารถเพิ่มบัตรเครดิตได้ โปรดตรวจสอบข้อมูลที่กรอก แล้วลองใหม่อีกครั้ง',
       buttons: ['OK']
     });
 
