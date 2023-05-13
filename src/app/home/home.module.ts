@@ -17,7 +17,8 @@ import { UserSuggestComponent } from '../components/user-suggest/user-suggest.co
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,SharedComponentModule
+    HomePageRoutingModule,
+    SharedComponentModule
   ],
   declarations: [HomePage,PostCreateComponent,RandomAllPostComponent,CommentOnRndPostComponent,UserSuggestComponent]
 })

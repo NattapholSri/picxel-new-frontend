@@ -158,7 +158,7 @@ export class AccountDetailPage implements OnInit {
       component: PopUserMenuComponent,
       dismissOnSelect: true,
       componentProps: { username :this.currentUserName, user_page_name:this.user_id },
-      align: 'start',
+      alignment: 'start',
       side: "bottom"
     });
     await popover.present();
@@ -197,7 +197,7 @@ export class AccountDetailPage implements OnInit {
       component:  DonateToCreatorComponent,
       dismissOnSelect: false,
       componentProps: { creator_id:this.usr_acc._id },
-      align: 'start',
+      alignment: 'start',
       side: "bottom",
       cssClass: 'expand-popup'
     });
